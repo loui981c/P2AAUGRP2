@@ -64,3 +64,27 @@ ul li a {
   height: 40%;
   object-fit: cover;
 }
+.coloredSpacer {
+  margin-bottom: 10px;
+  height: 3%;
+  background-color: rgb(95, 150, 13);
+}
+h1 {
+  font-size: 60px;
+  text-align: center;
+  display: block;
+  font-family: bebas;
+  color: black;
+}
+.centerContent {
+  margin-left: 30%;
+  margin-right: 30%;
+}
+.centerContent ul {
+  list-style-type: lower-greek;
+}
+.contentUnderTitle li {
+  margin: 20px;
+  font-size: 20;
+  text-decoration: black;
+}
