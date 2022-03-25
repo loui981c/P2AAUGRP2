@@ -1,17 +1,31 @@
-<%- include ("partials/header.ejs") %>
-<body>
-  <div class="centerContainer">
-  <img class="logo" src="/assets/logo.png" alt="logo">
-  
-  <h1>WELCOME</h1>
+<%- include ("partials/header_homepage.ejs") %>
+  <body>
+    <div class="centerContainer">
+      <img class="logo" src="/assets/logo.png" alt="logo">
+      
+      <h1>WELCOME</h1>
+      
+      
+      <form id="username" action="POST">
+        <input required type="text" id="LogIn" name="login" placeholder="Enter username">   
+        <button class="button" type="submit" value="Submit">ENTER</button>
+      </form>
+      
+      <br>
 
-  <form action="POST">
-    <label for="LogIn">USERNAME</label>
-    <input type="text" id="LogIn" name="login" placeholder="Enter username">
-    <button type="submit" value="Submit">ENTER</button>
-  </form>
-  
-</div>
-    <script src="/scripts/script.js"></script>
-</body>
+      <button class="button" id="create" onclick="show(1)">CREATE AN USER</button>
+
+      <br><br>
+
+      <form id="create-username" action="POST">
+        <input required type="text" name="create-user" placeholder="Create an username">
+        <button class="button" type="submit" value="Submit">CREATE</button>
+      </form>
+    </div>
+    
+    
+
+    <script src="scripts/homepage.js"></script>
+
+  </body>
 </html>
