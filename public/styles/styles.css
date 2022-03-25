@@ -88,3 +88,11 @@ h1 {
   font-size: 20;
   text-decoration: black;
 }
+
+.centerContainer {
+  text-align: center;
+}
+
+.logo {
+  max-width: 200px;
+}
