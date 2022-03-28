@@ -26,9 +26,9 @@ body {
 .button {
   appearance: none;
   background-color: #2ea44f;
-  border: 1px solid rgba(27, 31, 35, .15);
-  border-radius: 6px;
-  box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+  border: 1px solid rgba(27, 31, 35, 0.15);
+  border-radius: 1px;
+  box-shadow: rgba(27, 31, 35, 0.1) 0 1px 0;
   box-sizing: border-box;
   color: #fff;
   cursor: pointer;
@@ -56,25 +56,48 @@ body {
 }
 
 .button:focus {
-  box-shadow: rgba(46, 164, 79, .4) 0 0 0 3px;
+  box-shadow: rgba(46, 164, 79, 0.4) 0 0 0 3px;
   outline: none;
 }
 
 .button:disabled {
   background-color: #94d3a2;
-  border-color: rgba(27, 31, 35, .1);
-  color: rgba(255, 255, 255, .8);
+  border-color: rgba(27, 31, 35, 0.1);
+  color: rgba(255, 255, 255, 0.8);
   cursor: default;
 }
 
 .button:active {
   background-color: #298e46;
-  box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+  box-shadow: rgba(20, 70, 32, 0.2) 0 1px 0 inset;
 }
 
 /* design input fields */
-input { 
-  -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px; 
+input {
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px;
   border-radius: 5px;
-  background: linear-gradient(180deg, rgba(196, 196, 196, 0.2) 0%, rgba(196, 196, 196, 0.09375) 53.12%, rgba(196, 196, 196, 0) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(196, 196, 196, 0.2) 0%,
+    rgba(196, 196, 196, 0.09375) 53.12%,
+    rgba(196, 196, 196, 0) 100%
+  );
+}
+
+.centerContainer {
+  text-align: center;
+  margin: 0%;
+}
+
+.logo {
+  margin: 0%;
+  max-width: 200px;
+  transition: 250ms ease-in-out;
+}
+
+.logo:hover {
+  transform: translateY(-10px);
+}
+.logo:active {
+  transform: rotateX(180deg);
 }

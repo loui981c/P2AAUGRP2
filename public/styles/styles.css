@@ -20,20 +20,4 @@ h1 {
   color: black;
 }
 
-.centerContainer {
-  text-align: center;
-  margin: 0%;
-}
 
-.logo {
-  margin: 0%;
-  max-width: 200px;
-  transition: 250ms ease-in-out;
-}
-
-.logo:hover {
-  transform: translateY(-10px);
-}
-.logo:active {
-  transform: rotateX(180deg);
-}

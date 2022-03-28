@@ -6,20 +6,20 @@
       <h1>WELCOME</h1>
       
       
-      <form id="username" action="POST">
-        <input required type="text" id="LogIn" name="login" placeholder="Enter username">   
-        <button class="button" type="submit" value="Submit">ENTER</button>
+      <form id="username" method="POST" action="/">
+        <input required type="text" id="login" name="login" placeholder="Enter username">   
+        <button class="button" type="submit" value="Submit">Sign in</button>
       </form>
       
       <br>
 
-      <button class="button" id="create" onclick="show(1)">CREATE AN USER</button>
+      <button class="button" id="create" onclick="show(1)">Sign up</button>
 
       <br><br>
 
-      <form id="create-username" action="POST">
-        <input required type="text" name="create-user" placeholder="Create an username">
-        <button class="button" type="submit" value="Submit">CREATE</button>
+      <form id="create-username" method="POST" action="/">
+        <input required type="text" id="newuser" name="newuser" placeholder="Create a username">
+        <button class="button" type="submit" value="Submit">Sign up</button>
       </form>
     </div>
     
