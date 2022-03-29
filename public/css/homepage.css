@@ -115,13 +115,11 @@ input:focus {
 }
 
 .login-form {
+  justify-content: start;
   display: inline-block;
   max-width: 15%;
 }
-.login-form label {
-  margin: 10px;
-  text-align: start;
-}
+
 .login-form input {
   display: flex;
   margin-top: 5px;
@@ -129,4 +127,11 @@ input:focus {
 }
 .login-form button {
   display: flex;
+}
+.login-form label {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: block;
+  text-align: start;
+  justify-content: start;
 }
