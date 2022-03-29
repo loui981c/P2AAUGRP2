@@ -29,49 +29,34 @@ h1 {
 
 /* button design */
 .button {
-  appearance: none;
   background-color: transparent;
-  border: 1px solid rgb(0, 88, 4);
+  border: 1.5px solid green;
   border-radius: 2px;
-  box-shadow: rgba(27, 31, 35, 0.1) 0 1px 0;
-  box-sizing: border-box;
-  color: rgb(0, 88, 4);
-  cursor: pointer;
+
+  color: green;
   display: inline-block;
-  font-size: 10px;
-  font-weight: 600;
-  line-height: 17.5px;
-  position: relative;
+  font-size: 12px;
+  font-weight: 400;
+
   text-align: center;
-  text-decoration: none;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  vertical-align: middle;
-  white-space: nowrap;
+
+  padding: 10px;
+
   transition: 250ms ease-in-out;
 }
-
 .button:focus:not(:focus-visible):not(.focus-visible) {
   box-shadow: none;
   outline: none;
 }
 
 .button:hover {
-  background-color: #2c974b;
+  background-color: green;
   color: white;
 }
 
 .button:focus {
   box-shadow: rgba(46, 164, 79, 0.4) 0 0 0 3px;
   outline: none;
-}
-
-.button:disabled {
-  background-color: #94d3a2;
-  border-color: rgba(27, 31, 35, 0.1);
-  color: rgba(255, 255, 255, 0.8);
-  cursor: default;
 }
 
 .button:active {
@@ -89,12 +74,14 @@ input {
     rgba(196, 196, 196, 0.09375) 53.12%,
     rgba(196, 196, 196, 0) 100%
   );
+  padding: 10px;
 }
 
 .login-form {
   justify-content: start;
   display: inline-block;
   max-width: 15%;
+  transform: 250ms;
 }
 
 .login-form input {
@@ -111,4 +98,28 @@ input {
   display: block;
   text-align: start;
   justify-content: start;
+}
+
+.submitBut {
+  margin: 0% auto;
+  min-width: 90%;
+  background-color: green;
+  border: 1.5px solid green;
+  border-radius: 2px;
+
+  color: white;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 400;
+
+  text-align: center;
+
+  padding: 10px;
+
+  transition: 250ms ease-in-out;
+}
+
+.submitBut:hover {
+  background-color: rgb(0, 177, 0);
+  color: white;
 }

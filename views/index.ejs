@@ -5,21 +5,20 @@
       
       <h1>WELCOME</h1>
       
-      
+      <button class="button" id="loginBut" onclick="show(2)">Sign in</button>
+      <button class="button" id="createBut" onclick="show(1)">Sign up</button>
+
+      <br>
       <form class="login-form" id="username" method="POST" action="/">
         <label for="login">Username: </label>
         <input required type="text" id="login" name="login" placeholder="Enter username">
+        <button class="submitBut" type="submit">Enter</button>
       </form>
-      
-      <br>
-
-      <button class="button" id="create" onclick="show(1)">Sign up</button>
-
-      <br><br>
 
       <form class="login-form" id="create-username" method="POST" action="/">
         <label for="newuser">Create New: </label>
         <input required type="text" id="newuser" name="newuser" placeholder="Create a username">
+        <button class="submitBut" type="submit">Enter</button>
       </form>
     </div>
     
