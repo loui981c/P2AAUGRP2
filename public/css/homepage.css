@@ -74,7 +74,7 @@ body {
 
 /* design input fields */
 input { 
-  -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px; 
+  box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px; 
   border-radius: 5px;
   background: linear-gradient(180deg, rgba(196, 196, 196, 0.2) 0%, rgba(196, 196, 196, 0.09375) 53.12%, rgba(196, 196, 196, 0) 100%);
 }
