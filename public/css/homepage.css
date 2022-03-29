@@ -81,37 +81,14 @@ h1 {
 
 /* design input fields */
 input {
-  -webkit-box-shadow: rgb(87, 87, 87) 0px 0px 0px;
-  border-radius: 2px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px;
+  border-radius: 5px;
   background: linear-gradient(
     180deg,
     rgba(196, 196, 196, 0.2) 0%,
-    rgb(255, 255, 255) 53.12%,
+    rgba(196, 196, 196, 0.09375) 53.12%,
     rgba(196, 196, 196, 0) 100%
   );
-  outline: none;
-  padding: 5px;
-}
-input:focus {
-  border: 2px solid #206d36;
-}
-
-.centerContainer {
-  text-align: center;
-  margin: 0%;
-}
-
-.logo {
-  margin: 0%;
-  max-width: 200px;
-  transition: 250ms ease-in-out;
-}
-
-.logo:hover {
-  transform: translateY(-10px);
-}
-.logo:active {
-  transform: rotateX(180deg);
 }
 
 .login-form {
