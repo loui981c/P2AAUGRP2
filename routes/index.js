@@ -6,12 +6,8 @@ router.get('/', (req, res, next) => {
   res.render('index');
 });
 
-
-
 // handle post request from welcome page
 router.post("/", (req, res)=>{
-
-
 
   //this is if the user is trying to sign in
   if (req.body.login == "bob")
