@@ -17,9 +17,16 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
+
+//parsing json
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+
+//url stuff
+app.use(express.urlencoded({ extended: true }));
+
 app.use(cookieParser());
+
+//for public files like css and scripts
 app.use(express.static(path.join(__dirname, 'public')));
 
 // using routers
@@ -27,6 +34,7 @@ app.use('/', indexRouter);
 app.use('/monthly', monthlyRouter);
 app.use('/transactions', transactionsRouter);
 app.use('/budget', budgetRouter);
+app.use(express.urlencoded({extended: true}));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
