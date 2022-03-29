@@ -6,9 +6,9 @@
       <h1>WELCOME</h1>
       
       
-      <form id="username" method="POST" action="/">
-        <input required type="text" id="login" name="login" placeholder="Enter username">   
-        <button class="button" type="submit" value="Submit">Sign in</button>
+      <form class="login-form" id="username" method="POST" action="/">
+        <label for="login">Username: </label>
+        <input required type="text" id="login" name="login" placeholder="Enter username">
       </form>
       
       <br>
@@ -17,9 +17,9 @@
 
       <br><br>
 
-      <form id="create-username" method="POST" action="/">
+      <form class="login-form" id="create-username" method="POST" action="/">
+        <label for="newuser">Create New: </label>
         <input required type="text" id="newuser" name="newuser" placeholder="Create a username">
-        <button class="button" type="submit" value="Submit">Sign up</button>
       </form>
     </div>
     
