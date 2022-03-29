@@ -85,3 +85,8 @@ input {
   border-radius: 5px;
   background: linear-gradient(180deg, rgba(196, 196, 196, 0.2) 0%, rgba(196, 196, 196, 0.09375) 53.12%, rgba(196, 196, 196, 0) 100%);
 }
+
+/* design labels on input fields */
+label {
+  font-weight: 700;
+}
