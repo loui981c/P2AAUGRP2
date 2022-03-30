@@ -1,7 +1,5 @@
 /* set background for body */
 
-
-
 body {
   background-color: rgb(255, 255, 255);
   margin: 0px;
@@ -23,6 +21,10 @@ body {
 /* sizes the logo */
 .logo {
   max-width: 200px;
+  transition: 250ms;
+}
+.logo:hover {
+  transform: translateY(-5%);
 }
 
 h1 {

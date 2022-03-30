@@ -52,6 +52,7 @@
   display: block;
   /* setting the color */
   color: #a8a8a8;
+  transition: 100ms;
 }
 
 /* moving the links down from the logo */
