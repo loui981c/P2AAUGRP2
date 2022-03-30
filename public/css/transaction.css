@@ -8,14 +8,19 @@
   font-family: bebas;
   font-size: 4vw;
 }
-.transactionPage .chooseStuff {
-}
 
-.transactionPage .chooseCategory label,
-input {
-  display: relative;
+.chooseStuff {
+  display: block;
 }
-.transactionPage .chooseTime label,
+/* inline-block makes stuff appear on the same line */
+.chooseCategory {
+  display: inline-block;
+}
+.chooseTime {
+  display: inline-block;
+}
+/* flex makes stuff appear above eachother within the div */
+.chooseTime label,
 input {
-  display: relative;
+  display: flex;
 }
