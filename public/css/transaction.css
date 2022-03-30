@@ -8,7 +8,20 @@
   font-family: bebas;
   font-size: 4vw;
 }
+.transactionPage h2 {
+  font-family: bebas;
+  font-size: 1.8vw;
+}
+.transactionPage h3 {
+  font-family: bebas;
+  font-size: 1.5vw;
+}
+.transactionPage h4 {
+  font-family: bebas;
+  font-size: 1vw;
+}
 
+/* beautifying the interactive elements*/
 .chooseStuff {
   display: block;
 }
