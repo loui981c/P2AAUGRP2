@@ -1,3 +1,6 @@
+//These are scripts for the index.ejs file
+
+
 document.getElementById("create-username").style.display = "none";
 document.getElementById("username").style.display = "none";
 

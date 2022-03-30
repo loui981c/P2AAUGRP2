@@ -1,6 +1,21 @@
 <%- include ("partials/header.ejs") %>
 <body>
     <h1>Transaction overview</h1>
+    <select name="categories" id="categories">
+    <%for cat in categories {%> 
+        
+        <option value="<%= cat.name %> "><%= cat.name %> </option>
+        
+        <% } %> 
+
+
+    </select>
+
+    <div class="transactionTile">
+        <h2></h2>
+
+    </div>
+
     
 </body>
 </html>
