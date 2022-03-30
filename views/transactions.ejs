@@ -2,37 +2,50 @@
 <body>
     <%- include ("partials/sidebar.ejs") %>
     <div class="transactionPage">
-    <h1>Transaction overview</h1>
-    <div class="chooseStuff">
-    <%# Dropdown for choosing category%>
-    <div class="chooseCategory">
-        <%# the variable "categories" comes is a variable rendered with the transactions view (transactions.js)%>
-        <select name="categories" id="categories">
-           <option value="allCategories">All Categories</option> 
-        <% for (let i = 0; i<categories.length; i++) { %>
-                <option value= <%= categories[i] %>><%= categories[i] %> </option>   
-            <% } %>    
-    </select>
-    </div>
+        <h1>Transaction overview</h1>
+            <div class="chooseStuff">
+                <%# Dropdown for choosing category%>
+                    <div class="chooseCategory">
+                    <%# the variable "categories" comes is a variable rendered with the transactions view (transactions.js)%>
+                        <select name="categories" id="categories">
+                            <option value="allCategories">All Categories</option> 
+                            <% for (let i = 0; i<categories.length; i++) { %>
+                                <option value= <%= categories[i] %>><%= categories[i] %> </option>   
+                            <% } %>    
+                        </select>
+                    </div>
 
-    <%# For choosing time period of transactions%>
-    <div class="chooseTime">
-        <label for="dateFrom">From</label>
-        <input type="date" id="dateFrom" name="dateFrom">
-        <label for="dateTo">To</label>
-        <input type="date" id="dateTo" name="dateTo">
+            <%# For choosing time period of transactions%>
+                <div class="chooseTime">
+                    <label for="dateFrom">From</label>
+                    <input type="date" id="dateFrom" name="dateFrom">
+                    <label for="dateTo">To</label>
+                    <input type="date" id="dateTo" name="dateTo">
+                </div>
+            </div>
 
-    </div>
-    </div>
+    
+        <%# Display all transactions%>
+        <% for (let j = 0; j<allTransactions.length; j++){ %> 
+        <div class="transactionTileOuter">
+        <div class="transactionTile">
+            <p class="date">Date: <%= allTransactions[j].price %> </p>
+            <div class="tileTitles">
+                <p class="tileMain"><%= allTransactions[j].main %> </p>
+                <p class="tileSub"><%= allTransactions[j].sub %> </p>
+            </div>
+            <p class="price">Price: <%= allTransactions[j].price %> </p>
+         </div>       
+        <div class="tileButtons">
+            <button>Edit</button>
+            <button>Remove</button>
+        </div>
+        </div>
+        
+        
+        <% } %> 
 
-    <%# Display all transactions%>
-    <% for (let j = 0; j<allTransactions.length; j++){ %> 
-        <h2><%= allTransactions[j].main %> </h2>
-        <h3><%= allTransactions[j].sub %> </h3>
-        <h4>Price: <%= allTransactions[j].price %> </h4>
-        <h4>Date: <%= allTransactions[j].date %> </h4>
-
-    <% } %> 
+        
 
     </div>
 
