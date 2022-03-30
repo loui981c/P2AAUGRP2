@@ -1,3 +1,4 @@
+// makes the input invisible if nothing is done
 document.getElementById("create-username").style.display = "none";
 document.getElementById("username").style.display = "none";
 
@@ -22,6 +23,7 @@ function show(x) {
         document.getElementById("username").style.display = "inline-block";
         document.getElementById("loginBut").style.background = "green";
         document.getElementById("loginBut").style.color = "white";
+        
         //make other input invisible
         document.getElementById("create-username").style.display = "none";
 
