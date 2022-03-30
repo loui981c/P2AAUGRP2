@@ -11,30 +11,36 @@
 }
 /* inline-block makes stuff appear on the same line */
 .chooseCategory {
+  font-size: 1.5vw;
   display: inline-block;
 }
 .chooseTime {
-  margin-left: 10%;
+  font-size: 1.5vw;
   display: inline-block;
+  width: 60%;
 }
 .transactionPage input {
+  font-size: 1.2vw;
   font-family: bebas;
   color: black;
   background-color: transparent;
   border: solid 1px;
   border-color: black;
-  padding: 5%;
+  padding: 1%;
+  width: 30%;
+  display: inline-block;
 }
 .transactionPage label {
   font-family: bebas;
 }
 .transactionPage select {
+  font-size: 1.2vw;
   font-family: bebas;
   color: black;
   background-color: transparent;
   border: solid 1px;
   border-color: black;
-  padding: 7%;
+  padding: 3%;
 }
 
 /* flex makes stuff appear above eachother within the div */
@@ -76,6 +82,7 @@ h1 {
   display: flex;
 }
 .tileSub {
+  color: rgb(61, 61, 61);
   font-size: 1.5vw;
   margin: 0px;
   display: flex;
@@ -99,6 +106,7 @@ h1 {
   display: inline-block;
 }
 .tileButtons button {
+  font-family: bebas;
   display: flex;
 }
 /*the stuff just above the tiles*/

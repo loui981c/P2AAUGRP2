@@ -7,6 +7,7 @@
                 <%# Dropdown for choosing category%>
                     <div class="chooseCategory">
                     <%# the variable "categories" comes is a variable rendered with the transactions view (transactions.js)%>
+                    <label for="categories">Choose category</label>
                         <select name="categories" id="categories">
                             <option value="allCategories">All Categories</option> 
                             <% for (let i = 0; i<categories.length; i++) { %>
@@ -17,9 +18,8 @@
 
             <%# For choosing time period of transactions%>
                 <div class="chooseTime">
-                    <label for="dateFrom">From</label>
+                    <label for="dateFrom" for="dateTo">Choose date (Start - End)</label>
                     <input type="date" id="dateFrom" name="dateFrom">
-                    <label for="dateTo">To</label>
                     <input type="date" id="dateTo" name="dateTo">
                 </div>
             </div>
@@ -40,7 +40,7 @@
                 <p class="tileMain"><%= allTransactions[j].main %> - <%= allTransactions[j].date %>  </p>
                 <p class="tileSub"><%= allTransactions[j].sub %> </p>
             </div>
-            <p class="price">Price: <%= allTransactions[j].price %> </p>
+            <p class="price">Price: <%= allTransactions[j].price %>,-</p>
         </div>       
         <div class="tileButtons">
             <button class="edit">Edit</button>
