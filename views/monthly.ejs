@@ -1,6 +1,28 @@
 <%- include ("partials/header.ejs") %>
+
 <body>
-    <h1>Monthly Overview</h1>
-    
+    <%- include ("partials/sidebar.ejs") %>
+    <div class="monthlyPage">
+        <h1>Monthly Overview</h1>
+        <%# Dropdown for choosing category%>
+        <%# probably needs option loop for each category in DB%>
+        <div class="category_menu">
+            <select>
+                <option value ="">All Categories</option>
+                <option value = "cat_1">Food</option>
+                <option value = "cat_2">Rent</option>
+                <option value = "cat_3">Income</option>
+            </select>
+        </div>
+
+        <%# Dropdown for choosing graph type%>
+        <div class="graph_menu" >
+            <select name="graphs" id="graphs">
+                <option value="pie_chart">Pie Chart</option>
+                <option value="graph_chart">Graph Chart</option>
+            </select>
+        </div>
+    </div>
+
 </body>
 </html>

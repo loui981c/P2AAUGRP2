@@ -1,21 +1,66 @@
 /*This is for the transaction page*/
 .transactionPage {
   margin-left: 14%;
+  margin-right: 14%;
+}
+
+/* beautifying the interactive elements*/
+.chooseStuff {
+  display: block;
+  margin-left: 20%;
+}
+/* inline-block makes stuff appear on the same line */
+.chooseCategory {
+  display: inline-block;
+}
+.chooseTime {
+  display: inline-block;
+}
+/* flex makes stuff appear above eachother within the div */
+.chooseTime label,
+input {
+  display: flex;
 }
 
 /* font formatting */
-.transactionPage h1 {
+
+.transactionPage p,
+h1 {
   font-family: bebas;
-  font-size: 4vw;
 }
-.transactionPage .chooseStuff {
+.transactionPage h1 {
+  font-size: 3vw;
+}
+/*modding each tile*/
+.transactionTileOuter {
+  width: 80%;
+  margin: 20%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+.transactionTile {
+  padding: 1%;
+  width: 80%;
+  display: inline-block;
+  border: solid 1px;
+}
+.tileMain {
+  font-size: 1.8vw;
+  margin: 0px;
+  display: inline-block;
+}
+.price {
+  margin-bottom: 3%;
+  text-align: center;
+}
+.date {
+  display: flex;
+  font-size: 1vw;
 }
 
-.transactionPage .chooseCategory label,
-input {
-  display: relative;
+.tileButtons {
+  display: inline-block;
 }
-.transactionPage .chooseTime label,
-input {
-  display: relative;
+.tileButtons button {
+  display: flex;
 }
