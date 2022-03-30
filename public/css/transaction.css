@@ -14,8 +14,29 @@
   display: inline-block;
 }
 .chooseTime {
+  margin-left: 10%;
   display: inline-block;
 }
+.transactionPage input {
+  font-family: bebas;
+  color: black;
+  background-color: transparent;
+  border: solid 1px;
+  border-color: black;
+  padding: 5%;
+}
+.transactionPage label {
+  font-family: bebas;
+}
+.transactionPage select {
+  font-family: bebas;
+  color: black;
+  background-color: transparent;
+  border: solid 1px;
+  border-color: black;
+  padding: 7%;
+}
+
 /* flex makes stuff appear above eachother within the div */
 .chooseTime label,
 input {
@@ -39,23 +60,39 @@ h1 {
   margin-bottom: 1%;
 }
 .transactionTile {
+  margin: 0px;
   padding: 1%;
   width: 80%;
   display: inline-block;
   border: solid 1px;
 }
+.tileTitles {
+  display: inline-block;
+  min-width: 30%;
+}
 .tileMain {
   font-size: 1.8vw;
   margin: 0px;
-  display: inline-block;
+  display: flex;
+}
+.tileSub {
+  font-size: 1.5vw;
+  margin: 0px;
+  display: flex;
 }
 .price {
-  margin-bottom: 3%;
-  text-align: center;
+  display: inline-block;
+  position: relative;
+  left: 18%;
+  min-width: 20%;
+  font-size: 1.8vw;
+  text-align: start;
+  color: green;
 }
 .date {
   display: flex;
   font-size: 1vw;
+  margin: 0%;
 }
 
 .tileButtons {
@@ -63,4 +100,58 @@ h1 {
 }
 .tileButtons button {
   display: flex;
+}
+/*the stuff just above the tiles*/
+.tileLabels {
+  font-size: 1.5vw;
+  margin: 2%;
+  margin-left: 20%;
+}
+.type {
+  text-align: end;
+  margin-left: 2%;
+  display: inline-block;
+}
+
+/*buttons to the right of the tiles*/
+.tprice {
+  text-align: end;
+  margin-left: 35%;
+  display: inline-block;
+}
+.editDelete {
+  text-align: end;
+  margin-left: 36%;
+  display: inline-block;
+}
+
+.delete {
+  margin: 8%;
+  background-color: transparent;
+  justify-content: center;
+  min-width: 140%;
+  padding: 15%;
+  border: solid 1px red;
+  color: red;
+  transition: 150ms;
+}
+.delete:active {
+  background-color: rgb(240, 240, 240);
+  border: solid 1px red;
+  color: red;
+}
+.edit {
+  margin: 8%;
+  justify-content: center;
+  min-width: 140%;
+  padding: 15%;
+  background-color: transparent;
+  border: solid 1px green;
+  color: green;
+  transition: 150ms;
+}
+.edit:active {
+  background-color: rgb(240, 240, 240);
+  border: solid 1px green;
+  color: green;
 }
