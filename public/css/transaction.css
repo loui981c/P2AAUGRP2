@@ -1,0 +1,21 @@
+/*This is for the transaction page*/
+.transactionPage {
+  margin-left: 14%;
+}
+
+/* font formatting */
+.transactionPage h1 {
+  font-family: bebas;
+  font-size: 4vw;
+}
+.transactionPage .chooseStuff {
+}
+
+.transactionPage .chooseCategory label,
+input {
+  display: relative;
+}
+.transactionPage .chooseTime label,
+input {
+  display: relative;
+}
