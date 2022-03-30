@@ -1,0 +1,18 @@
+/*Monthly page formatting*/
+.monthlyPage{
+    margin-left: 14%;
+}
+
+/*Category menu positioning*/
+.category_menu{
+    position:absolute;
+    left:20%;
+    top:10%;
+}
+
+/*Graph menu positioning*/
+.graph_menu{
+    position: absolute;
+    right:20%;
+    top:10%;
+}
