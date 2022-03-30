@@ -23,10 +23,13 @@ body {
   max-width: 200px;
   transition: 250ms;
 }
+
+/* makes the logo jump */
 .logo:hover {
   transform: translateY(-5%);
 }
 
+/* font on all h1 */
 h1 {
   font-size: 4em;
   font-family: bebas;

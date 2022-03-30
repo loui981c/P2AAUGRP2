@@ -44,7 +44,7 @@
   /* setting the font */
   font-family: bebas;
   /* font-size always be 1,75% of the current screen */
-  font-size: 1.75vw;
+  font-size: 1.7vw;
   /* setting padding around the links */
   padding: 8px 10px 0px 10px;
   /* removes the link underline and makes stack on top of each other */
@@ -65,3 +65,8 @@
   color: #ffffff;
 }
 
+/* makes the logo jump when hover */
+.logo:hover {
+  transform: translateY(-5%);
+  transition: 250ms ease-in-out;
+}
