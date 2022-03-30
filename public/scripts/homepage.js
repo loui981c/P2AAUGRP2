@@ -19,11 +19,10 @@ function show(x) {
 
     }
     else{
-        
         document.getElementById("username").style.display = "inline-block";
         document.getElementById("loginBut").style.background = "green";
         document.getElementById("loginBut").style.color = "white";
-        
+
         //make other input invisible
         document.getElementById("create-username").style.display = "none";
 
