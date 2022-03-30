@@ -26,19 +26,25 @@
 
     
         <%# Display all transactions%>
+            <div class="tileLabels">
+                <p class="type">Type</p>
+                <p class="tprice">Price</p>
+                <p class="editDelete">Edit/delete</p>
+
+            </div>
+
         <% for (let j = 0; j<allTransactions.length; j++){ %> 
         <div class="transactionTileOuter">
         <div class="transactionTile">
-            <p class="date">Date: <%= allTransactions[j].price %> </p>
             <div class="tileTitles">
-                <p class="tileMain"><%= allTransactions[j].main %> </p>
+                <p class="tileMain"><%= allTransactions[j].main %> - <%= allTransactions[j].date %>  </p>
                 <p class="tileSub"><%= allTransactions[j].sub %> </p>
             </div>
             <p class="price">Price: <%= allTransactions[j].price %> </p>
-         </div>       
+        </div>       
         <div class="tileButtons">
-            <button>Edit</button>
-            <button>Remove</button>
+            <button class="edit">Edit</button>
+            <button class="delete">Delete</button>
         </div>
         </div>
         
