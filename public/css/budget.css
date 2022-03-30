@@ -1,36 +1,147 @@
-.button-budget {
-    border: none;
-    color: white;
-    padding: 16px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    transition-duration: 0.4s;
-    cursor: pointer;
+/* setting the margin for the page */
+.budgetPage {
+    margin-left: 14%;
+    margin-right: 10%; 
+}
+/* the font for the page */
+.budgetPage p,
+h1 {
+  font-family: bebas;
+}
+.budgetPage h1 {
+  font-size: 3vw;
 }
 
-.button-budget:hover {
-    background-color: white; 
-    color: black; 
-    border: 2px solid #4CAF50;
+/* position the button */
+.addBudget {
+  display: block;
+  margin-left: 10%;
 }
-  
-.button-budget {
-    background-color: #4CAF50;
+
+/* design the add budget button */
+.addBudgetBut {
+  font-size: 1.2vw;
+  font-family: bebas;
+  color: green;
+  background-color: transparent;
+  border: solid 1px;
+  border-color: green;
+  padding: 1.25%;
+}
+.addBudgetBut:active {
+    background-color: rgb(240, 240, 240);
+    border: solid 1px green;
+    color: green;
+}
+.addBudgetBut:hover {
+    background-color: green;
     color: white;
-    border: 2px solid white;
 }
-  
-.table-budget {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
+
+/* the design of the small headers */
+.budgetLabels {
+    font-size: 1.5vw;
+}
+
+/* setting the distance between small headers */
+.category {
+    text-align: end;
+    display: inline-block;
+    margin-left: 15.25%;
+}    
+.expected {
+    text-align: end;
+    display: inline-block;
+    margin-left: 16%;
+}  
+.spent {
+    text-align: end;
+    display: inline-block;
+    margin-left: 16%;
+}
+.remaining {
+    text-align: end;
+    display: inline-block;
+    margin-left: 15.75%;
+}
+
+/* making the table */
+.budgetTable {
     width: 100%;
+    margin: 10%;
+    margin-top: 1%;
+    margin-bottom: 1%;
 }
-    
-tr th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 16px;
+.budgetInsideTable {
+    margin: 0px;
+    padding: 1%;
+    width: 80%;
+    display: inline-block;
+    border: solid 1px;
+}
+
+/* setting the titles inside of the table */
+.budgetCategory {
+    display: inline-block;
+    position: relative;
+    left: 5.5%;
+    min-width: 20%;
+    font-size: 1.8vw;
+    text-align: start;
+}
+.budgetExpected {
+    display: inline-block;
+    position: relative;
+    left: 13%;
+    min-width: 20%;
+    font-size: 1.8vw;
+    text-align: start;
+}
+.budgetSpent {
+    display: inline-block;
+    position: relative;
+    left: 20.75%;
+    min-width: 20%;
+    font-size: 1.8vw;
+    text-align: start;
+    color: rgb(192, 0, 0);
+}
+.remainingAmount {
+    display: inline-block;
+    position: relative;
+    left: 26%;
+    min-width: 20%;
+    font-size: 1.8vw;
+    text-align: start;
+    color: green;
+}
+
+/* postion edit expected box */
+.editBudgetBox {
+    display: inline-block;
+}
+.editBudgetBox button {
+    font-family: bebas;
+    display: flex;
+}
+
+/* design edit button */
+.editBudget {
+    margin: 8%;
+    justify-content: center;
+    min-width: 140%;
+    padding: 15%;
+    background-color: transparent;
+    border: solid 1px green;
+    color: green;
+    transition: 150ms;
+}
+.editBudget:active {
+    background-color: rgb(240, 240, 240);
+    border: solid 1px green;
+    color: green;
+}
+.editBudget:hover {
+    background-color: green;
+    color: white;
 }

@@ -31,7 +31,7 @@
   display: inline-block;
 }
 .transactionPage label {
-  font-family: bebas;
+  font-family: bebas; 
 }
 .transactionPage select {
   font-size: 1.2vw;
@@ -50,7 +50,6 @@ input {
 }
 
 /* font formatting */
-
 .transactionPage p,
 h1 {
   font-family: bebas;
@@ -58,6 +57,7 @@ h1 {
 .transactionPage h1 {
   font-size: 3vw;
 }
+
 /*modding each tile*/
 .transactionTileOuter {
   width: 80%;
@@ -115,13 +115,13 @@ h1 {
   margin: 2%;
   margin-left: 20%;
 }
+
 .type {
   text-align: end;
   margin-left: 2%;
   display: inline-block;
 }
 
-/*buttons to the right of the tiles*/
 .tprice {
   text-align: end;
   margin-left: 35%;
@@ -133,6 +133,7 @@ h1 {
   display: inline-block;
 }
 
+/*buttons to the right of the tiles*/
 .delete {
   margin: 8%;
   background-color: transparent;
@@ -148,6 +149,10 @@ h1 {
   border: solid 1px red;
   color: red;
 }
+.delete:hover {
+  background-color: red;
+  color: white;
+}
 .edit {
   margin: 8%;
   justify-content: center;
@@ -162,4 +167,8 @@ h1 {
   background-color: rgb(240, 240, 240);
   border: solid 1px green;
   color: green;
+}
+.edit:hover {
+  background-color: green;
+  color: white;
 }

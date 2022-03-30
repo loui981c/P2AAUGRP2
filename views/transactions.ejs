@@ -1,6 +1,6 @@
 <%- include ("partials/header.ejs") %>
 <body>
-    <%- include ("partials/sidebar.ejs") %>
+    <%- include ("partials/sidebar.ejs") %> 
     <div class="transactionPage">
         <h1>Transaction overview</h1>
             <div class="chooseStuff">
@@ -30,28 +30,25 @@
                 <p class="type">Type</p>
                 <p class="tprice">Price</p>
                 <p class="editDelete">Edit/delete</p>
-
             </div>
 
+        <%# All transactions is stated in transactions.js route %>
         <% for (let j = 0; j<allTransactions.length; j++){ %> 
         <div class="transactionTileOuter">
-        <div class="transactionTile">
-            <div class="tileTitles">
-                <p class="tileMain"><%= allTransactions[j].main %> - <%= allTransactions[j].date %>  </p>
-                <p class="tileSub"><%= allTransactions[j].sub %> </p>
+            <div class="transactionTile">
+                <div class="tileTitles">
+                    <p class="tileMain"><%= allTransactions[j].main %> - <%= allTransactions[j].date %>  </p>
+                    <p class="tileSub"><%= allTransactions[j].sub %> </p>
+                </div>
+                <p class="price">Price: <%= allTransactions[j].price %>,-</p>
+            </div>       
+            <div class="tileButtons">
+                <button class="edit">Edit</button>
+                <button class="delete">Delete</button>
             </div>
-            <p class="price">Price: <%= allTransactions[j].price %>,-</p>
-        </div>       
-        <div class="tileButtons">
-            <button class="edit">Edit</button>
-            <button class="delete">Delete</button>
         </div>
-        </div>
-        
-        
-        <% } %> 
 
-        
+        <% } %> 
 
     </div>
 

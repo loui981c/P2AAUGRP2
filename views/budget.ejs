@@ -1,35 +1,35 @@
 <%- include ("partials/header.ejs") %>
+  <body>
+    <%- include ("partials/sidebar.ejs") %>
+    <div class="budgetPage">
+      <h1>Budget</h1>
 
-<h1>Budget</h1>
+      <div class="addBudget">
+        <button class="addBudgetBut">Add Budget</button>
+      </div>
 
-<button>Add To Budget</button>
-
-<body>
-  <table class="table-budget">
-    <tr>
-      <th>CATEGORY</th>
-      <th>EXPECTED</th>
-      <th>SPENT</th>
-      <th>REMAINING</th>
-    </tr>
-    <tr>
-      <th>FOOD:</th>
-      <th>Test</th>
-      <th>Test</th>
-      <th>Test</th>
-    </tr>
-    <tr>
-      <th>RENT:</th>
-      <th>Test</th>
-      <th>Test</th>
-      <th>Test</th>
-    </tr>
-    <tr>
-      <th>FUN MONEY:</th>
-      <th>Test</th>
-      <th>Test</th>
-      <th>Test</th>
-    </tr>
-  </table>
-  
-</body>
+      <%# Showing the labels %>
+        <div class="budgetLabels">
+            <p class="category">Category</p>
+            <p class="expected">Expected</p>
+            <p class="spent">Spent</p>
+            <p class="remaining">Remaining</p>
+        </div>
+      
+      <%# Showing the budget in the table %>
+      <% for (let i = 0; i<categories.length; i++){ %> 
+        <div class="budgetTable">
+          <div class="budgetInsideTable">
+              <p class="budgetCategory"><%= allCategories[i].category %> </p>
+              <p class="budgetExpected"><%= allCategories[i].expected %> </p>
+              <p class="budgetSpent"><%= allCategories[i].spent %> </p>
+              <p class="remainingAmount"><%= allCategories[i].expected - allCategories[i].spent %> </p>
+          </div>
+          <div class="editBudgetBox">
+            <button class="editBudget">Expected Edit</button>
+          </div>
+        </div>
+      <% } %> 
+    </div>
+  </body>
+</html>
