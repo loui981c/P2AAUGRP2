@@ -1,0 +1,42 @@
+<%- include ("partials/header.ejs") %>
+<body>
+    <%- include ("partials/sidebar.ejs") %> 
+
+    <div class="transactionPageAdd">
+    <h1>Edit transaction</h1>
+
+    <p id="catCheckBox">Choose category</p>
+   
+    <%# Showing all categories provided in transactions.ejs%>
+    <form action="/transactions/edit/<%= transaction._id %>" method="post">
+        
+
+            <div id="catBoxOuter">
+            <% for (let i = 0; i<categories.length; i++){ %> 
+            <div class="catCheckbox" id="catCheckBox">
+                <label for="mainCategory>"><%= categories[i]%></label>
+                <input type="radio" name="mainCategory" id="<%= categories[i]%>" onclick="oneCheckAtATime(this)" required>
+            </div>
+        <% } %> 
+        </div>
+        <%# sub category%>
+        <div class="subCatForm">
+            <label for="subCategory">Sub category</label>
+            <input type="text" name="subCategory" id="subCategory" value="<%= transaction.subCategory %> ">
+        </div>
+        <%# price%>
+        <div class="priceForm">
+            <label for="price">Price</label>
+            <input type="number" name="price" id="price" required value="<%= transaction.price %>">
+        </div>
+        <div class="dateForm">
+            <label for="date">Date</label>
+            <input type="date" name="date" id="date" required>
+        </div>
+        
+        <button class="submit">Submit</button>
+    </form>
+    </div>
+    
+</body>
+</html>

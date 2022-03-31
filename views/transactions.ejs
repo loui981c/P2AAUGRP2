@@ -26,33 +26,42 @@
             </div>
 
     
-        <%# Display all transactions%>
+            
             <div class="tileLabels">
                 <p class="type">Type</p>
                 <p class="tprice">Price</p>
                 <p class="editDelete">Edit/delete</p>
             </div>
 
+        <%# function for converting ugly date to pretty date. This can be implemented in controller %>
+            <% function dateToString(date) {
+                var d = new Date(date);
+                var day = d.getDate();
+                var month = d.getMonth() + 1;
+                var year = d.getFullYear();
+                return day + "/" + month + "/" + year;
+            } %> 
+
         <%# All transactions is stated in transactions.js route %>
         <% for (let j = 0; j<allTransactions.length; j++){ %> 
         <div class="transactionTileOuter">
             <div class="transactionTile">
                 <div class="tileTitles">
-                    <p class="tileMain"><%= allTransactions[j].main %> - <%= allTransactions[j].date %>  </p>
-                    <p class="tileSub"><%= allTransactions[j].sub %> </p>
+                    <p class="tileMain"><%= allTransactions[j].mainCategory %> - <%= dateToString(allTransactions[j].date) %>  </p>
+                    <p class="tileSub"><%= allTransactions[j].subCategory %> </p>
                 </div>
                 <p class="price">Price: <%= allTransactions[j].price %>,-</p>
             </div>       
             <div class="tileButtons">
-                <button class="edit">Edit</button>
-                <button class="delete">Delete</button>
+                <a href="/transactions/edit/<%= allTransactions[j]._id %>"><button class="edit">Edit</button></a>
+                <form method="POST" action="/transactions/<%= allTransactions[j]._id %>/delete">
+                    <button class="delete">Delete</button>
+                </form>
             </div>
         </div>
 
         <% } %> 
 
     </div>
-
-    
 </body>
 </html>

@@ -3,54 +3,98 @@ const transactionSchema = require('../schemas/transactionSchema');
 var router = express.Router();
 const Transaction = require("../schemas/transactionSchema")
 
-/* used in transaction.ejs */
-let allTransactions = [{main: "FunMoney", sub: "Beer", price: 1000, date: 3}, {main: "FunMoney", sub: "Pizza", price: 69, date: 4}, {main: "FunMoney", sub: "200 shots", price: 420, date: 6}, {main: "Rent", sub: "Beer", price: 1000, date: 2}, {main: "Rent", sub: "Pizza", price: 69, date: 1}, {main: "Rent", sub: "200 shots", price: 420, date: 5}]
-
-//write to database
-
+let categories = ["Fun Money", "Rent", "Savings", "Food"];
 /* GET transaction page. */
 router.get('/', function(req, res, next) {
 
-  //categories from list of all transactions - this can be improved upon when actually using datebase
-  let categories = [];
-  for(let i = 0; i<allTransactions.length; i++)
-  {
-    if(!categories.includes(allTransactions[i].main))
+  //fetch transactions from database
+  Transaction.find((err, trans)=>{
+    if(!err)
     {
-      categories.push(allTransactions[i].main)
+      
+       //categories from list of all fethced transactions
+        for(let i = 0; i<trans.length; i++)
+        {
+           if(!categories.includes(trans[i].mainCategory))
+          {
+            categories.push(trans[i].mainCategory)
+          }
+        }
+        console.log("categories")
+        trans.sort((a, b) =>  b.date - a.date)
+      res.render("transactions", {categories: categories, allTransactions: trans});
     }
-  }
+  })
 
-  allTransactions.sort((a, b) => a.date - b.date)
-  
-  res.render("transactions", {categories: categories, allTransactions: allTransactions});
 });
-
-module.exports = router;
 
 router.get("/add", (req,res)=>{
 
   //categories from list of all transactions - this can be improved upon when actually using datebase
-  let categories = [];
-  for(let i = 0; i<allTransactions.length; i++)
-  {
-    if(!categories.includes(allTransactions[i].main))
-    {
-      categories.push(allTransactions[i].main)
-    }
-  }
 
   res.render("transactions_add", {categories: categories});
 
 })
 
 router.post("/add", (req,res)=>{
+
+  //create model from transactionSchema and save it in the database. 
+  //Also: catch errors
   let transaction = new Transaction(req.body)
   transaction.save().then(item => {
-    console.log("saved to database")
+    console.log("saved to database: "+ transaction)
   }).catch((err)=>{
     res.status(400).send("something went wrong when saving to database")
   })
-  console.log(transaction);
   res.redirect("/transactions")
 })
+
+//for deleting 
+router.post("/:id/delete", (req,res)=>{
+  console.log("hi")
+  Transaction.findByIdAndRemove(req.params.id).then(t =>{
+    if (!t)
+    {
+      return res.status(404).send()
+    }
+    res.redirect("/transactions")
+
+  }).catch(err=>{
+      res.status(500).send(err);
+  })
+})
+
+
+//for updating
+router.get("/edit/:id", (req,res)=>{
+
+  //find current transaction and inputs it into the transactions_update view - this improves user experience
+  Transaction.findById(req.params.id).then(transToUpdate =>{
+    if (!transToUpdate)
+    {
+      return res.status(404).send()
+    }
+    res.render("transactions_update", {transaction: transToUpdate, categories: categories})
+
+  }).catch(err=>{
+      res.status(500).send(err);
+  })
+})
+
+//for updating 
+router.post("/edit/:id", (req,res)=>{
+
+  Transaction.findByIdAndUpdate(req.params.id, req.body, {new: true}).then(t =>{
+    if (!t)
+    {
+      return res.status(404).send()
+    }
+    res.redirect("/transactions")
+
+  }).catch(err=>{
+      res.status(500).send(err);
+  })
+})
+
+
+module.exports = router;

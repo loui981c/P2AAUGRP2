@@ -30,7 +30,8 @@
   width: 45%;
   display: inline-block;
 }
-.transactionPage label {
+.transactionPage,
+.transactionPageAdd label {
   font-family: bebas;
 }
 .transactionPage select {
@@ -70,11 +71,13 @@ input {
 }
 
 /* font formatting */
-.transactionPage p,
+.transactionPage,
+.transactionPageAdd p,
 h1 {
   font-family: bebas;
 }
-.transactionPage h1 {
+.transactionPage,
+h1 {
   font-size: 3vw;
 }
 
@@ -97,13 +100,13 @@ h1 {
   min-width: 30%;
 }
 .tileMain {
-  font-size: 1.8vw;
+  font-size: 1.6vw;
   margin: 0px;
   display: flex;
 }
 .tileSub {
   color: rgb(61, 61, 61);
-  font-size: 1.5vw;
+  font-size: 1.3vw;
   margin: 0px;
   display: flex;
 }
@@ -192,7 +195,7 @@ h1 {
 }
 
 /* For adding transaction page */
-.transactionPage .submit {
+.transactionPageAdd .submit {
   display: inline-block;
   font-size: 1.2vw;
   font-family: bebas;
@@ -204,23 +207,23 @@ h1 {
   transition: 200ms;
 }
 
-.transactionPage .submit:hover {
+.transactionPageAdd .submit:hover {
   background-color: green;
   color: white;
 }
-.transactionPage .submit:active {
+.transactionPageAdd .submit:active {
   background-color: rgb(0, 71, 0);
   color: white;
 }
 
-.transactionPage form label {
+.transactionPageAdd form label {
   font-size: 1.5vw;
 }
 
-.transactionPage form input {
+.transactionPageAdd form input {
   margin-bottom: 2%;
 }
-.transactionPage p {
+.transactionPageAdd p {
   font-size: 1.8vw;
   margin-top: 2%;
 }
@@ -233,4 +236,27 @@ h1 {
 .catCheckbox input,
 label {
   display: flex;
+}
+
+.transactionPageAdd {
+  margin-left: 14%;
+  margin-right: 14%;
+}
+
+.transactionPageAdd input {
+  font-size: 1.2vw;
+  font-family: bebas;
+  color: black;
+  background-color: transparent;
+  border: solid 1px;
+  padding: 1.2%;
+  width: 45%;
+  display: inline-block;
+}
+
+.transactionPageAdd form {
+  text-align: center;
+}
+.transactionPageAdd label {
+  margin-left: 26.5%;
 }

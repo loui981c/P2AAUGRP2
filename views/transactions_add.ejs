@@ -1,7 +1,7 @@
 <%- include ("partials/header.ejs") %>
 <body>
     <%- include ("partials/sidebar.ejs") %> 
-    <div class="transactionPage">
+    <div class="transactionPageAdd">
     <h1>Add a new transaction</h1>
 
     <p>Choose category</p>
@@ -10,7 +10,7 @@
             <% for (let i = 0; i<categories.length; i++){ %> 
             <div class="catCheckbox">
                 <label for="category>"><%= categories[i]%></label>
-                <input type="checkbox" name="mainCategory" id="mainCategory>" value="<%= categories[i]%>" onclick="oneCheckAtATime(this)">
+                <input type="radio" name="mainCategory" id="mainCategory>" value="<%= categories[i]%>" onclick="oneCheckAtATime(this)" required>
             </div>
         <% } %> 
         <%# sub category%>
@@ -21,11 +21,11 @@
         <%# price%>
         <div class="priceForm">
             <label for="price">Price</label>
-            <input type="number" name="price" id="price">
+            <input type="number" name="price" id="price" required>
         </div>
         <div class="dateForm">
             <label for="date">Date</label>
-            <input type="date" name="date" id="date">
+            <input type="date" name="date" id="date" required>
         </div>
         
         <button class="submit" type="submit">Submit</button>
@@ -33,13 +33,7 @@
     </div>
 
     <script>
-        //https://stackoverflow.com/questions/9709209/html-select-only-one-checkbox-in-a-group
-        function oneCheckAtATime(checkbox) {
-        var catCheckbox = document.getElementsByName('category')
-        catCheckbox.forEach((item) => {
-        if (item !== checkbox) item.checked = false
-    })
-}
+  
         //set default value to day of today
             //https://stackoverflow.com/questions/6982692/how-to-set-input-type-dates-default-value-to-today
         document.getElementById('date').valueAsDate = new Date();
