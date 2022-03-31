@@ -17,7 +17,8 @@
 .chooseTime {
   font-size: 1.5vw;
   display: inline-block;
-  width: 60%;
+  width: 40%;
+  margin-right: 0px;
 }
 .transactionPage input {
   font-size: 1.2vw;
@@ -25,13 +26,12 @@
   color: black;
   background-color: transparent;
   border: solid 1px;
-  border-color: black;
-  padding: 1%;
-  width: 30%;
+  padding: 1.6%;
+  width: 45%;
   display: inline-block;
 }
 .transactionPage label {
-  font-family: bebas; 
+  font-family: bebas;
 }
 .transactionPage select {
   font-size: 1.2vw;
@@ -47,6 +47,26 @@
 .chooseTime label,
 input {
   display: flex;
+}
+.transactionPage .addTransBut {
+  margin-left: 12%;
+  display: inline-block;
+  font-size: 1.2vw;
+  font-family: bebas;
+  color: green;
+  background-color: transparent;
+  border: solid 1px;
+  border-color: green;
+  padding: 1.25%;
+  transition: 200ms;
+}
+.transactionPage .addTransBut:hover {
+  background-color: green;
+  color: white;
+}
+.transactionPage .addTransBut:active {
+  background-color: rgb(0, 71, 0);
+  color: white;
 }
 
 /* font formatting */
@@ -144,13 +164,12 @@ h1 {
   color: red;
   transition: 150ms;
 }
-.delete:active {
-  background-color: rgb(240, 240, 240);
-  border: solid 1px red;
-  color: red;
-}
 .delete:hover {
   background-color: red;
+  color: white;
+}
+.delete:active {
+  background-color: rgb(180, 0, 0);
   color: white;
 }
 .edit {
@@ -163,12 +182,20 @@ h1 {
   color: green;
   transition: 150ms;
 }
-.edit:active {
-  background-color: rgb(240, 240, 240);
-  border: solid 1px green;
-  color: green;
-}
 .edit:hover {
   background-color: green;
   color: white;
+}
+.edit:active {
+  background-color: rgb(0, 71, 0);
+  color: white;
+}
+
+/* For adding transaction */
+.catCheckbox {
+  display: inline-block;
+}
+.catCheckbox input,
+label {
+  display: flex;
 }

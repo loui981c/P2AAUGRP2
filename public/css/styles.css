@@ -18,7 +18,7 @@
 /* sidebar box */
 .nav {
   /* setting the position and size */
-  height: 100%;
+  height: 200%;
   width: 12.5%;
   position: fixed;
   /* stays on top and stays at the top of the page */

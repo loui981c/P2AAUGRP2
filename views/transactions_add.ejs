@@ -1,0 +1,49 @@
+<%- include ("partials/header.ejs") %>
+<body>
+    <%- include ("partials/sidebar.ejs") %> 
+    <div class="transactionPage">
+    <h1>Add a new transaction</h1>
+
+    <p>Choose category</p>
+    <%# Showing all categories provided in transactions.ejs%>
+    <form action="/" method="post">
+        <% for (let i = 0; i<categories.length; i++){ %> 
+        <div class="catCheckbox">
+            <label for="category>"><%= categories[i]%></label>
+            <input type="checkbox" name="category" id="<%= categories[i] %>" onclick="oneCheckAtATime(this)">
+        </div>
+    <% } %> 
+    <%# sub category%>
+    <div class="subCatForm">
+        <label for="subCategory">Sub category</label>
+        <input type="text" name="subCategory" id="subCategory">
+    </div>
+    <%# price%>
+    <div class="priceForm">
+        <label for="price">Price</label>
+        <input type="number" name="price" id="price">
+    </div>
+    <div class="dateForm">
+        <label for="date">Date</label>
+        <input type="date" name="date" id="date">
+    </div>
+    
+    </form>
+    </div>
+
+    <script>
+        //https://stackoverflow.com/questions/9709209/html-select-only-one-checkbox-in-a-group
+        function oneCheckAtATime(checkbox) {
+        var catCheckbox = document.getElementsByName('category')
+        catCheckbox.forEach((item) => {
+        if (item !== checkbox) item.checked = false
+    })
+}
+        //set default value to day of today
+            //https://stackoverflow.com/questions/6982692/how-to-set-input-type-dates-default-value-to-today
+        document.getElementById('date').valueAsDate = new Date();
+
+    </script>
+    
+</body>
+</html>
