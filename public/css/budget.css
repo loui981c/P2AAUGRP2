@@ -118,19 +118,17 @@ h1 {
 
 /* postion edit expected box */
 .editBudgetBox {
-    display: inline-block;
-}
-.editBudgetBox button {
-    font-family: bebas;
-    display: flex;
+    display: inline;
 }
 
 /* design edit button */
 .editBudget {
-    margin: 8%;
+    font-family: bebas;
+    font-size: 1vw;
+    margin: 0.5%;
     justify-content: center;
-    min-width: 140%;
-    padding: 15%;
+    width: 10%;
+    padding: 1.25%;
     background-color: transparent;
     border: solid 1px green;
     color: green;
