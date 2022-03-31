@@ -6,28 +6,29 @@
 
     <p>Choose category</p>
     <%# Showing all categories provided in transactions.ejs%>
-    <form action="/" method="post">
-        <% for (let i = 0; i<categories.length; i++){ %> 
-        <div class="catCheckbox">
-            <label for="category>"><%= categories[i]%></label>
-            <input type="checkbox" name="category" id="<%= categories[i] %>" onclick="oneCheckAtATime(this)">
+    <form action="/transactions/add" method="post">
+            <% for (let i = 0; i<categories.length; i++){ %> 
+            <div class="catCheckbox">
+                <label for="category>"><%= categories[i]%></label>
+                <input type="checkbox" name="mainCategory" id="mainCategory>" value="<%= categories[i]%>" onclick="oneCheckAtATime(this)">
+            </div>
+        <% } %> 
+        <%# sub category%>
+        <div class="subCatForm">
+            <label for="subCategory">Sub category</label>
+            <input type="text" name="subCategory" id="subCategory">
         </div>
-    <% } %> 
-    <%# sub category%>
-    <div class="subCatForm">
-        <label for="subCategory">Sub category</label>
-        <input type="text" name="subCategory" id="subCategory">
-    </div>
-    <%# price%>
-    <div class="priceForm">
-        <label for="price">Price</label>
-        <input type="number" name="price" id="price">
-    </div>
-    <div class="dateForm">
-        <label for="date">Date</label>
-        <input type="date" name="date" id="date">
-    </div>
-    
+        <%# price%>
+        <div class="priceForm">
+            <label for="price">Price</label>
+            <input type="number" name="price" id="price">
+        </div>
+        <div class="dateForm">
+            <label for="date">Date</label>
+            <input type="date" name="date" id="date">
+        </div>
+        
+        <button class="submit" type="submit">Submit</button>
     </form>
     </div>
 

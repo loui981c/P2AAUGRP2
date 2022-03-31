@@ -191,8 +191,43 @@ h1 {
   color: white;
 }
 
-/* For adding transaction */
+/* For adding transaction page */
+.transactionPage .submit {
+  display: inline-block;
+  font-size: 1.2vw;
+  font-family: bebas;
+  color: green;
+  background-color: transparent;
+  border: solid 1px;
+  border-color: green;
+  padding: 1.25%;
+  transition: 200ms;
+}
+
+.transactionPage .submit:hover {
+  background-color: green;
+  color: white;
+}
+.transactionPage .submit:active {
+  background-color: rgb(0, 71, 0);
+  color: white;
+}
+
+.transactionPage form label {
+  font-size: 1.5vw;
+}
+
+.transactionPage form input {
+  margin-bottom: 2%;
+}
+.transactionPage p {
+  font-size: 1.8vw;
+  margin-top: 2%;
+}
+
 .catCheckbox {
+  margin-right: 2%;
+  margin-bottom: 2%;
   display: inline-block;
 }
 .catCheckbox input,
