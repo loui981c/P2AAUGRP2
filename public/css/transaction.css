@@ -17,8 +17,9 @@
 .chooseTime {
   font-size: 1.5vw;
   display: inline-block;
-  width: 40%;
+  width: 35%;
   margin-right: 0px;
+  margin-left: 5%
 }
 .transactionPage input {
   font-size: 1.2vw;
@@ -125,13 +126,6 @@ h1 {
   margin: 0%;
 }
 
-.tileButtons {
-  display: inline-block;
-}
-.tileButtons button {
-  font-family: bebas;
-  display: flex;
-}
 /*the stuff just above the tiles*/
 .tileLabels {
   font-size: 1.5vw;
@@ -156,16 +150,25 @@ h1 {
   display: inline-block;
 }
 
+/* position of the edit and delete buttons and font of the button */
+.tileButtons {
+  display: inline-block;
+}
+.tileButtons button {
+  font-family: bebas;
+}
+
 /*buttons to the right of the tiles*/
 .delete {
-  margin: 8%;
+  margin: 5%;
   background-color: transparent;
   justify-content: center;
-  min-width: 140%;
-  padding: 15%;
+  width: 85%;
+  padding: 1%;
   border: solid 1px red;
   color: red;
   transition: 150ms;
+  font-size: 1vw;
 }
 .delete:hover {
   background-color: red;
@@ -176,14 +179,15 @@ h1 {
   color: white;
 }
 .edit {
-  margin: 8%;
+  margin: 5%;
   justify-content: center;
-  min-width: 140%;
-  padding: 15%;
+  width: 85%;
+  padding: 1%;
   background-color: transparent;
   border: solid 1px green;
   color: green;
   transition: 150ms;
+  font-size: 1vw;
 }
 .edit:hover {
   background-color: green;
