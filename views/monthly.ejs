@@ -1,4 +1,5 @@
 <%- include ("partials/header.ejs") %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <body>
         <%- include ("partials/sidebar.ejs") %>
         <div class="monthlyPage">
@@ -19,12 +20,91 @@
                 <div class="chooseGraph">
                 <%# Dropdown for choosing graph type%>
                     <label for="graphs">Choose Graph</label>
-                    <select name="graphs" id="graphs">
-                        <option value="pie_chart">Pie Chart</option>
-                        <option value="graph_chart">Graph Chart</option>
+                    <select name="graphs" id="graphs" onchange="changeChart(this)">
+                        <option value="doughnut">Pie Chart</option>
+                        <option value="bar">Bar Chart</option>
                     </select>
                 </div>
             </div>
+        </div>
+
+
+
+        <div class ="chart_edit">
+            <canvas id="myChart"></canvas>
+            <script>
+                const data = {
+                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                    datasets: [{
+                        label: 'Weekly Sales',
+                        data: [18, 12, 6, 9, 12, 3, 9],
+                        backgroundColor: [
+                        'rgba(255, 26, 104, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(0, 0, 0, 0.2)'
+                        ],
+                        borderColor: [
+                        'rgba(255, 26, 104, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(0, 0, 0, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                };
+
+                // config for dougnut chart
+                const config = {
+                    type: 'doughnut',
+                    data,
+                    options: {
+                    }
+                };
+
+                //config for bar chart
+                const config1 = {
+                    type: 'bar',
+                    data,
+                    options: {
+                        scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                        }
+                    }
+                };
+
+                // render init block
+                let myChart = new Chart(
+                document.getElementById('myChart'),
+                config
+                );
+
+                function changeChart(chartType){
+                    myChart.destroy();
+
+                    if (chartType.value === 'doughnut'){
+                        myChart = new Chart(
+                            document.getElementById('myChart'),
+                            config
+                        )
+                    }
+
+                    if (chartType.value === 'bar'){
+                        myChart = new Chart(
+                            document.getElementById('myChart'),
+                            config1
+                        )
+                    }
+                }
+            </script>
         </div>
     </body>
 </html>
