@@ -41,11 +41,26 @@ h1 {
 /* position total spent and remaining */
 .totalAmountBox p {
     display: inline-block;
-    min-width: 25%;
     font-size: 1.2vw;
 }
 .totalAmountBox {
     margin: 2.5% 0% 2.5% 10%
+}
+.totalRemainingBox {
+    display: inline;
+    margin-left: 2.5%;
+}
+.totalSpentBox {
+    display: inline;
+    margin-left: 5%;
+}
+
+/* turns red if totalRemaining under 0 */
+#remainingRed {
+    color: red;
+}
+#remainingGreen {
+    color: green;
 }
 
 /* the design of the small headers */
@@ -114,9 +129,9 @@ h1 {
     min-width: 20%;
     font-size: 1.8vw;
     text-align: start;
-    color: rgb(192, 0, 0);
+    color: red;
 }
-.remainingAmount {
+.budgetRemaining {
     display: inline-block;
     position: relative;
     left: 26%;
@@ -124,6 +139,14 @@ h1 {
     font-size: 1.8vw;
     text-align: start;
     color: green;
+}
+
+/* makes the color of the remaining inside of table green */
+#remainingTableGreen {
+    color: green;
+}
+#remainingTableRed {
+    color: red;
 }
 
 /* postion edit expected box */
