@@ -43,11 +43,10 @@ h1, select {
 }
 
 /*Graph menu positioning*/
-
 .chart_edit{
-    max-width: 70%;
+    max-width: 60%;
     width:100%; 
     position: relative;
-    left: 7%;
+    left: 2.5%;
     margin:auto;
 }
