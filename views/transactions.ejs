@@ -33,12 +33,7 @@
 
     
             
-            <div class="tileLabels">
-                <p class="type">Type</p>
-                <p class="tprice">Price</p>
-                <p class="editDelete">Edit/delete</p>
-            </div>
-
+         
         <%# function for converting ugly date to pretty date. This can be implemented in controller %>
             <% function dateToString(date) {
                 var d = new Date(date);
@@ -49,6 +44,13 @@
             } %> 
 
         <%# All transactions is stated in transactions.js route %>
+        <% if (allTransactions.length > 0){ %> 
+            <div class="tileLabels">
+                <p class="type">Type</p>
+                <p class="tprice">Price</p>
+                <p class="editDelete">Edit/delete</p>
+            </div>
+
         <% for (let j = 0; j<allTransactions.length; j++){ %> 
         <div class="transactionTileOuter">
             <div class="transactionTile">
@@ -56,17 +58,29 @@
                     <p class="tileMain"><%= allTransactions[j].mainCategory %> - <%= dateToString(allTransactions[j].date) %>  </p>
                     <p class="tileSub"><%= allTransactions[j].subCategory %> </p>
                 </div>
-                <p class="price"><%= allTransactions[j].price %>,-</p>
+                <%# Makes category of income green and everything else red. This is done by two seperate classes: priceNeg and pricePos %> 
+                <% if (allTransactions[j].mainCategory != "Income") {%> 
+                    <p class="priceNeg"><%= allTransactions[j].price %>,-</p>
+                <% } else {%> 
+                    <p class="pricePos"><%= allTransactions[j].price %>,-</p>
+                <% } %> 
             </div>       
-            <div class="tileButtons">
-                <a href="/transactions/edit/<%= allTransactions[j]._id %>"><button class="edit">Edit</button></a>
-                <form method="POST" action="/transactions/<%= allTransactions[j]._id %>/delete">
-                    <button class="delete">Delete</button>
-                </form>
-            </div>
+                <div class="tileButtons">
+                    <a href="/transactions/edit/<%= allTransactions[j]._id %>"><button class="edit">Edit</button></a>
+                    <form method="POST" action="/transactions/<%= allTransactions[j]._id %>/delete">
+                        <button class="delete">Delete</button>
+                    </form>
+                </div>
         </div>
-
         <% } %> 
+        <% } else{ %>
+            <div class="transactionTileOuter">
+                    <p class="noTrans">No Transactions</p>
+            </div>
+            <% } %> 
+      
+        
+
 
     </div>
 

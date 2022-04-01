@@ -13,22 +13,11 @@ h1, select {
   font-size: 3vw;
 }
 
-/* position dropdowns */
-.chooseStuffMonthly {
-    display: block;
-    margin-left: 10%;
-    margin-right: 2%;
-}
 
 /* makes dropdown in line */
-.chooseCategoryMonthly {
-    font-size: 1.5vw;
-    float: left;
-}
 .chooseGraph {
     font-size: 1.5vw;
-    float: right;
-    margin-right: 7.5%;
+    float: left;
 }
 
 /* hidding the outline of dropdown when selecting */
@@ -55,11 +44,10 @@ h1, select {
 
 /*Graph menu positioning*/
 
-
-
 .chart_edit{
-    width:75%; 
-    text-align: center;
-    right: 1%;
+    max-width: 70%;
+    width:100%; 
+    position: relative;
+    left: 7%;
     margin:auto;
 }
