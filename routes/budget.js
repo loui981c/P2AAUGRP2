@@ -6,12 +6,12 @@ var router = express.Router();
 let allCategories = [{category: 'Food', expected: 3000, spent: 1200, remaining: 0},
 {category: 'Rent', expected: 4500, spent: 4500, remaining: 0},
 {category: 'Fun Money', expected: 1000, spent: 300, remaining: 0},
-{category: 'Beer', expected: 1000, spent: 300, remaining: 0}];
-
+{category: 'Beer', expected: 1000, spent: 300, remaining: 0},
+{category: 'Food', expected: 3000, spent: 1200, remaining: 0}];
 
 /* GET budget page. */
 router.get('/', function(req, res, next) {
-
+    
     // get categories from budget
     let categories = [];
     for (let i = 0; i < allCategories.length; i++) {
@@ -19,14 +19,19 @@ router.get('/', function(req, res, next) {
             categories.push(allCategories[i].category)
         }
     }
-
+    
+    let remaining = 0;
+    for (let i = 0; i < categories.length; i++) {
+        remaining += allCategories[i].expected - allCategories[i].spent;
+    }
+    
     allCategories.sort((a, b) => {
         if (a.category < b.category) { return -1; }
         if (a.category > b.category) { return 1; }
         else { return 0 ;}
     });
 
-    res.render("budget", {categories: categories, allCategories: allCategories});
+    res.render("budget", {categories: categories, allCategories: allCategories, bob: remaining});
 });
 
 router.get('/add', function(req, res, next) {

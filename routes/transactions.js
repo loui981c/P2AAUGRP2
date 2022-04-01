@@ -1,5 +1,4 @@
 var express = require('express');
-const transactionSchema = require('../schemas/transactionSchema');
 var router = express.Router();
 const Transaction = require("../schemas/transactionSchema")
 

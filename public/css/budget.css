@@ -38,6 +38,16 @@ h1 {
     color: white;
 }
 
+/* position total spent and remaining */
+.totalAmountBox p {
+    display: inline-block;
+    min-width: 25%;
+    font-size: 1.2vw;
+}
+.totalAmountBox {
+    margin: 2.5% 0% 2.5% 10%
+}
+
 /* the design of the small headers */
 .budgetLabels {
     font-size: 1.5vw;

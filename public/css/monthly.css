@@ -28,6 +28,7 @@ h1, select {
 .chooseGraph {
     font-size: 1.5vw;
     float: right;
+    margin-right: 7.5%;
 }
 
 /* hidding the outline of dropdown when selecting */
