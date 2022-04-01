@@ -3,7 +3,7 @@ const transactionSchema = require('../schemas/transactionSchema');
 var router = express.Router();
 const Transaction = require("../schemas/transactionSchema")
 
-let categories = ["Fun Money", "Rent", "Savings", "Food"];
+let categories = ["FunMoney", "Rent", "Savings", "Food", "Income", "cake", "spam", "ninjaswords", "ads"];
 /* GET transaction page. */
 router.get('/', function(req, res, next) {
 
@@ -22,12 +22,43 @@ router.get('/', function(req, res, next) {
         }
         console.log("categories")
         trans.sort((a, b) =>  b.date - a.date)
-      res.render("transactions", {categories: categories, allTransactions: trans});
+      res.render("transactions", {categories: categories, allTransactions: trans, currentCategory: "AllCategories"});
     }
   })
 
 });
+router.get("/categories", (req,res)=>{
+})
 
+router.post("/categories", (req,res)=>{
+  
+  if (req.body.categories == "AllCategories")
+  {res.redirect("/transactions")}
+  else{
+
+  //find categories withing the post above
+  Transaction.find((err, trans)=>{
+    if(!err)
+    {
+      let narrowedCategories = [];
+      console.log(req.body)
+      for (let i = 0; i<trans.length; i++)
+      {
+        if (trans[i].mainCategory == req.body.categories)
+        {
+            narrowedCategories.push(trans[i])
+        }
+      }
+      
+        trans.sort((a, b) =>  b.date - a.date)
+        res.render("transactions", {categories: categories, allTransactions: narrowedCategories, currentCategory: req.body.categories})
+    }
+  })
+}
+  
+})
+
+//CRUD from this point on
 router.get("/add", (req,res)=>{
 
   //categories from list of all transactions - this can be improved upon when actually using datebase
@@ -35,6 +66,8 @@ router.get("/add", (req,res)=>{
   res.render("transactions_add", {categories: categories});
 
 })
+
+
 
 router.post("/add", (req,res)=>{
 
