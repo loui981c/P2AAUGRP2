@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const Transaction = require("../schemas/transactionSchema")
+const Transaction = require("../schemas/transactionSchema") 
 
 let categories = ["Rent", "Savings", "Food", "Income", "Subs", "Fun", "Misc."];
 /* GET transaction page. */

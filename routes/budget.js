@@ -1,6 +1,7 @@
 var express = require('express');
 const { all } = require('./transactions');
 var router = express.Router();
+const budgetSchema = require("../schemas/budgetSchema");
 
 /* hardcoded categories */
 let allCategories = [{category: 'Food', expected: 3000, spent: 1200, remaining: 0},
@@ -21,8 +22,10 @@ router.get('/', function(req, res, next) {
     }
     
     let remaining = 0;
-    for (let i = 0; i < categories.length; i++) {
+    let spent = 0;
+    for (let i = 0; i < allCategories.length; i++) {
         remaining += allCategories[i].expected - allCategories[i].spent;
+        spent += allCategories[i].spent;
     }
     
     allCategories.sort((a, b) => {
@@ -31,7 +34,7 @@ router.get('/', function(req, res, next) {
         else { return 0 ;}
     });
 
-    res.render("budget", {categories: categories, allCategories: allCategories, remaining: remaining});
+    res.render("budget", {categories: categories, allCategories: allCategories, totalRemaining: remaining, totalSpent: spent});
 });
 
 router.get('/add', function(req, res, next) {

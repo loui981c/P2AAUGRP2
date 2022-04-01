@@ -35,7 +35,7 @@ h1 {
 }
 .addBudgetBut:hover {
     background-color: green;
-    color: white;
+    color: white; 
 }
 
 /* position total spent and remaining */
