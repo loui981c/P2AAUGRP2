@@ -52,3 +52,14 @@ h1, select {
     border-color: black;
     padding: 3%;
 }
+
+/*Graph menu positioning*/
+
+
+
+.chart_edit{
+    width:75%; 
+    text-align: center;
+    right: 1%;
+    margin:auto;
+}
