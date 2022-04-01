@@ -19,7 +19,7 @@
   display: inline-block;
   width: 35%;
   margin-right: 0px;
-  margin-left: 5%
+  margin-left: 5%;
 }
 .transactionPage input {
   font-size: 1.2vw;
@@ -160,15 +160,14 @@ h1 {
 
 /*buttons to the right of the tiles*/
 .delete {
-  margin: 5%;
   background-color: transparent;
   justify-content: center;
-  width: 85%;
-  padding: 1%;
+  width: 120%;
+  padding: 5%;
   border: solid 1px red;
   color: red;
   transition: 150ms;
-  font-size: 1vw;
+  font-size: 1.2vw;
 }
 .delete:hover {
   background-color: red;
@@ -179,15 +178,14 @@ h1 {
   color: white;
 }
 .edit {
-  margin: 5%;
   justify-content: center;
-  width: 85%;
-  padding: 1%;
+  width: 120%;
+  padding: 5%;
   background-color: transparent;
   border: solid 1px green;
   color: green;
   transition: 150ms;
-  font-size: 1vw;
+  font-size: 1.2vw;
 }
 .edit:hover {
   background-color: green;
@@ -263,4 +261,19 @@ label {
 }
 .transactionPageAdd label {
   margin-left: 26.5%;
+}
+
+.transactionPageAdd .catCheckBoxOuter {
+  margin-top: 10;
+  max-width: 55%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.transactionPageAdd .catCheckBoxOuter label {
+  font-size: 1.2vw;
+}
+.transactionPageAdd .catCheckbox input {
+  width: 100%;
+  height: 0.8vw;
 }
