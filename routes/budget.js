@@ -31,7 +31,7 @@ router.get('/', function(req, res, next) {
         else { return 0 ;}
     });
 
-    res.render("budget", {categories: categories, allCategories: allCategories, bob: remaining});
+    res.render("budget", {categories: categories, allCategories: allCategories, remaining: remaining});
 });
 
 router.get('/add', function(req, res, next) {
