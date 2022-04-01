@@ -5,17 +5,17 @@
       <h1>Budget</h1>
 
       <div class="addBudget">
-        <button class="addBudgetBut">Add Budget</button>
+        <button class="addBudgetBut">Add Budget/Create Category</button>
       </div>
 
       <div class="totalAmountBox">
         <div class="totalAmountSpent">
           <p class="totalAmount">Total Spent:</p>
-          <p class="numTotal"><%= 1+1 %></p>
+          <p class="numTotal"><%= totalSpent %></p>
         </div>
         <div class="totalAmountRemaining">
           <p class="totalAmount">Total Remaining:</p>
-          <p class="numTotal"><%= remaining %></p>
+          <p class="numTotal"> <%= totalRemaining %> </p>
         </div>
       </div>
 
@@ -28,7 +28,7 @@
         </div>
       
       <%# Showing the budget in the table %>
-      <% for (let i = 0; i<categories.length; i++){ %> 
+      <% for (let i = 0; i<allCategories.length; i++){ %> 
         <div class="budgetTable">
           <div class="budgetInsideTable">
               <p class="budgetCategory"><%= allCategories[i].category %> </p>
