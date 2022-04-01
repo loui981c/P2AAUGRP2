@@ -116,7 +116,7 @@ h1 {
   margin: 0px;
   display: flex;
 }
-.price {
+.priceNeg {
   display: inline-block;
   position: relative;
   left: 18%;
@@ -124,6 +124,15 @@ h1 {
   font-size: 1.8vw;
   text-align: start;
   color: red;
+}
+.pricePos {
+  display: inline-block;
+  position: relative;
+  left: 18%;
+  min-width: 20%;
+  font-size: 1.8vw;
+  text-align: start;
+  color: green;
 }
 .date {
   display: flex;

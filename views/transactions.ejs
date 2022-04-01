@@ -58,7 +58,12 @@
                     <p class="tileMain"><%= allTransactions[j].mainCategory %> - <%= dateToString(allTransactions[j].date) %>  </p>
                     <p class="tileSub"><%= allTransactions[j].subCategory %> </p>
                 </div>
-                <p class="price"><%= allTransactions[j].price %>,-</p>
+                <%# Makes category of income green and everything else red. This is done by two seperate classes: priceNeg and pricePos %> 
+                <% if (allTransactions[j].mainCategory != "Income") {%> 
+                    <p class="priceNeg"><%= allTransactions[j].price %>,-</p>
+                <% } else {%> 
+                    <p class="pricePos"><%= allTransactions[j].price %>,-</p>
+                <% } %> 
             </div>       
                 <div class="tileButtons">
                     <a href="/transactions/edit/<%= allTransactions[j]._id %>"><button class="edit">Edit</button></a>
