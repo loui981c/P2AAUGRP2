@@ -116,7 +116,7 @@ router.get("/edit/:id", (req,res)=>{
 //for updating 
 router.post("/edit/:id", (req,res)=>{
 
-  Transaction.findByIdAndUpdate(req.params.id, req.body, {new: true}).then(t =>{
+  Transaction.findByIdAndUpdate(req.params.id, req.body).then(t =>{
     if (!t)
     {
       return res.status(404).send()
