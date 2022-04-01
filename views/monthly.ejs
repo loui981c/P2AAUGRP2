@@ -4,19 +4,6 @@
         <%- include ("partials/sidebar.ejs") %>
         <div class="monthlyPage">
             <h1>Monthly Overview</h1>
-            <div class="chooseStuffMonthly">
-                <%# Dropdown for choosing category%>
-                <%# probably needs option loop for each category in DB%>
-                <div class="chooseCategoryMonthly">
-                    <label for="categoriesMonthly">Choose Category</label>
-                    <select name="categoriesMonthly" id="categoriesMonthly">
-                        <option value ="">All Categories</option>
-                        <option value = "cat_1">Food</option>
-                        <option value = "cat_2">Rent</option>
-                        <option value = "cat_3">Income</option>
-                    </select>
-                </div>
-
                 <div class="chooseGraph">
                 <%# Dropdown for choosing graph type%>
                     <label for="graphs">Choose Graph</label>
@@ -27,9 +14,7 @@
                 </div>
             </div>
         </div>
-
-
-
+        
         <div class ="chart_edit">
             <canvas id="myChart"></canvas>
             <script>
