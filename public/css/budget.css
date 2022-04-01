@@ -27,6 +27,7 @@ h1 {
   border: solid 1px;
   border-color: green;
   padding: 1.25%;
+  cursor: pointer;
 }
 .addBudgetBut:active {
     background-color: rgb(240, 240, 240);
@@ -41,18 +42,31 @@ h1 {
 /* position total spent and remaining */
 .totalAmountBox p {
     display: inline-block;
-    font-size: 1.2vw;
+    font-size: 1.3vw;
 }
 .totalAmountBox {
     margin: 2.5% 0% 2.5% 10%
 }
 .totalRemainingBox {
     display: inline;
-    margin-left: 2.5%;
 }
 .totalSpentBox {
     display: inline;
-    margin-left: 5%;
+}
+.totalAmount {
+    min-width: 11.5%;
+}
+.numTotal {
+    min-width: 5%;
+    text-align: end;
+}
+
+/* turns red if totalSpent under 0 */
+#spentRed{
+    color: red;
+}
+#spentGreen{
+    color: green;
 }
 
 /* turns red if totalRemaining under 0 */
@@ -82,12 +96,12 @@ h1 {
 .spent {
     text-align: end;
     display: inline-block;
-    margin-left: 16%;
+    margin-left: 15.25%;
 }
 .remaining {
     text-align: end;
     display: inline-block;
-    margin-left: 15.75%;
+    margin-left: 15%;
 }
 
 /* making the table */
@@ -114,31 +128,42 @@ h1 {
     font-size: 1.8vw;
     text-align: start;
 }
-.budgetExpected {
+
+/* making number and kr stand on line */
+.KrInline {
+    display: inline;
+    margin-left: 2.5%;
+}
+.KrInline p {
     display: inline-block;
-    position: relative;
-    left: 13%;
-    min-width: 20%;
+}
+.budgetExpected {
     font-size: 1.8vw;
-    text-align: start;
+    min-width: 15%;
+    text-align: end;
 }
 .budgetSpent {
-    display: inline-block;
-    position: relative;
-    left: 20.75%;
-    min-width: 20%;
     font-size: 1.8vw;
-    text-align: start;
-    color: red;
+    min-width: 15%;
+    text-align: end;
+    margin-left: 3%;
 }
 .budgetRemaining {
-    display: inline-block;
-    position: relative;
-    left: 26%;
-    min-width: 20%;
     font-size: 1.8vw;
-    text-align: start;
+    min-width: 15%;
+    text-align: end;
+    margin-left: 5%;
+}
+.Kr {
+    font-size: 1.8vw;
+}
+
+/* makes the color of the remaining inside of table green */
+#spentTableGreen {
     color: green;
+}
+#spentTableRed {
+    color: red;
 }
 
 /* makes the color of the remaining inside of table green */
@@ -151,21 +176,24 @@ h1 {
 
 /* postion edit expected box */
 .editBudgetBox {
-    display: inline;
+    display: inline-block;
+    width: 7.5%;
 }
 
 /* design edit button */
 .editBudget {
+    display: flex;
     font-family: bebas;
     font-size: 1vw;
-    margin: 0.5%;
+    margin: 10%;
     justify-content: center;
-    width: 10%;
+    width: 100%;
     padding: 1.25%;
     background-color: transparent;
     border: solid 1px green;
     color: green;
     transition: 150ms;
+    cursor: pointer;
 }
 .editBudget:active {
     background-color: rgb(240, 240, 240);
@@ -174,5 +202,30 @@ h1 {
 }
 .editBudget:hover {
     background-color: green;
+    color: white;
+}
+
+/* design delete button */
+.deleteBudget {
+    display: flex;
+    font-family: bebas;
+    font-size: 1vw;
+    margin: 10%;
+    justify-content: center;
+    width: 100%;
+    padding: 1.25%;
+    background-color: transparent;
+    border: solid 1px red;
+    color: red;
+    transition: 150ms;
+    cursor: pointer;
+}
+.deleteBudget:active {
+    background-color: rgb(240, 240, 240);
+    border: solid 1px red;
+    color: red;
+}
+.deleteBudget:hover {
+    background-color: red;
     color: white;
 }

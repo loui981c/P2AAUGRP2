@@ -13,9 +13,13 @@
       <div class="totalAmountBox">
         <div class="totalAmountSpent">
           <p class="totalAmount">Total Spent:</p>
-          <div class="totalSpentBox">
-          <p class="numTotal"><%= totalSpent %></p>
-          <p class="numTotal">Kr.</p> 
+          <div class="totalSpentBox"> 
+            <% if(totalSpent < 0){ %>
+              <p class="numTotal" id="spentRed"> <%= totalSpent %></p>
+              <% } else{ %>  
+              <p class="numTotal" id="spentGreen"> +<%= totalSpent%></p>
+              <% } %>
+              <p class="numTotalKr">Kr.</p>
           </div>
         </div>
         <div class="totalAmountRemaining">
@@ -26,7 +30,7 @@
               <% } else{ %>  
               <p class="numTotal" id="remainingGreen"> +<%= totalRemaining %></p>
               <% } %>
-              <p class="numTotal">Kr.</p>
+              <p class="numTotalKr">Kr.</p>
             </div>
           </div>
       </div>
@@ -43,17 +47,33 @@
       <% for (let i = 0; i<allCategories.length; i++){ %> 
         <div class="budgetTable">
           <div class="budgetInsideTable">
-              <p class="budgetCategory"><%= allCategories[i].category %></p>
-              <p class="budgetExpected"><%= allCategories[i].expected %> Kr.</p>
-              <p class="budgetSpent"><%= allCategories[i].spent %> Kr.</p>
+            <p class="budgetCategory"><%= allCategories[i].category %></p>
+            <div class="KrInline">
+              <p class="budgetExpected"><%= allCategories[i].expected %></p>
+              <p class="Kr">Kr.</p>
+            </div>
+            <div class="KrInline">
+              <% if(allCategories[i].category.toLowerCase() === 'income'){ %>
+                <p class="budgetRemaining" id="spentTableGreen"> +<%= allCategories[i].spent %></p>
+                <p class="Kr">Kr.</p>
+                <% } else{ %>  
+                <p class="budgetRemaining" id="spentTableRed"> -<%= allCategories[i].spent %></p>
+                <p class="Kr">Kr.</p>
+                <% } %>
+            </div>
+            <div class="KrInline">
               <% if(allCategories[i].remaining < 0){ %>
-              <p class="budgetRemaining" id="remainingTableRed"> <%= allCategories[i].remaining %> Kr.</p>
+              <p class="budgetRemaining" id="remainingTableRed"> <%= allCategories[i].remaining %></p>
+              <p class="Kr">Kr.</p>
               <% } else{ %>  
-              <p class="budgetRemaining" id="remainingTableGreen"> +<%= allCategories[i].remaining %> Kr.</p>
+              <p class="budgetRemaining" id="remainingTableGreen"> +<%= allCategories[i].remaining %></p>
+              <p class="Kr">Kr.</p>
               <% } %>
+            </div>
           </div>
           <div class="editBudgetBox">
             <button class="editBudget">Expected Edit</button>
+            <button class="deleteBudget">Delete</button>
           </div>
         </div>
       <% } %> 

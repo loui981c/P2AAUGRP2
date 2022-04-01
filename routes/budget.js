@@ -9,7 +9,11 @@ let allCategories = [{category: 'Food', expected: 3000, spent: 1200, remaining: 
 {category: 'Fun Money', expected: 1000, spent: 300, remaining: 0},
 {category: 'Beer', expected: 1000, spent: 300, remaining: 0},
 {category: 'Food', expected: 3000, spent: 1200, remaining: 0},
-{category: 'Beer', expected: 1000, spent: 7500, remaining: 0},];
+{category: 'Beer', expected: 1000, spent: 7500, remaining: 0},
+{category: 'Income', expected: 10000, spent: 10000, remaining: 0},
+{category: 'Income', expected: 10000, spent: 10000, remaining: 0}];
+
+console.log(allCategories[1].category.toLowerCase())
 
 /* GET budget page. */
 router.get('/', function(req, res, next) {
@@ -27,12 +31,20 @@ router.get('/', function(req, res, next) {
         allCategories[i].remaining = allCategories[i].expected - allCategories[i].spent;
     }
 
-    // getting the total remaining and spent
+    // getting the total remaining
     let remainingTotal = 0;
-    let spent = 0;
     for (let i = 0; i < allCategories.length; i++) {
         remainingTotal += allCategories[i].expected - allCategories[i].spent;
-        spent += allCategories[i].spent;
+    }
+    
+    // adding income as pos and other spent as neg
+    let spent = 0;
+    for (let i = 0; i < allCategories.length; i++) {
+        if (allCategories[i].category.toLowerCase() === 'income') {
+            spent += allCategories[i].spent;
+        } else {    
+            spent -= allCategories[i].spent;
+        }
     }
 
     // sorts the categories

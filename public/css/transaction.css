@@ -13,7 +13,12 @@
   display: block;
   margin-left: 20%;
 }
+
 /* inline-block makes stuff appear on the same line */
+.chooseCategory {
+  font-size: 1.5vw;
+  display: inline-block;
+}
 .chooseCategory {
   font-size: 1.5vw;
   display: inline-block;
@@ -65,6 +70,7 @@ input {
   border-color: green;
   padding: 1.25%;
   transition: 200ms;
+  cursor: pointer;
 }
 .transactionPage .addTransBut:hover {
   background-color: green;
@@ -119,7 +125,7 @@ h1 {
 .priceNeg {
   display: inline-block;
   position: relative;
-  left: 18%;
+  left: 26%;
   min-width: 20%;
   font-size: 1.4vw;
   text-align: start;
@@ -128,7 +134,7 @@ h1 {
 .pricePos {
   display: inline-block;
   position: relative;
-  left: 18%;
+  left: 26%;
   min-width: 20%;
   font-size: 1.4vw;
   text-align: start;
@@ -183,6 +189,7 @@ h1 {
   transition: 150ms;
   font-size: 1.2vw;
   display: flex;
+  cursor: pointer;
 }
 .delete:hover {
   background-color: red;
@@ -203,6 +210,7 @@ h1 {
   color: green;
   transition: 150ms;
   font-size: 1.2vw;
+  cursor: pointer;
 }
 .edit:hover {
   background-color: green;
@@ -224,6 +232,7 @@ h1 {
   border-color: green;
   padding: 1.25%;
   transition: 200ms;
+  cursor: pointer;
 }
 
 .transactionPageAdd .submit:hover {
@@ -255,6 +264,7 @@ h1 {
 .catCheckbox input,
 label {
   display: flex;
+  cursor: pointer;
 }
 
 .transactionPageAdd {
