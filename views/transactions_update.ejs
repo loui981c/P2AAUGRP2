@@ -5,12 +5,11 @@
     <div class="transactionPageAdd">
     <h1>Edit transaction</h1>
 
-    <p id="catCheckBox">Choose category</p>
    
     <%# Showing all categories provided in transactions.ejs%>
     <form action="/transactions/edit/<%= transaction._id %>" method="post">
         
-
+        <label for="mainCategory">Choose Category</label>
             <div id="catBoxOuter">
                 <% for (let i = 0; i<categories.length; i++){ %> 
                 <div class="catCheckbox" id="catCheckBox">
