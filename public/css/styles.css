@@ -8,6 +8,7 @@
 .logo {
   width: 87.5%;
   justify-content: center;
+  transition: 250ms ease-in-out;
 }
 
 /* setting margin around logo box */
@@ -68,5 +69,4 @@
 /* makes the logo jump when hover */
 .logo:hover {
   transform: translateY(-5%);
-  transition: 250ms ease-in-out;
 }
