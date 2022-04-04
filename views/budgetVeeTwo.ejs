@@ -28,19 +28,23 @@
                 }
               } 
             
-                let totalRemaining = 0;
+            let totalRemaining = 0;
             let totalAvailable = 0;
+            let totalIncome = 0;
               for (let j = 0; j<budgetDataStuff.length; j++)
               {
                   if (budgetDataStuff[j].category == "Income")
-                  {
+                  {   
+                      totalIncome = budgetDataStuff[j].spent;
+
                       totalAvailable += budgetDataStuff[j].spent ;
                   }
               }
               totalRemaining = totalAvailable - totalSpent;
             %> 
 
-            
+          
+
              <p class="numTotal" id="spentRed">-<%= totalSpent %></p>
               <p class="numTotalKr">Kr.</p>
           </div>
@@ -58,6 +62,8 @@
               <p class="numTotalKr">Kr.</p>
             </div>
           </div>
+          <p>Total Income:</p>
+          <p class="totalIncome" id="spentGreen">+<%= totalIncome %></p>
       </div>
 
       <%# Showing the labels %>
@@ -70,6 +76,8 @@
       
       <%# Showing the budget in the table %>
       <% for (let i = 0; i<budgetDataStuff.length; i++){ %> 
+
+        <% if (budgetDataStuff[i].category != "Income"){ %> 
         <div class="budgetTable">
           <div class="budgetInsideTable">
             <p class="budgetCategory"><%= budgetDataStuff[i].category %></p>
@@ -101,6 +109,7 @@
             <button class="deleteBudget">Delete</button>
           </div>
         </div>
+        <% } %> 
       <% } %> 
     </div>
   </body>
