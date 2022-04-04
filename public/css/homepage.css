@@ -40,6 +40,7 @@ h1 {
 
 /* button design */
 .button {
+  font-family: bebas;
   background-color: transparent;
   border: 1.5px solid green;
   border-radius: 2px;
@@ -82,57 +83,9 @@ h1 {
   box-shadow: rgba(20, 70, 32, 0.2) 0 1px 0 inset;
 }
 
-/* design input fields */
-input {
-  box-shadow: rgba(0, 0, 0, 0.1) 2px 2px 8px;
-  border-radius: 5px;
-  background: linear-gradient(
-    180deg,
-    rgba(196, 196, 196, 0.2) 0%,
-    rgba(196, 196, 196, 0.09375) 53.12%,
-    rgba(196, 196, 196, 0) 100%
-  );
-  padding: 10px;
-  width: 100%;
 
-  /* hidden border on field */
-  border-top-style: hidden;
-  border-right-style: hidden;
-  border-left-style: hidden;
-  border-bottom-style: hidden;
-}
 
-/* hidding the outline when writing in input field */
-input:focus {
-  outline: none;
-}
 
-::placeholder {
-  color: black;
-}
-
-.login-form {
-  justify-content: start;
-  display: inline-block;
-  max-width: 15%;
-  transform: 250ms;
-}
-
-.login-form input {
-  display: flex;
-  margin-top: 5px;
-  margin-bottom: 20px;
-}
-.login-form button {
-  display: flex;
-}
-.login-form label {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  display: block;
-  text-align: start;
-  justify-content: start;
-}
 
 /* label design */
 label {
@@ -164,3 +117,99 @@ label {
   background-color: rgb(0, 177, 0);
   color: white;
 }
+
+.login-form {
+  margin-top: 2%;
+  display: grid;
+  max-width: 21%;
+  min-width: 21%;
+  grid-template-columns: 50% 50%;
+
+  transform: 250ms;
+}
+
+
+.login-form label {
+  text-align: start;
+  font-size: 1.4vw;
+  display: flex;
+  margin-bottom: 2%;
+}
+
+
+.twoItemGrid{
+  display: grid;
+  grid-template-columns: 83% 15%;
+  gap: 2%;
+
+}
+
+/* design input fields */
+.login-form .twoItemGrid input {
+  font-size: 1.1vw;
+  font-family: bebas;
+  box-shadow: rgb(121, 121, 121) 0px 0px 0px 2px;
+  border-radius: 1px;
+  background:  transparent;
+  /*linear-gradient(
+    180deg,
+    rgba(196, 196, 196, 0.2) 0%,
+    rgba(196, 196, 196, 0.09375) 53.12%,
+    rgba(196, 196, 196, 0) 100%
+  );*/
+  padding: 3%;
+  max-width: 100%;
+
+  /* hidden border on field */
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: hidden;
+  transition: 250ms;
+  display: inline-block;
+}
+
+/* hidding the outline when writing in input field */
+.login-form .twoItemGrid input:focus {
+  outline: none;
+  box-shadow: green 0px 0px 0px 2px;
+  
+}
+
+::placeholder {
+  color: rgb(121, 121, 121);
+}
+::placeholder:focus {
+  color: green;
+}
+
+/* login button */
+.loginBut {
+  box-shadow: green 0px 0px 0px 2px;
+  margin: 0%;
+  font-family: bebas;
+  background-color: green;
+  border: 1.5px solid green;
+  border-radius: 1px;
+  color: white;
+  display: inline-block;
+  font-size: 1vw;
+  padding: 15%;
+  height: 100%;
+  max-width: 100%;
+  text-align: center;
+  
+
+  transition: 250ms ease-in-out;
+  cursor: pointer;
+}
+
+.loginBut:hover {
+  background-color: rgba(0, 128, 0, 0.717);
+  color: white;
+}
+.loginBut:active {
+  background-color: green;
+  color: white;
+}
+
