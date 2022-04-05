@@ -1,0 +1,116 @@
+<%- include ("partials/header.ejs") %>
+  <body>
+    <%- include ("partials/sidebar.ejs") %>
+    <div class="budgetPage">
+      <h1>Budget</h1>
+
+      <%# the button at the top %>
+      <div class="addBudget">
+        <button class="addBudgetBut">Add Budget/Create Category</button>
+      </div>
+
+      <%# total amounts %>
+      <div class="totalAmountBox">
+        <div class="totalAmountSpent">
+          <p class="totalAmount">Total Spent:</p>
+          <div class="totalSpentBox"> 
+            <%# calculate total spent %>
+            <%# calculate total remaining %>
+            <%# calculate total Remaining %>
+            <%# calculate total Available From amount of income this could also be done throgh expected values %>
+            
+            <% 
+            let totalSpent = 0;
+            for (let i = 0; i<budgetDataStuff .length; i++){
+                if (budgetDataStuff[i].category!= "Income")
+                {
+                totalSpent += budgetDataStuff[i].spent;
+                }
+              } 
+            
+            let totalRemaining = 0;
+            let totalAvailable = 0;
+            let totalIncome = 0;
+              for (let j = 0; j<budgetDataStuff.length; j++)
+              {
+                  if (budgetDataStuff[j].category == "Income")
+                  {   
+                      totalIncome = budgetDataStuff[j].spent;
+
+                      totalAvailable += budgetDataStuff[j].spent ;
+                  }
+              }
+              totalRemaining = totalAvailable - totalSpent;
+            %> 
+
+          
+
+             <p class="numTotal" id="spentRed">-<%= totalSpent %></p>
+              <p class="numTotalKr">Kr.</p>
+          </div>
+        </div>
+        <div class="totalAmountRemaining">
+          <p class="totalAmount">Total Remaining:</p>
+            <div class="totalRemainingBox">
+
+            
+              <% if(totalRemaining < 0){ %>
+              <p class="numTotal" id="remainingRed"> <%= totalRemaining %></p>
+              <% } else{ %>  
+              <p class="numTotal" id="remainingGreen"> +<%= totalRemaining %></p>
+              <% } %>
+              <p class="numTotalKr">Kr.</p>
+            </div>
+          </div>
+          <p>Total Income:</p>
+          <p class="totalIncome" id="spentGreen">+<%= totalIncome %></p>
+      </div>
+
+      <%# Showing the labels %>
+        <div class="budgetLabels">
+            <p class="category">Category</p>
+            <p class="expected">Expected</p>
+            <p class="spent">Spent</p>
+            <p class="remaining">Remaining</p>
+        </div>
+      
+      <%# Showing the budget in the table %>
+      <% for (let i = 0; i<budgetDataStuff.length; i++){ %> 
+
+        <% if (budgetDataStuff[i].category != "Income"){ %> 
+        <div class="budgetTable">
+          <div class="budgetInsideTable">
+            <p class="budgetCategory"><%= budgetDataStuff[i].category %></p>
+            <div class="KrInline">
+              <p class="budgetExpected"><%= budgetDataStuff[i].expected %></p>
+              <p class="Kr">Kr.</p>
+            </div>
+            <div class="KrInline">
+              <% if(budgetDataStuff[i].category.toLowerCase() === 'income'){ %>
+                <p class="budgetRemaining" id="spentTableGreen"> +<%= budgetDataStuff[i].spent %></p>
+                <p class="Kr">Kr.</p>
+                <% } else{ %>  
+                <p class="budgetRemaining" id="spentTableRed"> -<%= budgetDataStuff[i].spent %></p>
+                <p class="Kr">Kr.</p>
+                <% } %>
+            </div>
+            <div class="KrInline">
+              <% if(budgetDataStuff[i].remaining < 0){ %>
+              <p class="budgetRemaining" id="remainingTableRed"> <%= budgetDataStuff[i].remaining %></p>
+              <p class="Kr">Kr.</p>
+              <% } else{ %>  
+              <p class="budgetRemaining" id="remainingTableGreen"> +<%= budgetDataStuff[i].remaining %></p>
+              <p class="Kr">Kr.</p>
+              <% } %>
+            </div>
+          </div>
+          <div class="editBudgetBox">
+            <button class="editBudget">Expected Edit</button>
+            <button class="deleteBudget">Delete</button>
+          </div>
+        </div>
+        <% } %> 
+      <% } %> 
+    </div>
+  </body>
+</html>
