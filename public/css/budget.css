@@ -229,3 +229,21 @@ h1 {
     background-color: red;
     color: white;
 }
+
+
+
+/* css for add budget page */
+/* margin for page */
+.addBudgetPage {
+    margin-left: 14%;
+    margin-right: 10%; 
+}
+
+/* the font for the page */
+.addBudgetPage p,
+h1 {
+  font-family: bebas;
+}
+.addBudgetPage h1 {
+  font-size: 3vw;
+}

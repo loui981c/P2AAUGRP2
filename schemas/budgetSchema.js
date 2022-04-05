@@ -7,4 +7,4 @@ let budgetSchema = mongoose.Schema ({
     remaining: 0,
 });
 
-module.exports = mongoose.model('Budget', budgetSchema);
+module.exports = mongoose.model('Budgets', budgetSchema);

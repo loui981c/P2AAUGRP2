@@ -6,7 +6,7 @@
 
       <%# the button at the top %>
       <div class="addBudget">
-        <button class="addBudgetBut">Add Budget/Create Category</button>
+        <a href="/budget/add"><button class="addBudgetBut">Add Budget/Create Category</button></a>
       </div>
 
       <%# total amounts %>
@@ -44,29 +44,29 @@
         </div>
       
       <%# Showing the budget in the table %>
-      <% for (let i = 0; i<allCategories.length; i++){ %> 
+      <% for (let i = 0; i<categories.length; i++){ %> 
         <div class="budgetTable">
           <div class="budgetInsideTable">
-            <p class="budgetCategory"><%= allCategories[i].category %></p>
+            <p class="budgetCategory"><%= categories[i].category %></p>
             <div class="KrInline">
-              <p class="budgetExpected"><%= allCategories[i].expected %></p>
+              <p class="budgetExpected"><%= categories[i].expected %></p>
               <p class="Kr">Kr.</p>
             </div>
             <div class="KrInline">
-              <% if(allCategories[i].category.toLowerCase() === 'income'){ %>
-                <p class="budgetRemaining" id="spentTableGreen"> +<%= allCategories[i].spent %></p>
+              <% if(categories[i].category.toLowerCase() === 'income'){ %>
+                <p class="budgetRemaining" id="spentTableGreen"> +<%= categories[i].spent %></p>
                 <p class="Kr">Kr.</p>
                 <% } else{ %>  
-                <p class="budgetRemaining" id="spentTableRed"> -<%= allCategories[i].spent %></p>
+                <p class="budgetRemaining" id="spentTableRed"> -<%= categories[i].spent %></p>
                 <p class="Kr">Kr.</p>
                 <% } %>
             </div>
             <div class="KrInline">
-              <% if(allCategories[i].remaining < 0){ %>
-              <p class="budgetRemaining" id="remainingTableRed"> <%= allCategories[i].remaining %></p>
+              <% if(categories[i].remaining < 0){ %>
+              <p class="budgetRemaining" id="remainingTableRed"> <%= categories[i].remaining %></p>
               <p class="Kr">Kr.</p>
               <% } else{ %>  
-              <p class="budgetRemaining" id="remainingTableGreen"> +<%= allCategories[i].remaining %></p>
+              <p class="budgetRemaining" id="remainingTableGreen"> +<%= categories[i].remaining %></p>
               <p class="Kr">Kr.</p>
               <% } %>
             </div>

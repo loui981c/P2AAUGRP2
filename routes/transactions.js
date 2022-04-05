@@ -6,7 +6,7 @@ let categories = ["Rent", "Savings", "Food", "Income", "Subs", "Fun", "Misc."];
 /* GET transaction page. */
 router.get('/', function(req, res, next) {
 
-  //fetch transactions from database
+  //fetch transactions from database 
   Transaction.find((err, trans)=>{
     if(!err)
     {
@@ -24,8 +24,8 @@ router.get('/', function(req, res, next) {
       res.render("transactions", {categories: categories, allTransactions: trans, currentCategory: "AllCategories"});
     }
   })
-
 });
+
 router.get("/categories", (req,res)=>{
 })
 
