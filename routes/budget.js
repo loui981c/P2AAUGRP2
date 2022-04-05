@@ -60,37 +60,14 @@ router.get('/', function(req, res, next) {
             catExpected += 200;
         }
         console.log(budgetDataStuff);
-    /*
-    // get categories from budget
-    let categories = [];
-    for (let i = 0; i < allCategories.length; i++) {
-        if (!categories.includes(allCategories[i].category)) {
-            categories.push(allCategories[i].category)
-        }
-    }
 
-            // sorts the categories
-            categoriesObjects.sort((a, b) => {
-                if (a.category < b.category) { return -1; }
-                if (a.category > b.category) { return 1; }
-                else { return 0 ;}
-            });
+        // sorts the categories
+        budgetDataStuff.sort((a, b) => {
+            if (a.category < b.category) { return -1; }
+            if (a.category > b.category) { return 1; }
+            else { return 0 ;}
+        }); 
 
-            res.render("budget", {categories: categoriesObjects, budgetData: budget, 
-                totalRemaining: remainingTotal, totalSpent: spent});
-        }
-    }
-
-    // sorts the categories
-    allCategories.sort((a, b) => {
-        if (a.category < b.category) { return -1; }
-        if (a.category > b.category) { return 1; }
-        else { return 0 ;}
-    });
-    */
-
-    // res.render("budget", {categories: categories, allCategories: allCategories, 
-    //     totalRemaining: remainingTotal, totalSpent: spent});
     res.render("budgetVeeTwo", {budgetDataStuff: budgetDataStuff});
 //end of transaction.find
     }
