@@ -6,7 +6,7 @@
 
       <%# the button at the top %>
       <div class="addBudget">
-        <button class="addBudgetBut">Add Budget/Create Category</button>
+        <a href="/budget/add"><button class="addBudgetBut">Add Budget/Create Category</button></a>
       </div>
 
       <%# total amounts %>
@@ -31,7 +31,7 @@
             let totalRemaining = 0;
             let totalAvailable = 0;
             let totalIncome = 0;
-              for (let j = 0; j<budgetDataStuff.length; j++)
+              for (let j = 0; j < budgetDataStuff.length; j++)
               {
                   if (budgetDataStuff[j].category == "Income")
                   {   
