@@ -221,9 +221,8 @@ h1 {
   color: white;
 }
 
-
-
 /* For adding transaction page */
+/* Design sumbit button */
 .transactionPageAdd .submit {
   display: inline-block;
   font-size: 1.2vw;

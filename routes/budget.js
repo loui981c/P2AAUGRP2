@@ -2,7 +2,7 @@ var express = require('express');
 const { all } = require('./transactions');
 var router = express.Router();
 const budgetSchema = require("../schemas/budgetSchema");
-const Transaction = require("../schemas/transactionSchema") 
+const Transaction = require("../schemas/transactionSchema");
 
 /* hardcoded categories */
 let allCategories = [{category: 'Food', expected: 3000, spent: 1200, remaining: 0},
@@ -75,11 +75,22 @@ router.get('/', function(req, res, next) {
 //
 });
 
-router.get('/add', function(req, res, next) {
+router.get('/add', (req, res) => {
 
 
 
     res.render("add_budget");
+});
+
+router.post('/add', (req, res) => {
+
+    let budget = new budgetSchema(req.body);
+    budget.save().then(item => {
+        console.log("saved to database: "+ budget);
+    }).catch((err)=>{
+        res.status(400).send("something went wrong when saving to database");
+    });
+    res.redirect('/budget');
 });
 
 module.exports = router;

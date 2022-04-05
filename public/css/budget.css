@@ -270,3 +270,28 @@ h1, label {
 .addBudgetPage label {
     margin-left: 26.5%;
 }
+.addBudgetPage form input {
+    margin-bottom: 2%;
+}
+
+/* design of sumbit button */
+.addBudgetPage .submitBudget {
+    display: inline-block;
+    font-size: 1.2vw;
+    font-family: bebas;
+    color: green;
+    background-color: transparent;
+    border: solid 1px;
+    border-color: green;
+    padding: 1.25%;
+    transition: 200ms;
+    cursor: pointer;
+}
+.addBudgetPage .submitBudget:hover {
+    background-color: green;
+    color: white;
+}
+.addBudgetPage .submitBudget:active {
+    background-color: rgb(0, 71, 0);
+    color: white;
+}

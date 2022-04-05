@@ -5,12 +5,24 @@
     <h1>Add / Create a New Budget Or Category</h1>
 
     <%# Form to add/create budget %>
-    <form action="budget/add" method="POST">
+    <form action="/budget/add" method="POST">
+      <%# Categories %>
+      <div class="categoriesCheckbox">
+          <label for="categoriesCheckbox">Category</label>
+          <input type="text" name="categoriesCheckbox" id="expected" required>
+      </div>
       <%# Expected %>
-        <div class="expectedInput">
-            <label for="expectedInput">Expected</label>
-            <input type="text" name="expectedInput" id="expected">
-        </div>
+      <div class="expectedInput">
+          <label for="expectedInput">Expected</label>
+          <input type="number" name="expectedInput" id="expected" required>
+      </div>
+      <%# Spent %>
+      <div class="spentInput">
+          <label for="spentInput">Spent (optional)</label>
+          <input type="number" name="spentInput" id="spent">
+      </div>
+
+      <button class="submitBudget" type="submit">Submit</button>
     </form>
   </div>
 </body>
