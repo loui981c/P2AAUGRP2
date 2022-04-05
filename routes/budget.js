@@ -20,7 +20,7 @@ router.get('/', function(req, res, next) {
 
 
      //fetch transactions from database
-  Transaction.find((err, trans)=>{
+    Transaction.find((err, trans)=>{
     if(!err)
     {
         //array of all the categories. This will be used for calculating budget data

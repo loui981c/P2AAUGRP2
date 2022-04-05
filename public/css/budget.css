@@ -241,9 +241,32 @@ h1 {
 
 /* the font for the page */
 .addBudgetPage p,
-h1 {
+h1, label {
   font-family: bebas;
+}
+.addBudgetPage label {
+  font-size: 1.8vw;
 }
 .addBudgetPage h1 {
   font-size: 3vw;
+}
+
+/* design of input */
+.addBudgetPage input {
+    font-size: 1.2vw;
+    font-family: bebas;
+    color: black;
+    background-color: transparent;
+    border: solid 1px;
+    padding: 1.2%;
+    width: 45%;
+    display: inline-block;
+}
+
+/* position of the form */
+.addBudgetPage form {
+    text-align: center;
+}
+.addBudgetPage label {
+    margin-left: 26.5%;
 }
