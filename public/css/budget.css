@@ -273,6 +273,9 @@ h1, label {
 .addBudgetPage form input {
     margin-bottom: 2%;
 }
+.addBudgetPage h1 {
+    margin-bottom: 7.5%;
+}
 
 /* design of sumbit button */
 .addBudgetPage .submitBudget {
