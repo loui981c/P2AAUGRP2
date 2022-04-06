@@ -1,0 +1,24 @@
+<%- include ("partials/header.ejs") %>
+<body>
+  <%- include ("partials/sidebar.ejs") %>
+  <div class="addBudgetPage">
+    <h1>Add / Create a New Budget Or Category</h1>
+
+    <%# Form to add/create budget %>
+    <form action="/budget/add" method="POST">
+      <%# Categories %>
+      <div class="categoriesCheckbox">
+          <label for="categoriesCheckbox">Category</label>
+          <input type="text" name="category" id="category" required>
+      </div>
+      <%# Expected %>
+      <div class="expectedInput">
+          <label for="expectedInput">Expected</label>
+          <input type="number" name="expected" id="expected" required>
+      </div>
+
+      <button class="submitBudget" type="submit">Submit</button>
+    </form>
+  </div>
+</body>
+</html>

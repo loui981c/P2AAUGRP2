@@ -1,0 +1,36 @@
+<%- include ("partials/header_homepage.ejs") %>
+  <body>
+    <div class="centerContainer">
+      <img class="logo" src="/assets/logo.png" alt="logo">
+      
+      <h1>WELCOME</h1>
+      
+      <button class="button" id="loginBut" onclick="show(2)">Log in</button>
+      <button class="button" id="createBut" onclick="show(1)">Sign up</button>
+
+      <br>
+      
+      <form class="login-form" id="username" method="POST" action="/">
+        
+        <label for="login">Username: </label>
+        <div class="twoItemGrid">
+        <input required type="text" id="login" name="login" placeholder="Enter username">
+        <button class="loginBut" type="submit">Enter</button>
+        </div>
+      </form>
+
+      <form class="login-form" id="create-username" method="POST" action="/">
+          <label for="newuser">Create New User: </label>
+          <div class="twoItemGrid">
+          <input required type="text" id="newuser" name="newuser" placeholder="Create a username">
+        <button class="loginBut" type="submit">Enter</button>
+        </div>
+      </form>
+    </div>
+    
+    
+
+    <script src="scripts/homepage.js"></script>
+
+  </body>
+</html>

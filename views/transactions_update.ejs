@@ -1,0 +1,65 @@
+<%- include ("partials/header.ejs") %>
+<body>
+    <%- include ("partials/sidebar.ejs") %> 
+
+    <div class="transactionPageAdd">
+    <h1>Edit transaction</h1>
+
+   
+    <%# Showing all categories provided in transactions.ejs%>
+    <form action="/transactions/edit/<%= transaction._id %>" method="post">
+        
+        <label for="mainCategory">Choose Category</label>
+            <div id="catBoxOuter">
+                <% for (let i = 0; i<categories.length; i++){ %> 
+                <div class="catCheckbox" id="catCheckBox">
+                    <label for="mainCategory>"><%= categories[i]%></label>
+                    <% if (categories[i] == transaction.mainCategory){ %> 
+                    <input checked="checked" type="radio" name="mainCategory" id="mainCategory>" value="<%= categories[i]%>" onclick="oneCheckAtATime(this)" required>
+                    <% }else{ %> 
+                        <input type="radio" name="mainCategory" id="mainCategory>" value="<%= categories[i]%>" onclick="oneCheckAtATime(this)" required>
+                    <% } %> 
+                </div>
+                <% } %> 
+            </div>
+        <%# sub category%>
+        <div class="subCatForm">
+            <label for="subCategory">Sub category</label>
+            <input type="text" name="subCategory" id="subCategory" value="<%= transaction.subCategory %> ">
+        </div>
+        <%# price%>
+        <div class="priceForm">
+            <label for="price">Price</label>
+            <input type="number" name="price" id="price" required value="<%= transaction.price %>">
+        </div>
+            <%# function for converting ugly date to pretty date. This can be implemented in controller %>
+            <% 
+                 function dateToString(date) {
+                var d = new Date(date);
+                var day = d.getDate();
+                var month = d.getMonth() + 1;
+                var year = d.getFullYear();
+                if (day < 10)
+                {
+                    day = "0" + day;
+                }
+                if (month < 10)
+                {
+                    month = "0" + month;
+                }
+                return year + "-" + month + "-" + day;
+            }
+            %> 
+
+        <div class="dateForm">
+            <label for="date">Date</label>
+            <input type="date" name="date" id="date" value="<%= dateToString(transaction.date) %>"  required>
+        </div>
+        
+        <button class="submit">Submit</button>
+    </form>
+    </div>
+ 
+    
+</body>
+</html>
