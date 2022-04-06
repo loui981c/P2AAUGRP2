@@ -68,7 +68,7 @@ router.get('/', function(req, res, next) {
           }
           console.log(transactionsWithCorrectDates);
 
-        trans.sort((a, b) =>  b.date - a.date)
+      transactionsWithCorrectDates.sort((a, b) =>  b.date - a.date)
       res.render("transactions", {firstDay: firstOutputDate, lastDay: lastOutPutDate, categories: categories, allTransactions: transactionsWithCorrectDates, currentCategory: "AllCategories"});
     }
   })
@@ -117,7 +117,7 @@ router.post("/categories", (req,res)=>{
   
         //
   
-          trans.sort((a, b) =>  b.date - a.date)
+          transactionsWithCorrectDates.sort((a, b) =>  b.date - a.date)
           res.render("transactions", {firstDay: req.body.dateFrom, lastDay: req.body.dateTo, categories: categories, allTransactions: transactionsWithCorrectDates, currentCategory: req.body.categories})
       }
     })
