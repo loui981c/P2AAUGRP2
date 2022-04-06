@@ -19,15 +19,16 @@
                                 <% } %>    
                             <% } %>    
                         </select>
-                        </form>
+                        
                     </div>
 
             <%# For choosing time period of transactions%>
                 <div class="chooseTime">
                     <label for="dateFrom" for="dateTo">Choose date (Start - End)</label>
-                    <input type="date" id="dateFrom" name="dateFrom">
-                    <input type="date" id="dateTo" name="dateTo">
+                    <input type="date" id="dateFrom" name="dateFrom" value="<%= firstDay %>" onchange="this.form.submit()">
+                    <input type="date" id="dateTo" name="dateTo" value="<%= lastDay %>" onchange="this.form.submit()">
                 </div>
+                </form>
                 <a href="/transactions/add"><button class="addTransBut">Add Transaction</button></a>
             </div>
 
@@ -80,8 +81,7 @@
             </div>
             <% } %> 
       
-        
-
+  
 
     </div>
 

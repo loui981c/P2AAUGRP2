@@ -19,9 +19,57 @@ router.get('/', function(req, res, next) {
             categories.push(trans[i].mainCategory)
           }
         }
-        console.log("categories")
+
+        //get first and last thay of the current month
+          
+          today = new Date();
+          //first day
+          todayMonth = today.getMonth() + 1;
+          todayYear = today.getFullYear();
+          firstDay = "01";
+
+          if(todayMonth < 10){
+              todayMonth = "0" + todayMonth;
+          }
+          firstOutputDate = todayYear + "-" + todayMonth + "-" + firstDay;
+
+          //last Day
+          lastDay = new Date(todayYear, todayMonth, 0);
+          lastDay = lastDay.getDate();
+
+          lastOutPutDate = todayYear + "-" + todayMonth + "-" + lastDay;
+          
+          transactionsWithCorrectDates = [];
+
+          for(t of trans)
+          {
+            //convert format of transaction date to one that matches output dates
+            tempDate =  t.date 
+            tDay = tempDate.getDate();
+            tMonth = tempDate.getMonth() + 1;
+            tYear = tempDate.getFullYear();
+
+            if (tDay < 10)
+            {
+              tDay = "0" + tDay
+            }
+            if (tMonth < 10)
+            {
+              tMonth = "0" + tMonth
+            }
+            correctDate = tYear + "-" + tMonth + "-" + tDay;;
+
+            //add t to transactionsWithCorrectDates if it matches the first or last date of the current month
+            if(correctDate.replaceAll("-", "") >= firstOutputDate.replaceAll("-", "") && correctDate.replaceAll("-", "") <= lastOutPutDate.replaceAll("-", ""))
+            {
+              transactionsWithCorrectDates.push(t);          
+
+            }
+          }
+          console.log(transactionsWithCorrectDates);
+
         trans.sort((a, b) =>  b.date - a.date)
-      res.render("transactions", {categories: categories, allTransactions: trans, currentCategory: "AllCategories"});
+      res.render("transactions", {firstDay: firstOutputDate, lastDay: lastOutPutDate, categories: categories, allTransactions: transactionsWithCorrectDates, currentCategory: "AllCategories"});
     }
   })
 });
@@ -32,7 +80,49 @@ router.get("/categories", (req,res)=>{
 router.post("/categories", (req,res)=>{
   
   if (req.body.categories == "AllCategories")
-  {res.redirect("/transactions")}
+  {
+    
+    Transaction.find((err, trans)=>{
+      if(!err)
+      {
+       
+          transactionsWithCorrectDates = [];
+  
+          for(t of trans)
+          {
+            //convert format of transaction date to one that matches output dates
+            tempDate =  t.date 
+            tDay = tempDate.getDate();
+            tMonth = tempDate.getMonth() + 1;
+            tYear = tempDate.getFullYear();
+  
+            if (tDay < 10)
+            {
+              tDay = "0" + tDay
+            }
+            if (tMonth < 10)
+            {
+              tMonth = "0" + tMonth
+            }
+            correctDate = tYear + "-" + tMonth + "-" + tDay;;
+  
+            //add t to transactionsWithCorrectDates if it matches the first or last date of the current month
+            if(correctDate.replaceAll("-", "") >= req.body.dateFrom.replaceAll("-", "") && correctDate.replaceAll("-", "") <= req.body.dateTo.replaceAll("-", ""))
+            {
+              transactionsWithCorrectDates.push(t);          
+  
+            }
+          }
+          console.log(transactionsWithCorrectDates);
+  
+        //
+  
+          trans.sort((a, b) =>  b.date - a.date)
+          res.render("transactions", {firstDay: req.body.dateFrom, lastDay: req.body.dateTo, categories: categories, allTransactions: transactionsWithCorrectDates, currentCategory: req.body.categories})
+      }
+    })
+
+  }
   else{
 
   //find categories withing the post above
@@ -48,9 +138,39 @@ router.post("/categories", (req,res)=>{
             narrowedCategories.push(trans[i])
         }
       }
-      
+        transactionsWithCorrectDates = [];
+
+        for(t of narrowedCategories)
+        {
+          //convert format of transaction date to one that matches output dates
+          tempDate =  t.date 
+          tDay = tempDate.getDate();
+          tMonth = tempDate.getMonth() + 1;
+          tYear = tempDate.getFullYear();
+
+          if (tDay < 10)
+          {
+            tDay = "0" + tDay
+          }
+          if (tMonth < 10)
+          {
+            tMonth = "0" + tMonth
+          }
+          correctDate = tYear + "-" + tMonth + "-" + tDay;;
+
+          //add t to transactionsWithCorrectDates if it matches the first or last date of the current month
+          if(correctDate.replaceAll("-", "") >= req.body.dateFrom.replaceAll("-", "") && correctDate.replaceAll("-", "") <= req.body.dateTo.replaceAll("-", ""))
+          {
+            transactionsWithCorrectDates.push(t);          
+
+          }
+        }
+        console.log(transactionsWithCorrectDates);
+
+      //
+
         trans.sort((a, b) =>  b.date - a.date)
-        res.render("transactions", {categories: categories, allTransactions: narrowedCategories, currentCategory: req.body.categories})
+        res.render("transactions", {firstDay: req.body.dateFrom, lastDay: req.body.dateTo, categories: categories, allTransactions: transactionsWithCorrectDates, currentCategory: req.body.categories})
     }
   })
 }
