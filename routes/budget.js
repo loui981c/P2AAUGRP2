@@ -4,17 +4,6 @@ var router = express.Router();
 const budgetSchema = require("../schemas/budgetSchema");
 const Transaction = require("../schemas/transactionSchema");
 
-/* hardcoded categories */
-let allCategories = [{ category: 'Food', expected: 3000, spent: 1200, remaining: 0 },
-{ category: 'Food', expected: 3000, spent: 1200, remaining: 0 },
-{ category: 'Rent', expected: 4500, spent: 4500, remaining: 0 },
-{ category: 'Fun Money', expected: 1000, spent: 300, remaining: 0 },
-{ category: 'Beer', expected: 1000, spent: 300, remaining: 0 },
-{ category: 'Beer', expected: 1000, spent: 7500, remaining: 0 },
-{ category: 'Income', expected: 10000, spent: 10000, remaining: 0 },
-{ category: 'Income', expected: 10000, spent: 10000, remaining: 0 }];
-
-
 /* GET budget page. */
 router.get('/', function (req, res, next) {
 
