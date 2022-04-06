@@ -1,6 +1,7 @@
 <%- include ("partials/header.ejs") %>
   <body>
     <%- include ("partials/sidebar.ejs") %>
+
     <div class="budgetPage">
       <h1>Budget</h1>
 
@@ -24,21 +25,22 @@
             for (let i = 0; i<dataStuff.length; i++){
                 if (dataStuff[i].category!= "Income")
                 {
-                totalSpent += dataStuff[i].spent;
+                  totalSpent += budgetData[i].spent;
                 }
               } 
             
             let totalRemaining = 0;
             let totalAvailable = 0;
             let totalIncome = 0;
-              for (let j = 0; j < dataStuff.length; j++)
+
+              for (let j = 0; j < budgetData.length; j++)
               {
                   if (dataStuff[j].category == "Income")
                   {   
                       totalIncome = dataStuff[j].spent;
 
-                      totalAvailable += dataStuff[j].spent ;
-                  }
+                      totalAvailable += budgetData[j].spent ;
+                    }
               }
               totalRemaining = totalAvailable - totalSpent;
             %> 
@@ -89,8 +91,8 @@
               <p class="Kr">Kr.</p>
             </div>
             <div class="KrInline">
-              <% if(dataStuff[i].category === 'income'){ %>
-                <p class="budgetRemaining" id="spentTableGreen"> +<%= dataStuff[i].spent %></p>
+              <% if(budgetData[i].category.toLowerCase() === 'income'){ %>
+                <p class="budgetRemaining" id="spentTableGreen"> +<%= budgetData[i].spent %></p>
                 <p class="Kr">Kr.</p>
                 <% } else{ %>  
                 <p class="budgetRemaining" id="spentTableRed"> -<%= dataStuff[i].spent %></p>
@@ -98,8 +100,8 @@
                 <% } %>
             </div>
             <div class="KrInline">
-              <% if(dataStuff[i].remaining < 0){ %>
-              <p class="budgetRemaining" id="remainingTableRed"> <%= dataStuff[i].remaining %></p>
+              <% if(budgetData[i].remaining < 0){ %>
+              <p class="budgetRemaining" id="remainingTableRed"> <%= budgetData[i].remaining %></p>
               <p class="Kr">Kr.</p>
               <% } else{ %>  
               <p class="budgetRemaining" id="remainingTableGreen"> +<%= dataStuff[i].remaining %></p>
