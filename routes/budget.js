@@ -49,7 +49,7 @@ router.get('/', function (req, res, next) {
                 else { return 0; }
             });
 
-            res.render("budgetVeeTwo", { budgetDataStuff: budgetDataStuff });
+            res.render("budget", { budgetDataStuff: budgetDataStuff });
         };
     });
 });
