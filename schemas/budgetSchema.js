@@ -1,4 +1,3 @@
-//const { number } = require("mathjs");
 const { default: mongoose } = require("mongoose");
 
 let budgetSchema = new mongoose.Schema ({
