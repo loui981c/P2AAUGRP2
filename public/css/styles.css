@@ -66,6 +66,11 @@
   color: #ffffff;
 }
 
+/*Changes color of the active link*/
+a.current{
+  color: #ffffff;
+}
+
 /* makes the logo jump when hover */
 .logo:hover {
   transform: translateY(-5%);
