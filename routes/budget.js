@@ -46,7 +46,8 @@ router.get('/', function(req, res, next) {
                 }
 
             res.render("budget", { budgetDataStuff: budgetDataStuff });
-        };
+            }
+        }
     });
 });
 
