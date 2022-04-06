@@ -21,23 +21,23 @@
             
             <% 
             let totalSpent = 0;
-            for (let i = 0; i<budgetDataStuff .length; i++){
-                if (budgetDataStuff[i].category!= "Income")
+            for (let i = 0; i<budgetData.length; i++){
+                if (budgetData[i].category!= "Income")
                 {
-                totalSpent += budgetDataStuff[i].spent;
+                totalSpent += budgetData[i].spent;
                 }
               } 
             
             let totalRemaining = 0;
             let totalAvailable = 0;
             let totalIncome = 0;
-              for (let j = 0; j < budgetDataStuff.length; j++)
+              for (let j = 0; j < budgetData.length; j++)
               {
-                  if (budgetDataStuff[j].category == "Income")
+                  if (budgetData[j].category == "Income")
                   {   
-                      totalIncome = budgetDataStuff[j].spent;
+                      totalIncome = budgetData[j].spent;
 
-                      totalAvailable += budgetDataStuff[j].spent ;
+                      totalAvailable += budgetData[j].spent ;
                   }
               }
               totalRemaining = totalAvailable - totalSpent;
@@ -78,31 +78,31 @@
         </div>
       
       <%# Showing the budget in the table %>
-      <% for (let i = 0; i<budgetDataStuff.length; i++){ %> 
+      <% for (let i = 0; i<budgetData.length; i++){ %> 
 
-        <% if (budgetDataStuff[i].category != "Income"){ %> 
+        <% if (budgetData[i].category != "Income"){ %> 
         <div class="budgetTable">
           <div class="budgetInsideTable">
-            <p class="budgetCategory"><%= budgetDataStuff[i].category %></p>
+            <p class="budgetCategory"><%= budgetData[i].category %></p>
             <div class="KrInline">
-              <p class="budgetExpected"><%= budgetDataStuff[i].expected %></p>
+              <p class="budgetExpected"><%= budgetData[i].expected %></p>
               <p class="Kr">Kr.</p>
             </div>
             <div class="KrInline">
               <% if(budgetDataStuff[i].category.toLowerCase() === 'income'){ %>
-                <p class="budgetRemaining" id="spentTableGreen"> +<%= budgetDataStuff[i].spent %></p>
+                <p class="budgetRemaining" id="spentTableGreen"> +<%= budgetData[i].spent %></p>
                 <p class="Kr">Kr.</p>
                 <% } else{ %>  
-                <p class="budgetRemaining" id="spentTableRed"> -<%= budgetDataStuff[i].spent %></p>
+                <p class="budgetRemaining" id="spentTableRed"> -<%= budgetData[i].spent %></p>
                 <p class="Kr">Kr.</p>
                 <% } %>
             </div>
             <div class="KrInline">
               <% if(budgetDataStuff[i].remaining < 0){ %>
-              <p class="budgetRemaining" id="remainingTableRed"> <%= budgetDataStuff[i].remaining %></p>
+              <p class="budgetRemaining" id="remainingTableRed"> <%= budgetData[i].remaining %></p>
               <p class="Kr">Kr.</p>
               <% } else{ %>  
-              <p class="budgetRemaining" id="remainingTableGreen"> +<%= budgetDataStuff[i].remaining %></p>
+              <p class="budgetRemaining" id="remainingTableGreen"> +<%= budgetData[i].remaining %></p>
               <p class="Kr">Kr.</p>
               <% } %>
             </div>
