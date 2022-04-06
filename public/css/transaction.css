@@ -59,8 +59,8 @@
 input {
   display: flex;
 }
+
 .transactionPage .addTransBut {
-  margin-left: 22%;
   display: inline-block;
   font-size: 1.2vw;
   font-family: bebas;
@@ -72,6 +72,12 @@ input {
   transition: 200ms;
   cursor: pointer;
 }
+
+/* margins for transaction button, must be used because of button inside anchor */
+.transactionPage .addTransButAnchor {
+  margin-left: 22%;
+}
+
 .transactionPage .addTransBut:hover {
   background-color: green;
   color: white;
