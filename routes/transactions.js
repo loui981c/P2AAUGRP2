@@ -1,78 +1,13 @@
 var express = require('express');
 var router = express.Router();
+var transaction_controller = require('../controllers/transactionController')
 const Transaction = require("../schemas/transactionSchema") 
 
+
 let categories = ["Rent", "Savings", "Food", "Income", "Subs", "Fun", "Misc.", "tobacco"];
+
 /* GET transaction page. */
-router.get('/', function(req, res, next) {
-
-  //fetch transactions from database 
-  Transaction.find((err, trans)=>{
-    if(!err)
-    {
-      
-       //categories from list of all fethced transactions
-        for(let i = 0; i<trans.length; i++)
-        {
-           if(!categories.includes(trans[i].mainCategory))
-          {
-            categories.push(trans[i].mainCategory)
-          }
-        }
-
-        //get first and last thay of the current month
-          
-          today = new Date();
-          //first day
-          todayMonth = today.getMonth() + 1;
-          todayYear = today.getFullYear();
-          firstDay = "01";
-
-          if(todayMonth < 10){
-              todayMonth = "0" + todayMonth;
-          }
-          firstOutputDate = todayYear + "-" + todayMonth + "-" + firstDay;
-
-          //last Day
-          lastDay = new Date(todayYear, todayMonth, 0);
-          lastDay = lastDay.getDate();
-
-          lastOutPutDate = todayYear + "-" + todayMonth + "-" + lastDay;
-          
-          transactionsWithCorrectDates = [];
-
-          for(t of trans)
-          {
-            //convert format of transaction date to one that matches output dates
-            tempDate =  t.date 
-            tDay = tempDate.getDate();
-            tMonth = tempDate.getMonth() + 1;
-            tYear = tempDate.getFullYear();
-
-            if (tDay < 10)
-            {
-              tDay = "0" + tDay
-            }
-            if (tMonth < 10)
-            {
-              tMonth = "0" + tMonth
-            }
-            correctDate = tYear + "-" + tMonth + "-" + tDay;;
-
-            //add t to transactionsWithCorrectDates if it matches the first or last date of the current month
-            if(correctDate.replaceAll("-", "") >= firstOutputDate.replaceAll("-", "") && correctDate.replaceAll("-", "") <= lastOutPutDate.replaceAll("-", ""))
-            {
-              transactionsWithCorrectDates.push(t);          
-
-            }
-          }
-          console.log(transactionsWithCorrectDates);
-
-      transactionsWithCorrectDates.sort((a, b) =>  b.date - a.date)
-      res.render("transactions", {firstDay: firstOutputDate, lastDay: lastOutPutDate, categories: categories, allTransactions: transactionsWithCorrectDates, currentCategory: "AllCategories"});
-    }
-  })
-});
+router.get('/', transaction_controller.transactionOverview);
 
 router.get("/categories", (req,res)=>{
 })
@@ -180,15 +115,7 @@ router.post("/categories", (req,res)=>{
 })
 
 //CRUD from this point on
-router.get("/add", (req,res)=>{
-
-  //categories from list of all transactions - this can be improved upon when actually using datebase
-
-  res.render("transactions_add", {categories: categories});
-
-})
-
-
+router.get("/add", transaction_controller.addTransactions);
 
 router.post("/add", (req,res)=>{
 

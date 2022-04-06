@@ -36,9 +36,11 @@ let async = require('async');
 // };
 
 exports.AddBudget = function(req, res) {
+    // defining a new schema and boolean
     let newBudget = new Budget(req.body);
     let alreadyExists = false;
 
+    // checks if a category name is already in data 
     Budget.find((err, budget) => {
         if (!err) {
             for (let i = 0; i < budget.length; i++){
@@ -47,6 +49,8 @@ exports.AddBudget = function(req, res) {
                 }
             }
         }
+
+        // not saving the data from user if a category is already existing 
         if (!alreadyExists) {
             newBudget.save().then(item => {
                 console.log("saved to database: " + newBudget);
@@ -56,7 +60,7 @@ exports.AddBudget = function(req, res) {
         } else {
             console.log("This category already exists.");
         }
-    
+        
         res.redirect('/budget');
     });
 };
