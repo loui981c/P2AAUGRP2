@@ -7,7 +7,7 @@ const Transaction = require("../schemas/transactionSchema")
 let categories = ["Rent", "Savings", "Food", "Income", "Subs", "Fun", "Misc.", "tobacco"];
 
 /* GET transaction page. */
-router.get('/', transaction_controller.transactionOverview);
+router.get('/', transaction_controller.transactionOverview_get);
 
 router.get("/categories", (req,res)=>{
 })
@@ -115,36 +115,12 @@ router.post("/categories", (req,res)=>{
 })
 
 //CRUD from this point on
-router.get("/add", transaction_controller.addTransactions);
+router.get("/add", transaction_controller.addTransactions_get);
 
-router.post("/add", (req,res)=>{
-
-  //create model from transactionSchema and save it in the database. 
-  //Also: catch errors
-  let transaction = new Transaction(req.body)
-  transaction.save().then(item => {
-    console.log("saved to database: "+ transaction)
-  }).catch((err)=>{
-    res.status(400).send("something went wrong when saving to database")
-  })
-  res.redirect("/transactions");
-})
+router.post("/add", transaction_controller.addTransactions_post);
 
 //for deleting 
-router.post("/:id/delete", (req,res)=>{
-  console.log("hi")
-  Transaction.findByIdAndRemove(req.params.id).then(t =>{
-    if (!t)
-    {
-      return res.status(404).send()
-    }
-    res.redirect("/transactions")
-
-  }).catch(err=>{
-      res.status(500).send(err);
-  })
-})
-
+router.post("/:id/delete", transaction_controller.deleteTransactions_post);
 
 //for editing
 router.get("/edit/:id", (req,res)=>{
@@ -160,7 +136,7 @@ router.get("/edit/:id", (req,res)=>{
   }).catch(err=>{
       res.status(500).send(err);
   })
-})
+});
 
 //for editing
 router.post("/edit/:id", (req,res)=>{
@@ -175,7 +151,7 @@ router.post("/edit/:id", (req,res)=>{
   }).catch(err=>{
       res.status(500).send(err);
   })
-})
+});
 
 
 module.exports = router;

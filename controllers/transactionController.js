@@ -2,10 +2,9 @@ let Transaction = require('../schemas/transactionSchema');
 let Budget = require('../schemas/budgetSchema');
 let async = require('async');
 
-// maybe the let categoriesFromBudget = []; should be global?
 
-exports.transactionOverview = function (req, res, next) {
-
+exports.transactionOverview_get = function (req, res, next) {
+    
     async.parallel({
         transactions: function (callback) {
             Transaction.find(callback);
@@ -15,13 +14,13 @@ exports.transactionOverview = function (req, res, next) {
         },
     }, function (err, results) {
         if (err) { return next(err); }
-
+        
         // getting the data from async function
         let trans = results.transactions;
         let budget = results.budget;
-
-        // gets the categories from budget
+        
         let categoriesFromBudget = [];
+        // gets the categories from budget
         for (let i = 0; i < budget.length; i++) {
             categoriesFromBudget.push(budget[i].category)
         }
@@ -76,7 +75,8 @@ exports.transactionOverview = function (req, res, next) {
 };
 
 
-exports.addTransactions = function (req, res, next) {
+exports.addTransactions_get = function (req, res, next) {
+
     async.parallel({
         budget: function (callback) {
             Budget.find(callback);
@@ -97,4 +97,72 @@ exports.addTransactions = function (req, res, next) {
 
         res.render("transactions_add", { categories: categoriesFromBudget });
     });
+};
+
+exports.addTransactions_post = function(req, res) {
+    // saves data to database
+    let transaction = new Transaction(req.body);
+    transaction.save().then(item => {
+        console.log("saved to database: "+ transaction)
+      }).catch((err)=>{
+        res.status(400).send("something went wrong when saving to database")
+      });
+    res.redirect("/transactions");
+};
+
+exports.deleteTransactions_post = function(req, res) {
+    // delete data from database
+    Transaction.findByIdAndRemove(req.params.id).then(t =>{
+        if (!t)
+        {
+          return res.status(404).send()
+        }
+        res.redirect("/transactions")
+        }).catch(err=>{
+          res.status(500).send(err);
+    });
+};
+
+exports.editTransactions_get = function(req, res, next) {
+    var id = mongoose.Types.ObjectId(req.params.id)
+
+    //find current transaction and inputs it into the transactions_update view - this improves user experience
+    async.parallel({
+        transaction: function(callback) {
+            Transaction.findById(id).exec(callback);
+        },
+        budget: function(callback) {
+            Budget.find(callback);
+        },
+    }, function(err, results) {
+        if (err) { return next(err); }
+        if (results.transaction == null) {
+            let err = new Error('Transaction not found');
+            err.status = 404;
+            return next(err);
+        }
+
+        let budget = results.budget
+
+        let categoriesFromBudget = [];
+        for (let i = 0; i < budget.length; i++) {
+            categoriesFromBudget.push(budget[i].category)
+        }
+        res.render('transactions_update', {transaction: results.transaction, categories: categoriesFromBudget});
+    });
+};
+
+exports.editTransactions_post = function(req, res) {
+
+    // finds id and updates
+    Transaction.findByIdAndUpdate(req.params.id, req.body).then(t =>{
+        if (!t)
+        {
+          return res.status(404).send()
+        }
+        res.redirect("/transactions")
+    
+      }).catch(err=>{
+          res.status(500).send(err);
+      });
 };

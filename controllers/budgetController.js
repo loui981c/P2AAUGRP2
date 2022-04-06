@@ -2,7 +2,7 @@ let Transaction = require('../schemas/transactionSchema');
 let Budget = require('../schemas/budgetSchema');
 let async = require('async');
 
-exports.budgetOverview = function(req, res, next) {
+exports.budgetOverview_get = function(req, res, next) {
 
     // gets data from database
     async.parallel({
@@ -46,7 +46,7 @@ exports.budgetOverview = function(req, res, next) {
     });
 };
 
-exports.AddBudget = function(req, res) {
+exports.addBudget_post = function(req, res) {
     // defining a new schema and boolean
     let newBudget = new Budget(req.body);
     let alreadyExists = false;
