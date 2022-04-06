@@ -1,0 +1,303 @@
+/* setting the margin for the page */
+.budgetPage {
+    margin-left: 14%;
+    margin-right: 10%; 
+}
+/* the font for the page */
+.budgetPage p,
+h1 {
+  font-family: bebas;
+}
+.budgetPage h1 {
+  font-size: 3vw;
+}
+
+/* position the button */
+.addBudget {
+  display: block;
+  margin-left: 10%;
+}
+
+/* design the add budget button */
+.addBudgetBut {
+  font-size: 1.2vw;
+  font-family: bebas;
+  color: green;
+  background-color: transparent;
+  border: solid 1px;
+  border-color: green;
+  padding: 1.25%;
+  cursor: pointer;
+}
+.addBudgetBut:active {
+    background-color: rgb(240, 240, 240);
+    border: solid 1px green;
+    color: green;
+}
+.addBudgetBut:hover {
+    background-color: green;
+    color: white; 
+}
+
+/* position total spent and remaining */
+.totalAmountBox p {
+    display: inline-block;
+    font-size: 1.3vw;
+}
+.totalAmountBox {
+    margin: 2.5% 0% 2.5% 10%
+}
+.totalRemainingBox {
+    display: inline;
+}
+.totalSpentBox {
+    display: inline;
+}
+.totalIncomeBox {
+    display: inline;
+}
+.totalAmount {
+    min-width: 11.5%;
+}
+.numTotal {
+    min-width: 5%;
+    text-align: end;
+}
+
+/* turns red if totalSpent under 0 */
+#spentRed{
+    color: red;
+}
+#spentGreen{
+    color: green;
+}
+
+/* turns red if totalRemaining under 0 */
+#remainingRed {
+    color: red;
+}
+#remainingGreen {
+    color: green;
+}
+
+/* the design of the small headers */
+.budgetLabels {
+    font-size: 1.5vw;
+}
+
+/* setting the distance between small headers */
+.category {
+    text-align: end;
+    display: inline-block;
+    margin-left: 15.25%;
+}    
+.expected {
+    text-align: end;
+    display: inline-block;
+    margin-left: 16%;
+}  
+.spent {
+    text-align: end;
+    display: inline-block;
+    margin-left: 15.25%;
+}
+.remaining {
+    text-align: end;
+    display: inline-block;
+    margin-left: 15%;
+}
+
+/* making the table */
+.budgetTable {
+    width: 100%;
+    margin: 10%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+.budgetInsideTable {
+    margin: 0px;
+    padding: 1%;
+    width: 80%;
+    display: inline-block;
+    border: solid 1px;
+}
+
+/* setting the titles inside of the table */
+.budgetCategory {
+    display: inline-block;
+    position: relative;
+    left: 5.5%;
+    min-width: 20%;
+    font-size: 1.8vw;
+    text-align: start;
+}
+
+/* making number and kr stand on line */
+.KrInline {
+    display: inline;
+    margin-left: 2.5%;
+}
+.KrInline p {
+    display: inline-block;
+}
+.budgetExpected {
+    font-size: 1.8vw;
+    min-width: 15%;
+    text-align: end;
+}
+.budgetSpent {
+    font-size: 1.8vw;
+    min-width: 15%;
+    text-align: end;
+    margin-left: 3%;
+}
+.budgetRemaining {
+    font-size: 1.8vw;
+    min-width: 15%;
+    text-align: end;
+    margin-left: 5%;
+}
+.Kr {
+    font-size: 1.8vw;
+}
+
+/* makes the color of the remaining inside of table green */
+#spentTableGreen {
+    color: green;
+}
+#spentTableRed {
+    color: red;
+}
+
+/* makes the color of the remaining inside of table green */
+#remainingTableGreen {
+    color: green;
+}
+#remainingTableRed {
+    color: red;
+}
+
+/* postion edit expected box */
+.editBudgetBox {
+    display: inline-block;
+    width: 7.5%;
+}
+
+/* design edit button */
+.editBudget {
+    display: flex;
+    font-family: bebas;
+    font-size: 1vw;
+    margin: 10%;
+    justify-content: center;
+    width: 100%;
+    padding: 1.25%;
+    background-color: transparent;
+    border: solid 1px green;
+    color: green;
+    transition: 150ms;
+    cursor: pointer;
+}
+.editBudget:active {
+    background-color: rgb(240, 240, 240);
+    border: solid 1px green;
+    color: green;
+}
+.editBudget:hover {
+    background-color: green;
+    color: white;
+}
+
+/* design delete button */
+.deleteBudget {
+    display: flex;
+    font-family: bebas;
+    font-size: 1vw;
+    margin: 10%;
+    justify-content: center;
+    width: 100%;
+    padding: 1.25%;
+    background-color: transparent;
+    border: solid 1px red;
+    color: red;
+    transition: 150ms;
+    cursor: pointer;
+}
+.deleteBudget:active {
+    background-color: rgb(240, 240, 240);
+    border: solid 1px red;
+    color: red;
+}
+.deleteBudget:hover {
+    background-color: red;
+    color: white;
+}
+
+
+
+/* css for add budget page */
+/* margin for page */
+.addBudgetPage {
+    margin-left: 14%;
+    margin-right: 10%; 
+}
+
+/* the font for the page */
+.addBudgetPage p,
+h1, label {
+  font-family: bebas;
+}
+.addBudgetPage label {
+  font-size: 1.8vw;
+}
+.addBudgetPage h1 {
+  font-size: 3vw;
+}
+
+/* design of input */
+.addBudgetPage input {
+    font-size: 1.2vw;
+    font-family: bebas;
+    color: black;
+    background-color: transparent;
+    border: solid 1px;
+    padding: 1.2%;
+    width: 45%;
+    display: inline-block;
+}
+
+/* position of the form */
+.addBudgetPage form {
+    text-align: center;
+}
+.addBudgetPage label {
+    margin-left: 26.5%;
+}
+.addBudgetPage form input {
+    margin-bottom: 2%;
+}
+.addBudgetPage h1 {
+    margin-bottom: 7.5%;
+}
+
+/* design of sumbit button */
+.addBudgetPage .submitBudget {
+    display: inline-block;
+    font-size: 1.2vw;
+    font-family: bebas;
+    color: green;
+    background-color: transparent;
+    border: solid 1px;
+    border-color: green;
+    padding: 1.25%;
+    transition: 200ms;
+    cursor: pointer;
+}
+.addBudgetPage .submitBudget:hover {
+    background-color: green;
+    color: white;
+}
+.addBudgetPage .submitBudget:active {
+    background-color: rgb(0, 71, 0);
+    color: white;
+}

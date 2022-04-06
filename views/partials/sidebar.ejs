@@ -1,0 +1,29 @@
+    <%# Sidebar navigation %>
+    <div class="nav">
+        <div class="image">
+            <a href="/monthly">
+                <img class="logo" src="/assets/logo-white.png" alt="logo">
+            </a>
+        </div>
+        <div class="links-box">
+            <a href="/monthly">Monthly Overview</a>
+            <a href="/transactions">Transactions</a>
+            <a href="/transactions/add">Add Transaction</a>
+            <a href="/budget">Budget</a>
+            <a href="/budget/add">Add Budget / Create Category</a>
+        </div>
+    </div>
+
+    <%# Script to highlight active link %>
+    <script>
+        let current = 0;
+        for (var i = 0; i < document.links.length; i++) {
+            if (document.links[i].href == document.URL) {
+                current = i;
+            }
+        }
+        if (document.URL == "http://localhost:3000/transactions/categories"){
+                current = 2;
+            }
+        document.links[current].className = 'current';
+    </script>

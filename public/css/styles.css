@@ -1,0 +1,77 @@
+/* defines font */
+@font-face {
+  font-family: bebas;
+  src: url(/assets/BebasNeue-Regular.ttf);
+}
+
+/* sizes the logo */
+.logo {
+  width: 87.5%;
+  justify-content: center;
+  transition: 250ms ease-in-out;
+}
+
+/* setting margin around logo box */
+.image {
+  margin: 15px 2.5px 0px 2.5px;
+}
+
+/* sidebar box */
+.nav {
+  /* setting the position and size */
+  height: 200%;
+  width: 12.5%;
+  position: fixed;
+  /* stays on top and stays at the top of the page */
+  z-index: 1;
+  top: 0;
+  left: 0;
+  /* not allowing horizontal */
+  overflow-x: hidden;
+  /* setting the color */
+  background: linear-gradient(
+    180deg,
+    #0b0b0b 0%,
+    rgba(11, 11, 11, 0.339495) 99.97%,
+    rgba(11, 11, 11, 0.0677083) 99.98%,
+    rgba(11, 11, 11, 0.0677084) 99.99%,
+    rgba(11, 11, 11, 0) 100%
+  );
+  mix-blend-mode: normal;
+}
+
+/* links inside sidebar */
+.nav a {
+  /* setting the font */
+  font-family: bebas;
+  /* font-size always be 1,75% of the current screen */
+  font-size: 1.7vw;
+  /* setting padding around the links */
+  padding: 8px 10px 0px 10px;
+  /* removes the link underline and makes stack on top of each other */
+  text-decoration: none;
+  display: block;
+  /* setting the color */
+  color: #a8a8a8;
+  transition: 100ms;
+}
+
+/* moving the links down from the logo */
+.links-box {
+  margin: 15px 2.5px 0px 2.5px;
+}
+
+/* when hover over links inside sidebar */
+.nav a:hover {
+  color: #ffffff;
+}
+
+/*changes color of the active link*/
+a.current{
+  color: #ffffff;
+}
+
+/* makes the logo jump when hover */
+.logo:hover {
+  transform: translateY(-5%);
+}

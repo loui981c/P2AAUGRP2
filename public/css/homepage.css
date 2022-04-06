@@ -1,0 +1,215 @@
+/* set background for body */
+body {
+  background-color: rgb(255, 255, 255);
+  margin: 0px;
+}
+
+/* defines font */
+@font-face {
+  font-family: bebas;
+  src: url(/assets/BebasNeue-Regular.ttf);
+}
+
+/* center the elements */
+.centerContainer {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+/* sizes the logo */
+.logo {
+  max-width: 25%;
+  transition: 250ms;
+  margin-bottom: -5%;
+}
+
+/* makes the logo jump */
+.logo:hover {
+  transform: translateY(-5%);
+}
+.logo:active {
+  transform: rotateX(180deg);
+}
+
+/* font on all h1 */
+h1 {
+  font-size: 3vw;
+  font-family: bebas;
+}
+
+/* button design */
+.button {
+  font-family: bebas;
+  background-color: transparent;
+  border: 1.5px solid green;
+  border-radius: 2px;
+
+  color: green;
+  display: inline-block;
+  font-size: 1.15vw;
+  font-weight: 400;
+
+  text-align: center;
+  padding: 10px;
+  width: 10%;
+
+  cursor: pointer;
+
+  /* setting the space between the buttons */
+  margin-left: 0.5%;
+  margin-right: 0.5%;
+
+  transition: 250ms ease-in-out;
+}
+
+.button:focus:not(:focus-visible):not(.focus-visible) {
+  box-shadow: none;
+  outline: none;
+}
+
+.button:hover {
+  background-color: green;
+  color: white;
+}
+
+.button:focus {
+  box-shadow: rgba(46, 164, 79, 0.4) 0 0 0 3px;
+  outline: none;
+}
+
+.button:active {
+  background-color: #206d36;
+  box-shadow: rgba(20, 70, 32, 0.2) 0 1px 0 inset;
+}
+
+
+
+
+
+/* label design */
+label {
+  font-weight: 500;
+  font-family: bebas;
+}
+
+/* submit button */
+.submitBut {
+  margin: 0% auto;
+  min-width: 90%;
+  background-color: green;
+  border: 1.5px solid green;
+  border-radius: 2px;
+
+  color: white;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 400;
+
+  text-align: center;
+  padding: 10px;
+
+  transition: 250ms ease-in-out;
+  cursor: pointer;
+}
+
+.submitBut:hover {
+  background-color: rgb(0, 177, 0);
+  color: white;
+}
+
+.login-form {
+  margin-top: 2%;
+  display: grid;
+  max-width: 21%;
+  min-width: 21%;
+  grid-template-columns: 50% 50%;
+
+  transform: 250ms;
+}
+
+
+.login-form label {
+  text-align: start;
+  font-size: 1.4vw;
+  display: flex;
+  margin-bottom: 2%;
+}
+
+
+.twoItemGrid{
+  display: grid;
+  grid-template-columns: 83% 15%;
+  gap: 2%;
+
+}
+
+/* design input fields */
+.login-form .twoItemGrid input {
+  font-size: 1.1vw;
+  font-family: bebas;
+  box-shadow: rgb(121, 121, 121) 0px 0px 0px 2px;
+  border-radius: 1px;
+  background:  transparent;
+  /*linear-gradient(
+    180deg,
+    rgba(196, 196, 196, 0.2) 0%,
+    rgba(196, 196, 196, 0.09375) 53.12%,
+    rgba(196, 196, 196, 0) 100%
+  );*/
+  padding: 3%;
+  max-width: 100%;
+
+  /* hidden border on field */
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: hidden;
+  transition: 250ms;
+  display: inline-block;
+}
+
+/* hidding the outline when writing in input field */
+.login-form .twoItemGrid input:focus {
+  outline: none;
+  box-shadow: green 0px 0px 0px 2px;
+  
+}
+
+::placeholder {
+  color: rgb(121, 121, 121);
+}
+::placeholder:focus {
+  color: green;
+}
+
+/* login button */
+.loginBut {
+  box-shadow: green 0px 0px 0px 2px;
+  margin: 0%;
+  font-family: bebas;
+  background-color: green;
+  border: 1.5px solid green;
+  border-radius: 1px;
+  color: white;
+  display: inline-block;
+  font-size: 1vw;
+  padding: 15%;
+  height: 100%;
+  max-width: 100%;
+  text-align: center;
+  
+
+  transition: 250ms ease-in-out;
+  cursor: pointer;
+}
+
+.loginBut:hover {
+  background-color: rgba(0, 128, 0, 0.717);
+  color: white;
+}
+.loginBut:active {
+  background-color: green;
+  color: white;
+}
+

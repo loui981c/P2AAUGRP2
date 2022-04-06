@@ -1,0 +1,52 @@
+/*Monthly page formatting*/
+.monthlyPage{
+    margin-left: 14%;
+    margin-right: 2%; 
+}
+
+/* the font for the page */
+.monthlyPage p,
+h1, select {
+  font-family: bebas;
+}
+.monthlyPage h1 {
+  font-size: 3vw;
+}
+
+
+/* makes dropdown in line */
+.chooseGraph {
+    font-size: 1.5vw;
+    float: left;
+}
+
+/* hidding the outline of dropdown when selecting */
+#categoriesMonthly:focus {
+    outline: none;
+}
+#graphs:focus {
+    outline: none;
+}
+
+/* design dropdown and label */ 
+.monthlyPage label {
+    font-family: bebas; 
+}
+.monthlyPage select {
+    font-size: 1.2vw;
+    font-family: bebas;
+    color: black;
+    background-color: transparent;
+    border: solid 1px;
+    border-color: black;
+    padding: 3%;
+}
+
+/*Graph menu positioning*/
+.chart_edit{
+    max-width: 60%;
+    width:100%; 
+    position: relative;
+    left: 2.5%;
+    margin:auto;
+}
