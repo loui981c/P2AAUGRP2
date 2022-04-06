@@ -53,6 +53,9 @@ h1 {
 .totalSpentBox {
     display: inline;
 }
+.totalIncomeBox {
+    display: inline;
+}
 .totalAmount {
     min-width: 11.5%;
 }
