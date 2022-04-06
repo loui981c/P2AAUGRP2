@@ -200,7 +200,7 @@ router.post("/add", (req,res)=>{
   }).catch((err)=>{
     res.status(400).send("something went wrong when saving to database")
   })
-  res.redirect("/transactions")
+  res.redirect("/transactions");
 })
 
 //for deleting 

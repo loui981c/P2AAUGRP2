@@ -7,53 +7,50 @@ let async = require('async');
 /* GET budget page. */
 router.get('/', function(req, res, next) {
 
-    async.parallel({
-        transactions: function(callback) {
-            Transaction.find(callback);
-        },
-        budget: function(callback) {
-            budgetSchema.find(callback);
-        }, 
-        function(err, results) {
-            if (!err) {
-                let trans = results.transactions;
-                let budget = results.budget;
+    const budgetPromise = budgetSchema.find()
+    const transactionPromise = Transaction.find()
 
-                let prefixedCat = ["Rent", "Savings", "Food", "Income", "Subs", "Fun", "Misc."];
+    //find bot budget and transaction in database
+    Promise.all([budgetPromise, transactionPromise]).then(([budget, trans])=>{
+        
+    let prefixedCat = ["Rent", "Savings", "Food", "Income", "Subs", "Fun", "Misc."];
 
-                let dataStuff = [];
-                
-                if (budget.length <= prefixedCat.length)
+            //if prefixed cat does not exist in budget database, create default value and push in datastuff
+            let dataStuff = [];
+            for (p of prefixedCat)
+            {
+                let spendage = 0;
+                let dummyExpected = 2000;
+                if (budget.filter(e => e.category == p).length == 0)
                 {
-                    // lav til if statement hvis budget.length <= prefixedCat.length
-                    for (cat of prefixedCat) {
-                        let catExpected = 0;
-                        let catSpent = 0;
-                        let catRemaining = 0;
-                        new budgetSchema.save({category: cat, expected: catExpected, spent: catSpent, remaining: catRemaining});
-                    }
-                }
-
-                for (let i = 0; i < budget.length; i++) {
-                    let spendage = 0;
                     for (t of trans) {
-                        if (t.mainCategory.toLowerCase() === budget[i].category.toLowerCase()) {
+                        if (t.mainCategory == p) {
                             spendage += t.price;
                         }
                     }
-                    let remaining = budget[i].expected - spendage;
-                    dataStuff.push({category: budget[i].category, expected: budget[i].expected, spent: spendage, remaining: remaining});
+                    let remaining = dummyExpected - spendage;
+                    dataStuff.push({category: p, expected: dummyExpected, spent: spendage, remaining: remaining});
                 }
-
-            res.render("budget", { budgetDataStuff: budgetDataStuff });
             }
-        }
-    });
+
+                //calculate data for each category
+                for (b of budget) {
+                    let spendage = 0;
+                    for (t of trans) {
+                        if (t.mainCategory == b.category) {
+                            spendage += t.price;
+                        }
+                    }
+                    let remaining = b.expected - spendage;
+                    dataStuff.push({category: b.category, expected: b.expected, spent: spendage, remaining: remaining});
+
+                }
+                console.log(dataStuff)
+                res.render("budget", {budgetData: dataStuff});
+    })
 });
 
 router.get('/add', (req, res) => {
-
-
 
     res.render("add_budget");
 });

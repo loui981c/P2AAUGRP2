@@ -1,6 +1,7 @@
 <%- include ("partials/header.ejs") %>
   <body>
     <%- include ("partials/sidebar.ejs") %>
+
     <div class="budgetPage">
       <h1>Budget</h1>
 
@@ -24,13 +25,14 @@
             for (let i = 0; i<budgetData.length; i++){
                 if (budgetData[i].category!= "Income")
                 {
-                totalSpent += budgetData[i].spent;
+                  totalSpent += budgetData[i].spent;
                 }
               } 
             
             let totalRemaining = 0;
             let totalAvailable = 0;
             let totalIncome = 0;
+
               for (let j = 0; j < budgetData.length; j++)
               {
                   if (budgetData[j].category == "Income")
@@ -38,7 +40,7 @@
                       totalIncome = budgetData[j].spent;
 
                       totalAvailable += budgetData[j].spent ;
-                  }
+                    }
               }
               totalRemaining = totalAvailable - totalSpent;
             %> 
@@ -89,7 +91,7 @@
               <p class="Kr">Kr.</p>
             </div>
             <div class="KrInline">
-              <% if(budgetDataStuff[i].category.toLowerCase() === 'income'){ %>
+              <% if(budgetData[i].category.toLowerCase() === 'income'){ %>
                 <p class="budgetRemaining" id="spentTableGreen"> +<%= budgetData[i].spent %></p>
                 <p class="Kr">Kr.</p>
                 <% } else{ %>  
@@ -98,7 +100,7 @@
                 <% } %>
             </div>
             <div class="KrInline">
-              <% if(budgetDataStuff[i].remaining < 0){ %>
+              <% if(budgetData[i].remaining < 0){ %>
               <p class="budgetRemaining" id="remainingTableRed"> <%= budgetData[i].remaining %></p>
               <p class="Kr">Kr.</p>
               <% } else{ %>  
