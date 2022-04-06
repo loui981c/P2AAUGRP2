@@ -79,6 +79,8 @@ router.get("/categories", (req,res)=>{
 
 router.post("/categories", (req,res)=>{
   
+  globalStartDate = req.body.dateFrom;
+  globalStartEnd = req.body.dateTo;
   if (req.body.categories == "AllCategories")
   {
     
@@ -217,7 +219,7 @@ router.post("/:id/delete", (req,res)=>{
 })
 
 
-//for updating
+//for editing
 router.get("/edit/:id", (req,res)=>{
 
   //find current transaction and inputs it into the transactions_update view - this improves user experience
@@ -233,7 +235,7 @@ router.get("/edit/:id", (req,res)=>{
   })
 })
 
-//for updating 
+//for editing
 router.post("/edit/:id", (req,res)=>{
 
   Transaction.findByIdAndUpdate(req.params.id, req.body).then(t =>{
