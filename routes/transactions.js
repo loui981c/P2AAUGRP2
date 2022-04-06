@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const Transaction = require("../schemas/transactionSchema") 
 
-let categories = ["Rent", "Savings", "Food", "Income", "Subs", "Fun", "Misc."];
+let categories = ["Rent", "Savings", "Food", "Income", "Subs", "Fun", "Misc.", "tobacco"];
 /* GET transaction page. */
 router.get('/', function(req, res, next) {
 
