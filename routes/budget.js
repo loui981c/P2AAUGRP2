@@ -1,8 +1,5 @@
 var express = require('express');
 var router = express.Router();
-const budgetSchema = require("../schemas/budgetSchema");
-const Transaction = require("../schemas/transactionSchema");
-let async = require('async');
 
 /* GET budget page. */
 router.get('/', function(req, res, next) {
@@ -55,32 +52,7 @@ router.get('/add', (req, res) => {
     res.render("add_budget");
 });
 
-router.post('/add', (req, res) => {
-    let newBudget = new budgetSchema(req.body);
-    let alreadyExists = false;
-
-    budgetSchema.find((err, budget) => {
-        if (!err) {
-            for (let i = 0; i < budget.length; i++){
-                if (budget[i].category.toLowerCase() === newBudget.category.toLowerCase()) {
-                    alreadyExists = true;
-                }
-            }
-
-        if (!alreadyExists) {
-            newBudget.save().then(item => {
-                console.log("saved to database: " + newBudget);
-            }).catch((err) => {
-                res.status(400).send("something went wrong when saving to database");
-            });
-        } else {
-            console.log("This category already exists.");
-        }
-    
-        res.redirect('/budget');
-        } 
-    })
-});
+router.post('/add', budget_controller.AddBudget);
 
 //for deleting 
 router.post("/:id/delete", (req, res) => {
