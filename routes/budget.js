@@ -3,14 +3,14 @@ var router = express.Router();
 let budget_controller = require('../controllers/budgetController');
 
 /* GET budget page. */
-router.get('/', budget_controller.budgetOverview);
+router.get('/', budget_controller.budgetOverview_get);
 
 router.get('/add', (req, res) => {
 
     res.render("add_budget");
 });
 
-router.post('/add', budget_controller.AddBudget);
+router.post('/add', budget_controller.addBudget_post);
 
 //for deleting 
 router.post("/:id/delete", (req, res) => {
