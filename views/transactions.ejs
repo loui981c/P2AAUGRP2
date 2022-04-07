@@ -48,7 +48,7 @@
         <% if (allTransactions.length > 0){ %> 
             <div class="tileLabels">
                 <p class="type">Type</p>
-                <p class="tprice">Price</p>
+                <p class="tprice">Amount</p>
                 <p class="editDelete">Edit/delete</p>
             </div>
 
@@ -60,7 +60,7 @@
                     <p class="tileSub"><%= allTransactions[j].subCategory %> </p>
                 </div>
                 <%# Makes category of income green and everything else red. This is done by two seperate classes: priceNeg and pricePos %> 
-                <% if (allTransactions[j].mainCategory != "Income") {%> 
+                <% if (allTransactions[j].mainCategory != "income") {%> 
                     <p class="priceNeg">- <%= allTransactions[j].price %></p>
                 <% } else {%> 
                     <p class="pricePos">+ <%= allTransactions[j].price %></p>

@@ -70,6 +70,7 @@ exports.transactionOverview = function (req, res, next) {
 
         // sorts the dates
         transactionsWithCorrectDates.sort((a, b) =>  b.date - a.date)
+        console.log(transactionsWithCorrectDates);
 
         res.render("transactions", {firstDay: firstOutputDate, lastDay: lastOutPutDate, categories: categoriesFromBudget, allTransactions: transactionsWithCorrectDates, currentCategory: "AllCategories"});
     });

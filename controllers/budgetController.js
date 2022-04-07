@@ -18,6 +18,14 @@ exports.budgetOverview = function(req, res, next) {
             // storing the results from database
             let trans = results.transactions;
             let budget = results.budget;
+
+            //add the category "income" if it does not exist in the database
+            if (budget.filter(e => e.category == "income").length == 0)
+            {
+                let incomeBudget = new Budget({category: "income", expected: 0, spent: 0, remaining: 0, colourInput: "#00FF00"});
+                incomeBudget.save()
+                res.redirect('/budget');
+            }
             
             // array to store updated data
             let budgetData = [];

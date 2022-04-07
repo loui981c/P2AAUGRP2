@@ -25,7 +25,7 @@
             <% 
             let totalSpent = 0;
             for (let i = 0; i<budgetData.length; i++){
-                if (budgetData[i].category!= "Income")
+                if (budgetData[i].category!= "income")
                 {
                   totalSpent += budgetData[i].spent;
                 }
@@ -37,7 +37,7 @@
 
               for (let j = 0; j < budgetData.length; j++)
               {
-                  if (budgetData[j].category == "Income")
+                  if (budgetData[j].category == "income")
                   {   
                       totalIncome = budgetData[j].spent;
 
@@ -85,7 +85,7 @@
 
       <% for (let i = 0; i<budgetData.length; i++){ %> 
 
-        <% if (budgetData[i].category != "Income"){ %> 
+        <% if (budgetData[i].category != "income"){ %> 
         <div class="budgetTable">
           <div class="budgetInsideTable">
             <p class="budgetCategory"><%= budgetData[i].category %></p>
