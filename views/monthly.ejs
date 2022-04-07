@@ -1,5 +1,7 @@
 <%- include ("partials/header.ejs") %>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
     <body>
         <%- include ("partials/sidebar.ejs") %>
         <div class="monthlyPage">
@@ -19,25 +21,30 @@
             <canvas id="myChart"></canvas>
             <%# Does nothing for appearance but is a workaround for transfering serverside date to script %> 
             <div id="categoriesTransferNames" ><%= categories %></div>
-            <div id="categoriesTransferPrices" ><%= sumOfPrices %></div>
+            <div id="categoriesTransferPrices" ><%= prices %></div>
+            <div id="categoriesTransferColours" ><%= colours %></div>
+            
             <script>
-                //getting inner html and making it invisible
+
+                    //getting inner html and making it invisible
                     //cat labels
                     document.getElementById("categoriesTransferNames").style.display = "none"
                     let transferedCats = document.getElementById("categoriesTransferNames").innerHTML;
                     let catLabels = transferedCats.split(",")
+                    console.log(transferedCats);
 
                     //cat prices
                     document.getElementById("categoriesTransferPrices").style.display = "none"
                     let transferedPrices = document.getElementById("categoriesTransferPrices").innerHTML;
                     let catPrices = transferedPrices.split(",")
-
-
-
-                  
+                    console.log(transferedPrices);
                     
-                    console.log(catLabels);
-                    console.log(catPrices);
+                    //cat colors
+                    document.getElementById("categoriesTransferColours").style.display = "none"
+                    let transferedColours = document.getElementById("categoriesTransferColours").innerHTML;
+                    let catColors = transferedColours.split(",")
+                    console.log(transferedColours);
+
 
 
                 const data = {
@@ -45,15 +52,7 @@
                     datasets: [{
                         label: 'Expenses',
                         data: catPrices,
-                        backgroundColor: [
-                        'red',
-                        'yellow',
-                        'blue',
-                        'green',
-                        'purple',
-                        'rgba(0, 0, 0, 1)',
-                        'rgba(255, 159, 64, 1)'
-                        ]
+                        backgroundColor: catColors,
                     }]
                 };
 

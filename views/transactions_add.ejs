@@ -12,7 +12,7 @@
             <% for (let i = 0; i<categories.length; i++){ %> 
             <div class="catCheckbox">
                 <label for="category>"><%= categories[i]%></label>
-                <input type="radio" name="mainCategory" id="mainCategory>" value="<%= categories[i]%>" onclick="oneCheckAtATime(this)" required>
+                <input type="radio" name="mainCategory" id="mainCategory>" value="<%= categories[i]%>" required>
             </div>
             <% } %> 
         </div>
@@ -23,7 +23,7 @@
         </div>
         <%# price%>
         <div class="priceForm">
-            <label for="price">Price</label>
+            <label for="price">Amount</label>
             <input type="number" name="price" id="price" required>
         </div>
         <div class="dateForm">

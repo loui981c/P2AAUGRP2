@@ -1,47 +1,53 @@
 var express = require('express');
 var router = express.Router();
 const Transaction = require("../schemas/transactionSchema") 
+const Budget = require("../schemas/budgetSchema")
 
 /* GET monthly overview page. */
 router.get('/', function(req, res, next) {
 
-  let categories = []
+  let categoriesWithPricesAndColours = []
    //fetch transactions from database and identify categories
-   Transaction.find((err, trans)=>{
-    if(!err)
-    {
-      
-       //categories from list of all fethced transactions
-        for(let i = 0; i<trans.length; i++)
-        {
-           if(!categories.includes(trans[i].mainCategory))
-          {
-            categories.push(trans[i].mainCategory)
-          }
-        }
-        console.log(categories)
+   const budgetPromise = Budget.find();
+   const transactionPromise = Transaction.find();
 
-        //iterate through each transaction, get all prices calculate sum of each category and create array with each 
-        let sumOfPrices = []
-        for(let l=0; l<categories.length; l++)
-        {
-          let sum = 0;
-          for(let j=0; j<trans.length; j++)
+   Promise.all([budgetPromise, transactionPromise]).then(([budgets, trans]) => {
+
+      //go through each category. Sum up total spendage of each category. Add this data to categoriesWithPricesAndColours
+      for (b of budgets){
+
+          if(categoriesWithPricesAndColours.filter(e => e.category == b.category).length == 0)
           {
-            if (categories[l] == trans[j].mainCategory)
+            let sum = 0;
+            for (t of trans)
             {
-              sum+= trans[j].price;
-            }
+              if (t.mainCategory == b.category)
+              {
+                sum += t.price
+              }
 
-          }
-          sumOfPrices.push(sum)
+            }
+            categoriesWithPricesAndColours.push({category: b.category, colour: b.colourInput, amount: sum})
+        }
+      }
+        //apparently the data needs to be in separate arrays for this to work. 
+        //I tried with one whole object but because a workaround for exchanging serverside data with client side data, It was done this way
+        let categories = []
+        let prices = []
+        let colours = []
+        for (c of categoriesWithPricesAndColours)
+        {
+          categories.push(c.category)
+          prices.push(c.amount)
+          colours.push(c.colour)
         }
 
-        res.render("monthly", {categories: categories, sumOfPrices: sumOfPrices});
-    }
-  })
+        console.log(categories)
+        console.log(prices)
+        console.log(colours)
 
-  
+        res.render("monthly", {categories: categories, prices: prices, colours: colours});
+   })
 });
 
 module.exports = router;
