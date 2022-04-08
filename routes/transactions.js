@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var transaction_controller = require('../controllers/transactionController')
 const Transaction = require("../schemas/transactionSchema") 
+const Budget = require("../schemas/budgetSchema") 
 
 
 let categories = ["Rent", "Savings", "Food", "Income", "Subs", "Fun", "Misc.", "tobacco"];
@@ -126,17 +127,23 @@ router.post("/:id/delete", transaction_controller.deleteTransactions_post);
 router.get("/edit/:id", (req,res)=>{
 
   //find current transaction and inputs it into the transactions_update view - this improves user experience
-  Transaction.findById(req.params.id).then(transToUpdate =>{
-    if (!transToUpdate)
-    {
-      return res.status(404).send()
-    }
-    res.render("transactions_update", {transaction: transToUpdate, categories: categories})
 
-  }).catch(err=>{
-      res.status(500).send(err);
+  const budgetPromise = Budget.find();
+  const transactionPromise = Transaction.findById(req.params.id)
+
+  Promise.all([budgetPromise, transactionPromise]).then(([budget, trans]) => {
+
+    let categories = []
+
+    for (b of budget)
+    {
+      console.log(b)
+      categories.push(b.category)
+    }
+
+    res.render("transactions_update", {transaction: trans, categories: categories})
   })
-});
+})
 
 //for editing
 router.post("/edit/:id", (req,res)=>{

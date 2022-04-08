@@ -27,7 +27,10 @@ router.get('/', function(req, res, next) {
               }
 
             }
-            categoriesWithPricesAndColours.push({category: b.category, colour: b.colourInput, amount: sum})
+            if (sum > 0)
+            {
+              categoriesWithPricesAndColours.push({category: b.category, colour: b.colourInput, amount: sum})
+            }
         }
       }
         //apparently the data needs to be in separate arrays for this to work. 
