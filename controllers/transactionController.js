@@ -2,7 +2,7 @@ let Transaction = require('../schemas/transactionSchema');
 let Budget = require('../schemas/budgetSchema');
 let async = require('async');
 
-
+// display all transactions
 exports.transactionOverview_get = function (req, res, next) {
     
     async.parallel({
@@ -108,9 +108,11 @@ exports.addTransactions_post = function(req, res) {
       }).catch((err)=>{
         res.status(400).send("something went wrong when saving to database")
       });
-    res.redirect("/transactions");
+      res.redirect("/transactions");
+      
 };
 
+// delete the transaction
 exports.deleteTransactions_post = function(req, res) {
     // delete data from database
     Transaction.findByIdAndRemove(req.params.id).then(t =>{
@@ -124,6 +126,7 @@ exports.deleteTransactions_post = function(req, res) {
     });
 };
 
+// get the edit page
 exports.editTransactions_get = function(req, res, next) {
     var id = mongoose.Types.ObjectId(req.params.id)
 
@@ -153,6 +156,7 @@ exports.editTransactions_get = function(req, res, next) {
     });
 };
 
+// updates the edited transaction
 exports.editTransactions_post = function(req, res) {
 
     // finds id and updates
