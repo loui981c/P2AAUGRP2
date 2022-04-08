@@ -2,7 +2,7 @@
 <body>
   <%- include ("partials/sidebar.ejs") %>
   <div class="addBudgetPage">
-    <h1>Edit <%= budget.category %></h1>
+    <h1>Edit Budget: <br> <%= budget.category %></h1>
 
     <%# Form to add/create budget %>
     <form action="/budget/add" method="POST">
