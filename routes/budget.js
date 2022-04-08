@@ -15,8 +15,7 @@ router.post('/add', budget_controller.addBudget_post);
 
 //for deleting 
 router.post("/:id/delete", (req, res) => {
-    console.log("hi")
-    budgetSchema.findByIdAndRemove(req.params.id).then(b => {
+    Budget.findByIdAndRemove(req.params.id).then(b => {
         if (!b) {
             return res.status(404).send();
         }
@@ -40,16 +39,15 @@ router.get("/:id/edit", (req,res)=>{
     })
 
 })
-router.post("/edit", (req,res)=>{
+router.post("/:id/edit", (req,res)=>{
+    console.log(req.body)
     
-        Budget.findByIdAndUpdate(req.body.id, req.body).then(b =>{
+        Budget.findByIdAndUpdate(req.params.id, req.body).then(b =>{
             if (!b)
             {
-            return res.status(404).send()
+            return res.status(500).send()
             }
             res.redirect("/budget")
-            }).catch(err=>{
-            res.status(500).send(err);
         });
 })
 

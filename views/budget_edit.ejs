@@ -5,7 +5,7 @@
     <h1>Edit Budget: <br> <%= budget.category %></h1>
 
     <%# Form to add/create budget %>
-    <form action="/budget/add" method="POST">
+    <form action="/budget/<%= budget._id %>/edit" method="POST">
       <%# Categories %>
       <div class="categoriesCheckbox">
           <label for="categoriesCheckbox">Category</label>
