@@ -1,7 +1,7 @@
 let Transaction = require('../schemas/transactionSchema');
 let Budget = require('../schemas/budgetSchema');
 
-// 
+// get monthly overview 
 exports.monthlyOverview_get = function(req, res, next) {
     let categoriesWithPricesAndColours = []
     //fetch transactions from database and identify categories

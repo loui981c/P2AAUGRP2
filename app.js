@@ -16,6 +16,7 @@ var indexRouter = require('./routes/index');
 var monthlyRouter = require('./routes/monthly');
 var transactionsRouter = require('./routes/transactions');
 var budgetRouter = require('./routes/budget');
+var savingsRouter = require('./routes/savings');
 
 var app = express();
 
@@ -41,6 +42,7 @@ app.use('/', indexRouter);
 app.use('/monthly', monthlyRouter);
 app.use('/transactions', transactionsRouter);
 app.use('/budget', budgetRouter);
+app.use('/savings', savingsRouter);
 app.use(express.urlencoded({extended: true}));
 
 // catch 404 and forward to error handler
