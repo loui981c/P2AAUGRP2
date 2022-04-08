@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 let budget_controller = require('../controllers/budgetController');
+const Budget = require("../schemas/budgetSchema") 
 
 /* GET budget page. */
 router.get('/', budget_controller.budgetOverview_get);
@@ -24,5 +25,32 @@ router.post("/:id/delete", (req, res) => {
         res.status(500).send(err);
     })
 });
+
+//get edit budget
+
+router.get("/:id/edit", (req,res)=>{
+
+    Budget.findById(req.params.id, (err, budget)=>{
+
+        if(!err){
+            console.log(budget)
+            res.render("budget_edit", {budget: budget})
+        }
+        
+    })
+
+})
+router.post("/edit", (req,res)=>{
+    
+        Budget.findByIdAndUpdate(req.body.id, req.body).then(b =>{
+            if (!b)
+            {
+            return res.status(404).send()
+            }
+            res.redirect("/budget")
+            }).catch(err=>{
+            res.status(500).send(err);
+        });
+})
 
 module.exports = router;
