@@ -43,17 +43,28 @@ h1 {
 .totalAmountBox p {
     display: inline-block;
     font-size: 1.3vw;
+          
 }
 .totalAmountBox {
-    margin: 2.5% 0% 2.5% 10%
+    display: flex;
+    margin: 2.5% 7.5% 2.5% 10%;
+    border: solid 1px;
+}
+.totalAmountSpent{
+    margin-left: 15%;
+    
+}
+.totalAmountRemaining{
+    margin-left: 20%;
+    
+}
+.totalIncomebox{
+    margin-left: 5%;
 }
 .totalRemainingBox {
     display: inline;
 }
 .totalSpentBox {
-    display: inline;
-}
-.totalIncomeBox {
     display: inline;
 }
 .totalAmount {
@@ -105,6 +116,7 @@ h1 {
     text-align: end;
     display: inline-block;
     margin-left: 15%;
+    
 }
 
 /* making the table */
