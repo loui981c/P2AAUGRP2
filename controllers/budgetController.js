@@ -39,7 +39,7 @@ exports.budgetOverview_get = function(req, res, next) {
                     }
                 }
                 let remaining = budget[i].expected - spendage;
-                budgetData.push({category: budget[i].category, expected: budget[i].expected, spent: spendage, remaining: remaining});
+                budgetData.push({category: budget[i].category, expected: budget[i].expected, spent: spendage, remaining: remaining, _id: budget[i]._id});
                 console.log(budgetData);
             }
 
