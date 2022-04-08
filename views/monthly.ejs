@@ -22,7 +22,7 @@
             <div id="categoriesTransferNames" ><%= categories %></div>
             <div id="categoriesTransferPrices" ><%= prices %></div>
             <div id="categoriesTransferColours" ><%= colours %></div>
-            <div class="labelInsidePieChart">
+            <div class="labelInsidePieChart" id="labelInsidePieChart">
                 <p>Total Spent:</p> 
                 <p> <%= spent %>  Kr.</p>
             </div>
@@ -89,6 +89,7 @@
                     myChart.destroy();
 
                     if (chartType.value === 'doughnut'){
+                        document.getElementById("labelInsidePieChart").style.display = "block"
                         myChart = new Chart(
                             document.getElementById('myChart'),
                             config
@@ -96,6 +97,7 @@
                     }
 
                     if (chartType.value === 'bar'){
+                        document.getElementById("labelInsidePieChart").style.display = "none"
                         myChart = new Chart(
                             document.getElementById('myChart'),
                             config1
