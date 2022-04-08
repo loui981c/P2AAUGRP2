@@ -47,7 +47,14 @@ exports.monthlyOverview_get = function(req, res, next) {
          console.log(categories)
          console.log(prices)
          console.log(colours)
+
+         totalSpent = 0;
+         for (t of trans) {
+            if (t.mainCategory !== 'income') {
+                totalSpent += t.price;
+            }
+         };
  
-         res.render("monthly", {categories: categories, prices: prices, colours: colours});
+         res.render("monthly", {categories: categories, prices: prices, colours: colours, spent: totalSpent});
     });
 };

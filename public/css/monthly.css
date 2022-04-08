@@ -13,7 +13,6 @@ h1, select {
   font-size: 3vw;
 }
 
-
 /* makes dropdown in line */
 .chooseGraph {
     font-size: 1.5vw;
@@ -50,3 +49,33 @@ h1, select {
     left: 2.5%;
     margin:auto;
 }
+
+/* position the label inside piechart */
+.labelInsidePieChart {
+    font-size: 1.5vw;
+    font-family: bebas;
+    text-align: center;
+    z-index: 1;
+    margin-top: -28.5%;
+}
+
+@media screen and (max-width: 900px) {
+    .labelInsidePieChart {
+        margin-top: -27.5%;
+    }
+}
+
+@media screen and (max-width: 671px) {
+    .labelInsidePieChart {
+        margin-top: -23%;
+        font-size: 1.2vw;
+    }
+};
+
+@media screen and (max-width: 575px) {
+    .labelInsidePieChart {
+        margin-top: -15%;
+        font-size: 1vw;
+    }
+};
+    
