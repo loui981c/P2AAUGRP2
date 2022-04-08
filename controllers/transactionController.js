@@ -75,6 +75,96 @@ exports.transactionOverview_get = function (req, res, next) {
     });
 };
 
+// choose dates and category to filter transactions
+exports.transactionOverview_post = function (req, res, next) {
+    const budgetPromise = Budget.find();
+  const transactionPromise = Transaction.find()
+
+  Promise.all([budgetPromise, transactionPromise]).then(([budget, trans]) => {
+
+    //fetch all categories to choose from
+    let categories = []
+    for (b of budget){
+      categories.push(b.category)
+    }
+
+    //if category is AllCategories, then show all categories
+    if (req.body.categories == "AllCategories")
+    {
+      transactionsWithCorrectDates = [];
+  
+      //iterate through all transactions convert date and them expamine date according to dateFrom and DateTo
+      for(t of trans){
+        //convert format of transaction date to one that matches output dates
+        tempDate = t.date 
+        tDay = tempDate.getDate();
+        tMonth = tempDate.getMonth() + 1;
+        tYear = tempDate.getFullYear();
+
+        if (tDay < 10){
+          tDay = "0" + tDay
+        }
+        if (tMonth < 10){
+          tMonth = "0" + tMonth
+        }
+        correctDate = tYear + "-" + tMonth + "-" + tDay;;
+
+        //add t to transactionsWithCorrectDates if it matches the first or last date of the current month
+        if(correctDate.replaceAll("-", "") >= req.body.dateFrom.replaceAll("-", "") && correctDate.replaceAll("-", "") <= req.body.dateTo.replaceAll("-", "")){
+          transactionsWithCorrectDates.push(t);          
+        }
+      }
+      console.log(transactionsWithCorrectDates);
+          //sort these transacions by date
+      transactionsWithCorrectDates.sort((a, b) =>  b.date - a.date)
+
+      console.log("all transactions with good dates: " + transactionsWithCorrectDates)
+      res.render("transactions", {firstDay: req.body.dateFrom, lastDay: req.body.dateTo, categories: categories, allTransactions: transactionsWithCorrectDates, currentCategory: req.body.categories})
+    }
+    //if category is anything else from all categories, do this
+    else{
+      let narrowedCategories = [];
+      console.log(req.body)
+      //add all categories to narrowedCategories if they match post request
+      for (t of trans){
+        if (t.mainCategory == req.body.categories)
+        {
+            narrowedCategories.push(t)
+        }
+      }
+
+
+      transactionsWithCorrectDates = [];
+      for(t of narrowedCategories){
+        //convert format of transaction date to one that matches output dates
+        tempDate =  t.date 
+        tDay = tempDate.getDate();
+        tMonth = tempDate.getMonth() + 1;
+        tYear = tempDate.getFullYear();
+
+        if (tDay < 10){
+          tDay = "0" + tDay
+        }
+        if (tMonth < 10){
+            tMonth = "0" + tMonth
+        }
+        correctDate = tYear + "-" + tMonth + "-" + tDay;;
+
+        //add t to transactionsWithCorrectDates if it matches the first or last date of the current month
+        if(correctDate.replaceAll("-", "") >= req.body.dateFrom.replaceAll("-", "") && correctDate.replaceAll("-", "") <= req.body.dateTo.replaceAll("-", "")){
+          transactionsWithCorrectDates.push(t);          
+        }
+        }
+        console.log(transactionsWithCorrectDates);
+
+        //sort these transacions by date
+        transactionsWithCorrectDates.sort((a, b) =>  b.date - a.date)
+        console.log("all transactions with good dates: " + transactionsWithCorrectDates)
+        res.render("transactions", {firstDay: req.body.dateFrom, lastDay: req.body.dateTo, categories: categories, allTransactions: transactionsWithCorrectDates, currentCategory: req.body.categories})
+    }
+  })
+   
+};
 
 exports.addTransactions_get = function (req, res, next) {
 
