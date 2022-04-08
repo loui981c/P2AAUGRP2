@@ -3,6 +3,10 @@
     margin-left: 14%;
     margin-right: 10%; 
 }
+.budgetPage a{
+    text-decoration: none;
+    
+}
 /* the font for the page */
 .budgetPage p,
 h1 {

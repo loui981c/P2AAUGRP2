@@ -15,8 +15,7 @@ router.post('/add', budget_controller.addBudget_post);
 
 //for deleting 
 router.post("/:id/delete", (req, res) => {
-    console.log("hi")
-    budgetSchema.findByIdAndRemove(req.params.id).then(b => {
+    Budget.findByIdAndRemove(req.params.id).then(b => {
         if (!b) {
             return res.status(404).send();
         }

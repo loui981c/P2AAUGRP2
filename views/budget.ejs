@@ -114,7 +114,9 @@
           </div>
           <div class="editBudgetBox">
             <a href="/budget/<%= budgetData[i]._id %>/edit"><button class="editBudget">Edit Category</button></a>
-            <button class="deleteBudget">Delete</button>
+            <form method="POST" action="/budget/<%= budgetData[i]._id %>/delete">
+              <button class="deleteBudget">Delete</button>
+          </form>
           </div>
         </div>
         <% } %> 
