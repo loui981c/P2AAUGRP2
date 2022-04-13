@@ -55,6 +55,6 @@ exports.monthlyOverview_get = function(req, res, next) {
             }
          };
  
-         res.render("monthly", {categories: categories, prices: prices, colours: colours, spent: totalSpent});
+         res.render("monthly", {mcategories: categories, mprices: prices, mcolours: colours, mspent: totalSpent});
     });
 };

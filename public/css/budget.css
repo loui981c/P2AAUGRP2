@@ -349,3 +349,11 @@ h1, label {
     margin-bottom: 2%;
     width: 48.2%;
 }
+
+.divider{
+    margin-left: 10%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    width: 82%;
+    height: 1px;
+}

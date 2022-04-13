@@ -1,9 +1,12 @@
 <%- include ("partials/header.ejs") %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 <body>
     <%- include ("partials/sidebar.ejs") %> 
+    
     <div class="transactionPage">
         <h1>Transaction overview</h1>
-            <div class="chooseStuff">
+        <%- include ("partials/monthly_for_import.ejs") %> 
+        <div class="chooseStuff">
                 <%# Dropdown for choosing category%> 
                     <div class="chooseCategory">
                     <%# the variable "categories" comes is a variable rendered with the transactions view (transactions.js)%>

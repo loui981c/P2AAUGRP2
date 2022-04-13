@@ -48,7 +48,7 @@
       <div class="addBudget">
         <a href="/budget/add"><button class="addBudgetBut">Add Budget/Create Category</button></a>
       </div>
-      <%# Expected %>
+      <!-- <%# Expected %>
       <h2>Expected remaining</h2>
       <div class="totalAmountBox">
         <div class="totalIncomebox">
@@ -74,7 +74,7 @@
               <p class="numTotalKr">Kr.</p>
             </div>
         </div>
-      </div>
+      </div> -->
       
 
       <%# total amounts %>
@@ -104,7 +104,6 @@
               </div>
           </div>
         </div>
-    
 
       <%# Showing the labels %>
         <div class="budgetLabels">
@@ -115,7 +114,32 @@
         </div>
       
       <%# Showing the budget in the table %>
+      <div class="budgetTable">
+        <div class="budgetInsideTable">
+          <p class="budgetCategory">Total</p>
+          <div class="KrInline">
+              <p class="budgetExpected"><%= totalExpected %></p>
+              <p class="Kr">Kr.</p>
+          </div>
+          <div class="KrInline">
+  
+              <p class="budgetRemaining" id="spentTableRed"> -<%= totalSpent %></p>
+              <p class="Kr">Kr.</p>
+          </div>
+          <div class="KrInline">
+            <% if(totalRemaining < 0){ %>
+            <p class="budgetRemaining" id="remainingTableRed"> <%= totalRemaining %></p>
+            <p class="Kr">Kr.</p>
+            <% } else{ %>  
+            <p class="budgetRemaining" id="remainingTableGreen"> +<%= totalRemaining %></p>
+            <p class="Kr">Kr.</p>
+            <% } %>
+          </div>
+        </div>
+      </div>
 
+      <div class="divider"></div>
+        
       <% for (let i = 0; i<budgetData.length; i++){ %> 
 
         <% if (budgetData[i].category != "income"){ %> 
@@ -155,7 +179,6 @@
               </div>
             </div>
           </div>
-        </div>
         <% } %> 
       <% } %> 
       

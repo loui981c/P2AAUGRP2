@@ -55,7 +55,77 @@ router.post("/categories", (req,res)=>{
       transactionsWithCorrectDates.sort((a, b) =>  b.date - a.date)
 
       console.log("all transactions with good dates: " + transactionsWithCorrectDates)
-      res.render("transactions", {firstDay: req.body.dateFrom, lastDay: req.body.dateTo, categories: categories, allTransactions: transactionsWithCorrectDates, currentCategory: req.body.categories})
+
+      //monthly stuff
+        //monthly
+        let categoriesWithPricesAndColours = [];
+        for (b of budget){
+ 
+          if(categoriesWithPricesAndColours.filter(e => e.category == b.category).length == 0 && b.category != "income")
+          {
+            let sum = 0;
+            //go through transactions and find correct dates.
+            for (t of trans)
+            {
+              //dates
+              tempDate = t.date
+              tDay = tempDate.getDate();
+              tMonth = tempDate.getMonth() + 1;
+              tYear = tempDate.getFullYear();
+
+              if (tDay < 10) {
+                  tDay = "0" + tDay
+              }
+              if (tMonth < 10) {
+                  tMonth = "0" + tMonth
+              }
+
+              correctDate = tYear + "-" + tMonth + "-" + tDay;;
+
+              //add t to transactionsWithCorrectDates if it matches the first or last date of the current month
+              if(correctDate.replaceAll("-", "") >= req.body.dateFrom.replaceAll("-", "") && correctDate.replaceAll("-", "") <= req.body.dateTo.replaceAll("-", "")){
+
+                if (t.mainCategory == b.category)
+                {
+                  sum += t.price
+                }
+              }
+  
+              }
+              if (sum > 0)
+              {
+              categoriesWithPricesAndColours.push({category: b.category, colour: b.colourInput, amount: sum})
+              }
+            }
+        }
+        //apparently the data needs to be in separate arrays for this to work. 
+        //I tried with one whole object but because a workaround for exchanging serverside data with client side data, It was done this way
+        let mcategories = []
+        let mprices = []
+        let mcolours = []
+        for (c of categoriesWithPricesAndColours)
+        {
+          mcategories.push(c.category)
+          mprices.push(c.amount)
+          mcolours.push(c.colour)
+        }
+
+        console.log(mcategories)
+        console.log(mprices)
+        console.log(mcolours)
+
+        mtotalSpent = 0;
+        for (c of categoriesWithPricesAndColours) {
+           if (c.category !== 'income') {
+               mtotalSpent += c.amount;
+           }
+        };
+        //monthly
+
+      //monthly stuff
+
+      
+      res.render("transactions", {mspent: mtotalSpent, mcategories: mcategories, mprices: mprices, mcolours: mcolours, firstDay: req.body.dateFrom, lastDay: req.body.dateTo, categories: categories, allTransactions: transactionsWithCorrectDates, currentCategory: req.body.categories})
     }
     //if category is anything else from all categories, do this
     else{
@@ -96,7 +166,76 @@ router.post("/categories", (req,res)=>{
         //sort these transacions by date
         transactionsWithCorrectDates.sort((a, b) =>  b.date - a.date)
         console.log("all transactions with good dates: " + transactionsWithCorrectDates)
-        res.render("transactions", {firstDay: req.body.dateFrom, lastDay: req.body.dateTo, categories: categories, allTransactions: transactionsWithCorrectDates, currentCategory: req.body.categories})
+
+        //monthly
+          //monthly
+          let categoriesWithPricesAndColours = [];
+          for (b of budget){
+   
+            if(categoriesWithPricesAndColours.filter(e => e.category == b.category).length == 0 && b.category != "income")
+            {
+              let sum = 0;
+              //go through transactions and find correct dates.
+              for (t of trans)
+              {
+                //dates
+                tempDate = t.date
+                tDay = tempDate.getDate();
+                tMonth = tempDate.getMonth() + 1;
+                tYear = tempDate.getFullYear();
+  
+                if (tDay < 10) {
+                    tDay = "0" + tDay
+                }
+                if (tMonth < 10) {
+                    tMonth = "0" + tMonth
+                }
+  
+                correctDate = tYear + "-" + tMonth + "-" + tDay;;
+  
+                //add t to transactionsWithCorrectDates if it matches the first or last date of the current month
+                if(correctDate.replaceAll("-", "") >= req.body.dateFrom.replaceAll("-", "") && correctDate.replaceAll("-", "") <= req.body.dateTo.replaceAll("-", "")){
+  
+                  if (t.mainCategory == b.category)
+                  {
+                    sum += t.price
+                  }
+                }
+    
+                }
+                if (sum > 0)
+                {
+                categoriesWithPricesAndColours.push({category: b.category, colour: b.colourInput, amount: sum})
+                }
+              }
+          }
+          //apparently the data needs to be in separate arrays for this to work. 
+          //I tried with one whole object but because a workaround for exchanging serverside data with client side data, It was done this way
+          let mcategories = []
+          let mprices = []
+          let mcolours = []
+          for (c of categoriesWithPricesAndColours)
+          {
+            mcategories.push(c.category)
+            mprices.push(c.amount)
+            mcolours.push(c.colour)
+          }
+  
+          console.log(mcategories)
+          console.log(mprices)
+          console.log(mcolours)
+  
+          mtotalSpent = 0;
+          for (c of categoriesWithPricesAndColours) {
+             if (c.category !== 'income') {
+                 mtotalSpent += c.amount;
+             }
+          };
+          //monthly
+
+        //monthly
+
+        res.render("transactions", {mspent: mtotalSpent, mcategories: mcategories, mprices: mprices, mcolours: mcolours, firstDay: req.body.dateFrom, lastDay: req.body.dateTo, categories: categories, allTransactions: transactionsWithCorrectDates, currentCategory: req.body.categories})
     }
   })
 })
