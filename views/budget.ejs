@@ -21,6 +21,7 @@
     let totalRemaining = 0;
     let totalAvailable = 0;
     let totalIncome = 0;
+    let totalExpected = 0;
 
       for (let j = 0; j < budgetData.length; j++)
       {
@@ -30,8 +31,14 @@
 
               totalAvailable += budgetData[j].spent ;
             }
+            else{
+              totalExpected += budgetData[j].expected;
+            }
       }
       totalRemaining = totalAvailable - totalSpent;
+
+
+      let expectedRemaining = totalIncome - totalExpected;
     %> 
 
     <div class="budgetPage">
@@ -41,8 +48,37 @@
       <div class="addBudget">
         <a href="/budget/add"><button class="addBudgetBut">Add Budget/Create Category</button></a>
       </div>
+      <%# Expected %>
+      <h2>Expected remaining</h2>
+      <div class="totalAmountBox">
+        <div class="totalIncomebox">
+          <p>Total Income:</p>
+          <p class="" id="spentGreen">+<%= totalIncome %></p>
+          <p class="">Kr.</p>
+        </div>
+        <div class="totalAmountSpent">
+        <p class="totalAmount">Total Expected:</p>
+        <div class="totalSpentBox">
+          <p class="numTotal" id="spentRed">-<%= totalExpected %></p>
+          <p class="numTotalKr">Kr.</p>
+        </div>
+      </div>
+        <div class="totalAmountRemaining">
+          <p class="totalAmount">Total Remaining:</p>
+            <div class="totalRemainingBox">
+              <% if(totalRemaining < 0){ %>
+              <p class="numTotal" id="remainingRed"> <%= expectedRemaining %></p>
+              <% } else{ %>  
+              <p class="numTotal" id="remainingGreen"> +<%= expectedRemaining %></p>
+              <% } %>
+              <p class="numTotalKr">Kr.</p>
+            </div>
+        </div>
+      </div>
+      
 
       <%# total amounts %>
+      <h2>Actual remaining</h2>
       <div class="totalAmountBox">
           <div class="totalIncomebox">
             <p>Total Income:</p>
@@ -84,40 +120,45 @@
 
         <% if (budgetData[i].category != "income"){ %> 
         <div class="budgetTable">
-          <div class="budgetInsideTable">
-            <p class="budgetCategory"><%= budgetData[i].category %></p>
-            <div class="KrInline">
-              <p class="budgetExpected"><%= budgetData[i].expected %></p>
-              <p class="Kr">Kr.</p>
-            </div>
-            <div class="KrInline">
-              <% if(budgetData[i].category.toLowerCase() === 'income'){ %>
-                <p class="budgetRemaining" id="spentTableGreen"> +<%= budgetData[i].spent %></p>
+            <div class="budgetInsideTable">
+              <p class="budgetCategory"><%= budgetData[i].category %></p>
+              <div class="KrInline">
+                  <p class="budgetExpected"><%= budgetData[i].expected %></p>
+                  <p class="Kr">Kr.</p>
+              </div>
+              <div class="KrInline">
+                <% if(budgetData[i].category.toLowerCase() === 'income'){ %>
+                  <p class="budgetRemaining" id="spentTableGreen"> +<%= budgetData[i].spent %></p>
+                  <p class="Kr">Kr.</p>
+                  <% } else{ %>  
+                  <p class="budgetRemaining" id="spentTableRed"> -<%= budgetData[i].spent %></p>
+                  <p class="Kr">Kr.</p>
+                  <% } %>
+              </div>
+              <div class="KrInline">
+                <% if(budgetData[i].remaining < 0){ %>
+                <p class="budgetRemaining" id="remainingTableRed"> <%= budgetData[i].remaining %></p>
                 <p class="Kr">Kr.</p>
                 <% } else{ %>  
-                <p class="budgetRemaining" id="spentTableRed"> -<%= budgetData[i].spent %></p>
+                <p class="budgetRemaining" id="remainingTableGreen"> +<%= budgetData[i].remaining %></p>
                 <p class="Kr">Kr.</p>
                 <% } %>
+              </div>
             </div>
-            <div class="KrInline">
-              <% if(budgetData[i].remaining < 0){ %>
-              <p class="budgetRemaining" id="remainingTableRed"> <%= budgetData[i].remaining %></p>
-              <p class="Kr">Kr.</p>
-              <% } else{ %>  
-              <p class="budgetRemaining" id="remainingTableGreen"> +<%= budgetData[i].remaining %></p>
-              <p class="Kr">Kr.</p>
-              <% } %>
+
+            <div class="editBudgetBoxParent">
+              <div class="editBudgetBox">
+                <a href="/budget/<%= budgetData[i]._id %>/edit"><button class="editBudget">Edit</button></a>
+                <form method="POST" action="/budget/<%= budgetData[i]._id %>/delete">
+                <button class="deleteBudget">Delete</button>
+                </form>
+              </div>
             </div>
-          </div>
-          <div class="editBudgetBox">
-            <a href="/budget/<%= budgetData[i]._id %>/edit"><button class="editBudget">Edit Category</button></a>
-            <form method="POST" action="/budget/<%= budgetData[i]._id %>/delete">
-              <button class="deleteBudget">Delete</button>
-          </form>
           </div>
         </div>
         <% } %> 
       <% } %> 
+      
     </div>
   </body>
 </html>

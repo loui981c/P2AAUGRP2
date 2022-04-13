@@ -7,6 +7,13 @@
     text-decoration: none;
     
 }
+.budgetPage h2{
+    font-family: bebas;
+    font-size: 1.4vw;
+    margin-left: 15%;
+    margin-bottom: 0%;
+    margin-top: 2%;
+}
 /* the font for the page */
 .budgetPage p,
 h1 {
@@ -125,17 +132,24 @@ h1 {
 
 /* making the table */
 .budgetTable {
-    width: 100%;
-    margin: 10%;
+    display: grid;
+    width:  87.5%;
     margin-top: 1%;
+    margin-left: 10%;
     margin-bottom: 1%;
+    gap: 1%;
+    grid-template-columns: 94% 5%;
+    justify-items: center;
+    align-items: center;
 }
 .budgetInsideTable {
+    border: 1px solid;
     margin: 0px;
-    padding: 1%;
-    width: 80%;
-    display: inline-block;
-    border: solid 1px;
+    padding: 0%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    justify-content: center;
 }
 
 /* setting the titles inside of the table */
@@ -143,38 +157,41 @@ h1 {
     display: inline-block;
     position: relative;
     left: 5.5%;
-    min-width: 20%;
-    font-size: 1.8vw;
+    width: 100%;
+    font-size: 1.5vw;
     text-align: start;
+    padding-left: 20%;
 }
 
 /* making number and kr stand on line */
 .KrInline {
     display: inline;
-    margin-left: 2.5%;
+    width: 100%;
+    padding-left: 35%;
+    ;
 }
 .KrInline p {
     display: inline-block;
 }
 .budgetExpected {
-    font-size: 1.8vw;
+    font-size: 1.5vw;
     min-width: 15%;
     text-align: end;
 }
 .budgetSpent {
-    font-size: 1.8vw;
-    min-width: 15%;
+    font-size: 1.5vw;
+    width: 100%;
     text-align: end;
-    margin-left: 3%;
+    padding-left: 0%;
 }
 .budgetRemaining {
-    font-size: 1.8vw;
+    font-size: 1.5vw;
     min-width: 15%;
     text-align: end;
     margin-left: 5%;
 }
 .Kr {
-    font-size: 1.8vw;
+    font-size: 1.5vw;
 }
 
 /* makes the color of the remaining inside of table green */
@@ -194,19 +211,26 @@ h1 {
 }
 
 /* postion edit expected box */
-.editBudgetBox {
+.editBudgetBoxParent{
     display: inline-block;
-    width: 7.5%;
+    height: 100%;
+    width: 100%;
+}
+.editBudgetBox {
+    height: 100%;
+    display: grid;
+    gap: 10%;
+    grid-template-rows: 45% 45%;
 }
 
 /* design edit button */
 .editBudget {
-    display: flex;
+    display: block;
     font-family: bebas;
-    font-size: 1vw;
-    margin: 10%;
+    font-size: 1.2vw;
     justify-content: center;
     width: 100%;
+    height: 100%;
     padding: 1.25%;
     background-color: transparent;
     border: solid 1px green;
@@ -226,12 +250,12 @@ h1 {
 
 /* design delete button */
 .deleteBudget {
-    display: flex;
+    display: block;
     font-family: bebas;
-    font-size: 1vw;
-    margin: 10%;
+    font-size: 1.2vw;
     justify-content: center;
     width: 100%;
+    height: 100%;
     padding: 1.25%;
     background-color: transparent;
     border: solid 1px red;
