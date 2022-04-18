@@ -7,7 +7,6 @@ const Budget = require("../schemas/budgetSchema")
 router.get('/', budget_controller.budgetOverview_get);
 
 router.get('/add', (req, res) => {
-
     res.render("add_budget");
 });
 

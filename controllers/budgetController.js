@@ -22,7 +22,7 @@ exports.budgetOverview_get = function (req, res, next) {
         //add the category "income" if it does not exist in the database
         if (budget.filter(e => e.category == "income").length == 0) {
             let incomeBudget = new Budget({ category: "income", expected: 0, spent: 0, remaining: 0, colourInput: "#00FF00" });
-            incomeBudget.save()
+            incomeBudget.save();
             res.redirect('/budget');
         }
 
@@ -68,12 +68,12 @@ exports.addBudget_post = function (req, res) {
             }
         }
 
-        // not saving the data from user if a category is already existing 
+        // not saving the data from user if a category  already exists
         if (!alreadyExists) {
             newBudget.save().then(item => {
-                console.log("saved to database: " + newBudget);
+                console.log("Saved to database: " + newBudget);
             }).catch((err) => {
-                res.status(400).send("something went wrong when saving to database");
+                res.status(400).send("Something went wrong while saving to the database.");
             });
         } else {
             console.log("This category already exists.");
