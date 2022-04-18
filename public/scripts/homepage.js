@@ -9,7 +9,7 @@ function show(x) {
         document.getElementById("create-username").style.display = "inline-block";
         document.getElementById("createBut").style.background = "green";
         document.getElementById("createBut").style.color = "white";
-        
+
         //make other input invisible
         document.getElementById("username").style.display = "none";
 
@@ -17,7 +17,7 @@ function show(x) {
         document.getElementById("loginBut").style.background = "transparent";
         document.getElementById("loginBut").style.color = "green";
     }
-    else{
+    else {
         document.getElementById("username").style.display = "inline-block";
         document.getElementById("loginBut").style.background = "green";
         document.getElementById("loginBut").style.color = "white";
