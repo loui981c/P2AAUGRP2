@@ -44,7 +44,7 @@
     <div class="budgetPage">
       <h1>Budget</h1>
 
-      <%# the button at the top %>
+      <%# add budget %>
       <div class="addBudget">
         <a href="/budget/add"><button class="addBudgetBut">Add Budget/Create Category</button></a>
       </div>
@@ -78,8 +78,8 @@
       
 
       <%# total amounts %>
-      <h2>Actual remaining</h2>
-      <div class="totalAmountBox">
+      <!-- <h2>Actual remaining</h2> -->
+      <!-- <div class="totalAmountBox">
           <div class="totalIncomebox">
             <p>Total Income:</p>
             <p class="" id="spentGreen">+<%= totalIncome %></p>
@@ -103,8 +103,38 @@
                 <p class="numTotalKr">Kr.</p>
               </div>
           </div>
-        </div>
+        </div> -->
 
+
+      <%# Total Table %>
+      <table class="totalTable">
+        <tr>
+          <th>Total Income:</th>
+          <td class="pos">+<%= totalIncome %></td>
+        </tr>
+        
+        <tr>
+          <th>Total Expected:</th>
+          <td><%= totalExpected %></td>
+        </tr>
+        <tr>
+          <th>Total Spent:</th>
+          <td class="neg">-<%= totalSpent %></td>
+        </tr>
+        <tr>
+          <th>Total Remaining:</th>
+          <% if(totalRemaining < 0){ %>
+          <td class="neg"><%= totalRemaining %></td>
+          <% } else{ %>
+            
+          <td class="pos">+<%= totalRemaining %></td>
+            <% } %>
+        </tr>
+     
+      </table>
+
+
+    
       <%# Showing the labels %>
         <div class="budgetLabels">
             <p class="category">Category</p>
@@ -114,31 +144,6 @@
         </div>
       
       <%# Showing the budget in the table %>
-      <div class="budgetTable">
-        <div class="budgetInsideTable">
-          <p class="budgetCategory">Total</p>
-          <div class="KrInline">
-              <p class="budgetExpected"><%= totalExpected %></p>
-              <p class="Kr">Kr.</p>
-          </div>
-          <div class="KrInline">
-  
-              <p class="budgetRemaining" id="spentTableRed"> -<%= totalSpent %></p>
-              <p class="Kr">Kr.</p>
-          </div>
-          <div class="KrInline">
-            <% if(totalRemaining < 0){ %>
-            <p class="budgetRemaining" id="remainingTableRed"> <%= totalRemaining %></p>
-            <p class="Kr">Kr.</p>
-            <% } else{ %>  
-            <p class="budgetRemaining" id="remainingTableGreen"> +<%= totalRemaining %></p>
-            <p class="Kr">Kr.</p>
-            <% } %>
-          </div>
-        </div>
-      </div>
-
-      <div class="divider"></div>
         
       <% for (let i = 0; i<budgetData.length; i++){ %> 
 

@@ -37,7 +37,7 @@ exports.transactionOverview_get = function (req, res, next) {
     }
     firstOutputDate = todayYear + "-" + todayMonth + "-" + firstDay;
 
-    //last Day
+    //last Day - the "0" in the month gives last day of month
     lastDay = new Date(todayYear, todayMonth, 0);
     lastDay = lastDay.getDate();
 

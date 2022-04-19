@@ -39,6 +39,7 @@ h1 {
   border-color: green;
   padding: 1.25%;
   cursor: pointer;
+  transition: 250ms;
 }
 .addBudgetBut:active {
     background-color: rgb(240, 240, 240);
@@ -126,7 +127,7 @@ h1 {
 .remaining {
     text-align: end;
     display: inline-block;
-    margin-left: 15%;
+    margin-left: 16.5%;
     
 }
 
@@ -357,3 +358,68 @@ h1, label {
     width: 82%;
     height: 1px;
 }
+
+
+
+
+
+.totalcategory {
+    font-size: 1.5vw;
+    border: 1px solid;
+    text-align: end;
+    display: inline-block;
+    margin-left: 15.25%;
+}    
+.totalexpected {
+    font-size: 1.5vw;
+    text-align: end;
+    display: inline-block;
+    margin-left: 13.5%;
+}  
+.totalspent {
+    font-size: 1.5vw;
+    text-align: end;
+    display: inline-block;
+    margin-left: 11.5%;
+}
+.totalremaining {
+    font-size: 1.5vw;
+    text-align: end;
+    display: inline-block;
+    margin-left: 12.5%;
+    
+}
+
+.totalTable{
+    margin-left: 10%;
+    width: 25%;
+    border: 1px solid;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    
+}
+th {
+    font-family: bebas;
+    text-align: left;
+    font-size: 1.5vw;
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+td {
+    font-family: bebas;
+    text-align: right;
+    font-size: 1.5vw;
+    padding-left: 5%;
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
+    padding-right: 5%;
+  }
+
+  .pos{
+      color: green;
+  }
+  .neg{
+      color: red;
+  }
