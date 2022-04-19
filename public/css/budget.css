@@ -40,6 +40,7 @@ h1 {
   padding: 1.25%;
   cursor: pointer;
   transition: 250ms;
+  width: 28%;
 }
 .addBudgetBut:active {
     background-color: rgb(240, 240, 240);
