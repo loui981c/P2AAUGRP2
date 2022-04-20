@@ -135,7 +135,7 @@ exports.transactionOverview_get = function (req, res, next) {
 // choose dates and category to filter transactions
 exports.transactionOverview_post = function (req, res, next) {
   const budgetPromise = Budget.find();
-  const transactionPromise = Transaction.find()
+  const transactionPromise = Transaction.find();
 
   Promise.all([budgetPromise, transactionPromise]).then(([budget, trans]) => {
 
