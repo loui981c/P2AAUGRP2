@@ -54,8 +54,13 @@ exports.budgetOverview_get = function (req, res, next) {
 };
 
 exports.addBudget_post = function (req, res) {
+    // dividing the input from req.body
+    let body = req.body;
+    let category = body.category;
+    let expected = body.expected;
+    
     // defining a new schema and boolean
-    let newBudget = new Budget(req.body);
+    let newBudget = new Budget({category: category, expected: expected, spent: 0, remaining: 0});
     let alreadyExists = false;
 
     // checks if a category name is already in data 
@@ -73,11 +78,11 @@ exports.addBudget_post = function (req, res) {
             newBudget.save().then(item => {
                 console.log("Saved to database: " + newBudget);
             }).catch((err) => {
-                res.status(400).send("Something went wrong while saving to the database.");
+                res.status(400).send("Something went wrong while saving to the database." + err);
             });
         } else {
             console.log("This category already exists.");
-        }
+        }  
 
         res.redirect('/budget');
     });
