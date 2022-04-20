@@ -295,6 +295,7 @@ h1, label {
 }
 .addBudgetPage h1 {
   font-size: 3vw;
+  margin-left: 26%;
 }
 
 /* design of input */

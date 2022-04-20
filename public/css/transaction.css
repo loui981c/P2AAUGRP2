@@ -4,6 +4,10 @@
   margin-right: 14%;
 }
 
+.transactionPage h1 {
+  margin-left: 19%;
+}
+
 .transactionPage a {
   text-decoration: none;
 }
@@ -275,7 +279,11 @@ label {
 
 .transactionPageAdd {
   margin-left: 14%;
-  margin-right: 14%;
+  margin-right: 10%;
+}
+
+.transactionPageAdd h1 {
+  margin-left: 26%;
 }
 
 .transactionPageAdd input {
