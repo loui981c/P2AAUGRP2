@@ -397,6 +397,7 @@ h1, label {
     border: 1px solid;
     margin-top: 2%;
     margin-bottom: 2%;
+    padding-right: 1%;
     
 }
 th {
@@ -406,7 +407,7 @@ th {
     padding-top: 2.5%;
     padding-bottom: 2.5%;
     padding-left: 5%;
-    padding-right: 5%;
+    padding-right: 2%;
   }
 td {
     font-family: bebas;
@@ -415,7 +416,9 @@ td {
     padding-left: 5%;
     padding-top: 2.5%;
     padding-bottom: 2.5%;
-    padding-right: 5%;
+  }
+  .valuta{
+      margin-right: 10%;
   }
 
   .pos{
