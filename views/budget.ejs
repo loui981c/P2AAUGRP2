@@ -108,26 +108,32 @@
 
       <%# Total Table %>
       <table class="totalTable">
-        <tr>
-          <th>Total Income:</th>
-          <td class="pos">+<%= totalIncome %></td>
-        </tr>
+       
         
         <tr>
           <th>Total Expected:</th>
           <td><%= totalExpected %></td>
+          <td class="valuta">kr.</td>
+        </tr>
+        <tr>
+          <th>Total Income:</th>
+          <td class="pos">+<%= totalIncome %></td>
+          <td class="valuta">kr.</td>
         </tr>
         <tr>
           <th>Total Spent:</th>
           <td class="neg">-<%= totalSpent %></td>
+          <td class="valuta">kr.</td>
         </tr>
         <tr>
           <th>Total Remaining:</th>
           <% if(totalRemaining < 0){ %>
           <td class="neg"><%= totalRemaining %></td>
+          <td class="valuta">kr.</td>
           <% } else{ %>
             
           <td class="pos">+<%= totalRemaining %></td>
+          <td class="valuta">kr.</td>
             <% } %>
         </tr>
      
