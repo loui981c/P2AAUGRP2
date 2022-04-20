@@ -1,6 +1,6 @@
 /* setting the margin for the page */
 .budgetPage {
-    margin-left: 14%;
+    margin-left: 10%;
     margin-right: 10%; 
 }
 .budgetPage a{
@@ -21,6 +21,7 @@ h1 {
 }
 .budgetPage h1 {
   font-size: 3vw;
+  margin-left: 10%;
 }
 
 /* position the button */
