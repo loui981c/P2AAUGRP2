@@ -26,30 +26,24 @@ exports.budgetOverview_get = function (req, res, next) {
             res.redirect('/budget');
         }
 
-        // array to store updated data
-        let budgetData = [];
-
         // calculates the spent, remaining of each categories and push into budgetData
         for (let i = 0; i < budget.length; i++) {
-            let spendage = 0;
             for (t of trans) {
-                if (t.mainCategory === budget[i].category) {
-                    spendage += t.price;
+                if (t.mainCategory.toLowerCase() === budget[i].category.toLowerCase()) {
+                    budget[i].spent += t.price;
                 }
             }
-            let remaining = budget[i].expected - spendage;
-            budgetData.push({ category: budget[i].category, expected: budget[i].expected, spent: spendage, remaining: remaining, _id: budget[i]._id });
-            console.log(budgetData);
+            budget[i].remaining = budget[i].expected - budget[i].spent;
         }
 
         // sorts the categories alphabetically 
-        budgetData.sort((a, b) => {
+        budget.sort((a, b) => {
             if (a.category > b.category) { return 1; }
             if (a.category < b.category) { return -1; }
             return 0;
         });
 
-        res.render("budget", { budgetData: budgetData });
+        res.render("budget", { budgetData: budget });
     });
 };
 
