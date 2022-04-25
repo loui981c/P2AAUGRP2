@@ -49,21 +49,9 @@ router.post("/:id/edit", (req, res) => {
 
     //update all categories that has old category to edited category
     updatePromise = Transaction.updateMany({mainCategory: req.body.old}, {mainCategory: req.body.category});
-
-  
     Promise.all([budgetPromise, transactionPromise, updatePromise]).then(([budget, trans, u]) => {
-
-
             res.redirect("/budget")
-
     })
-
-    // Budget.findByIdAndUpdate(req.params.id, req.body).then(b => {
-    //     if (!b) {
-    //         return res.status(500).send()
-    //     }
-    //     res.redirect("/budget")
-    // });
 })
 
 module.exports = router;
