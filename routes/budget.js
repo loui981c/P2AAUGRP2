@@ -1,7 +1,9 @@
 var express = require('express');
 var router = express.Router();
 let budget_controller = require('../controllers/budgetController');
-const Budget = require("../schemas/budgetSchema")
+const Budget = require("../schemas/budgetSchema");
+const { findById, findByIdAndUpdate, update } = require('../schemas/transactionSchema');
+const Transaction = require("../schemas/transactionSchema")
 
 /* GET budget page. */
 router.get('/', budget_controller.budgetOverview_get);
@@ -39,14 +41,29 @@ router.get("/:id/edit", (req, res) => {
 
 })
 router.post("/:id/edit", (req, res) => {
+    //
+    // //
     console.log(req.body)
+    const budgetPromise = Budget.findByIdAndUpdate(req.params.id, req.body)
+    const transactionPromise = Transaction.find();
 
-    Budget.findByIdAndUpdate(req.params.id, req.body).then(b => {
-        if (!b) {
-            return res.status(500).send()
-        }
-        res.redirect("/budget")
-    });
+    //update all categories that has old category to edited category
+    updatePromise = Transaction.updateMany({mainCategory: req.body.old}, {mainCategory: req.body.category});
+
+  
+    Promise.all([budgetPromise, transactionPromise, updatePromise]).then(([budget, trans, u]) => {
+
+
+            res.redirect("/budget")
+
+    })
+
+    // Budget.findByIdAndUpdate(req.params.id, req.body).then(b => {
+    //     if (!b) {
+    //         return res.status(500).send()
+    //     }
+    //     res.redirect("/budget")
+    // });
 })
 
 module.exports = router;

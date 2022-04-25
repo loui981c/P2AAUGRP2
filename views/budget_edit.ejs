@@ -22,6 +22,9 @@
         <input class="colourInput" type="color" name="colourInput" id="colourInput" value="<%= budget.colourInput %>" required>
       </div>
 
+      <%# Old category name this is invisible %>
+      <input type="text" name="old" id="old" value="<%= budget.category %>" style="display: none;">
+
       <button class="submitBudget" type="submit">Submit</button>
     </form>
   </div>
