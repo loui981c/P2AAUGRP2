@@ -68,7 +68,7 @@ router.post("/categories", (req, res) => {
             tempDate = t.date
             tDay = tempDate.getDate();
             tMonth = tempDate.getMonth() + 1;
-            tYear = tempDate.getFullYear();
+            tYear = tempDate.getFullYear(); 
 
             if (tDay < 10) {
               tDay = "0" + tDay

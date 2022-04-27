@@ -1,81 +1,132 @@
 <%- include ("partials/header.ejs") %>
-
-
 <body>
-  
-  <%# calculate total spent %>
-  <%# calculate total remaining %>
-  <%# calculate total Remaining %>
-  <%# calculate total Available From amount of income this could also be done throgh expected values %>
   <%- include ("partials/sidebar.ejs") %>
-  
-  <% 
-    let totalExpected = 0;
-    let totalIncome = 0;
-    let totalSpent = 0;
-    let totalRemaining = 0;
-    let totalAvailable = 0;
-
-    for (let i = 0; i < budgetData.length; i++){
-        if (budgetData[i].category != "income")
-        {
-          totalSpent += budgetData[i].spent;
-
-          totalExpected += budgetData[i].expected;
-        }
-        if (budgetData[i].category == "income") 
-        {
-          totalIncome = budgetData[i].spent;
-
-          totalAvailable += budgetData[i].spent;
-        }
-      } 
-
-      totalRemaining = totalAvailable - totalSpent;
-      
-    %> 
 
     <div class="budgetPage">
       <h1>Budget</h1>
 
-      <%# add budget %>
-      <div class="addBudget">
-        <a href="/budget/add"><button class="addBudgetBut">Add Budget/Create Category</button></a>
-      </div>
-  
-      <%# Total Table %>
-      <table class="totalTable">
-       
+        <%# add budget %>
+        <div class="addBudget">
+          <a href="/budget/add"><button class="addBudgetBut">Add Budget/Create Category</button></a>
+        </div>
         
-        <tr>
-          <th>Total Expected:</th>
-          <td><%= totalExpected %></td>
-          <td class="valuta">kr.</td>
-        </tr>
-        <tr>
-          <th>Total Income:</th>
-          <td class="pos">+<%= totalIncome %></td>
-          <td class="valuta">kr.</td>
-        </tr>
-        <tr>
-          <th>Total Spent:</th>
-          <td class="neg">-<%= totalSpent %></td>
-          <td class="valuta">kr.</td>
-        </tr>
-        <tr>
-          <th>Total Remaining:</th>
-          <% if(totalRemaining < 0){ %>
-          <td class="neg"><%= totalRemaining %></td>
-          <td class="valuta">kr.</td>
-          <% } else{ %>
-            
-          <td class="pos">+<%= totalRemaining %></td>
-          <td class="valuta">kr.</td>
-            <% } %>
-        </tr>
-     
-      </table>
+      <div class="topOfPage">
+        <div class="buttonAndTotalTable">
+          <%# Total Table %>
+          <table class="totalTable">
 
+            <tr>
+              <th>Total Expected:</th>
+              <% if(totalExpected > totalIncome){ %>
+                <td class="neg"><%= totalExpected %></td>
+                <td class="valuta">kr.</td>
+                <% } else{ %>
+                    
+                <td class="pos"><%= totalExpected %></td>
+                <td class="valuta">kr.</td>
+              <% } %>
+            </tr>
+            <tr>
+              <th>Total Income:</th>
+                <td class="pos">+<%= totalIncome %></td>
+                <td class="valuta">kr.</td>
+            </tr>
+            <tr>
+              <th>Total Spent:</th>
+                <td class="neg">-<%= totalSpent %></td>
+                <td class="valuta">kr.</td>
+            </tr>
+            <tr>
+              <th>Total Remaining:</th>
+                <% if(totalRemaining < 0){ %>
+                <td class="neg"><%= totalRemaining %></td>
+                <td class="valuta">kr.</td>
+                <% } else{ %>
+                  
+                <td class="pos">+<%= totalRemaining %></td>
+                <td class="valuta">kr.</td>
+                  <% } %>
+            </tr>
+            <tr>
+              <th>% of income:</th>
+              <% if(procentOfIncome > 100){ %>
+                <td class="neg"><%= procentOfIncome %></td>
+                <td class="valuta">%</td>
+                <% } else{ %>
+                <td class="pos"><%= procentOfIncome %></td>
+                <td class="valuta">%</td>
+                  <% } %>
+            </tr>
+            <tr>
+              <th>% of expected:</th>
+              <% if(procentOfExpected > 100){ %>
+                <td class="neg"><%= procentOfExpected %></td>
+                <td class="valuta">%</td>
+                <% } else{ %>
+                <td class="pos"><%= procentOfExpected %></td>
+                <td class="valuta">%</td>
+                  <% } %>
+            </tr>
+          
+          </table>
+        </div>  
+
+      <div class="recommendedBudgetBox">
+        <table class="recommendedBudgetTable">
+          <tr>
+            <th colspan="8" class="biggerHeader">recommended expenses: <%= lowRecommended %> - <%= highRecommended %> </td>
+          </tr>
+          <tr>
+            <% for( let i = 0; i < prefixed.length; i++ ) { %>
+              <th class="normalHeader"> <%= prefixed[i].prefixed %> </th>
+            <% } %>
+          </tr>
+          <tr>
+            <% for( let i = 0; i < prefixed.length; i++ ) { %>
+              <% if (prefixed[i].low == prefixed[i].high) { %>
+                <td> <%= prefixed[i].low %> KR.</td>
+              <% } else { %>
+                <td> <%= prefixed[i].low %> - <%= prefixed[i].high %> KR.</td>
+                <% } %>
+            <% } %>
+          </tr>
+          <tr>
+            <% for( let i = 0; i < prefixed.length; i++ ) { %>
+              <% if (prefixed[i].lowP == prefixed[i].highP) { %>
+                <td> <%= prefixed[i].lowP %> %</td>
+              <% } else { %>
+                <td> <%= prefixed[i].lowP %> - <%= prefixed[i].highP %> %</td>
+                <% } %>
+            <% } %>
+          </tr>
+          <tr>
+            <th colspan="8" class="biggerHeader">Your expenses compared to recommended</td>
+          </tr>
+          <tr>
+            <% for( let i = 0; i < prefixedSpentArr.length; i++ ) { %>
+              <% if (prefixedSpentArr[i].expenseSpent > prefixed[i].high) { %>
+                <td class="neg"> <%= prefixedSpentArr[i].expenseSpent %> Kr.</td>
+              <% } else { %>
+                <td class="pos"> <%= prefixedSpentArr[i].expenseSpent %> Kr.</td>
+                <% } %>
+            <% } %>
+          </tr>  
+          <tr>
+            <% for( let i = 0; i < prefixedSpentArr.length; i++ ) { %>
+              <% if (prefixedSpentArr[i].expenseProcentage > prefixed[i].highP) { %>
+                <td class="neg"> <%= prefixedSpentArr[i].expenseProcentage %> %</td>
+              <% } else { %>
+                <td class="pos"> <%= prefixedSpentArr[i].expenseProcentage %> %</td>
+                <% } %>
+            <% } %>
+          </tr> 
+          <tr>
+            <th colspan="8" class="biggerHeader">prefixed total: <%= totalSpentExpense %> </td>
+          </tr> 
+
+        </table>
+      </div>
+    </div>
 
     
       <%# Showing the labels %>
@@ -87,7 +138,6 @@
         </div>
       
       <%# Showing the budget in the table %>
-        
       <% for (let i = 0; i<budgetData.length; i++){ %> 
 
         <% if (budgetData[i].category != "income"){ %> 
@@ -131,5 +181,6 @@
       <% } %> 
       
     </div>
+
   </body>
 </html>

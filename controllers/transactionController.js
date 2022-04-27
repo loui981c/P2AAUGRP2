@@ -223,7 +223,7 @@ exports.transactionOverview_post = function (req, res, next) {
         mprices.push(c.amount)
         mcolours.push(c.colour)
       }
-
+ 
       console.log(mcategories)
       console.log(mprices)
       console.log(mcolours)

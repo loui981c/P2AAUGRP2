@@ -1,6 +1,7 @@
 <%- include ("partials/header.ejs") %>
 <body>
   <%- include ("partials/sidebar.ejs") %>
+  
   <div class="addBudgetPage">
     <h1>Edit Budget: <br> <%= budget.category %></h1>
 
@@ -25,8 +26,16 @@
       <%# Old category name this is invisible %>
       <input type="text" name="old" id="old" value="<%= budget.category %>" style="display: none;">
 
-      <button class="submitBudget" type="submit">Submit</button>
+      <button class="submitBudget" type="submit" id="sumbitBtn">Submit</button>
     </form>
   </div>
+
+  <script>
+    document.getelementById('sumbitBtn').addEventListener('click', loadFunction);
+    function loadFunction() {
+      location.pathname='http://localhost:3000/budget';
+    }
+  </script>
+
 </body>
 </html>

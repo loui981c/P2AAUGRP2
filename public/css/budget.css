@@ -28,6 +28,7 @@ h1 {
 .addBudget {
   display: block;
   margin-left: 10%;
+  width: 20%;
 }
 
 /* design the add budget button */
@@ -41,7 +42,8 @@ h1 {
   padding: 1.25%;
   cursor: pointer;
   transition: 250ms;
-  width: 28%;
+  width: 100%;
+  padding: 5% 5% 5% 5%;
 }
 .addBudgetBut:active {
     background-color: rgb(240, 240, 240);
@@ -108,6 +110,7 @@ h1 {
 /* the design of the small headers */
 .budgetLabels {
     font-size: 1.5vw;
+    margin-top: 40%;
 }
 
 /* setting the distance between small headers */
@@ -356,7 +359,7 @@ h1, label {
 
 .divider{
     margin-left: 10%;
-    margin-top: 2%;
+    margin-top: 5%;
     margin-bottom: 2%;
     width: 82%;
     height: 1px;
@@ -366,66 +369,71 @@ h1, label {
 
 
 
-.totalcategory {
-    font-size: 1.5vw;
-    border: 1px solid;
-    text-align: end;
-    display: inline-block;
-    margin-left: 15.25%;
-}    
-.totalexpected {
-    font-size: 1.5vw;
-    text-align: end;
-    display: inline-block;
-    margin-left: 13.5%;
-}  
-.totalspent {
-    font-size: 1.5vw;
-    text-align: end;
-    display: inline-block;
-    margin-left: 11.5%;
-}
-.totalremaining {
-    font-size: 1.5vw;
-    text-align: end;
-    display: inline-block;
-    margin-left: 12.5%;
-    
-}
-
 .totalTable{
     margin-left: 10%;
-    width: 25%;
+    width: 20%;
     border: 1px solid;
     margin-top: 2%;
     margin-bottom: 2%;
     padding-right: 1%;
-    
+    margin-right: 0%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    float: left;
 }
-th {
+.totalTable th {
     font-family: bebas;
     text-align: left;
-    font-size: 1.5vw;
-    padding-top: 2.5%;
-    padding-bottom: 2.5%;
+    font-size: 1.25vw;
+    padding-top: 5%;
+    padding-bottom: 5%;
     padding-left: 5%;
     padding-right: 2%;
   }
-td {
+.totalTable td {
     font-family: bebas;
     text-align: right;
-    font-size: 1.5vw;
+    font-size: 1.25vw;
     padding-left: 5%;
-    padding-top: 2.5%;
-    padding-bottom: 2.5%;
+    padding-top: 5%;
+    padding-bottom: 5%;
   }
+.recommendedBudgetTable{
+    margin-right: 2.5%;
+    width: 65%;
+    border: 1px solid;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    padding-right: 1%;
+    float: right;
+    padding: 1%;
+}
+.recommendedBudgetTable .normalHeader {
+    font-family: bebas;
+    text-align: center;
+    font-size: 1vw;
+    padding: 2.5% 1.5% 1.5% 1.5%;
+  }
+.recommendedBudgetTable td {
+    font-family: bebas;
+    text-align: center;
+    font-size: 1vw;
+    padding-bottom: 1.5%;
+    padding-top: 1%;
+}
+
   .valuta{
       margin-right: 10%;
   }
-
   .pos{
       color: green;
   }
   .neg{
       color: red;
   }
+
+.recommendedBudgetTable .biggerHeader{
+    font-size: 1.5vw;
+    font-family: bebas;
+    padding-top: 1%;
+}
