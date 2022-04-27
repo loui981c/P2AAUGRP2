@@ -1,4 +1,190 @@
 .savingsPage {
-    margin-left: 14%;
+    margin-left: 20%;
     margin-right: 14%;
+}
+a{
+    text-decoration: none;
+}
+.outerSG{
+    border: 1px solid;
+    width: 90%;
+    display: grid;
+    grid-template-columns: 12% 88%;
+    
+}
+.SGImg{
+    border-right: 1px solid;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+.SGImg .emoji{
+    font-size: 5vw;
+    margin: 0px;
+
+    
+}
+
+.SGDataOuter{
+  width: 100%;
+
+}
+
+.SGText{
+    font-size: 1.6vw;
+    font-family: bebas;
+    width: 91.1%;
+    padding-right: 1%;
+    padding-left: 8%;
+    border-bottom: 1px solid;
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    text-align: start;
+
+    
+}
+
+progress{
+    position: relative;
+    width: 100%;
+    height: 5vw;
+    appearance: none;
+    color: rgb(0, 153, 255);
+    margin-bottom: -0.2%;
+    z-index: -5;
+}
+progress::-webkit-progress-bar {
+    background-color: transparent;
+  }
+  progress::-webkit-progress-value {
+    background-color: rgb(0, 132, 255);
+  }
+
+  .SGLabels{
+
+
+      width: 70%;
+      margin-left: 17.5%;
+    
+  }
+  .SGLabels p {
+      font-family: bebas;
+      width: 10%;
+      font-size: 1.2vw;
+      display: inline-block;
+  }
+  .sb{
+      margin-left: 10%;
+  }
+  
+  .sc{
+      margin-left: 10%;
+  }
+  
+  .sd{
+      margin-left: 10%;
+  }
+  .se{
+      margin-left: 10%;
+  }
+  
+
+
+  .addSavingsBut {
+    font-size: 1.2vw;
+    font-family: bebas;
+    color: rgb(0, 132, 255);
+    background-color: transparent;
+    border: solid 1px;
+    border-color: rgb(0, 132, 255);
+    padding: 1.25%;
+    cursor: pointer;
+    transition: 250ms;
+    width: 28%;
+  }
+  .addSavingsBut:active {
+      background-color: rgb(240, 240, 240);
+      border: solid 1px rgb(0, 132, 255);
+      color: rgb(0, 132, 255);
+  }
+  .addSavingsBut:hover {
+      background-color: rgb(0, 132, 255);
+      color: white; 
+  }
+
+ 
+/* add savings */
+
+.addSavingsPage{
+    width: 65%;
+    margin-left: 20%;
+}
+
+/* the font for the page */
+.addSavingsPage p,
+h1, label {
+  font-family: bebas;
+}
+.addSavingsPage label {
+  font-size: 1.8vw;
+}
+.addSavingsPage h1 {
+  font-size: 3vw;
+  margin-left: 26%;
+}
+
+/* design of input */
+.addSavingsPage .basicInput {
+    font-size: 1.2vw;
+    font-family: bebas;
+    color: black;
+    background-color: transparent;
+    border: solid 1px;
+    padding: 1.2%;
+    width: 45%;
+    display: inline-block;
+}
+
+/* position of the form */
+.addSavingsPage form {
+    text-align: center;
+}
+.addSavingsPage label {
+    margin-left: 26.5%;
+}
+.addSavingsPage form input {
+    margin-bottom: 2%;
+}
+.addSavingsPage h1 {
+    margin-bottom: 7.5%;
+}
+
+/* design of sumbit button */
+.addSavingsPage .submitButton {
+    display: inline-block;
+    font-size: 1.2vw;
+    font-family: bebas;
+    color: rgb(0, 132, 255);
+    background-color: transparent;
+    border: solid 1px;
+    border-color: rgb(0, 132, 255);
+    padding: 1.25%;
+    transition: 200ms;
+    cursor: pointer;
+}
+.addSavingsPage .submitButton:hover {
+    background-color: rgb(0, 132, 255);
+    color: white;
+}
+.addSavingsPage .submitButton:active {
+    background-color: rgb(0, 114, 221);
+    color: white;
+}
+
+.addSavingsPage .colourInput {
+    background-color: transparent;
+    outline: none;
+    margin: auto;
+    margin-bottom: 2%;
+    width: 48.2%;
 }
