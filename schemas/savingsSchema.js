@@ -6,6 +6,7 @@ var savingsSchema = new mongoose.Schema({
     epm: Number,
     img: String,
     progress: Number,
+    colourInput: String,
    });
 
 module.exports = mongoose.model("Savings", savingsSchema);

@@ -55,11 +55,18 @@ exports.savingsAdd_get = function(req, res, next) {
 
 exports.savingsAdd_post = function(req, res, next) {
 
-    let saving = new Savings(req.body);
+    let saving = new Savings({
+        name: req.body.name + " Savings",
+        img: req.body.img,
+        amount: req.body.amount,
+        epm: req.body.epm,
+        progress: 0,
+        colourInput: req.body.colourInput
+    });
     let budget = new Budget({
-        category: req.body.name,
+        category: req.body.name + " Savings",
         expected: req.body.epm,
-        colourInput: "#FFFFFF",
+        colourInput: req.body.colourInput,
         spent: 0,
         remaining: req.body.epm
     });
