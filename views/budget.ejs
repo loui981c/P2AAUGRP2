@@ -100,7 +100,7 @@
             <% } %>
           </tr>
           <tr>
-            <th colspan="8" class="biggerHeader">Your expenses compared to recommended</td>
+            <th colspan="8" class="biggerHeader">Your expenses: <%= totalSpentExpense %> </td>
           </tr>
           <tr>
             <% for( let i = 0; i < prefixedSpentArr.length; i++ ) { %>
@@ -119,9 +119,6 @@
                 <td class="pos"> <%= prefixedSpentArr[i].expenseProcentage %> %</td>
                 <% } %>
             <% } %>
-          </tr> 
-          <tr>
-            <th colspan="8" class="biggerHeader">prefixed total: <%= totalSpentExpense %> </td>
           </tr> 
 
         </table>

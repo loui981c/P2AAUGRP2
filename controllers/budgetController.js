@@ -265,6 +265,7 @@ exports.budgetOverview_get = function (req, res, next) {
         let expenseProcentage_tv = Math.round((expenseSpent_tv/totalSpentExpense)*100);
         prefixedSpentArr.push({expenseSpent: expenseSpent_tv, expenseProcentage: expenseProcentage_tv});
         
+        // for the total table
         let procentOfIncome = Math.round((totalSpent/totalIncome)*100);
         let procentOfExpected = Math.round((totalSpent/totalExpected)*100);
         
