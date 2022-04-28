@@ -7,10 +7,10 @@
     
     <%# Showing all categories provided in transactions.ejs %>
     <form action="/transactions/add" method="post">
-        <label for="mainCategory">Choose Category</label>
+        <label for="mainCategory">Category</label>
         <div class="catGrid">
             <div>
-                <h3 class="subTitle">Expenses</h3>
+                <h3 class="subTitle">- Expenses</h3>
                 <div class="catCheckBoxOuter">
                     <% for (let i = 0; i<categories.length; i++){ if(!categories[i].toLowerCase().includes("savings")){ %> 
                     <div class="catCheckbox">
@@ -21,7 +21,7 @@
                 </div>
             </div>
             <div>
-                <h3 class="subTitle">Savings</h3>
+                <h3 class="subTitle">- Savings</h3>
                 <div class="catCheckBoxOuter">
                     <% for (let i = 0; i<categories.length; i++){ if(categories[i].toLowerCase().includes("savings")){ %> 
                     <div class="catCheckbox">
