@@ -1,6 +1,8 @@
-let Transaction = require('../schemas/transactionSchema');
-let Budget = require('../schemas/budgetSchema');
-let async = require('async');
+const Transaction = require('../schemas/transactionSchema');
+const Budget = require('../schemas/budgetSchema');
+const Income = require('../schemas/incomeSchema');
+const Expense = require('../schemas/expenseSchema');
+const async = require('async');
 
 // display all transactions
 exports.transactionOverview_get = function (req, res, next) {
@@ -432,3 +434,74 @@ exports.editTransactions_post = function (req, res) {
     res.status(500).send(err);
   });
 };
+/*
+exports.add_income_get = function (req, res, next) {
+  
+  async.parallel({
+    income: function (callback) {
+      Income.find(callback);
+    },
+  }, function (err, results) {
+    if (err) { return next(err); }
+
+    let income = results.income;
+
+    // gets the categories from budget
+    let categoriesIncome = [];
+    for (let i = 0; i < income.length; i++) {
+      categoriesIncome.push(income[i].category);
+    }
+
+    // sorts the array alphabetically
+    categoriesIncome.sort();
+
+    res.render("transactions_add_income", { categories: categoriesIncome });
+  });
+};
+
+exports.add_income_post = function (req, res) {
+  // saves data to database
+  let transaction = new Transaction(req.body);
+  transaction.save().then(item => {
+    console.log("Saved to database: " + transaction)
+  }).catch((err) => {
+    res.status(400).send("Something went wrong while saving to the database.")
+  });
+  res.redirect("/transactions");
+};
+
+exports.add_expense_get = function (req, res, next) {
+  
+  async.parallel({
+    expense: function (callback) {
+      Expense.find(callback);
+    },
+  }, function (err, results) {
+    if (err) { return next(err); }
+
+    let expense = results.expense;
+
+    // gets the categories from budget
+    let categoriesExpense = [];
+    for (let i = 0; i < expense.length; i++) {
+      categoriesIncome.push(expense[i].category);
+    }
+
+    // sorts the array alphabetically
+    categoriesExpense.sort();
+
+    res.render("transactions_add_expense", { categories: categoriesExpense });
+  });
+};
+
+exports.add_expense_post = function (req, res) {
+  // saves data to database
+  let transaction = new Transaction(req.body);
+  transaction.save().then(item => {
+    console.log("Saved to database: " + transaction)
+  }).catch((err) => {
+    res.status(400).send("Something went wrong while saving to the database.")
+  });
+  res.redirect("/transactions");
+};
+*/

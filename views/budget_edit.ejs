@@ -8,6 +8,15 @@
     <%# Form to add/create budget %>
     <form action="/budget/<%= budget._id %>/edit" method="POST">
       <%# Categories %>
+      <h2 id="expense">Expense Category</h2>
+      <h2 id="income">Income Category</h2>
+      <%# Toggle switch %> 
+      <div class="switchBox">
+        <label class="switch">
+          <input type="checkbox" onclick="show(1)" id="checkBoxSlider">
+          <span class="slider round"></span>
+        </label>
+      </div>
       <div class="categoriesCheckbox">
           <label for="categoriesCheckbox">Category</label>
           <input class="basicInput" type="text" name="category" id="category" value="<%= budget.category %>" required>

@@ -1,7 +1,8 @@
 const { default: mongoose } = require("mongoose");
 
 let budgetSchema = new mongoose.Schema ({
-    category: String, // dependency on transactions category?
+    //ExOrIn: { type: Boolean, default: false},
+    category: String,
     expected: Number,
     colourInput: String,
     spent: Number,

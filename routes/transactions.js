@@ -229,6 +229,7 @@ router.post("/categories", (req, res) => {
 })
 
 //CRUD from this point on
+
 router.get("/add", transaction_controller.addTransactions_get);
 
 router.post("/add", transaction_controller.addTransactions_post);
@@ -270,6 +271,14 @@ router.post("/edit/:id", (req, res) => {
     res.status(500).send(err);
   })
 });
+/*
+router.get("/add/income", transaction_controller.add_income_get);
 
+router.get("/add/income", transaction_controller.add_income_post);
+
+router.get("/add/expense", transaction_controller.add_expense_get);
+
+router.get("/add/expense", transaction_controller.add_expense_post);
+*/
 module.exports = router;
 
