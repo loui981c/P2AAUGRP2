@@ -6,6 +6,15 @@
 
     <%# Form to add/create budget %>
     <form action="/budget/add" method="POST">
+      <h2 id="expense">Expense Category</h2>
+      <h2 id="income">Income Category</h2>
+      <%# Toggle switch %> 
+      <div class="switchBox">
+        <label class="switch">
+          <input type="checkbox" onclick="show(1)" id="checkBoxSlider">
+          <span class="slider round"></span>
+        </label>
+      </div>
       <%# Categories %>
       <div class="categoriesCheckbox">
           <label for="categoriesCheckbox">Category</label>
@@ -25,5 +34,8 @@
       <button class="submitBudget" type="submit">Submit</button>
     </form>
   </div>
+
+  <script src="../public/scripts/budget.js"></script>
+
 </body>
 </html>

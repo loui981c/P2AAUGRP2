@@ -64,7 +64,7 @@ input {
   display: flex;
 }
 
-.transactionPage .addTransBut {
+.transactionPage .addIncomeBut {
   display: inline-block;
   font-size: 1.2vw;
   font-family: bebas;
@@ -75,19 +75,43 @@ input {
   padding: 1.25%;
   transition: 200ms;
   cursor: pointer;
+  width: 15%;
 }
 
 /* margins for transaction button, must be used because of button inside anchor */
 .transactionPage .addTransButAnchor {
-  margin-left: 22%;
+  margin-left: 2.75%;
 }
 
-.transactionPage .addTransBut:hover {
+.transactionPage .addIncomeBut:hover {
   background-color: green;
   color: white;
 }
-.transactionPage .addTransBut:active {
+.transactionPage .addIncomeBut:active {
   background-color: rgb(0, 71, 0);
+  color: white;
+}
+
+.transactionPage .addExpenseBut {
+  display: inline-block;
+  font-size: 1.2vw;
+  font-family: bebas;
+  color: red;
+  background-color: transparent;
+  border: solid 1px;
+  border-color: red;
+  padding: 1.25%;
+  transition: 200ms;
+  cursor: pointer;
+  width: 15%;
+}
+
+.transactionPage .addExpenseBut:hover {
+  background-color: red;
+  color: white;
+}
+.transactionPage .addExpenseBut:active {
+  background-color: rgb(71, 0, 0);
   color: white;
 }
 
