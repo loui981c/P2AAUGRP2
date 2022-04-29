@@ -5,14 +5,17 @@
     <div class="budgetPage">
       <h1>Budget</h1>
 
-        <%# add budget %>
+         <!-- add budget -->
+
         <div class="addBudget">
           <a href="/budget/add"><button class="addBudgetBut">Add Budget/Create Category</button></a>
         </div>
         
       <div class="topOfPage">
         <div class="buttonAndTotalTable">
-          <%# Total Table %>
+
+          <!-- Total Table -->
+
           <table class="totalTable">
 
             <tr>
@@ -110,7 +113,8 @@
     </div>
 
     
-      <%# Showing the labels %>
+      <!-- Showing the labels -->
+
         <div class="budgetLabels">
             <p class="category">Category</p>
             <p class="expected">Expected</p>
@@ -118,7 +122,8 @@
             <p class="remaining">Remaining</p>
         </div>
       
-      <%# Showing the budget in the table %>
+      <!-- Showing the budget in the table -->
+
       <% for (let i = 0; i < budgetData.length; i++){ %> 
 
         <% if (budgetData[i].income != true && !budgetData[i].category.toLowerCase().includes('savings')){ %> 

@@ -140,12 +140,12 @@ exports.budgetOverview_get = function (req, res, next) {
                 }
             );
                 
-            if (budget.filter(b => b.income == false))
+            if (budget[i].income == false)
             {
                 totalSpent += budget[i].spent;
                 totalExpected += budget[i].expected;
             }
-            if (budget.filter(b => b.income == true)) 
+            if (budget[i].income == true) 
             {
                 totalIncome += budget[i].spent;
                 totalAvailable += budget[i].spent;
