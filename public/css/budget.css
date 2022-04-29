@@ -422,6 +422,20 @@ h1, label {
     padding-bottom: 1.5%;
     padding-top: 1%;
 }
+.recommendedBudgetTable .headersLeft {
+    font-family: bebas;
+    text-align: start;
+    font-size: 1vw;
+    padding-bottom: 1.5%;
+    padding-top: 1%;
+}
+.recommendedBudgetTable th {
+    font-family: bebas;
+    text-align: center;
+    font-size: 1vw;
+    padding-bottom: 1.5%;
+    padding-top: 1%;
+}
 
   .valuta{
       margin-right: 10%;
