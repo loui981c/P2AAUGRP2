@@ -17,9 +17,9 @@
                     <div class="catCheckbox">
                         <label for="category>"><%= categories[i]%></label>
                         <% if (categories[i] == transaction.mainCategory){ %> 
-                            <input checked="checked" type="radio" name="mainCategory" id="mainCategory>" value="<%= categories[i]%>" required>
+                            <input checked="checked" type="radio" name="mainCategory" id="mainCategory" value="<%= categories[i]%>" required>
                             <% }else{ %> 
-                                <input type="radio" name="mainCategory" id="mainCategory>" value="<%= categories[i]%>"  required>
+                                <input type="radio" name="mainCategory" id="mainCategory" value="<%= categories[i]%>"  required>
                             <% } %> 
                     </div>
                     <% }} %> 

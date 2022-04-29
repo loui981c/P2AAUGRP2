@@ -684,9 +684,19 @@ exports.addBudget_post = function (req, res) {
     let body = req.body;
     let category = body.category;
     let expected = body.expected;
+    let income = false;
+    if (body.income = "on") {
+        income = true;
+    }
+    else{
+        income = false;
+    }
+
+    
+    console.log("checkboxbool: " +income);
     
     // defining a new schema and boolean
-    let newBudget = new Budget({category: category, expected: expected, spent: 0, remaining: 0});
+    let newBudget = new Budget({category: category, expected: expected, spent: 0, remaining: 0, income: income});
     let alreadyExists = false;
 
     // checks if a category name is already in data 
