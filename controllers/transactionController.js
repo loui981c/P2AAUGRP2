@@ -4,7 +4,6 @@ const async = require('async');
 
 // display all transactions
 exports.transactionOverview_get = function (req, res, next) {
-
   async.parallel({
     transactions: function (callback) {
       Transaction.find(callback);

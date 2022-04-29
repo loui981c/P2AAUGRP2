@@ -7,6 +7,7 @@ let budgetSchema = new mongoose.Schema ({
     colourInput: String,
     spent: Number,
     remaining: Number,
+    income: Boolean,
 });
 
 module.exports = mongoose.model('Budgets', budgetSchema);

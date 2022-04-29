@@ -43,6 +43,11 @@ app.use('/monthly', monthlyRouter);
 app.use('/transactions', transactionsRouter);
 app.use('/budget', budgetRouter);
 app.use('/savings', savingsRouter);
+
+app.get('/refreshT', function(req, res, next) {
+  res.redirect('/transactions');
+});
+
 app.use(express.urlencoded({extended: true}));
 
 // catch 404 and forward to error handler

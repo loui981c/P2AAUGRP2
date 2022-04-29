@@ -1,8 +1,8 @@
 //These are scripts for the budget.ejs file
 
 // set variables
-document.getElementById("expense").style.display = 'none';
-document.getElementById("income").style.display = 'none';
+let expense = document.getElementById("expense").style.display = 'none';
+let income = document.getElementById("income").style.display = 'none';
 
 function show(x) {
     if (x == 1) {

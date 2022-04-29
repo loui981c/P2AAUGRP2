@@ -5,9 +5,9 @@ let Savings = require('../schemas/savingsSchema');
 exports.savingsOverview_get = function(req, res, next) {
 
     const savingPromise = Savings.find()
-    const budgetPromise = Transaction.find()
+    const transactionPromise = Transaction.find()
   
-    Promise.all([savingPromise, budgetPromise]).then(([saving, trans]) => {
+    Promise.all([savingPromise, transactionPromise]).then(([saving, trans]) => {
 
         let dataForPage = [];
         //add spent from budget to savingPromise (as progress)
@@ -70,7 +70,9 @@ exports.savingsAdd_post = function(req, res, next) {
         expected: req.body.epm,
         colourInput: req.body.colourInput,
         spent: 0,
-        remaining: req.body.epm
+        remaining: req.body.epm,
+        income: false,
+        
     });
 
     const savingPromise = saving.save(saving);
