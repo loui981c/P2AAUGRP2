@@ -27,7 +27,9 @@ exports.savingsOverview_get = function(req, res, next) {
                 img : s.img,
                 amount: s.amount,
                 epm: s.epm,
-                progress: totalSpent,})
+                progress: totalSpent,
+                colourInput: s.colourInput,
+                _id: s._id,})
        }
          res.render("savings", {sg: dataForPage})
     }).catch(err => {

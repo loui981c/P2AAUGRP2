@@ -7,7 +7,7 @@ a{
 }
 .outerSG{
     border: 1px solid;
-    width: 90%;
+    width: 100%;
     display: grid;
     grid-template-columns: 12% 88%;
     
@@ -24,6 +24,13 @@ a{
 
     
 }
+.SGButGrid{
+    display: grid;
+    width: 90%;
+    gap: 1%;
+    grid-template-columns: 94% 5%;
+  
+}
 
 .SGDataOuter{
   width: 100%;
@@ -33,12 +40,13 @@ a{
 .SGText{
     font-size: 1.6vw;
     font-family: bebas;
-    width: 91.1%;
     padding-right: 1%;
     padding-left: 8%;
+    width: 91.1%;
     border-bottom: 1px solid;
     display: grid;
-    grid-template-columns: 20% 20% 20% 20% 20%;
+    gap: 1%;
+    grid-template-columns: 25% 19% 19% 19% 19%;
     text-align: start;
 
     
@@ -188,3 +196,5 @@ h1, label {
     margin-bottom: 2%;
     width: 48.2%;
 }
+
+

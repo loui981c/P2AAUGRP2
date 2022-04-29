@@ -23,28 +23,37 @@
 
             <!-- Savings goals list -->
             <% for (s of sg){ %> 
-            <div class="outerSG">
+            <div class="SGButGrid">
+                <div class="outerSG">
 
-                <!-- Calculate progress percentage -->
-                <% var progressPercentage = (s.progress / s.amount) * 100 %>
+                    <!-- Calculate progress percentage -->
+                    <% var progressPercentage = (s.progress / s.amount) * 100 %>
 
-                <!-- Calculate estimated time from monthly and amonut -->
-                <% var estimatedTime = s.amount / s.epm %>
+                    <!-- Calculate estimated time from monthly and amonut -->
+                    <% var estimatedTime = s.amount / s.epm %>
 
-                <div class="SGImg">
-                    <h2 class="emoji" ><%= s.img %></h2>
-                </div>
-                <div class="SGDataOuter">
-                    <div class="SGText">
-                        <p><%= s.name %> </p>
-                        <p><%= s.amount %> kr</p>
-                        <p><%= s.epm %> kr</p>
-                        <p><%= estimatedTime.toFixed(1) %> m</p>
-                        <p><%= progressPercentage.toFixed(1) %> %</p>
+                    <div class="SGImg">
+                        <h2 class="emoji" ><%= s.img %></h2>
                     </div>
-                    <!-- set the colour of the progress bar to s.colourInput -->
-                    <progress value="<%= s.progress %>" max="<%= s.amount %>"></progress>
-                </div> 
+                    <div class="SGDataOuter">
+                        <div class="SGText">
+                            <p><%= s.name %> </p>
+                            <p><%= s.amount %> kr</p>
+                            <p><%= s.epm %> kr</p>
+                            <p><%= estimatedTime.toFixed(1) %> m</p>
+                            <p><%= progressPercentage.toFixed(1) %> %</p>
+                        </div>
+                        <!-- set the colour of the progress bar to s.colourInput -->
+                        <progress value="<%= s.progress %>" max="<%= s.amount %>"></progress>
+                    </div> 
+                </div>
+                <div class="tileButtons">
+                    <span></span>
+                    <a href="/savings/<%= s._id %>/edit"><button class="edit">Edit</button></a>
+                    <form method="POST" action="/savings/<%= s._id %>/delete">
+                        <button class="delete">Delete</button>
+                    </form>
+                </div>
             </div>
             <br>
             <% } %>
