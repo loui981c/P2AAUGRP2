@@ -338,16 +338,9 @@ exports.addBudget_post = function (req, res) {
     let body = req.body;
     let category = body.category;
     let expected = body.expected;
-    let income = false;
-    if (body.income == "checked") {
-        income = true;
-    }
-    else{
-        income = false;
-    }
-
-    
-    console.log("checkboxbool: " +income);
+    let income = req.body.toggleValue;
+   
+    console.log("checkboxbool: " + req.body.toggleValue);
     
     // defining a new schema and boolean
     let newBudget = new Budget({income: income, category: category, expected: expected, spent: 0, remaining: 0,});

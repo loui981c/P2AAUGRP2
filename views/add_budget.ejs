@@ -11,10 +11,9 @@
       <%# Toggle switch %> 
       <div class="switchBox">
         <label class="switch">
-          <input type="checkbox" onclick="sliderToggle()" id="checkBoxSlider" name="switch">
+          <input type="checkbox" onclick="sliderToggle()" id="checkBoxSlider" name="income">
           <span class="slider round"></span>
         </label>
-        <input type="text" id="incomeTemp" name="income" value="unchecked" style="display: none;">
       </div>
       <%# Categories %>
       <div class="categoriesCheckbox">
@@ -31,6 +30,7 @@
         <label for="colourInput">Colour</label>
         <input class="colourInput" type="color" name="colourInput" id="colourInput" required>
       </div>
+      <input type="text" id="toggleValue" name="toggleValue" value="false">
 
       <button class="submitBudget" type="submit">Submit</button>
     </form>
@@ -38,25 +38,26 @@
 
   <script src="../public/scripts/budget.js"></script>
   <script>
-    let toggle = 2;
+    let toggle = false;
     document.getElementById("expense").style.display = "block";
     document.getElementById("income").style.display = "none";
+    
     let tempIncomeValue = document.getElementById("incomeTemp").value;
 
   function sliderToggle() {
 
-    toggle+=1;
+    toggle = !toggle;
     
-    if (toggle % 2 == 0) {
+    if (!toggle) {
+      document.getElementById("toggleValue").value = "false";
       document.getElementById("expense").style.display = "block";
       document.getElementById("income").style.display = "none";
-      tempIncomeValue = "unchecked";
       
     } else {
       
+      document.getElementById("toggleValue").value = "true";
       document.getElementById("expense").style.display = "none";
       document.getElementById("income").style.display = "block";
-      tempIncomeValue = "checked";
 
     }
     console.log(tempIncomeValue);
