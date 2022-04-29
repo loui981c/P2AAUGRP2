@@ -133,7 +133,7 @@
       <%# Showing the budget in the table %>
       <% for (let i = 0; i < budgetData.length; i++){ %> 
 
-        <% if (budgetData[i].category != "income" && !budgetData[i].category.toLowerCase().includes('savings')){ %> 
+        <% if (budgetData[i].income != true && !budgetData[i].category.toLowerCase().includes('savings')){ %> 
         <div class="budgetTable">
             <div class="budgetInsideTable">
               <p class="budgetCategory"><%= budgetData[i].category %></p>

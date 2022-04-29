@@ -465,7 +465,7 @@ exports.budgetOverview_get = function (req, res, next) {
                 }
             }
             remaining = budget[i].expected - spent;
-            budgetData.push({_id: budget[i]._id, category: budget[i].category, expected: budget[i].expected, colourInput: budget[i].colourInput, spent: spent, 
+            budgetData.push({_id: budget[i]._id, income: budget[i].income, category: budget[i].category, expected: budget[i].expected, colourInput: budget[i].colourInput, spent: spent, 
             remaining: remaining});
             
             // updates the database with values
