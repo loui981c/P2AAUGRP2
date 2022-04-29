@@ -1,7 +1,7 @@
 const { default: mongoose } = require("mongoose");
 
 let budgetSchema = new mongoose.Schema ({
-    //ExOrIn: { type: Boolean, default: false},
+    income: { type: Boolean, default: false},
     category: String,
     expected: Number,
     colourInput: String,

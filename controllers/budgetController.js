@@ -359,15 +359,6 @@ exports.budgetOverview_get = function (req, res, next) {
         budget: function (callback) {
             Budget.find(callback);
         },
-        // shitty men virker
-        budget_find_book: function (callback) { Budget.find({category: 'books'}).exec(callback); },
-        budget_find_food: function (callback) { Budget.find({category: 'food'}).exec(callback); },
-        budget_find_insurance: function (callback) { Budget.find({category: 'insurance'}).exec(callback); },
-        budget_find_other: function (callback) { Budget.find({category: 'other'}).exec(callback); },
-        budget_find_phone: function (callback) { Budget.find({category: 'phone'}).exec(callback); },
-        budget_find_rent: function (callback) { Budget.find({category: 'rent'}).exec(callback); },
-        budget_find_transport: function (callback) { Budget.find({category: 'transport'}).exec(callback); },
-        budget_find_tv_license: function (callback) { Budget.find({category: 'tv license'}).exec(callback); },
     }, function (err, results) {
         if (err) { return next(err); }
 
@@ -375,18 +366,9 @@ exports.budgetOverview_get = function (req, res, next) {
         let trans = results.transactions;
         let budget = results.budget;
 
-        let bookDB = results.budget_find_book;
-        let foodDB = results.budget_find_food;
-        let insuranceDB = results.budget_find_insurance;
-        let otherDB = results.budget_find_other;
-        let phoneDB = results.budget_find_phone;
-        let rentDB = results.budget_find_rent;
-        let transportDB = results.budget_find_transport;
-        let tvDB = results.budget_find_tv_license;
-
         //add the category "income" if it does not exist in the database
         if (budget.filter(e => e.category.toLowerCase() == "income").length == 0) {
-            let incomeBudget = new Budget({ category: "income", expected: 0, spent: 0, remaining: 0, colourInput: "#00FF00" });
+            let incomeBudget = new Budget({income: true, category: "income", expected: 0, spent: 0, remaining: 0, colourInput: "#00FF00" });
             incomeBudget.save().then(item => {
                 console.log("Saved to database: " + incomeBudget);
             }).catch((err) => {
@@ -505,14 +487,14 @@ exports.budgetOverview_get = function (req, res, next) {
                 }
             );
                 
-            if (budget[i].category != "income")
+            if (budget.filter(b => b.income == false))
             {
                 totalSpent += budget[i].spent;
                 totalExpected += budget[i].expected;
             }
-            if (budget[i].category == "income") 
+            if (budget.filter(b => b.income == true)) 
             {
-                totalIncome = budget[i].spent;
+                totalIncome += budget[i].spent;
                 totalAvailable += budget[i].spent;
             }  
         }
@@ -578,43 +560,111 @@ exports.budgetOverview_get = function (req, res, next) {
             return 0;
         });
 
-        // not pretty:/
-        let totalSpentExpense = bookDB[0].spent + foodDB[0].spent + insuranceDB[0].spent + otherDB[0].spent + phoneDB[0].spent + rentDB[0].spent + transportDB[0].spent + tvDB[0].spent;
+
+        // variables for user spent in prefixed categories
+        let expenseSpent_book = 0;
+        let expenseSpent_food = 0;
+        let expenseSpent_insurance = 0;
+        let expenseSpent_other = 0;
+        let expenseSpent_phone = 0;
+        let expenseSpent_rent = 0;
+        let expenseSpent_transport = 0;
+        let expenseSpent_tv = 0;
+
+        // total of the users spent in the prefixed categories
+        let totalSpentExpense = 0;
+        // filter out the prefixed categories in categories
+        for (let i = 0; i < budget.length; i++) {
+            if (budget[i].income === false) {
+                switch (budget[i].category) {
+                    case 'rent':
+                        totalSpentExpense += budget[i].spent; 
+                        expenseSpent_rent += budget[i].spent;
+                        break;
+                    case 'insurance':
+                        totalSpentExpense += budget[i].spent; 
+                        expenseSpent_insurance += budget[i].spent;
+                        break;
+                    case 'tv license':
+                        totalSpentExpense += budget[i].spent;
+                        expenseSpent_tv += budget[i].spent; 
+                        break;
+                    case 'books':
+                        totalSpentExpense += budget[i].spent; 
+                        expenseSpent_book += budget[i].spent;
+                        break;
+                    case 'phone':
+                        totalSpentExpense += budget[i].spent;
+                        expenseSpent_phone += budget[i].spent; 
+                        break;
+                    case 'food':
+                        totalSpentExpense += budget[i].spent; 
+                        expenseSpent_food += budget[i].spent;
+                        break;
+                    case 'transport':
+                        totalSpentExpense += budget[i].spent; 
+                        expenseSpent_transport += budget[i].spent;
+                        break;
+                    default:
+                        totalSpentExpense += budget[i].spent; 
+                        expenseSpent_other += budget[i].spent;
+                        break;
+                }
+            }
+        }
+        
+        let expenseProcentage_book = 0;
+        let expenseProcentage_food = 0;
+        let expenseProcentage_insurance = 0;
+        let expenseProcentage_other = 0;
+        let expenseProcentage_phone = 0;
+        let expenseProcentage_rent = 0;
+        let expenseProcentage_transport = 0;
+        let expenseProcentage_tv = 0;
         
         prefixedSpentArr = [];
-        
-        let expenseSpent_book = bookDB[0].spent;
-        let expenseProcentage_book = Math.round((expenseSpent_book/totalSpentExpense)*100);
-        prefixedSpentArr.push({expenseSpent: expenseSpent_book, expenseProcentage: expenseProcentage_book});
-        
-        let expenseSpent_food = foodDB[0].spent;
-        let expenseProcentage_food = Math.round((expenseSpent_food/totalSpentExpense)*100);
-        prefixedSpentArr.push({expenseSpent: expenseSpent_food, expenseProcentage: expenseProcentage_food});
-
-        let expenseSpent_insurance = insuranceDB[0].spent;
-        let expenseProcentage_insurance = Math.round((expenseSpent_insurance/totalSpentExpense)*100);
-        prefixedSpentArr.push({expenseSpent: expenseSpent_insurance, expenseProcentage: expenseProcentage_insurance});
-        
-        let expenseSpent_other = otherDB[0].spent;
-        let expenseProcentage_other = Math.round((expenseSpent_other/totalSpentExpense)*100);
-        prefixedSpentArr.push({expenseSpent: expenseSpent_other, expenseProcentage: expenseProcentage_other});
-        
-        let expenseSpent_phone = phoneDB[0].spent;
-        let expenseProcentage_phone = Math.round((expenseSpent_phone/totalSpentExpense)*100);
-        prefixedSpentArr.push({expenseSpent: expenseSpent_phone, expenseProcentage: expenseProcentage_phone});
-        
-        let expenseSpent_rent = rentDB[0].spent;
-        let expenseProcentage_rent = Math.round((expenseSpent_rent/totalSpentExpense)*100);
-        prefixedSpentArr.push({expenseSpent: expenseSpent_rent, expenseProcentage: expenseProcentage_rent});
-        
-        let expenseSpent_transport = transportDB[0].spent;
-        let expenseProcentage_transport = Math.round((expenseSpent_transport/totalSpentExpense)*100);
-        prefixedSpentArr.push({expenseSpent: expenseSpent_transport, expenseProcentage: expenseProcentage_transport});
-        
-        let expenseSpent_tv = tvDB[0].spent;
-        let expenseProcentage_tv = Math.round((expenseSpent_tv/totalSpentExpense)*100);
-        prefixedSpentArr.push({expenseSpent: expenseSpent_tv, expenseProcentage: expenseProcentage_tv});
-        
+        if (expenseSpent_book != 0) {
+            expenseProcentage_book = Math.round((expenseSpent_book/totalSpentExpense)*100);
+            prefixedSpentArr.push({expenseSpent: expenseSpent_book, expenseProcentage: expenseProcentage_book});
+        }
+        if (expenseSpent_food != 0) {
+            expenseProcentage_food = Math.round((expenseSpent_food/totalSpentExpense)*100);
+            prefixedSpentArr.push({expenseSpent: expenseSpent_food, expenseProcentage: expenseProcentage_food});
+        }
+        if (expenseSpent_insurance != 0) {
+            expenseProcentage_insurance = Math.round((expenseSpent_insurance/totalSpentExpense)*100);
+            prefixedSpentArr.push({expenseSpent: expenseSpent_insurance, expenseProcentage: expenseProcentage_insurance});
+        } 
+        if (expenseSpent_other != 0) {
+            expenseProcentage_other = Math.round((expenseSpent_other/totalSpentExpense)*100);
+            prefixedSpentArr.push({expenseSpent: expenseSpent_other, expenseProcentage: expenseProcentage_other});
+        } 
+        if (expenseSpent_phone != 0) {
+            expenseProcentage_phone = Math.round((expenseSpent_phone/totalSpentExpense)*100);
+            prefixedSpentArr.push({expenseSpent: expenseSpent_phone, expenseProcentage: expenseProcentage_phone});
+        } 
+        if (expenseSpent_rent != 0) {
+            expenseProcentage_rent = Math.round((expenseSpent_rent/totalSpentExpense)*100);
+            prefixedSpentArr.push({expenseSpent: expenseSpent_rent, expenseProcentage: expenseProcentage_rent});
+        } 
+        if (expenseSpent_transport != 0) {
+            expenseProcentage_transport = Math.round((expenseSpent_transport/totalSpentExpense)*100);
+            prefixedSpentArr.push({expenseSpent: expenseSpent_transport, expenseProcentage: expenseProcentage_transport});
+        } 
+        if (expenseSpent_tv != 0) {
+            expenseProcentage_tv = Math.round((expenseSpent_tv/totalSpentExpense)*100);
+            prefixedSpentArr.push({expenseSpent: expenseSpent_tv, expenseProcentage: expenseProcentage_tv});
+        } else {
+            prefixedSpentArr.push({expenseSpent: expenseSpent_book, expenseProcentage: 0});
+            prefixedSpentArr.push({expenseSpent: expenseSpent_food, expenseProcentage: 0});
+            prefixedSpentArr.push({expenseSpent: expenseSpent_insurance, expenseProcentage: 0});
+            prefixedSpentArr.push({expenseSpent: expenseSpent_other, expenseProcentage: 0});
+            prefixedSpentArr.push({expenseSpent: expenseSpent_phone, expenseProcentage: 0});
+            prefixedSpentArr.push({expenseSpent: expenseSpent_rent, expenseProcentage: 0});
+            prefixedSpentArr.push({expenseSpent: expenseSpent_transport, expenseProcentage: 0});
+            prefixedSpentArr.push({expenseSpent: expenseSpent_tv, expenseProcentage: 0});
+        }
+            
         // for the total table
         let procentOfIncome = Math.round((totalSpent/totalIncome)*100);
         let procentOfExpected = Math.round((totalSpent/totalExpected)*100);

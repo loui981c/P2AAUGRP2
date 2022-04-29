@@ -104,11 +104,7 @@
           </tr>
           <tr>
             <% for( let i = 0; i < prefixedSpentArr.length; i++ ) { %>
-              <% if (prefixedSpentArr[i].expenseSpent > prefixed[i].high) { %>
-                <td class="neg"> <%= prefixedSpentArr[i].expenseSpent %> Kr.</td>
-              <% } else { %>
-                <td class="pos"> <%= prefixedSpentArr[i].expenseSpent %> Kr.</td>
-                <% } %>
+              <td><%= prefixedSpentArr[i].expenseSpent %> Kr.</td>
             <% } %>
           </tr>  
           <tr>
