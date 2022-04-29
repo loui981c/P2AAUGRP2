@@ -355,6 +355,7 @@ h1, label {
     margin: auto;
     margin-bottom: 2%;
     width: 48.2%;
+    cursor: pointer;
 }
 
 .divider{
