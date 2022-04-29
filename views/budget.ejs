@@ -74,14 +74,13 @@
       <div class="recommendedBudgetBox">
         <table class="recommendedBudgetTable">
           <tr>
-            <th colspan="8" class="biggerHeader">recommended expenses: <%= lowRecommended %> - <%= highRecommended %> KR.</td>
-          </tr>
-          <tr>
+            <th></th>
             <% for( let i = 0; i < prefixed.length; i++ ) { %>
-              <th class="normalHeader"> <%= prefixed[i].prefixed %> </th>
+              <th> <%= prefixed[i].prefixed %> </th>      
             <% } %>
           </tr>
           <tr>
+            <th class="headersLeft">Rec. Amount</th>
             <% for( let i = 0; i < prefixed.length; i++ ) { %>
               <% if (prefixed[i].low == prefixed[i].high) { %>
                 <td> <%= prefixed[i].low %> KR.</td>
@@ -91,23 +90,13 @@
             <% } %>
           </tr>
           <tr>
-            <% for( let i = 0; i < prefixed.length; i++ ) { %>
-              <% if (prefixed[i].lowP == prefixed[i].highP) { %>
-                <td> <%= prefixed[i].lowP %> %</td>
-              <% } else { %>
-                <td> <%= prefixed[i].lowP %> - <%= prefixed[i].highP %> %</td>
-                <% } %>
-            <% } %>
-          </tr>
-          <tr>
-            <th colspan="8" class="biggerHeader">Your expenses: <%= totalSpentExpense %> KR.</td>
-          </tr>
-          <tr>
+            <th class="headersLeft">Your Amount</th>
             <% for( let i = 0; i < prefixedSpentArr.length; i++ ) { %>
               <td><%= prefixedSpentArr[i].expenseSpent %> Kr.</td>
             <% } %>
-          </tr>  
+          </tr>
           <tr>
+            <th class="headersLeft">Deviation</th>
             <% for( let i = 0; i < prefixedSpentArr.length; i++ ) { %>
               <% if (prefixedSpentArr[i].expenseProcentage > prefixed[i].highP) { %>
                 <td class="neg"> <%= prefixedSpentArr[i].expenseProcentage %> %</td>
@@ -115,8 +104,7 @@
                 <td class="pos"> <%= prefixedSpentArr[i].expenseProcentage %> %</td>
                 <% } %>
             <% } %>
-          </tr> 
-
+          </tr>
         </table>
       </div>
     </div>

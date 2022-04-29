@@ -355,6 +355,7 @@ h1, label {
     margin: auto;
     margin-bottom: 2%;
     width: 48.2%;
+    cursor: pointer;
 }
 
 .divider{
@@ -415,6 +416,20 @@ h1, label {
     padding: 2.5% 1.5% 1.5% 1.5%;
   }
 .recommendedBudgetTable td {
+    font-family: bebas;
+    text-align: center;
+    font-size: 1vw;
+    padding-bottom: 1.5%;
+    padding-top: 1%;
+}
+.recommendedBudgetTable .headersLeft {
+    font-family: bebas;
+    text-align: start;
+    font-size: 1vw;
+    padding-bottom: 1.5%;
+    padding-top: 1%;
+}
+.recommendedBudgetTable th {
     font-family: bebas;
     text-align: center;
     font-size: 1vw;
