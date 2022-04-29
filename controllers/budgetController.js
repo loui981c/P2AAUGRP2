@@ -1,7 +1,5 @@
 let Transaction = require('../schemas/transactionSchema');
 let Budget = require('../schemas/budgetSchema');
-let Income = require('../schemas/incomeSchema');
-let Expense = require('../schemas/expenseSchema');
 let async = require('async');
 
 /*

@@ -1,7 +1,5 @@
 const Transaction = require('../schemas/transactionSchema');
 const Budget = require('../schemas/budgetSchema');
-const Income = require('../schemas/incomeSchema');
-const Expense = require('../schemas/expenseSchema');
 const async = require('async');
 
 // display all transactions
