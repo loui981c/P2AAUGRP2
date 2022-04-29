@@ -47,10 +47,13 @@
     if (toggle % 2 == 0) {
       document.getElementById("expense").style.display = "block";
       document.getElementById("income").style.display = "none";
+      document.getElementById("checkBoxSlider").value = "unchecked";
+      
     } else {
-  
+      
       document.getElementById("expense").style.display = "none";
       document.getElementById("income").style.display = "block";
+      document.getElementById("checkBoxSlider").value = "checked";
     }
   
 } 
