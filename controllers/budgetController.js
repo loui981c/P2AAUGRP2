@@ -118,11 +118,11 @@ exports.budgetOverview_get = function (req, res, next) {
                 }
             }
             remaining = budget[i].expected - spent;
-            budgetData.push({_id: budget[i]._id, income: budget[i].income, category: budget[i].category, expected: budget[i].expected, colourInput: budget[i].colourInput, spent: spent, 
-            remaining: remaining});
+            budgetData.push({ income: budget[i].income, category: budget[i].category, expected: budget[i].expected, 
+                spent: spent, remaining: remaining});
             
             // updates the database with values
-            let id = budget[i]._id.toString();
+            let id = budget[i]._id;
             Budget.findByIdAndUpdate(
                 {_id: id}, 
                 { $set: 
@@ -318,14 +318,14 @@ exports.budgetOverview_get = function (req, res, next) {
             prefixedSpentArr.push({expenseSpent: expenseSpent_tv, expenseProcentage: 0});
         }
         
-
+        
         // for the total table
         let procentOfIncome = Math.round((totalSpent-totalIncome)/((totalSpent+totalIncome)/2)*100)
         let procentOfExpected = Math.round((totalSpent-totalExpected)/((totalSpent+totalExpected)/2)*100);
         
         res.render("budget", { budgetData: budgetData, totalExpected: totalExpected, totalIncome: totalIncome, totalSpent: totalSpent, totalRemaining: totalRemaining, 
             totalAvailable: totalAvailable, procentOfIncome: procentOfIncome, procentOfExpected: procentOfExpected, prefixed: prefixedCategories, lowRecommended: lowRecommended, 
-            highRecommended: highRecommended, prefixedSpentArr: prefixedSpentArr, totalSpentExpense: totalSpentExpense});
+            highRecommended: highRecommended, prefixedSpentArr: prefixedSpentArr});
     });
 };
 
