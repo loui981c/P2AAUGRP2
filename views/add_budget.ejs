@@ -11,9 +11,10 @@
       <%# Toggle switch %> 
       <div class="switchBox">
         <label class="switch">
-          <input type="checkbox" onclick="sliderToggle()" id="checkBoxSlider" name="income">
+          <input type="checkbox" onclick="sliderToggle()" id="checkBoxSlider" name="switch">
           <span class="slider round"></span>
         </label>
+        <input type="text" id="incomeTemp" name="income" value="unchecked" style="display: none;">
       </div>
       <%# Categories %>
       <div class="categoriesCheckbox">
@@ -40,22 +41,27 @@
     let toggle = 2;
     document.getElementById("expense").style.display = "block";
     document.getElementById("income").style.display = "none";
+    let tempIncomeValue = document.getElementById("incomeTemp").value;
+
   function sliderToggle() {
 
     toggle+=1;
-    console.log(toggle);
+    
     if (toggle % 2 == 0) {
       document.getElementById("expense").style.display = "block";
       document.getElementById("income").style.display = "none";
-      document.getElementById("checkBoxSlider").value = "unchecked";
+      tempIncomeValue = "unchecked";
       
     } else {
       
       document.getElementById("expense").style.display = "none";
       document.getElementById("income").style.display = "block";
-      document.getElementById("checkBoxSlider").value = "checked";
+      tempIncomeValue = "checked";
+
     }
-  
+    console.log(tempIncomeValue);
+    console.log(toggle);
+
 } 
   </script>
 

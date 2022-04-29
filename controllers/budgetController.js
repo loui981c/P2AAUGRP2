@@ -685,7 +685,7 @@ exports.addBudget_post = function (req, res) {
     let category = body.category;
     let expected = body.expected;
     let income = false;
-    if (body.income = "on") {
+    if (body.income == "checked") {
         income = true;
     }
     else{
@@ -756,7 +756,7 @@ exports.edit_budget_post = function (req, res, next) {
                         remaining: remaining
                     }
                 }).exec(function(err, result) {
-                    if (err) {
+                    if (err ) {
                         res.send(err);
                     }
                     else {
