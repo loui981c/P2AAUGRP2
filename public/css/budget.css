@@ -438,11 +438,11 @@ h1, label {
     padding-top: 1%;
 }
 
-/* toggle switch */
+/* toggle switch the box */
 .switch {
   position: relative;
   display: inline-block;
-  width: 4.6vw; 
+  width: 4.6vw;
   height: 2.5vw;
 }
 
@@ -452,6 +452,7 @@ h1, label {
   height: 0;
 }
 
+/* background of the box */
 .slider {
   position: absolute;
   cursor: pointer;
@@ -464,6 +465,7 @@ h1, label {
   transition: .4s;
 }
 
+/* the circle */
 .slider:before {
   position: absolute;
   content: "";
@@ -484,10 +486,11 @@ input:focus + .slider {
   box-shadow: 0 0 1px green;
 }
 
+/* the sliding of the little circle */
 input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
+  -webkit-transform: translateX(50%);
+  -ms-transform: translateX(50%);
+  transform: translateX(105%);
 }
 
 /* Rounded sliders */
