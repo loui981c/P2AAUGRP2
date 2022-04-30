@@ -1,0 +1,49 @@
+<%- include ("partials/header.ejs") %>
+<body>
+  <%- include ("partials/sidebar.ejs") %>
+  <div class="addSavingsPage">
+    <h1>Add A new Savings Goal</h1>
+
+    <%# Form to add/create budget %>
+    <form action="/savings/add" method="POST">
+      <%# name %>
+      <div class="categoriesCheckbox">
+          <label for="categoriesCheckbox">Name</label>
+          <input class="basicInput" type="text" name="name" id="name" required>
+        </div>
+    
+    <%# Categories %>
+
+
+      <label for="img">Choose type</label>
+        <div class="catCheckBoxOuter">
+            <% for (e of emojis){ %> 
+            <div class="catCheckbox">
+                <label for="category>"><%= e%></label>
+                <input type="radio" name="img" id="img>" value="<%= e%>" required>
+            </div>
+            <% } %> 
+        </div>
+        
+      <%# Expected %>
+
+      <div class="expectedInput">
+          <label for="expectedInput">Amount</label>
+          <input class="basicInput" type="number" name="amount" id="amount" required>
+      </div>
+      <div class="expectedInput">
+          <label for="epm">Expected transfer per month</label>
+          <input class="basicInput" type="number" name="epm" id="epm" required>
+      </div>
+      <div>
+        <label for="colourInput">Colour</label>
+        <input class="colourInput" type="color" name="colourInput" id="colourInput" required>
+      </div>
+
+      <input type="number" value="0" name="progress" id="progress" style="display: none;">
+
+      <button class="submitButton" type="submit">Submit</button>
+    </form>
+  </div>
+</body>
+</html>

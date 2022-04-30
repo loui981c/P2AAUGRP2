@@ -1,254 +1,297 @@
 var express = require('express');
 var router = express.Router();
-const Transaction = require("../schemas/transactionSchema") 
+var transaction_controller = require('../controllers/transactionController')
+const Transaction = require("../schemas/transactionSchema")
+const Budget = require("../schemas/budgetSchema")
 
-let categories = ["Rent", "Savings", "Food", "Income", "Subs", "Fun", "Misc."];
+
 /* GET transaction page. */
-router.get('/', function(req, res, next) {
+router.get('/', transaction_controller.transactionOverview_get);
 
-  //fetch transactions from database 
-  Transaction.find((err, trans)=>{
-    if(!err)
-    {
-      
-       //categories from list of all fethced transactions
-        for(let i = 0; i<trans.length; i++)
-        {
-           if(!categories.includes(trans[i].mainCategory))
-          {
-            categories.push(trans[i].mainCategory)
-          }
-        }
-
-        //get first and last thay of the current month
-          
-          today = new Date();
-          //first day
-          todayMonth = today.getMonth() + 1;
-          todayYear = today.getFullYear();
-          firstDay = "01";
-
-          if(todayMonth < 10){
-              todayMonth = "0" + todayMonth;
-          }
-          firstOutputDate = todayYear + "-" + todayMonth + "-" + firstDay;
-
-          //last Day
-          lastDay = new Date(todayYear, todayMonth, 0);
-          lastDay = lastDay.getDate();
-
-          lastOutPutDate = todayYear + "-" + todayMonth + "-" + lastDay;
-          
-          transactionsWithCorrectDates = [];
-
-          for(t of trans)
-          {
-            //convert format of transaction date to one that matches output dates
-            tempDate =  t.date 
-            tDay = tempDate.getDate();
-            tMonth = tempDate.getMonth() + 1;
-            tYear = tempDate.getFullYear();
-
-            if (tDay < 10)
-            {
-              tDay = "0" + tDay
-            }
-            if (tMonth < 10)
-            {
-              tMonth = "0" + tMonth
-            }
-            correctDate = tYear + "-" + tMonth + "-" + tDay;;
-
-            //add t to transactionsWithCorrectDates if it matches the first or last date of the current month
-            if(correctDate.replaceAll("-", "") >= firstOutputDate.replaceAll("-", "") && correctDate.replaceAll("-", "") <= lastOutPutDate.replaceAll("-", ""))
-            {
-              transactionsWithCorrectDates.push(t);          
-
-            }
-          }
-          console.log(transactionsWithCorrectDates);
-
-      transactionsWithCorrectDates.sort((a, b) =>  b.date - a.date)
-      res.render("transactions", {firstDay: firstOutputDate, lastDay: lastOutPutDate, categories: categories, allTransactions: transactionsWithCorrectDates, currentCategory: "AllCategories"});
-    }
-  })
-});
-
-router.get("/categories", (req,res)=>{
+router.get("/categories", (req, res) => {
 })
 
-router.post("/categories", (req,res)=>{
-  
-  globalStartDate = req.body.dateFrom;
-  globalStartEnd = req.body.dateTo;
-  if (req.body.categories == "AllCategories")
-  {
-    
-    Transaction.find((err, trans)=>{
-      if(!err)
-      {
-       
-          transactionsWithCorrectDates = [];
-  
-          for(t of trans)
-          {
-            //convert format of transaction date to one that matches output dates
-            tempDate =  t.date 
+router.post("/categories", (req, res) => {
+
+  const budgetPromise = Budget.find();
+  const transactionPromise = Transaction.find()
+
+  Promise.all([budgetPromise, transactionPromise]).then(([budget, trans]) => {
+
+    //fetch all categories to choose from
+    let categories = []
+    for (b of budget) {
+      categories.push(b.category)
+    }
+
+    //if category is AllCategories, then show all categories
+    if (req.body.categories == "AllCategories") {
+      transactionsWithCorrectDates = [];
+      incomeOrExpense = [];
+      //iterate through all transactions convert date and them expamine date according to dateFrom and DateTo
+      for (t of trans) {
+        //convert format of transaction date to one that matches output dates
+        tempDate = t.date
+        tDay = tempDate.getDate();
+        tMonth = tempDate.getMonth() + 1;
+        tYear = tempDate.getFullYear();
+
+        if (tDay < 10) {
+          tDay = "0" + tDay
+        }
+        if (tMonth < 10) {
+          tMonth = "0" + tMonth
+        }
+        correctDate = tYear + "-" + tMonth + "-" + tDay;;
+
+        //add t to transactionsWithCorrectDates if it matches the first or last date of the current month
+        if (correctDate.replaceAll("-", "") >= req.body.dateFrom.replaceAll("-", "") && correctDate.replaceAll("-", "") <= req.body.dateTo.replaceAll("-", "")) {
+          transactionsWithCorrectDates.push(t);
+          for (b of budget) {
+            if (b.category == t.mainCategory) {
+              incomeOrExpense.push({income: b.income});
+            }
+          }
+        }
+      }
+      console.log(transactionsWithCorrectDates);
+      //sort these transacions by date
+      transactionsWithCorrectDates.sort((a, b) => b.date - a.date)
+
+      console.log("all transactions with good dates: " + transactionsWithCorrectDates)
+
+      //monthly stuff
+      //monthly
+      let categoriesWithPricesAndColours = [];
+      for (b of budget) {
+
+        if (categoriesWithPricesAndColours.filter(e => e.category == b.category).length == 0 && b.income != true) {
+          let sum = 0;
+          //go through transactions and find correct dates.
+          for (t of trans) {
+            //dates
+            tempDate = t.date
+            tDay = tempDate.getDate();
+            tMonth = tempDate.getMonth() + 1;
+            tYear = tempDate.getFullYear(); 
+
+            if (tDay < 10) {
+              tDay = "0" + tDay
+            }
+            if (tMonth < 10) {
+              tMonth = "0" + tMonth
+            }
+
+            correctDate = tYear + "-" + tMonth + "-" + tDay;;
+
+            //add t to transactionsWithCorrectDates if it matches the first or last date of the current month
+            if (correctDate.replaceAll("-", "") >= req.body.dateFrom.replaceAll("-", "") && correctDate.replaceAll("-", "") <= req.body.dateTo.replaceAll("-", "")) {
+
+              if (t.mainCategory == b.category) {
+                sum += t.price
+              }
+            }
+
+          }
+          if (sum > 0) {
+            categoriesWithPricesAndColours.push({ income: b.income, category: b.category.toUpperCase(), colour: b.colourInput, amount: sum })
+          }
+        }
+      }
+      //apparently the data needs to be in separate arrays for this to work. 
+      //I tried with one whole object but because a workaround for exchanging serverside data with client side data, It was done this way
+      let mcategories = []
+      let mprices = []
+      let mcolours = []
+      for (c of categoriesWithPricesAndColours) {
+        mcategories.push(c.category)
+        mprices.push(c.amount)
+        mcolours.push(c.colour)
+      }
+
+      console.log(mcategories)
+      console.log(mprices)
+      console.log(mcolours)
+
+      mtotalSpent = 0;
+      for (c of categoriesWithPricesAndColours) {
+        if (c.income !== true) {
+          mtotalSpent += c.amount;
+        }
+      };
+      //monthly
+
+      //monthly stuff
+
+
+      res.render("transactions", { mspent: mtotalSpent, mcategories: mcategories, mprices: mprices, mcolours: mcolours, firstDay: req.body.dateFrom, lastDay: req.body.dateTo, 
+        categories: categories, allTransactions: transactionsWithCorrectDates, currentCategory: req.body.categories, incomeOrExpense: incomeOrExpense })
+    }
+    //if category is anything else from all categories, do this
+    else {
+      let narrowedCategories = [];
+      console.log(req.body)
+      //add all categories to narrowedCategories if they match post request
+      for (t of trans) {
+        if (t.mainCategory == req.body.categories) {
+          narrowedCategories.push(t)
+        }
+      }
+
+
+      transactionsWithCorrectDates = [];
+      incomeOrExpense = [];
+      for (t of narrowedCategories) {
+        //convert format of transaction date to one that matches output dates
+        tempDate = t.date
+        tDay = tempDate.getDate();
+        tMonth = tempDate.getMonth() + 1;
+        tYear = tempDate.getFullYear();
+
+        if (tDay < 10) {
+          tDay = "0" + tDay
+        }
+        if (tMonth < 10) {
+          tMonth = "0" + tMonth
+        }
+        correctDate = tYear + "-" + tMonth + "-" + tDay;;
+
+        //add t to transactionsWithCorrectDates if it matches the first or last date of the current month
+        if (correctDate.replaceAll("-", "") >= req.body.dateFrom.replaceAll("-", "") && correctDate.replaceAll("-", "") <= req.body.dateTo.replaceAll("-", "")) {
+          transactionsWithCorrectDates.push(t);
+          for (b of budget) {
+            if (b.category == t.mainCategory) {
+              incomeOrExpense.push({income: b.income});
+            }
+          }
+        }
+      }
+      console.log(transactionsWithCorrectDates);
+
+      //sort these transacions by date
+      transactionsWithCorrectDates.sort((a, b) => b.date - a.date)
+      console.log("all transactions with good dates: " + transactionsWithCorrectDates)
+
+      //monthly
+      //monthly
+      let categoriesWithPricesAndColours = [];
+      for (b of budget) {
+
+        if (categoriesWithPricesAndColours.filter(e => e.category == b.category).length == 0 && b.income != true) {
+          let sum = 0;
+          //go through transactions and find correct dates.
+          for (t of trans) {
+            //dates
+            tempDate = t.date
             tDay = tempDate.getDate();
             tMonth = tempDate.getMonth() + 1;
             tYear = tempDate.getFullYear();
-  
-            if (tDay < 10)
-            {
+
+            if (tDay < 10) {
               tDay = "0" + tDay
             }
-            if (tMonth < 10)
-            {
+            if (tMonth < 10) {
               tMonth = "0" + tMonth
             }
+
             correctDate = tYear + "-" + tMonth + "-" + tDay;;
-  
+
             //add t to transactionsWithCorrectDates if it matches the first or last date of the current month
-            if(correctDate.replaceAll("-", "") >= req.body.dateFrom.replaceAll("-", "") && correctDate.replaceAll("-", "") <= req.body.dateTo.replaceAll("-", ""))
-            {
-              transactionsWithCorrectDates.push(t);          
-  
+            if (correctDate.replaceAll("-", "") >= req.body.dateFrom.replaceAll("-", "") && correctDate.replaceAll("-", "") <= req.body.dateTo.replaceAll("-", "")) {
+
+              if (t.mainCategory == b.category) {
+                sum += t.price
+              }
             }
+
           }
-          console.log(transactionsWithCorrectDates);
-  
-        //
-  
-          transactionsWithCorrectDates.sort((a, b) =>  b.date - a.date)
-          res.render("transactions", {firstDay: req.body.dateFrom, lastDay: req.body.dateTo, categories: categories, allTransactions: transactionsWithCorrectDates, currentCategory: req.body.categories})
-      }
-    })
-
-  }
-  else{
-
-  //find categories withing the post above
-  Transaction.find((err, trans)=>{
-    if(!err)
-    {
-      let narrowedCategories = [];
-      console.log(req.body)
-      for (let i = 0; i<trans.length; i++)
-      {
-        if (trans[i].mainCategory == req.body.categories)
-        {
-            narrowedCategories.push(trans[i])
-        }
-      }
-        transactionsWithCorrectDates = [];
-
-        for(t of narrowedCategories)
-        {
-          //convert format of transaction date to one that matches output dates
-          tempDate =  t.date 
-          tDay = tempDate.getDate();
-          tMonth = tempDate.getMonth() + 1;
-          tYear = tempDate.getFullYear();
-
-          if (tDay < 10)
-          {
-            tDay = "0" + tDay
-          }
-          if (tMonth < 10)
-          {
-            tMonth = "0" + tMonth
-          }
-          correctDate = tYear + "-" + tMonth + "-" + tDay;;
-
-          //add t to transactionsWithCorrectDates if it matches the first or last date of the current month
-          if(correctDate.replaceAll("-", "") >= req.body.dateFrom.replaceAll("-", "") && correctDate.replaceAll("-", "") <= req.body.dateTo.replaceAll("-", ""))
-          {
-            transactionsWithCorrectDates.push(t);          
-
+          if (sum > 0) {
+            categoriesWithPricesAndColours.push({ income: b.income, category: b.category.toUpperCase(), colour: b.colourInput, amount: sum })
           }
         }
-        console.log(transactionsWithCorrectDates);
+      }
+      //apparently the data needs to be in separate arrays for this to work. 
+      //I tried with one whole object but because a workaround for exchanging serverside data with client side data, It was done this way
+      let mcategories = []
+      let mprices = []
+      let mcolours = []
+      for (c of categoriesWithPricesAndColours) {
+        mcategories.push(c.category)
+        mprices.push(c.amount)
+        mcolours.push(c.colour)
+      }
 
-      //
+      console.log(mcategories)
+      console.log(mprices)
+      console.log(mcolours)
 
-        trans.sort((a, b) =>  b.date - a.date)
-        res.render("transactions", {firstDay: req.body.dateFrom, lastDay: req.body.dateTo, categories: categories, allTransactions: transactionsWithCorrectDates, currentCategory: req.body.categories})
+      mtotalSpent = 0;
+      for (c of categoriesWithPricesAndColours) {
+        if (c.category != true) {
+          mtotalSpent += c.amount;
+        }
+      };
+      //monthly
+
+      //monthly
+
+      res.render("transactions", { mspent: mtotalSpent, mcategories: mcategories, mprices: mprices, mcolours: mcolours, firstDay: req.body.dateFrom, lastDay: req.body.dateTo, 
+        categories: categories, allTransactions: transactionsWithCorrectDates, currentCategory: req.body.categories, incomeOrExpense: incomeOrExpense })
     }
   })
-}
-  
 })
 
 //CRUD from this point on
-router.get("/add", (req,res)=>{
 
-  //categories from list of all transactions - this can be improved upon when actually using datebase
+router.get("/add", transaction_controller.addTransactions_get);
 
-  res.render("transactions_add", {categories: categories});
-
-})
-
-
-
-router.post("/add", (req,res)=>{
-
-  //create model from transactionSchema and save it in the database. 
-  //Also: catch errors
-  let transaction = new Transaction(req.body)
-  transaction.save().then(item => {
-    console.log("saved to database: "+ transaction)
-  }).catch((err)=>{
-    res.status(400).send("something went wrong when saving to database")
-  })
-  res.redirect("/transactions")
-})
+router.post("/add", transaction_controller.addTransactions_post);
 
 //for deleting 
-router.post("/:id/delete", (req,res)=>{
-  console.log("hi")
-  Transaction.findByIdAndRemove(req.params.id).then(t =>{
-    if (!t)
-    {
-      return res.status(404).send()
-    }
-    res.redirect("/transactions")
-
-  }).catch(err=>{
-      res.status(500).send(err);
-  })
-})
-
+router.post("/:id/delete", transaction_controller.deleteTransactions_post);
 
 //for editing
-router.get("/edit/:id", (req,res)=>{
+router.get("/edit/:id", (req, res) => {
 
   //find current transaction and inputs it into the transactions_update view - this improves user experience
-  Transaction.findById(req.params.id).then(transToUpdate =>{
-    if (!transToUpdate)
-    {
-      return res.status(404).send()
-    }
-    res.render("transactions_update", {transaction: transToUpdate, categories: categories})
 
-  }).catch(err=>{
-      res.status(500).send(err);
+  const budgetPromise = Budget.find();
+  const transactionPromise = Transaction.findById(req.params.id)
+
+  Promise.all([budgetPromise, transactionPromise]).then(([budget, trans]) => {
+
+    let categories = []
+
+    for (b of budget) {
+      console.log(b)
+      categories.push(b.category)
+    }
+
+    res.render("transactions_update", { transaction: trans, categories: categories })
   })
 })
 
 //for editing
-router.post("/edit/:id", (req,res)=>{
+router.post("/edit/:id", (req, res) => {
 
-  Transaction.findByIdAndUpdate(req.params.id, req.body).then(t =>{
-    if (!t)
-    {
+  Transaction.findByIdAndUpdate(req.params.id, req.body).then(t => {
+    if (!t) {
       return res.status(404).send()
     }
     res.redirect("/transactions")
 
-  }).catch(err=>{
-      res.status(500).send(err);
+  }).catch(err => {
+    res.status(500).send(err);
   })
-})
+});
 
+router.get("/add/income", transaction_controller.add_income_get);
+
+router.get("/add/income", transaction_controller.add_income_post);
+
+router.get("/add/expense", transaction_controller.add_expense_get);
+
+router.get("/add/expense", transaction_controller.add_expense_post);
 
 module.exports = router;
+

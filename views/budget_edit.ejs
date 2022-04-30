@@ -1,0 +1,79 @@
+<%- include ("partials/header.ejs") %>
+<body>
+  <%- include ("partials/sidebar.ejs") %>
+  
+  <div class="addBudgetPage">
+    <h1>Edit Budget: <br> <%= budget.category %></h1>
+
+    <%# Form to add/create budget %>
+    <form action="/budget/<%= budget._id %>/edit" method="POST">
+      <%# Categories %>
+      <h2 class="headers" id="income">income Category</h2>
+      <h2 class="headers" id="expense">Expense Category</h2>
+      <%# Toggle switch %> 
+      <div class="switchBox">
+        <label class="switch">
+          <input type="checkbox" onclick="sliderToggle()" id="checkBoxSlider" name="income">
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div class="categoriesCheckbox">
+          <label for="categoriesCheckbox">Category</label>
+          <input class="basicInput" type="text" name="category" id="category" value="<%= budget.category %>" required>
+      </div>
+      <%# Expected %>
+      <div class="expectedInput">
+          <label for="expectedInput">Expected</label>
+          <input class="basicInput" type="number" name="expected" id="expected" value="<%= budget.expected %>" required>
+      </div>
+      <%# Colour %>
+      <div>
+        <label for="colourInput">Colour</label>
+        <input class="colourInput" type="color" name="colourInput" id="colourInput" value="<%= budget.colourInput %>" required>
+      </div>
+
+      <%# Old category name this is invisible %>
+      <input type="text" name="old" id="old" value="<%= budget.category %>" style="display: none;">
+      <input type="text" id="toggleValue" name="toggleValue" value="false" style="display: none;">
+
+      <button class="submitBudget" type="submit" id="sumbitBtn">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    document.getelementById('sumbitBtn').addEventListener('click', loadFunction);
+    function loadFunction() {
+      location.pathname='http://localhost:3000/budget';
+    }
+  </script>
+  <script>
+    let toggle = false;
+    document.getElementById("expense").style.display = "block";
+    document.getElementById("income").style.display = "none";
+    
+    let tempIncomeValue = document.getElementById("incomeTemp").value;
+
+  function sliderToggle() {
+
+    toggle = !toggle;
+    
+    if (!toggle) {
+      document.getElementById("toggleValue").value = "false";
+      document.getElementById("expense").style.display = "block";
+      document.getElementById("income").style.display = "none";
+      
+    } else {
+      
+      document.getElementById("toggleValue").value = "true";
+      document.getElementById("expense").style.display = "none";
+      document.getElementById("income").style.display = "block";
+
+    }
+    console.log(tempIncomeValue);
+    console.log(toggle);
+
+} 
+  </script>
+
+</body>
+</html>

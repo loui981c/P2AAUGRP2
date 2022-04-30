@@ -3,25 +3,58 @@
     <%- include ("partials/sidebar.ejs") %> 
 
     <div class="transactionPageAdd">
-    <h1>Edit transaction</h1>
+    <h1>Edit Transaction: <br> <%= transaction.subCategory %> </h1>
 
    
     <%# Showing all categories provided in transactions.ejs%>
     <form action="/transactions/edit/<%= transaction._id %>" method="post">
+        <label for="mainCategory">category</label>
+        <div class="catGrid">
+            <div>
+                <h3 class="subTitle">- Expenses</h3>
+                <div class="catCheckBoxOuter">
+                    <% for (let i = 0; i<categories.length; i++){ if(!categories[i].toLowerCase().includes("savings")){ %> 
+                    <div class="catCheckbox">
+                        <label for="category>"><%= categories[i]%></label>
+                        <% if (categories[i] == transaction.mainCategory){ %> 
+                            <input checked="checked" type="radio" name="mainCategory" id="mainCategory" value="<%= categories[i]%>" required>
+                            <% }else{ %> 
+                                <input type="radio" name="mainCategory" id="mainCategory" value="<%= categories[i]%>"  required>
+                            <% } %> 
+                    </div>
+                    <% }} %> 
+                </div>
+            </div>
+            <div>
+                <h3 class="subTitle">- Savings</h3>
+                <div class="catCheckBoxOuter">
+                    <% for (let i = 0; i<categories.length; i++){ if(categories[i].toLowerCase().includes("savings")){ %> 
+                    <div class="catCheckbox">
+                        <label for="category>"><%= categories[i]%></label>
+                        <% if (categories[i] == transaction.mainCategory){ %> 
+                            <input checked="checked" type="radio" name="mainCategory" id="mainCategory>" value="<%= categories[i]%>" required>
+                            <% }else{ %> 
+                                <input type="radio" name="mainCategory" id="mainCategory>" value="<%= categories[i]%>"  required>
+                            <% } %> 
+                    </div>
+                    <%  }} %> 
+                </div>
+            </div>
+        </div>
         
-        <label for="mainCategory">Choose Category</label>
+        <!-- <label for="mainCategory">Choose Category</label>
             <div id="catBoxOuter">
                 <% for (let i = 0; i<categories.length; i++){ %> 
                 <div class="catCheckbox" id="catCheckBox">
                     <label for="mainCategory>"><%= categories[i]%></label>
                     <% if (categories[i] == transaction.mainCategory){ %> 
-                    <input checked="checked" type="radio" name="mainCategory" id="mainCategory>" value="<%= categories[i]%>" onclick="oneCheckAtATime(this)" required>
+                    <input checked="checked" type="radio" name="mainCategory" id="mainCategory>" value="<%= categories[i]%>" required>
                     <% }else{ %> 
-                        <input type="radio" name="mainCategory" id="mainCategory>" value="<%= categories[i]%>" onclick="oneCheckAtATime(this)" required>
+                        <input type="radio" name="mainCategory" id="mainCategory>" value="<%= categories[i]%>"  required>
                     <% } %> 
                 </div>
                 <% } %> 
-            </div>
+            </div> -->
         <%# sub category%>
         <div class="subCatForm">
             <label for="subCategory">Sub category</label>
@@ -29,7 +62,7 @@
         </div>
         <%# price%>
         <div class="priceForm">
-            <label for="price">Price</label>
+            <label for="price">Amount</label>
             <input type="number" name="price" id="price" required value="<%= transaction.price %>">
         </div>
             <%# function for converting ugly date to pretty date. This can be implemented in controller %>

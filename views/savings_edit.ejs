@@ -1,0 +1,56 @@
+<%- include ("partials/header.ejs") %>
+<body>
+  <%- include ("partials/sidebar.ejs") %>
+  <div class="addSavingsPage">
+    <h1>Add A new Savings Goal</h1>
+
+    <%# Form to add/create budget %>
+    <form action="/savings/<%= sg._id %>/edit" method="POST">
+
+        <!-- old name -->
+        <input type="text" name="oldname" id="oldname" value="<%= sg.name %>(Savings)" style="display: none;">
+      <%# name %>
+      <div class="categoriesCheckbox">
+          <label for="categoriesCheckbox">Name</label>
+          <input class="basicInput" type="text" name="name" id="name" value="<%= sg.name %>" required>
+        </div>
+    
+    <%# Categories %>
+
+
+      <label for="img">Choose type</label>
+        <div class="catCheckBoxOuter">
+            <% for (e of emojis){ %> 
+            <div class="catCheckbox">
+                <label for="category>"><%= e%></label>
+                <% if (e == sg.img) { %> 
+                <input checked="checked" type="radio" name="img" id="img" value="<%= e%>" required>
+                <% }else{ %> 
+                    <input type="radio" name="img" id="img" value="<%= e%>" required>
+                <% } %>
+            </div>
+            <% } %> 
+        </div>
+        
+      <%# Expected %>
+
+      <div class="expectedInput">
+          <label for="expectedInput">Amount</label>
+          <input class="basicInput" type="number" name="amount" id="amount" value="<%= sg.amount %>" required>
+      </div>
+      <div class="expectedInput">
+          <label for="epm">Expected transfer per month</label>
+          <input class="basicInput" type="number" name="epm" id="epm" value="<%= sg.epm %>" required>
+      </div>
+      <div>
+        <label for="colourInput">Colour</label>
+        <input class="colourInput" type="color" name="colourInput" id="colourInput" value="<%= sg.colourInput %>" required>
+      </div>
+
+      <input type="number" value="<%= sg.progress %>" name="progress" id="progress" style="display: none;">
+
+      <button class="submitButton" type="submit">Submit</button>
+    </form>
+  </div>
+</body>
+</html>

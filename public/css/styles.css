@@ -45,7 +45,7 @@
   /* setting the font */
   font-family: bebas;
   /* font-size always be 1,75% of the current screen */
-  font-size: 1.7vw;
+  font-size: 1.6vw;
   /* setting padding around the links */
   padding: 8px 10px 0px 10px;
   /* removes the link underline and makes stack on top of each other */
@@ -56,22 +56,32 @@
   transition: 100ms;
 }
 
+
 /* moving the links down from the logo */
 .links-box {
   margin: 15px 2.5px 0px 2.5px;
 }
 
 /* when hover over links inside sidebar */
-.nav a:hover {
+.links-box a:hover {
   color: #ffffff;
+  transform: translateX(5%);
+  transition: 100ms;
 }
 
 /*changes color of the active link*/
 a.current{
   color: #ffffff;
+  transform: translateX(5%);
+  transition: 100ms;
 }
 
 /* makes the logo jump when hover */
 .logo:hover {
   transform: translateY(-5%);
+
 }
+
+
+/* sub actions smaller */
+

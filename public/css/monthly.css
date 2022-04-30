@@ -1,7 +1,7 @@
 /*Monthly page formatting*/
 .monthlyPage{
-    margin-left: 14%;
-    margin-right: 2%; 
+    margin-left: 7%;
+    margin-bottom: 1%;
 }
 
 /* the font for the page */
@@ -13,11 +13,11 @@ h1, select {
   font-size: 3vw;
 }
 
-
 /* makes dropdown in line */
 .chooseGraph {
+    display: block;
     font-size: 1.5vw;
-    float: left;
+    margin-left: 14%;
 }
 
 /* hidding the outline of dropdown when selecting */
@@ -37,16 +37,48 @@ h1, select {
     font-family: bebas;
     color: black;
     background-color: transparent;
-    border: solid 1px;
     border-color: black;
-    padding: 3%;
+    padding: 0.5%;
 }
 
 /*Graph menu positioning*/
 .chart_edit{
+    display: block;
     max-width: 60%;
-    width:100%; 
-    position: relative;
-    left: 2.5%;
-    margin:auto;
+    margin-left: 20%;
+    margin-bottom: 11.1%;
 }
+
+/* position the label inside piechart */
+.labelInsidePieChart {
+    font-size: 1.3vw;
+    font-family: bebas;
+    text-align: center;
+    z-index: 1;
+    margin-top: -27%;
+}
+
+.labelInsidePieChart p {
+    margin-top: -2.5%;
+}
+
+@media screen and (max-width: 900px) {
+    .labelInsidePieChart {
+        margin-top: -26.5%;
+    }
+}
+
+@media screen and (max-width: 671px) {
+    .labelInsidePieChart {
+        margin-top: -20%;
+        font-size: 1.2vw;
+    }
+};
+
+@media screen and (max-width: 575px) {
+    .labelInsidePieChart {
+        margin-top: -5%;
+        font-size: 1vw;
+    }
+};
+    

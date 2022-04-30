@@ -12,7 +12,7 @@ router.post("/", (req, res)=>{
   //this is if the user is trying to sign in
   if (req.body.login == "bob")
   {
-    res.redirect("/monthly")
+    res.redirect("/budget")
   //this is if the user is trying to create sign up
   }
   //this is if the user is trying to sign in, but its wrong

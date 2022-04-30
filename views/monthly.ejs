@@ -1,76 +1,76 @@
 <%- include ("partials/header.ejs") %>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
     <body>
         <%- include ("partials/sidebar.ejs") %>
         <div class="monthlyPage">
             <h1>Monthly Overview</h1>
-                <div class="chooseGraph">
-                <%# Dropdown for choosing graph type%>
-                    <label for="graphs">Choose Graph</label>
-                    <select name="graphs" id="graphs" onchange="changeChart(this)">
-                        <option value="doughnut">Pie Chart</option>
-                        <option value="bar">Bar Chart</option>
-                    </select>
-                </div>
+            <div class="chooseGraph">
+            <%# Dropdown for choosing graph type%>
+                <label for="graphs">Choose Graph</label>
+                <select name="graphs" id="graphs" onchange="changeChart(this)">
+                    <option value="doughnut">Expense Pie Chart</option>
+                    <option value="bar">Income Bar Chart</option>
+                </select>
             </div>
         </div>
-        
+            
         <div class ="chart_edit">
             <canvas id="myChart"></canvas>
             <%# Does nothing for appearance but is a workaround for transfering serverside date to script %> 
-            <div id="categoriesTransferNames" ><%= categories %></div>
-            <div id="categoriesTransferPrices" ><%= sumOfPrices %></div>
+            <div id="categoriesTransferNames" ><%= mcategories %></div>
+            <div id="categoriesTransferPrices" ><%= mprices %></div>
+            <div id="categoriesTransferColours" ><%= mcolours %></div>
+            <div class="labelInsidePieChart" id="labelInsidePieChart">
+                <p>Total Spent:</p> 
+                <p> <%= mspent %>  Kr.</p>
+            </div>
             <script>
-                //getting inner html and making it invisible
+
+                    //getting inner html and making it invisible
                     //cat labels
                     document.getElementById("categoriesTransferNames").style.display = "none"
                     let transferedCats = document.getElementById("categoriesTransferNames").innerHTML;
                     let catLabels = transferedCats.split(",")
+                    console.log(transferedCats);
 
                     //cat prices
                     document.getElementById("categoriesTransferPrices").style.display = "none"
                     let transferedPrices = document.getElementById("categoriesTransferPrices").innerHTML;
                     let catPrices = transferedPrices.split(",")
-
-
-
-                  
+                    console.log(transferedPrices);
                     
-                    console.log(catLabels);
-                    console.log(catPrices);
+                    //cat colors
+                    document.getElementById("categoriesTransferColours").style.display = "none"
+                    let transferedColours = document.getElementById("categoriesTransferColours").innerHTML;
+                    let catColors = transferedColours.split(",")
+                    console.log(transferedColours);
 
 
-                const data = {
+
+                const data1 = {
                     labels: catLabels,
                     datasets: [{
                         label: 'Expenses',
                         data: catPrices,
-                        backgroundColor: [
-                        'rgba(255, 26, 104, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(0, 0, 0, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                        ],
-                        borderColor: [
-                        'rgba(255, 26, 104, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(0, 0, 0, 1)',
-                        'rgba(255, 159, 64, 1)'
-                        ],
-                        borderWidth: 1
+                        backgroundColor: catColors,
+                    }]
+                };
+
+                const data2 = {
+                    labels: catLabels,
+                    datasets: [{
+                        label: 'Income',
+                        data: catPrices,
+                        backgroundColor: catColors,
                     }]
                 };
 
                 // config for dougnut chart
                 const config = {
                     type: 'doughnut',
-                    data,
+                    data1,
                     options: {
                     }
                 };
@@ -78,7 +78,7 @@
                 //config for bar chart
                 const config1 = {
                     type: 'bar',
-                    data,
+                    data2,
                     options: {
                         scales: {
                         y: {
@@ -98,6 +98,7 @@
                     myChart.destroy();
 
                     if (chartType.value === 'doughnut'){
+                        document.getElementById("labelInsidePieChart").style.display = "block"
                         myChart = new Chart(
                             document.getElementById('myChart'),
                             config
@@ -105,6 +106,7 @@
                     }
 
                     if (chartType.value === 'bar'){
+                        document.getElementById("labelInsidePieChart").style.display = "none"
                         myChart = new Chart(
                             document.getElementById('myChart'),
                             config1
