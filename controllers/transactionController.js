@@ -43,6 +43,7 @@ exports.transactionOverview_get = function (req, res, next) {
     lastOutPutDate = todayYear + "-" + todayMonth + "-" + lastDay;
 
     transactionsWithCorrectDates = [];
+    incomeOrExpense = [];
     for (t of trans) {
       //convert format of transaction date to one that matches output dates
       tempDate = t.date
@@ -61,9 +62,13 @@ exports.transactionOverview_get = function (req, res, next) {
       //add t to transactionsWithCorrectDates if it matches the first or last date of the current month
       if (correctDate.replaceAll("-", "") >= firstOutputDate.replaceAll("-", "") && correctDate.replaceAll("-", "") <= lastOutPutDate.replaceAll("-", "")) {
         transactionsWithCorrectDates.push(t);
+        for (b of budget) {
+          if (b.category == t.mainCategory) {
+            incomeOrExpense.push({income: b.income});
+          }
+        }
       }
     }
-    console.log(transactionsWithCorrectDates);
 
     // sorts the dates
     transactionsWithCorrectDates.sort((a, b) => b.date - a.date)
@@ -72,7 +77,7 @@ exports.transactionOverview_get = function (req, res, next) {
     //monthly
     let categoriesWithPricesAndColours = [];
     for (b of budget) {
-      if (categoriesWithPricesAndColours.filter(e => e.category == b.category).length == 0 && b.category != "income") {
+      if (categoriesWithPricesAndColours.filter(e => e.category == b.category).length == 0 && b.income != true) {
         let sum = 0;
         //go through transactions and find correct dates.
         for (t of trans) {
@@ -100,7 +105,7 @@ exports.transactionOverview_get = function (req, res, next) {
           }
         }
         if (sum > 0) {
-          categoriesWithPricesAndColours.push({ category: b.category, colour: b.colourInput, amount: sum })
+          categoriesWithPricesAndColours.push({ income: b.income, category: b.category.toUpperCase(), colour: b.colourInput, amount: sum })
         }
       }
     }
@@ -121,13 +126,14 @@ exports.transactionOverview_get = function (req, res, next) {
 
     mtotalSpent = 0;
     for (c of categoriesWithPricesAndColours) {
-      if (c.category !== 'income') {
+      if (c.income !== true) {
         mtotalSpent += c.amount;
       }
     };
     //monthly
 
-    res.render("transactions", { mspent: mtotalSpent, mcategories: mcategories, mprices: mprices, mcolours: mcolours, firstDay: firstOutputDate, lastDay: lastOutPutDate, categories: categoriesFromBudget, allTransactions: transactionsWithCorrectDates, currentCategory: "AllCategories" });
+    res.render("transactions", { mspent: mtotalSpent, mcategories: mcategories, mprices: mprices, mcolours: mcolours, firstDay: firstOutputDate, lastDay: lastOutPutDate, 
+      categories: categoriesFromBudget, allTransactions: transactionsWithCorrectDates, currentCategory: "AllCategories", incomeOrExpense: incomeOrExpense });
   });
 };
 
@@ -147,7 +153,7 @@ exports.transactionOverview_post = function (req, res, next) {
     //if category is AllCategories, then show all categories
     if (req.body.categories == "AllCategories") {
       transactionsWithCorrectDates = [];
-
+      incomeOrExpense = [];
       //iterate through all transactions convert date and them expamine date according to dateFrom and DateTo
       for (t of trans) {
         //convert format of transaction date to one that matches output dates
@@ -167,9 +173,15 @@ exports.transactionOverview_post = function (req, res, next) {
         //add t to transactionsWithCorrectDates if it matches the first or last date of the current month
         if (correctDate.replaceAll("-", "") >= req.body.dateFrom.replaceAll("-", "") && correctDate.replaceAll("-", "") <= req.body.dateTo.replaceAll("-", "")) {
           transactionsWithCorrectDates.push(t);
+          for (b of budget) {
+            if (b.category == t.mainCategory) {
+              incomeOrExpense.push({income: b.income});
+            }
+          }
         }
       }
-      console.log(transactionsWithCorrectDates);
+      console.log('---------------------',transactionsWithCorrectDates);
+      console.log('------------------------',incomeOrExpense)
       //sort these transacions by date
       transactionsWithCorrectDates.sort((a, b) => b.date - a.date)
 
@@ -179,7 +191,7 @@ exports.transactionOverview_post = function (req, res, next) {
       let categoriesWithPricesAndColours = [];
       for (b of budget) {
 
-        if (categoriesWithPricesAndColours.filter(e => e.category == b.category).length == 0 && b.category != "income") {
+        if (categoriesWithPricesAndColours.filter(e => e.category == b.category).length == 0 && b.income != true) {
           let sum = 0;
           //go through transactions and find correct dates.
           for (t of trans) {
@@ -208,33 +220,34 @@ exports.transactionOverview_post = function (req, res, next) {
 
           }
           if (sum > 0) {
-            categoriesWithPricesAndColours.push({ category: b.category, colour: b.colourInput, amount: sum })
+            categoriesWithPricesAndColours.push({ income: b.income, category: b.category.toUpperCase(), colour: b.colourInput, amount: sum })
           }
         }
       }
       //apparently the data needs to be in separate arrays for this to work. 
       //I tried with one whole object but because a workaround for exchanging serverside data with client side data, It was done this way
-      let mcategories = []
-      let mprices = []
-      let mcolours = []
+      let mcategories = [];
+      let mprices = [];
+      let mcolours = [];
       for (c of categoriesWithPricesAndColours) {
-        mcategories.push(c.category)
-        mprices.push(c.amount)
-        mcolours.push(c.colour)
+        mcategories.push(c.category);
+        mprices.push(c.amount);
+        mcolours.push(c.colour);
       }
  
-      console.log(mcategories)
-      console.log(mprices)
-      console.log(mcolours)
+      console.log(mcategories);
+      console.log(mprices);
+      console.log(mcolours);
 
       mtotalSpent = 0;
       for (c of categoriesWithPricesAndColours) {
-        if (c.category !== 'income') {
+        if (c.income != true) {
           mtotalSpent += c.amount;
         }
       };
       //monthly
-      res.render("transactions", { mspent: mtotalSpent, mcategories: mcategories, mprices: mprices, mcolours: mcolours, firstDay: req.body.dateFrom, lastDay: req.body.dateTo, categories: categories, allTransactions: transactionsWithCorrectDates, currentCategory: req.body.categories })
+      res.render("transactions", { mspent: mtotalSpent, mcategories: mcategories, mprices: mprices, mcolours: mcolours, firstDay: req.body.dateFrom, lastDay: req.body.dateTo, 
+        categories: categories, allTransactions: transactionsWithCorrectDates, currentCategory: req.body.categories, incomeOrExpense: incomeOrExpense })
     }
     //if category is anything else from all categories, do this
     else {
@@ -248,6 +261,7 @@ exports.transactionOverview_post = function (req, res, next) {
       }
 
       transactionsWithCorrectDates = [];
+      incomeOrExpense = [];
       for (t of narrowedCategories) {
         //convert format of transaction date to one that matches output dates
         tempDate = t.date
@@ -266,9 +280,15 @@ exports.transactionOverview_post = function (req, res, next) {
         //add t to transactionsWithCorrectDates if it matches the first or last date of the current month
         if (correctDate.replaceAll("-", "") >= req.body.dateFrom.replaceAll("-", "") && correctDate.replaceAll("-", "") <= req.body.dateTo.replaceAll("-", "")) {
           transactionsWithCorrectDates.push(t);
+          for (b of budget) {
+            if (b.category == t.mainCategory) {
+              incomeOrExpense.push({income: b.income});
+            }
+          }
         }
       }
-      console.log(transactionsWithCorrectDates);
+      console.log('---------------------', transactionsWithCorrectDates);
+      console.log('------------------------',incomeOrExpense)
 
       //sort these transacions by date
       transactionsWithCorrectDates.sort((a, b) => b.date - a.date)
@@ -278,7 +298,7 @@ exports.transactionOverview_post = function (req, res, next) {
       let categoriesWithPricesAndColours = [];
       for (b of budget) {
 
-        if (categoriesWithPricesAndColours.filter(e => e.category == b.category).length == 0 && b.category != "income") {
+        if (categoriesWithPricesAndColours.filter(e => e.category == b.category).length == 0 && b.income != true) {
           let sum = 0;
           //go through transactions and find correct dates.
           for (t of trans) {
@@ -307,7 +327,7 @@ exports.transactionOverview_post = function (req, res, next) {
 
           }
           if (sum > 0) {
-            categoriesWithPricesAndColours.push({ category: b.category, colour: b.colourInput, amount: sum })
+            categoriesWithPricesAndColours.push({ income: b.income, category: b.category.toUpperCase(), colour: b.colourInput, amount: sum })
           }
         }
       }
@@ -328,13 +348,14 @@ exports.transactionOverview_post = function (req, res, next) {
 
       mtotalSpent = 0;
       for (c of categoriesWithPricesAndColours) {
-        if (c.category !== 'income') {
+        if (c.income != true) {
           mtotalSpent += c.amount;
         }
       };
       //monthly
 
-      res.render("transactions", { mspent: mtotalSpent, mcategories: mcategories, mprices: mprices, mcolours: mcolours, firstDay: req.body.dateFrom, lastDay: req.body.dateTo, categories: categories, allTransactions: transactionsWithCorrectDates, currentCategory: req.body.categories })
+      res.render("transactions", { mspent: mtotalSpent, mcategories: mcategories, mprices: mprices, mcolours: mcolours, firstDay: req.body.dateFrom, lastDay: req.body.dateTo, 
+        categories: categories, allTransactions: transactionsWithCorrectDates, currentCategory: req.body.categories, incomeOrExpense: incomeOrExpense })
     }
   })
 
@@ -431,3 +452,73 @@ exports.editTransactions_post = function (req, res) {
     res.status(500).send(err);
   });
 };
+
+exports.add_income_get = function(req, res, next) {
+
+  async.parallel({
+    budget_income: function(callback) {
+      Budget.find({ income: true} ).exec(callback);
+    }
+  }, function(err, results) {
+    if (err) { return next(console.log('Something went wrong in add_income_get')); }
+
+    let income = results.budget_income;
+
+    // gets the categories from budget
+    let categoriesFromIncome = [];
+    for (let i = 0; i < income.length; i++) {
+      categoriesFromIncome.push(income[i].category)
+    }
+
+    // sorts the array alphabetically
+    categoriesFromIncome.sort()
+
+    res.render("transactions_add_income", { categories: categoriesFromIncome });
+  });
+};
+
+exports.add_income_post = function(req, res, next) {
+   // saves data to database
+   let transaction = new Transaction(req.body);
+   transaction.save().then(item => {
+     console.log("Saved to database: " + transaction)
+   }).catch((err) => {
+     res.status(400).send("Something went wrong while saving to the database.")
+   });
+   res.redirect("/transactions");
+}
+
+exports.add_expense_get = function(req, res, next) {
+
+  async.parallel({
+    budget_expense: function(callback) {
+      Budget.find({ income: false} ).exec(callback);
+    }
+  }, function(err, results) {
+    if (err) { return next(console.log('Something went wrong in add_expense_get')); }
+
+    let expense = results.budget_expense;
+
+    // gets the categories from budget
+    let categoriesFromExpense = [];
+    for (let i = 0; i < expense.length; i++) {
+      categoriesFromExpense.push(expense[i].category)
+    }
+
+    // sorts the array alphabetically
+    categoriesFromExpense.sort()
+
+    res.render("transactions_add_expense", { categories: categoriesFromExpense });
+  });
+};
+
+exports.add_expense_post = function(req, res, next) {
+   // saves data to database
+   let transaction = new Transaction(req.body);
+   transaction.save().then(item => {
+     console.log("Saved to database: " + transaction)
+   }).catch((err) => {
+     res.status(400).send("Something went wrong while saving to the database.")
+   });
+   res.redirect("/transactions");
+}

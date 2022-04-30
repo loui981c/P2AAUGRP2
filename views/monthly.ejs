@@ -10,8 +10,8 @@
             <%# Dropdown for choosing graph type%>
                 <label for="graphs">Choose Graph</label>
                 <select name="graphs" id="graphs" onchange="changeChart(this)">
-                    <option value="doughnut">Pie Chart</option>
-                    <option value="bar">Bar Chart</option>
+                    <option value="doughnut">Expense Pie Chart</option>
+                    <option value="bar">Income Bar Chart</option>
                 </select>
             </div>
         </div>
@@ -49,7 +49,7 @@
 
 
 
-                const data = {
+                const data1 = {
                     labels: catLabels,
                     datasets: [{
                         label: 'Expenses',
@@ -58,10 +58,19 @@
                     }]
                 };
 
+                const data2 = {
+                    labels: catLabels,
+                    datasets: [{
+                        label: 'Income',
+                        data: catPrices,
+                        backgroundColor: catColors,
+                    }]
+                };
+
                 // config for dougnut chart
                 const config = {
                     type: 'doughnut',
-                    data,
+                    data1,
                     options: {
                     }
                 };
@@ -69,7 +78,7 @@
                 //config for bar chart
                 const config1 = {
                     type: 'bar',
-                    data,
+                    data2,
                     options: {
                         scales: {
                         y: {

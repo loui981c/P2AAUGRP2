@@ -30,13 +30,12 @@
         <label for="colourInput">Colour</label>
         <input class="colourInput" type="color" name="colourInput" id="colourInput" required>
       </div>
-      <input type="text" id="toggleValue" name="toggleValue" value="false">
+      <input type="text" id="toggleValue" name="toggleValue" value="false" style="display: none;">
 
       <button class="submitBudget" type="submit">Submit</button>
     </form>
   </div>
 
-  <script src="../public/scripts/budget.js"></script>
   <script>
     let toggle = false;
     document.getElementById("expense").style.display = "block";

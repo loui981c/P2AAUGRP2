@@ -1,94 +1,108 @@
 <%- include ("partials/header.ejs") %>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-<body>
-    <%- include ("partials/sidebar.ejs") %> 
-    
-    <div class="transactionPage">
-        <h1>Transaction overview</h1>
-        <%- include ("partials/monthly_for_import.ejs") %> 
-        <div class="chooseStuff">
-                <%# Dropdown for choosing category%> 
-                    <div class="chooseCategory">
-                    <%# the variable "categories" comes is a variable rendered with the transactions view (transactions.js)%>
-                    <label for="categories">Choose category</label>
-                        <form action="/transactions/categories" name="categories" method="post">
-                        <select name="categories" id="categories" onchange="this.form.submit()">
-                            <option value="AllCategories">AllCategories</option> 
-                            <% for (let i = 0; i<categories.length; i++) { %>
-                                    <% if (currentCategory == categories[i]){ %>
-                                        <option selected value=<%= categories[i] %>><%= categories[i] %></option>   
-                                    <% } else {%>  
-                                <option value=<%= categories[i] %>><%= categories[i] %></option>
-                                <% } %>    
-                            <% } %>    
-                        </select>
-                        
-                    </div> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 
-            <%# For choosing time period of transactions%>
-                <div class="chooseTime">
-                    <label for="dateFrom" for="dateTo">Choose date (Start - End)</label>
-                    <input type="date" max="<%= lastDay %>" id="dateFrom" name="dateFrom" value="<%= firstDay %>" onchange="this.form.submit()">
-                    <input type="date" min="<%= firstDay %>" id="dateTo" name="dateTo" value="<%= lastDay %>" onchange="this.form.submit()">
-                </div>
-                </form>
-                <a class="addTransButAnchor" href="/transactions/add/income"><button class="addIncomeBut">Add Income</button></a>
-                <a class="addTransButAnchor" href="/transactions/add/expense"><button class="addExpenseBut">Add Expense</button></a>
+    <body>
+        <%- include ("partials/sidebar.ejs") %>
+
+            <div class="transactionPage">
+                <h1>Transaction overview</h1>
+                <%- include ("partials/monthly_for_import.ejs") %>
+                    <div class="chooseStuff">
+                        <%# Dropdown for choosing category%>
+                            <div class="chooseCategory">
+                                <%# the variable "categories" comes is a variable rendered with the transactions view
+                                    (transactions.js)%>
+                                    <label for="categories">Choose category</label>
+                                    <form action="/transactions/categories" name="categories" method="post">
+                                        <select name="categories" id="categories" onchange="this.form.submit()">
+                                            <option value="AllCategories">AllCategories</option>
+                                            <% for (let i=0; i<categories.length; i++) { %>
+                                                <% if (currentCategory==categories[i]){ %>
+                                                    <option selected value=<%=categories[i] %>><%= categories[i] %>
+                                                    </option>
+                                                    <% } else {%>
+                                                        <option value=<%=categories[i] %>><%= categories[i] %>
+                                                        </option>
+                                                        <% } %>
+                                                            <% } %>
+                                        </select>
+                            </div>
+
+                            <%# For choosing time period of transactions%>
+                                <div class="chooseTime">
+                                    <label for="dateFrom" for="dateTo">Choose date (Start - End)</label>
+                                    <input type="date" max="<%= lastDay %>" id="dateFrom" name="dateFrom"
+                                        value="<%= firstDay %>" onchange="this.form.submit()">
+                                    <input type="date" min="<%= firstDay %>" id="dateTo" name="dateTo"
+                                        value="<%= lastDay %>" onchange="this.form.submit()">
+                                </div>
+                                </form>
+                                <a class="addTransButAnchor" href="/transactions/add/income"><button
+                                        class="addIncomeBut">Add Income</button></a>
+                                <a class="addTransButAnchor" href="/transactions/add/expense"><button
+                                        class="addExpenseBut">Add Expense</button></a>
+                    </div>
+
+
+
+
+                    <%# function for converting ugly date to pretty date. This can be implemented in controller %>
+                        <% function dateToString(date) { var d=new Date(date); var day=d.getDate(); var
+                            month=d.getMonth() + 1; var year=d.getFullYear(); return day + "/" + month + "/" + year; }
+                            %>
+
+                            <%# All transactions is stated in transactionController.js route %>
+                                <% if (allTransactions.length > 0){ %>
+                                    <div class="tileLabels">
+                                        <p class="type">Type</p>
+                                        <p class="tprice">Amount</p>
+                                        <p class="editDelete">Edit/delete</p>
+                                    </div>
+
+                                    <% for (let j=0; j < allTransactions.length; j++){ %>
+                                        <div class="transactionTileOuter">
+                                            <div class="transactionTile">
+                                                <div class="tileTitles">
+                                                    <p class="tileMain">
+                                                        <%= allTransactions[j].mainCategory %> - <%=
+                                                                dateToString(allTransactions[j].date) %>
+                                                    </p>
+                                                    <p class="tileSub">
+                                                        <%= allTransactions[j].subCategory %>
+                                                    </p>
+                                                </div>
+                                                <%# Makes category of income green and everything else red. This is done
+                                                    by two seperate classes: priceNeg and pricePos %>
+                                                    <% if (incomeOrExpense[j].income != true ) {%>
+                                                        <p class="priceNeg">- <%= allTransactions[j].price %>
+                                                        </p>
+                                                        <% } else {%>
+                                                            <p class="pricePos">+ <%= allTransactions[j].price %>
+                                                            </p>
+                                                            <% } %>
+                                            </div>
+                                            <div class="tileButtons">
+                                                <span></span>
+                                                <a href="/transactions/edit/<%= allTransactions[j]._id %>"><button
+                                                        class="edit">Edit</button></a>
+                                                <form method="POST"
+                                                    action="/transactions/<%= allTransactions[j]._id %>/delete">
+                                                    <button class="delete">Delete</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <% } %>
+                                            <% } else{ %>
+                                                <div class="transactionTileOuter">
+                                                    <p class="noTrans">No Transactions</p>
+                                                </div>
+                                                <% } %>
+
+
+
             </div>
 
-    
-            
-         
-        <%# function for converting ugly date to pretty date. This can be implemented in controller %>
-            <% function dateToString(date) {
-                var d = new Date(date);
-                var day = d.getDate();
-                var month = d.getMonth() + 1;
-                var year = d.getFullYear();
-                return day + "/" + month + "/" + year;
-            } %> 
 
-        <%# All transactions is stated in transactionController.js route %>
-        <% if (allTransactions.length > 0){ %> 
-            <div class="tileLabels">
-                <p class="type">Type</p>
-                <p class="tprice">Amount</p>
-                <p class="editDelete">Edit/delete</p>
-            </div>
+    </body>
 
-        <% for (let j = 0; j<allTransactions.length; j++){ %> 
-        <div class="transactionTileOuter">
-            <div class="transactionTile">
-                <div class="tileTitles">
-                    <p class="tileMain"><%= allTransactions[j].mainCategory %> - <%= dateToString(allTransactions[j].date) %>  </p>
-                    <p class="tileSub"><%= allTransactions[j].subCategory %> </p>
-                </div>
-                <%# Makes category of income green and everything else red. This is done by two seperate classes: priceNeg and pricePos %> 
-                <% if (allTransactions[j].mainCategory != "income") {%> 
-                    <p class="priceNeg">- <%= allTransactions[j].price %></p>
-                <% } else {%> 
-                    <p class="pricePos">+ <%= allTransactions[j].price %></p>
-                <% } %> 
-            </div>       
-                <div class="tileButtons">
-                    <span></span>
-                    <a href="/transactions/edit/<%= allTransactions[j]._id %>"><button class="edit">Edit</button></a>
-                    <form method="POST" action="/transactions/<%= allTransactions[j]._id %>/delete">
-                        <button class="delete">Delete</button>
-                    </form>
-                </div>
-        </div>
-        <% } %> 
-        <% } else{ %>
-            <div class="transactionTileOuter">
-                    <p class="noTrans">No Transactions</p>
-            </div>
-            <% } %> 
-      
-  
-
-    </div>
-
-
-</body>
-</html>
+    </html>

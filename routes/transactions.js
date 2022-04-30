@@ -27,7 +27,7 @@ router.post("/categories", (req, res) => {
     //if category is AllCategories, then show all categories
     if (req.body.categories == "AllCategories") {
       transactionsWithCorrectDates = [];
-
+      incomeOrExpense = [];
       //iterate through all transactions convert date and them expamine date according to dateFrom and DateTo
       for (t of trans) {
         //convert format of transaction date to one that matches output dates
@@ -47,6 +47,11 @@ router.post("/categories", (req, res) => {
         //add t to transactionsWithCorrectDates if it matches the first or last date of the current month
         if (correctDate.replaceAll("-", "") >= req.body.dateFrom.replaceAll("-", "") && correctDate.replaceAll("-", "") <= req.body.dateTo.replaceAll("-", "")) {
           transactionsWithCorrectDates.push(t);
+          for (b of budget) {
+            if (b.category == t.mainCategory) {
+              incomeOrExpense.push({income: b.income});
+            }
+          }
         }
       }
       console.log(transactionsWithCorrectDates);
@@ -60,7 +65,7 @@ router.post("/categories", (req, res) => {
       let categoriesWithPricesAndColours = [];
       for (b of budget) {
 
-        if (categoriesWithPricesAndColours.filter(e => e.category == b.category).length == 0 && b.category != "income") {
+        if (categoriesWithPricesAndColours.filter(e => e.category == b.category).length == 0 && b.income != true) {
           let sum = 0;
           //go through transactions and find correct dates.
           for (t of trans) {
@@ -89,7 +94,7 @@ router.post("/categories", (req, res) => {
 
           }
           if (sum > 0) {
-            categoriesWithPricesAndColours.push({ category: b.category, colour: b.colourInput, amount: sum })
+            categoriesWithPricesAndColours.push({ income: b.income, category: b.category.toUpperCase(), colour: b.colourInput, amount: sum })
           }
         }
       }
@@ -110,7 +115,7 @@ router.post("/categories", (req, res) => {
 
       mtotalSpent = 0;
       for (c of categoriesWithPricesAndColours) {
-        if (c.category !== 'income') {
+        if (c.income !== true) {
           mtotalSpent += c.amount;
         }
       };
@@ -119,7 +124,8 @@ router.post("/categories", (req, res) => {
       //monthly stuff
 
 
-      res.render("transactions", { mspent: mtotalSpent, mcategories: mcategories, mprices: mprices, mcolours: mcolours, firstDay: req.body.dateFrom, lastDay: req.body.dateTo, categories: categories, allTransactions: transactionsWithCorrectDates, currentCategory: req.body.categories })
+      res.render("transactions", { mspent: mtotalSpent, mcategories: mcategories, mprices: mprices, mcolours: mcolours, firstDay: req.body.dateFrom, lastDay: req.body.dateTo, 
+        categories: categories, allTransactions: transactionsWithCorrectDates, currentCategory: req.body.categories, incomeOrExpense: incomeOrExpense })
     }
     //if category is anything else from all categories, do this
     else {
@@ -134,6 +140,7 @@ router.post("/categories", (req, res) => {
 
 
       transactionsWithCorrectDates = [];
+      incomeOrExpense = [];
       for (t of narrowedCategories) {
         //convert format of transaction date to one that matches output dates
         tempDate = t.date
@@ -152,6 +159,11 @@ router.post("/categories", (req, res) => {
         //add t to transactionsWithCorrectDates if it matches the first or last date of the current month
         if (correctDate.replaceAll("-", "") >= req.body.dateFrom.replaceAll("-", "") && correctDate.replaceAll("-", "") <= req.body.dateTo.replaceAll("-", "")) {
           transactionsWithCorrectDates.push(t);
+          for (b of budget) {
+            if (b.category == t.mainCategory) {
+              incomeOrExpense.push({income: b.income});
+            }
+          }
         }
       }
       console.log(transactionsWithCorrectDates);
@@ -165,7 +177,7 @@ router.post("/categories", (req, res) => {
       let categoriesWithPricesAndColours = [];
       for (b of budget) {
 
-        if (categoriesWithPricesAndColours.filter(e => e.category == b.category).length == 0 && b.category != "income") {
+        if (categoriesWithPricesAndColours.filter(e => e.category == b.category).length == 0 && b.income != true) {
           let sum = 0;
           //go through transactions and find correct dates.
           for (t of trans) {
@@ -194,7 +206,7 @@ router.post("/categories", (req, res) => {
 
           }
           if (sum > 0) {
-            categoriesWithPricesAndColours.push({ category: b.category, colour: b.colourInput, amount: sum })
+            categoriesWithPricesAndColours.push({ income: b.income, category: b.category.toUpperCase(), colour: b.colourInput, amount: sum })
           }
         }
       }
@@ -215,7 +227,7 @@ router.post("/categories", (req, res) => {
 
       mtotalSpent = 0;
       for (c of categoriesWithPricesAndColours) {
-        if (c.category !== 'income') {
+        if (c.category != true) {
           mtotalSpent += c.amount;
         }
       };
@@ -223,7 +235,8 @@ router.post("/categories", (req, res) => {
 
       //monthly
 
-      res.render("transactions", { mspent: mtotalSpent, mcategories: mcategories, mprices: mprices, mcolours: mcolours, firstDay: req.body.dateFrom, lastDay: req.body.dateTo, categories: categories, allTransactions: transactionsWithCorrectDates, currentCategory: req.body.categories })
+      res.render("transactions", { mspent: mtotalSpent, mcategories: mcategories, mprices: mprices, mcolours: mcolours, firstDay: req.body.dateFrom, lastDay: req.body.dateTo, 
+        categories: categories, allTransactions: transactionsWithCorrectDates, currentCategory: req.body.categories, incomeOrExpense: incomeOrExpense })
     }
   })
 })
@@ -271,7 +284,7 @@ router.post("/edit/:id", (req, res) => {
     res.status(500).send(err);
   })
 });
-/*
+
 router.get("/add/income", transaction_controller.add_income_get);
 
 router.get("/add/income", transaction_controller.add_income_post);
@@ -279,6 +292,6 @@ router.get("/add/income", transaction_controller.add_income_post);
 router.get("/add/expense", transaction_controller.add_expense_get);
 
 router.get("/add/expense", transaction_controller.add_expense_post);
-*/
+
 module.exports = router;
 

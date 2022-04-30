@@ -328,14 +328,14 @@ label {
   margin-left: 26.5%;
 }
 
-.transactionPageAdd .catCheckBoxOuter {
-  width: 100%;
+.transactionPageAdd .catCheckBoxOuter { 
+  width: 43.5%;
   margin-left: auto;
   margin-right: auto;
   text-align: start;
   border: 1px solid;
-  padding: 8%;
-
+  padding: 2%;
+  margin-bottom: 2.5%;
 }
 .transactionPageAdd .catCheckBoxOuter label {
   margin-left: 1%;

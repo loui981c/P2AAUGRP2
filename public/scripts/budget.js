@@ -1,16 +1,28 @@
 //These are scripts for the budget.ejs file
 
-// set variables
-let expense = document.getElementById("expense").style.display = 'none';
-let income = document.getElementById("income").style.display = 'none';
+let toggle = false;
+document.getElementById("expense").style.display = "block";
+document.getElementById("income").style.display = "none";
 
-function show(x) {
-    if (x == 1) {
-        expense.style.display = "none";
-        income.style.display = "block";
+let tempIncomeValue = document.getElementById("incomeTemp").value;
+
+function sliderToggle() {
+
+    toggle = !toggle;
+
+    if (!toggle) {
+        document.getElementById("toggleValue").value = "false";
+        document.getElementById("expense").style.display = "block";
+        document.getElementById("income").style.display = "none";
+
+    } else {
+
+        document.getElementById("toggleValue").value = "true";
+        document.getElementById("expense").style.display = "none";
+        document.getElementById("income").style.display = "block";
+
     }
-    else {
-        income.style.display = "none";
-        expense.style.display = "block";
-    }
+    console.log(tempIncomeValue);
+    console.log(toggle);
+
 } 
