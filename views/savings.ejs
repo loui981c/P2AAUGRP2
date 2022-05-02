@@ -51,6 +51,7 @@
                     <span></span>
                     <a href="/savings/<%= s._id %>/edit"><button class="edit">Edit</button></a>
                     <form method="POST" action="/savings/<%= s._id %>/delete">
+                        <input type="text" value="<%= s.name %>" style="display: none;" name="name">
                         <button class="delete">Delete</button>
                     </form>
                 </div>

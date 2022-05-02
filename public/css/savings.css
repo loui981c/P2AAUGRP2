@@ -197,4 +197,33 @@ h1, label {
     width: 48.2%;
 }
 
+.catCheckBoxGrid{
+    display: grid;
+    gap : 8.5%;
+    grid-template-columns: 43.5% 43.5%;
+    width: 47.5%;
+    margin: 0px auto;
+    padding-top: 0%;
+    margin-bottom: 1.5%;
+    
+}
 
+.catCheckBoxOuterExpense{
+    border: 1px solid;
+    width: 100%;
+    text-align: start;
+    padding: 5%;
+}
+
+.catLabel{
+    font-size: 1vw;
+    font-family: bebas;
+    margin: 0px;
+}
+
+.catTitle{
+    font-size: 1.3vw;
+    font-family: bebas;
+    margin: 0px;
+    margin-bottom: 1%;
+}
