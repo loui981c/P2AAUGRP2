@@ -30,7 +30,7 @@
                     <% var progressPercentage = (s.progress / s.amount) * 100 %>
 
                     <!-- Calculate estimated time from monthly and amonut -->
-                    <% var estimatedTime = s.amount / s.epm %>
+                    <% var estimatedTime = (s.amount - s.progress) / s.epm %>
 
                     <div class="SGImg">
                         <h2 class="emoji" ><%= s.img %></h2>
