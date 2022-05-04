@@ -636,7 +636,7 @@ exports.add_budget_get = function (req, res) {
 exports.addBudget_post = function (req, res) {
     // dividing the input from req.body
     let body = req.body;
-    let category = body.category.split(' ').join('').toLowerCase(); // Remove space + lowercase
+    let category = body.category.split(' ').join('-').toLowerCase(); // Replace space + lowercase
     let expected = body.expected;
     let income = req.body.toggleValue;
 
@@ -717,7 +717,7 @@ exports.edit_budget_get = function (req, res, next) {
 // };
 exports.edit_budget_post = function (req, res, next) {
     let body = req.body;
-    body.category = body.category.split(' ').join('').toLowerCase(); // Remove space + lowercase see also async function
+    body.category = body.category.split(' ').join('-').toLowerCase(); // Replace space + lowercase see also async function
 
     async.parallel({
         budget_find_and_update: function (callback) { Budget.findByIdAndUpdate(req.params.id, body).exec(callback); },

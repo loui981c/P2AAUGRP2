@@ -41,7 +41,7 @@ router.post("/:id/edit", (req, res) => {
     //     progress: req.body.progress,
     //     colourInput: req.body.colourInput,
     // })
-    req.body.name = req.body.name.split(' ').join('').toLowerCase() + "(Savings)" // Remove space + lowercase
+    req.body.name = req.body.name.split(' ').join('-').toLowerCase() + "-(Savings)" // Replace space + lowercase
     // Savings.findByIdAndUpdate(req.params.id, req.body).then(() => {
     //     res.redirect("/savings")})
 
