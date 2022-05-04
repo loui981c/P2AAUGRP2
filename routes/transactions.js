@@ -263,11 +263,29 @@ router.get("/edit/:id", (req, res) => {
     let categories = []
 
     for (b of budget) {
-      console.log(b)
-      categories.push(b.category)
+      categories.push({category: b.category, income: b.income})
     }
 
-    res.render("transactions_update", { transaction: trans, categories: categories })
+    res.render("transactions_update", {categories: categories, transaction: trans})
+
+     //check the income bool of the current transaction in budget We not using anyway but maybe we will in the future
+     //if not just REMOVE THIS
+    //  let transactionIncomeBoolean = false;
+    //  for (b of budget) {
+    //    if (b.category == trans.mainCategory) {
+    //      transactionIncomeBoolean = b.income;
+    //    }
+    //  }
+    //  if (transactionIncomeBoolean) {
+    //    console.log("This is an income transaction")
+    //    res.render("transactions_update_income", {categories: categories, transaction: trans})
+
+    //  } else {
+    //    console.log("This is an expense transaction")
+    //    res.render("transactions_update_expense", {categories: categories, transaction: trans})
+
+    //  }
+    
   })
 })
 

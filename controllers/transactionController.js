@@ -434,6 +434,20 @@ exports.editTransactions_get = function (req, res, next) {
     for (let i = 0; i < budget.length; i++) {
       categoriesFromBudget.push(budget[i].category)
     }
+
+    //check the income bool of the current transaction in budget
+    let transactionIncomeBoolean = false;
+    for (b of budget) {
+      if (b.category == results.transaction.mainCategory) {
+        transactionIncomeBoolean = b.income;
+      }
+    }
+    if (transactionIncomeBoolean) {
+      console.log("This is an income transaction")
+    } else {
+      console.log("This is an expense transaction")
+    }
+
     res.render('transactions_update', { transaction: results.transaction, categories: categoriesFromBudget });
   });
 };

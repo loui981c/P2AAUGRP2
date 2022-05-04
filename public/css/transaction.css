@@ -370,3 +370,30 @@ label {
   width: 48%;
   margin-bottom: 1%;
 }
+
+/* for trans update page */
+
+.TUpdateCatGrid{
+  
+}
+.TUpdateIncome{
+  border: 3px solid blue;
+
+}
+.TUpdateExpense{
+  border: 3px solid green;
+
+}
+.TUpdateSavings{
+  border: 3px solid red;
+
+}
+
+.TUpdateCheckBoxParent{
+  border: 1px solid;
+}
+
+.TUpdateCheckBox{
+  border: 1px violet solid;
+}
+

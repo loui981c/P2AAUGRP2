@@ -58,7 +58,7 @@ exports.savingsAdd_get = function(req, res, next) {
 exports.savingsAdd_post = function(req, res, next) {
 
     let saving = new Savings({
-        name: req.body.name + "(Savings)",
+        name: req.body.name.split(' ').join('').toLowerCase() + "(Savings)",
         img: req.body.img,
         amount: req.body.amount,
         epm: req.body.epm,
@@ -66,7 +66,7 @@ exports.savingsAdd_post = function(req, res, next) {
         colourInput: req.body.colourInput
     });
     let budget = new Budget({
-        category: req.body.name + "(Savings)",
+        category: req.body.name.split(' ').join('').toLowerCase() + "(Savings)",
         expected: req.body.epm,
         colourInput: req.body.colourInput,
         spent: 0,

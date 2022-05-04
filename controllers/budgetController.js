@@ -636,7 +636,7 @@ exports.add_budget_get = function (req, res) {
 exports.addBudget_post = function (req, res) {
     // dividing the input from req.body
     let body = req.body;
-    let category = body.category;
+    let category = body.category.split(' ').join('').toLowerCase(); // Remove space + lowercase
     let expected = body.expected;
     let income = req.body.toggleValue;
 
@@ -682,10 +682,45 @@ exports.edit_budget_get = function (req, res, next) {
     });
 };
 
+// exports.edit_budget_post = function (req, res, next) {
+
+//     async.parallel({
+//         budget_find_and_update: function (callback) { Budget.findByIdAndUpdate(req.params.id, req.body).exec(callback); },
+//         transaction_find_and_update: function (callback) { Transaction.updateMany({ mainCategory: req.body.old }, { mainCategory: req.body.category }).exec(callback); },
+//     }, function (err, results) {
+//         if (err) { return next(console.log('SOMETHING WENT WITH POST EDIT')); }
+
+//         let budget = results.budget_find_and_update;
+
+//         let remaining = 0;
+
+//         remaining = budget.expected - budget.spent;
+
+//         Budget.findByIdAndUpdate(
+//             req.params.id,
+//             {
+//                 $set:
+//                 {
+//                     remaining: remaining
+//                 }
+//             }).exec(function (err, result) {
+//                 if (err) {
+//                     res.send(console.log('SOMETHING WENT WITH UPDATE IN EDIT POST'));
+//                 }
+//                 else {
+//                     console.log(result);
+//                 }
+//             }
+//             );
+//         res.redirect("/budget");
+//     });
+// };
 exports.edit_budget_post = function (req, res, next) {
+    let body = req.body;
+    body.category = body.category.split(' ').join('').toLowerCase(); // Remove space + lowercase see also async function
 
     async.parallel({
-        budget_find_and_update: function (callback) { Budget.findByIdAndUpdate(req.params.id, req.body).exec(callback); },
+        budget_find_and_update: function (callback) { Budget.findByIdAndUpdate(req.params.id, body).exec(callback); },
         transaction_find_and_update: function (callback) { Transaction.updateMany({ mainCategory: req.body.old }, { mainCategory: req.body.category }).exec(callback); },
     }, function (err, results) {
         if (err) { return next(console.log('SOMETHING WENT WITH POST EDIT')); }

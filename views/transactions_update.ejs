@@ -1,98 +1,99 @@
 <%- include ("partials/header.ejs") %>
 <body>
     <%- include ("partials/sidebar.ejs") %> 
-
     <div class="transactionPageAdd">
-    <h1>Edit Transaction: <br> <%= transaction.subCategory %> </h1>
+    <h1>Update Transaction: <%= transaction.mainCategory %></h1>
 
-   
-    <%# Showing all categories provided in transactions.ejs%>
-    <form action="/transactions/edit/<%= transaction._id %>" method="post">
-        <label for="mainCategory">category</label>
-        <div class="catGrid">
-            <div>
-                <h3 class="subTitle">- Expenses</h3>
-                <div class="catCheckBoxOuter">
-                    <% for (let i = 0; i<categories.length; i++){ if(!categories[i].toLowerCase().includes("savings")){ %> 
-                    <div class="catCheckbox">
-                        <label for="category>"><%= categories[i]%></label>
-                        <% if (categories[i] == transaction.mainCategory){ %> 
-                            <input checked="checked" type="radio" name="mainCategory" id="mainCategory" value="<%= categories[i]%>" required>
+    
+    <%# Showing all categories provided in transactions.ejs %>
+    <form action="/transactions/add" method="post">
+        <label for="mainCategory">Choose Category</label>
+
+        <div class="TUpdateCatGrid">
+        <!-- Income -->
+            <div class="TUpdateIncome">
+                <h5>Income</h4>
+                <div class="TUpdateCheckBoxParent" >
+                    <% for (let i = 0; i<categories.length; i++){ %> 
+                        
+                        <% if (categories[i].income){ %> 
+                        <div class="TupdateCheckBox">
+                            <label for="category>"><%= categories[i].category%></label>
+                            <% if (transaction.mainCategory == categories[i].category) {%> 
+                                <input checked type="radio" name="mainCategory" id="mainCategory>" value="<%= categories[i].category%>" required>
                             <% }else{ %> 
-                                <input type="radio" name="mainCategory" id="mainCategory" value="<%= categories[i]%>"  required>
-                            <% } %> 
-                    </div>
-                    <% }} %> 
-                </div>
-            </div>
-            <div>
-                <h3 class="subTitle">- Savings</h3>
-                <div class="catCheckBoxOuter">
-                    <% for (let i = 0; i<categories.length; i++){ if(categories[i].toLowerCase().includes("savings")){ %> 
-                    <div class="catCheckbox">
-                        <label for="category>"><%= categories[i]%></label>
-                        <% if (categories[i] == transaction.mainCategory){ %> 
-                            <input checked="checked" type="radio" name="mainCategory" id="mainCategory>" value="<%= categories[i]%>" required>
-                            <% }else{ %> 
-                                <input type="radio" name="mainCategory" id="mainCategory>" value="<%= categories[i]%>"  required>
-                            <% } %> 
-                    </div>
-                    <%  }} %> 
-                </div>
-            </div>
-        </div>
-        
-        <!-- <label for="mainCategory">Choose Category</label>
-            <div id="catBoxOuter">
-                <% for (let i = 0; i<categories.length; i++){ %> 
-                <div class="catCheckbox" id="catCheckBox">
-                    <label for="mainCategory>"><%= categories[i]%></label>
-                    <% if (categories[i] == transaction.mainCategory){ %> 
-                    <input checked="checked" type="radio" name="mainCategory" id="mainCategory>" value="<%= categories[i]%>" required>
-                    <% }else{ %> 
-                        <input type="radio" name="mainCategory" id="mainCategory>" value="<%= categories[i]%>"  required>
+                                <input type="radio" name="mainCategory" id="mainCategory>" value="<%= categories[i].category%>" required>
+                                <% } %>
+                        </div>
+                        <% } %> 
                     <% } %> 
                 </div>
-                <% } %> 
-            </div> -->
+            </div>
+            <!-- Expense -->
+            <div class="TUpdateExpense">
+                <h5>Expense</h4>
+                    <div class="TUpdateCheckBoxParent">
+                        <% for (let i = 0; i<categories.length; i++){ %> 
+                            
+                            <% if (!categories[i].income && !categories[i].category.toLowerCase().includes("saving")){ %> 
+                            <div class="TupdateCheckBox">
+                                <label for="category>"><%= categories[i].category%></label>
+                                <% if (transaction.mainCategory == categories[i].category) {%> 
+                                    <input checked type="radio" name="mainCategory" id="mainCategory>" value="<%= categories[i].category%>" required>
+                                <% }else{ %> 
+                                    <input type="radio" name="mainCategory" id="mainCategory>" value="<%= categories[i].category%>" required>
+                                    <% } %>
+                            </div>
+                            <% } %> 
+                        <% } %> 
+                    </div>
+            </div>
+            <!-- Savings -->
+            <div class="TUpdateSavings">
+                <h5>Savings Goal</h4>
+                    <div class="TUpdateCheckBoxParent">
+                        <% for (let i = 0; i<categories.length; i++){ %> 
+                            
+                            <% if (!categories[i].income && categories[i].category.toLowerCase().includes("saving")){ %> 
+                            <div class="TupdateCheckBox">
+                                <label for="category>"><%= categories[i].category%></label>
+                                <% if (transaction.mainCategory == categories[i].category) {%> 
+                                    <input checked type="radio" name="mainCategory" id="mainCategory>" value="<%= categories[i].category%>" required>
+                                <% }else{ %> 
+                                    <input type="radio" name="mainCategory" id="mainCategory>" value="<%= categories[i].category%>" required>
+                                    <% } %>
+                            </div>
+                            <% } %> 
+                        <% } %> 
+                    </div>
+            </div>
+        </div>
         <%# sub category%>
         <div class="subCatForm">
             <label for="subCategory">Sub category</label>
-            <input type="text" name="subCategory" id="subCategory" value="<%= transaction.subCategory %> ">
+            <input type="text" name="subCategory" id="subCategory" value="<%= transaction.subCategory %>">
         </div>
         <%# price%>
         <div class="priceForm">
             <label for="price">Amount</label>
-            <input type="number" name="price" id="price" required value="<%= transaction.price %>">
+            <input type="number" name="price" id="price" value="<%= transaction.price %>" required>
         </div>
-            <%# function for converting ugly date to pretty date. This can be implemented in controller %>
-            <% 
-                 function dateToString(date) {
-                var d = new Date(date);
-                var day = d.getDate();
-                var month = d.getMonth() + 1;
-                var year = d.getFullYear();
-                if (day < 10)
-                {
-                    day = "0" + day;
-                }
-                if (month < 10)
-                {
-                    month = "0" + month;
-                }
-                return year + "-" + month + "-" + day;
-            }
-            %> 
-
         <div class="dateForm">
             <label for="date">Date</label>
-            <input type="date" name="date" id="date" value="<%= dateToString(transaction.date) %>"  required>
+            <input type="date" name="date" id="date" value="<%= transaction.date %>" required>
         </div>
         
-        <button class="submit">Submit</button>
+        <button class="submit" type="submit">Submit</button>
     </form>
     </div>
- 
+
+    <script>
+  
+        //set default value to day of today
+            //https://stackoverflow.com/questions/6982692/how-to-set-input-type-dates-default-value-to-today
+        document.getElementById('date').valueAsDate = new Date();
+
+    </script>
     
 </body>
 </html>
