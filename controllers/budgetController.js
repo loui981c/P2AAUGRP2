@@ -716,14 +716,15 @@ exports.edit_budget_post = function (req, res, next) {
     });
 };
 
-exports.delete_budget_post = function (res, req, next) {
+exports.delete_budget_post = function (req, res, next) {
 
     async.parallel({
-        budget_find_and_delete: function (callback) { Budget.findByIdAndRemove(req.params.id).exec(callback); },
-        transaction_find_and_delete: function (callback) { Transaction.deleteMany({ mainCategory: req.body.category }).exec(callback); }
+        budget_find_id: function(callback) { Budget.findByIdAndRemove(req.params.id).exec(callback); },
     }, function (err, results) {
-        if (err) { return next(console.log('SOMETHING WENT WRONG WHEN DELETING')); }
+        if (err) { return next(console.log('SOMETHING WENT WRONG IN BUDGET DELETE')); }
 
-        res.redirect("/budget");
+        console.log('-------------------------', results.budget_find_id.category)
+
+        res.redirect('/budget');
     });
 };
