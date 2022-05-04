@@ -1,13 +1,13 @@
 <%- include ("partials/header.ejs") %>
 <body>
     <%- include ("partials/sidebar.ejs") %> 
-    <div class="transactionPageAdd">
+    <div class="transactionPageUpdate">
     <h1>Update Transaction: <%= transaction.mainCategory %></h1>
 
     
     <%# Showing all categories provided in transactions.ejs %>
     <form action="/transactions/add" method="post">
-        <label for="mainCategory">Choose Category</label>
+        <label class="Titles" for="mainCategory">Choose Category</label>
 
         <div class="TUpdateCatGrid">
         <!-- Income -->
@@ -17,8 +17,8 @@
                     <% for (let i = 0; i<categories.length; i++){ %> 
                         
                         <% if (categories[i].income){ %> 
-                        <div class="TupdateCheckBox">
-                            <label for="category>"><%= categories[i].category%></label>
+                        <div class="TUpdateCheckBox">
+                            <label class="TUpdateCatLabel" for="category>"><%= categories[i].category %></label>
                             <% if (transaction.mainCategory == categories[i].category) {%> 
                                 <input checked type="radio" name="mainCategory" id="mainCategory>" value="<%= categories[i].category%>" required>
                             <% }else{ %> 
@@ -36,8 +36,8 @@
                         <% for (let i = 0; i<categories.length; i++){ %> 
                             
                             <% if (!categories[i].income && !categories[i].category.toLowerCase().includes("saving")){ %> 
-                            <div class="TupdateCheckBox">
-                                <label for="category>"><%= categories[i].category%></label>
+                            <div class="TUpdateCheckBox">
+                                <label class="TUpdateCatLabel" for="category>"><%= categories[i].category %></label>
                                 <% if (transaction.mainCategory == categories[i].category) {%> 
                                     <input checked type="radio" name="mainCategory" id="mainCategory>" value="<%= categories[i].category%>" required>
                                 <% }else{ %> 
@@ -55,8 +55,8 @@
                         <% for (let i = 0; i<categories.length; i++){ %> 
                             
                             <% if (!categories[i].income && categories[i].category.toLowerCase().includes("saving")){ %> 
-                            <div class="TupdateCheckBox">
-                                <label for="category>"><%= categories[i].category%></label>
+                            <div class="TUpdateCheckBox">
+                                <label class="TUpdateCatLabel" for="category>"><%= categories[i].category %></label>
                                 <% if (transaction.mainCategory == categories[i].category) {%> 
                                     <input checked type="radio" name="mainCategory" id="mainCategory>" value="<%= categories[i].category%>" required>
                                 <% }else{ %> 
@@ -70,16 +70,16 @@
         </div>
         <%# sub category%>
         <div class="subCatForm">
-            <label for="subCategory">Sub category</label>
+            <label class="Titles" for="subCategory">Sub category</label>
             <input type="text" name="subCategory" id="subCategory" value="<%= transaction.subCategory %>">
         </div>
         <%# price%>
         <div class="priceForm">
-            <label for="price">Amount</label>
+            <label class="Titles" for="price">Amount</label>
             <input type="number" name="price" id="price" value="<%= transaction.price %>" required>
         </div>
         <div class="dateForm">
-            <label for="date">Date</label>
+            <label class="Titles" for="date">Date</label>
             <input type="date" name="date" id="date" value="<%= transaction.date %>" required>
         </div>
         

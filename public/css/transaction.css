@@ -22,11 +22,9 @@
 .chooseCategory {
   font-size: 1.5vw;
   display: inline-block;
+  width: 15%;
 }
-.chooseCategory {
-  font-size: 1.5vw;
-  display: inline-block;
-}
+
 .chooseTime {
   font-size: 1.5vw;
   display: inline-block;
@@ -56,7 +54,12 @@
   border: solid 1px;
   border-color: black;
   padding: 3%;
+  display: inline-block;
 }
+.selectCategory{
+  width: 100%;
+}
+
 
 /* flex makes stuff appear above eachother within the div */
 .chooseTime label,
@@ -374,26 +377,103 @@ label {
 /* for trans update page */
 
 .TUpdateCatGrid{
+  margin: 0% auto;
+  margin-left: 26.2%;
+  width: 49%;
+  display: grid;
+  gap: 2%;
+  grid-template-columns: 31% 31% 31%;
   
-}
-.TUpdateIncome{
-  border: 3px solid blue;
-
-}
-.TUpdateExpense{
-  border: 3px solid green;
-
-}
-.TUpdateSavings{
-  border: 3px solid red;
-
 }
 
 .TUpdateCheckBoxParent{
   border: 1px solid;
+  border-bottom: 0px;
 }
+
+
+
+.transactionPageUpdate .submit {
+  display: inline-block;
+  font-size: 1.2vw;
+  font-family: bebas;
+  color: green;
+  background-color: transparent;
+  border: 1px solid;
+  border-color: green;
+  padding: 1.25%;
+  transition: 200ms;
+  cursor: pointer;
+}
+
+.transactionPageUpdate .submit:hover {
+  background-color: green;
+  color: white;
+}
+.transactionPageUpdate .submit:active {
+  background-color: rgb(0, 71, 0);
+  color: white;
+}
+
+.transactionPageUpdate .Titles {
+  font-size: 1.5vw;
+}
+
+.transactionPageUpdate form input {
+  margin-bottom: 2%;
+}
+.transactionPageUpdate p {
+  font-size: 1.8vw;
+  margin-top: 2%;
+}
+
+.transactionPageUpdate {
+  margin-left: 14%;
+  margin-right: 10%;
+}
+
+.transactionPageUpdate h1 {
+  margin-left: 26%;
+}
+
+.transactionPageUpdate input {
+  font-size: 1.2vw;
+  font-family: bebas;
+  color: black;
+  background-color: transparent;
+  border: solid 1px;
+  padding: 1.2%;
+  width: 45%;
+  display: inline-block;
+}
+
+.transactionPageUpdate form {
+  text-align: center;
+}
+.transactionPageUpdate .Titles {
+  margin-left: 26.5%;
+}
+
 
 .TUpdateCheckBox{
-  border: 1px violet solid;
+  padding-left: 5%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  border-bottom : 1px solid;
+  width: 95.5%;
+  display: inline-flex;
+  text-align: start;
 }
 
+.TUpdateCatLabel{
+  width: 90%;
+  font-size: 1vw;
+  text-align: start;
+  overflow: scroll;
+}
+.transactionPageUpdate h5{
+  font-family: bebas;
+  margin-top: 4%;
+  margin-bottom: 2%;
+  font-size: 1.1vw;
+}

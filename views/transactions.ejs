@@ -14,7 +14,7 @@
                                     (transactions.js)%>
                                     <label for="categories">Choose category</label>
                                     <form action="/transactions/categories" name="categories" method="post">
-                                        <select name="categories" id="categories" onchange="this.form.submit()">
+                                        <select class="selectCategory" name="categories" id="categories" onchange="this.form.submit()">
                                             <option value="AllCategories">AllCategories</option>
                                             <% for (let i=0; i<categories.length; i++) { %>
                                                 <% if (currentCategory==categories[i]){ %>
