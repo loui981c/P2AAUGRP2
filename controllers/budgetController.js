@@ -720,10 +720,10 @@ exports.delete_budget_post = function (res, req, next) {
 
     async.parallel({
         budget_find_and_delete: function (callback) { Budget.findByIdAndRemove(req.params.id).exec(callback); },
-        transaction_find_and_delete: function (callback) { Transaction.deleteMany({ mainCategory: req.body.old }).exec(callback); }
+        transaction_find_and_delete: function (callback) { Transaction.deleteMany({ mainCategory: req.body.category }).exec(callback); }
     }, function (err, results) {
         if (err) { return next(console.log('SOMETHING WENT WRONG WHEN DELETING')); }
 
-        res.redirect('/budget');
+        res.redirect("/budget");
     });
 };

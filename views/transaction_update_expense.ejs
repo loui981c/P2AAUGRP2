@@ -1,0 +1,66 @@
+<%- include ("partials/header.ejs") %>
+<body>
+    <%- include ("partials/sidebar.ejs") %> 
+    <div class="transactionPageAdd">
+    <h1>Add a new expense</h1>
+
+    
+    <%# Showing all categories provided in transactions.ejs %>
+    <form action="/transactions/add" method="post">
+        <label class="chooseCat" for="mainCategory">Choose Category</label>
+        <div class="catCheckBoxGrid">
+            <div class="catCheckBoxOuterExpense">
+                <h4 class="catTitle">Expenses</h4>
+                <% for (let i = 0; i<categories.length; i++){ %> 
+                <div class="catCheckbox">
+                    <% if (!categories[i].toLowerCase().includes("savings")) { %> 
+
+                    <label class="catLabel" for="category>"><h5 class="catLabel"><%= categories[i]%></h5></label>
+                    <input type="radio" name="mainCategory" id="mainCategory>" value="<%= categories[i]%>" required>
+
+                    <% } %>
+                </div>
+                <% } %> 
+            </div>
+            <div class="catCheckBoxOuterExpense">
+                <h4 class="catTitle">Savings</h4>
+                <% for (let i = 0; i<categories.length; i++){ %> 
+                <div class="catCheckbox">
+
+                    <% if (categories[i].toLowerCase().includes("savings")) { %> 
+                    <label for="category>"><h5 class="catLabel"> <%= categories[i]%></h5></label>
+                    <input type="radio" name="mainCategory" id="mainCategory>" value="<%= categories[i]%>" required>
+                    <% } %>
+                </div>
+                <% } %> 
+            </div>
+        </div>
+        <%# sub category%>
+        <div class="subCatForm">
+            <label for="subCategory">Sub category</label>
+            <input type="text" name="subCategory" id="subCategory">
+        </div>
+        <%# price%>
+        <div class="priceForm">
+            <label for="price">Amount</label>
+            <input type="number" name="price" id="price" required>
+        </div>
+        <div class="dateForm">
+            <label for="date">Date</label>
+            <input type="date" name="date" id="date" required>
+        </div>
+        
+        <button class="submit" type="submit">Submit</button>
+    </form>
+    </div>
+
+    <script>
+  
+        //set default value to day of today
+            //https://stackoverflow.com/questions/6982692/how-to-set-input-type-dates-default-value-to-today
+        document.getElementById('date').valueAsDate = new Date();
+
+    </script>
+    
+</body>
+</html>
