@@ -28,5 +28,8 @@
         if (document.URL == "http://localhost:3000/budget/choices") {
             current = 1;
         }
+        if (document.URL.includes("http://localhost:3000/transactions/edit") || document.URL.includes("http://localhost:3000/transactions/add")) {
+            current = 3;
+        }
         document.links[current].className = 'current';
     </script>

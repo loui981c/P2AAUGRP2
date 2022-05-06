@@ -672,11 +672,12 @@ exports.addBudget_post = function (req, res) {
 };
 
 exports.edit_budget_get = function (req, res, next) {
+    console.log("edit success");
 
     async.parallel({
         budget_find: function (callback) { Budget.findById(req.params.id).exec(callback); }
     }, function (err, results) {
-        if (err) { return next(console.log('SOMETHING WENT WITH GET EDIT')); }
+        if (err) { return next(console.log('SOMETHING WENT WRONG WITH GET EDIT')); }
 
         res.render("budget_edit", { budget: results.budget_find });
     });

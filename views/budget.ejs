@@ -175,52 +175,49 @@
               <p class="spent">Spent</p>
               <p class="remaining">Remaining</p>
             </div>
+        </div>
 
             <!-- Showing the budget in the table -->
 
-            <% for (let i=0; i < budgetData.length; i++){ %>
-              <div class="budgetTable">
-                <div class="budgetInsideTable">
-                  <p class="budgetCategory">
-                    <%= budgetData[i].category %>
-                  </p>
-                  <div class="KrInline">
-                    <p class="budgetExpected">
-                      <%= budgetData[i].expected %>
-                    </p>
-                    <p class="Kr">Kr.</p>
-                  </div>
-                  <div class="KrInline">
-                    <p class="budgetRemaining" id="spentTableRed"> -<%= budgetData[i].spent %>
-                    </p>
-                    <p class="Kr">Kr.</p>
-                  </div>
-                  <div class="KrInline">
-                    <% if(budgetData[i].remaining < 0){ %>
-                      <p class="budgetRemaining" id="remainingTableRed">
-                        <%= budgetData[i].remaining %>
-                      </p>
+            <% for (let i of budgetData){ %>
+                <div class="budgetTable">
+                  <div class="budgetInsideTable">
+                    <p class="budgetCategory"><%= i.category %></p>
+                    <div class="KrInline">
+                      <p class="budgetExpected">
+                        <%= i.expected %></p>
                       <p class="Kr">Kr.</p>
-                      <% } else{ %>
-                        <p class="budgetRemaining" id="remainingTableGreen">
-                          <%= budgetData[i].remaining %>
-                        </p>
-                        <p class="Kr">Kr.</p>
-                        <% } %>
+                    </div>
+                    <div class="KrInline">
+                      <p class="budgetRemaining" id="spentTableRed"> -<%= i.spent %></p>
+                      <p class="Kr">Kr.</p>
+                    </div>
+                    <div class="KrInline">
+                      <% if(i.remaining < 0){ %>
+                          <p class="budgetRemaining" id="remainingTableRed">
+                            <%= i.remaining %>
+                          </p>
+                          <p class="Kr">Kr.</p>
+                        <% } else{ %>
+                          <p class="budgetRemaining" id="remainingTableGreen">
+                            <%= i.remaining %>
+                          </p>
+                          <p class="Kr">Kr.</p>
+                      <% } %>
+                    </div>
                   </div>
-                </div>
 
-                <div class="editBudgetBoxParent">
-                  <div class="editBudgetBox">
-                    <a href="/budget/<%= budgetData[i]._id %>/edit"><button class="editBudget">Edit</button></a>
-                    <form method="POST" action="/budget/<%= budgetData[i]._id %>/delete">
-                      <button class="deleteBudget">Delete</button>
-                    </form>
+                  <div class="editBudgetBoxParent">
+                    <div class="editBudgetBox">
+                      <a href="/budget/<%= i._id %>/edit"><button class="editBudget">Edit</button></a>
+                      <form method="POST" action="/budget/<%= i._id %>/delete">
+                        <button type="submit" class="deleteBudget">Delete</button>
+                      </form>
+                    </div>
                   </div>
                 </div>
-              </div>
               <% } %>
-        </div>
+
       </div>
 
   </body>

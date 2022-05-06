@@ -78,21 +78,37 @@
             <label class="Titles" for="price">Amount</label>
             <input type="number" name="price" id="price" value="<%= transaction.price %>" required>
         </div>
+
+
+        
+
         <div class="dateForm">
             <label class="Titles" for="date">Date</label>
-            <input type="date" name="date" id="date" value="<%= transaction.date %>" required>
+            <input type="date" name="date" id="date" required value="<%= transaction.date %>">
         </div>
         
         <button class="submit" type="submit">Submit</button>
     </form>
     </div>
-
+            <!-- convert date to YYYY-MM-DD -->
+            <p id="dateInvisible" style="display: none;"><%= transaction.date %> </p>
     <script>
-  
-        //set default value to day of today
-            //https://stackoverflow.com/questions/6982692/how-to-set-input-type-dates-default-value-to-today
-        document.getElementById('date').valueAsDate = new Date();
+        var date = new Date(document.getElementById("dateInvisible").innerHTML);
+        console.log(date);
+        var day = date.getDate();
+        if (day < 10) {
+            day = "0" + day;
+        }
 
+        var month = date.getMonth() + 1;
+
+        if ( month < 10) {
+            month = "0" + month;
+        }
+        var year = date.getFullYear();
+        var dateString = year + "-" + month + "-" + day;
+        console.log(dateString);
+        document.getElementById("date").value = dateString;
     </script>
     
 </body>
