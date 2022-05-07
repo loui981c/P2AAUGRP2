@@ -55,7 +55,7 @@ h1, select {
     font-family: bebas;
     text-align: center;
     z-index: 1;
-    margin-top: -27%;
+    margin-top: -23%;
 }
 
 .labelInsidePieChart p {
@@ -64,13 +64,13 @@ h1, select {
 
 @media screen and (max-width: 900px) {
     .labelInsidePieChart {
-        margin-top: -26.5%;
+        margin-top: -21.5%;
     }
 }
 
 @media screen and (max-width: 671px) {
     .labelInsidePieChart {
-        margin-top: -20%;
+        margin-top: -16%;
         font-size: 1.2vw;
     }
 };

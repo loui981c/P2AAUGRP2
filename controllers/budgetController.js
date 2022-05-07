@@ -639,11 +639,12 @@ exports.addBudget_post = function (req, res) {
     let category = body.category.split(' ').join('-').toLowerCase(); // Replace space + lowercase
     let expected = body.expected;
     let income = req.body.toggleValue;
+    let color = body.colourInput;
 
     console.log("checkboxbool: " + req.body.toggleValue);
 
     // defining a new schema and boolean
-    let newBudget = new Budget({ income: income, category: category, expected: expected, spent: 0, remaining: 0, });
+    let newBudget = new Budget({ income: income, category: category, expected: expected, spent: 0, remaining: 0, colourInput: color});
     let alreadyExists = false;
 
     // checks if a category name is already in data 
