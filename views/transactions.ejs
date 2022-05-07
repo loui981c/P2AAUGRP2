@@ -14,7 +14,8 @@
                                     (transactions.js)%>
                                     <label for="categories">Choose category</label>
                                     <form action="/transactions/categories" name="categories" method="post">
-                                        <select class="selectCategory" name="categories" id="categories" onchange="this.form.submit()">
+                                        <select class="selectCategory" name="categories" id="categories"
+                                            onchange="this.form.submit()">
                                             <option value="AllCategories">AllCategories</option>
                                             <% for (let i=0; i<categories.length; i++) { %>
                                                 <% if (currentCategory==categories[i]){ %>
@@ -52,7 +53,7 @@
                             %>
 
                             <%# All transactions is stated in transactionController.js route %>
-                                <% if (allTransactions.length > 0){ %>
+                                <% if (allTransactions.length> 0){ %>
                                     <div class="tileLabels">
                                         <p class="type">Type</p>
                                         <p class="tprice">Amount</p>
@@ -73,7 +74,7 @@
                                                 </div>
                                                 <%# Makes category of income green and everything else red. This is done
                                                     by two seperate classes: priceNeg and pricePos %>
-                                                    <% if (incomeOrExpense[j].income != true ) {%>
+                                                    <% if (incomeOrExpense[j].income !=true ) {%>
                                                         <p class="priceNeg">- <%= allTransactions[j].price %>
                                                         </p>
                                                         <% } else {%>

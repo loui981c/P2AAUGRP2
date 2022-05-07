@@ -185,7 +185,7 @@ exports.transactionOverview_post = function (req, res, next) {
         if (tMonth < 10) {
           tMonth = "0" + tMonth
         }
-        correctDate = tYear + "-" + tMonth + "-" + tDay;;
+        correctDate = tYear + "-" + tMonth + "-" + tDay;
 
         //add t to transactionsWithCorrectDates if it matches the first or last date of the current month
         if (correctDate.replaceAll("-", "") >= req.body.dateFrom.replaceAll("-", "") && correctDate.replaceAll("-", "") <= req.body.dateTo.replaceAll("-", "")) {
@@ -225,7 +225,7 @@ exports.transactionOverview_post = function (req, res, next) {
               tMonth = "0" + tMonth
             }
 
-            correctDate = tYear + "-" + tMonth + "-" + tDay;;
+            correctDate = tYear + "-" + tMonth + "-" + tDay;
 
             //add t to transactionsWithCorrectDates if it matches the first or last date of the current month
             if (correctDate.replaceAll("-", "") >= req.body.dateFrom.replaceAll("-", "") && correctDate.replaceAll("-", "") <= req.body.dateTo.replaceAll("-", "")) {
@@ -323,11 +323,11 @@ exports.transactionOverview_post = function (req, res, next) {
         }
       }
       console.log('---------------------', transactionsWithCorrectDates);
-      console.log('------------------------', incomeOrExpense)
+      console.log('------------------------', incomeOrExpense);
 
       //sort these transacions by date
-      transactionsWithCorrectDates.sort((a, b) => b.date - a.date)
-      console.log("all transactions with good dates: " + transactionsWithCorrectDates)
+      transactionsWithCorrectDates.sort((a, b) => b.date - a.date);
+      console.log("all transactions with good dates: " + transactionsWithCorrectDates);
 
       //monthly
       let categoriesWithPricesAndColours = [];
@@ -350,7 +350,7 @@ exports.transactionOverview_post = function (req, res, next) {
               tMonth = "0" + tMonth
             }
 
-            correctDate = tYear + "-" + tMonth + "-" + tDay;;
+            correctDate = tYear + "-" + tMonth + "-" + tDay;
 
             //add t to transactionsWithCorrectDates if it matches the first or last date of the current month
             if (correctDate.replaceAll("-", "") >= req.body.dateFrom.replaceAll("-", "") && correctDate.replaceAll("-", "") <= req.body.dateTo.replaceAll("-", "")) {
