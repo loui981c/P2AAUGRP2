@@ -153,16 +153,16 @@
           <%# Dropdown for choosing category%>
             <div class="chooseCategory">
               <%# the variable "choices" comes is a variable rendered with the transactions view (transactions.js)%>
-                <label for="choices">Choose category</label>
+                <label for="choices">Category Type</label>
                 <form action="/budget/choices" name="choices" method="post">
                   <select name="choices" id="choices" onchange="this.form.submit()">
                     <option value="expenses">Expenses</option>
                     <% for (let i=0; i<choices.length; i++) { %>
                       <% if (currentChoice==choices[i]){ %>
-                          <option selected value=<%=choices[i] %>><%= choices[i] %>
+                          <option selected value=<%=choices[i] %>><%= choices[i].charAt(0).toUpperCase() %><%= choices[i].slice(1) %>
                           </option>
                           <% } else {%>
-                              <option value=<%=choices[i] %>><%= choices[i] %>
+                              <option value=<%=choices[i] %>><%= choices[i].charAt(0).toUpperCase() %><%= choices[i].slice(1) %>
                               </option>
                               <% } %>
                                   <% } %>
