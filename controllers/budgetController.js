@@ -719,6 +719,7 @@ exports.edit_budget_get = function (req, res, next) {
 exports.edit_budget_post = function (req, res, next) {
     let body = req.body;
     body.category = body.category.split(' ').join('-').toLowerCase(); // Replace space + lowercase see also async function
+    console.log("updated in database:" + body)
 
     async.parallel({
         budget_find_and_update: function (callback) { Budget.findByIdAndUpdate(req.params.id, body).exec(callback); },
@@ -741,7 +742,7 @@ exports.edit_budget_post = function (req, res, next) {
                 }
             }).exec(function (err, result) {
                 if (err) {
-                    res.send(console.log('SOMETHING WENT WITH UPDATE IN EDIT POST'));
+                    res.send(console.log('SOMETHING WENT WRONG WITH UPDATE IN EDIT POST'));
                 }
                 else {
                     console.log(result);

@@ -13,10 +13,15 @@
       <%# Toggle switch %> 
       <div class="switchBox">
         <label class="switch">
-          <input type="checkbox" onclick="sliderToggle()" id="checkBoxSlider" name="income">
-          <span class="slider round"></span>
+          <% if (budget.income){ %> 
+          <input checked type="checkbox" onclick="sliderToggle()" id="checkBoxSlider" name="i">
+          <% } else{ %>
+            <input type="checkbox" onclick="sliderToggle()" id="checkBoxSlider" name="i">
+            <% } %> 
+            <span class="slider round"></span> 
         </label>
       </div>
+      <input type="text" id="toggleValue" name="income" value="false" style="display: none;">
       <div class="categoriesCheckbox">
           <label for="categoriesCheckbox">Category</label>
           <input class="basicInput" type="text" name="category" id="category" value="<%= budget.category %>" required>
@@ -34,44 +39,52 @@
 
       <%# Old category name this is invisible %>
       <input type="text" name="old" id="old" value="<%= budget.category %>" style="display: none;">
-      <input type="text" id="toggleValue" name="toggleValue" value="false" style="display: none;">
-
+      
       <button class="submitBudget" type="submit" id="sumbitBtn">Submit</button>
     </form>
   </div>
 
   <script>
-    document.getelementById('sumbitBtn').addEventListener('click', loadFunction);
+    document.getElementById('sumbitBtn').addEventListener('click', loadFunction);
     function loadFunction() {
       location.pathname='http://localhost:3000/budget';
     }
   </script>
   <script>
+    
     let toggle = false;
-    document.getElementById("expense").style.display = "block";
-    document.getElementById("income").style.display = "none";
-    
-    let tempIncomeValue = document.getElementById("incomeTemp").value;
 
-  function sliderToggle() {
-
-    toggle = !toggle;
-    
-    if (!toggle) {
-      document.getElementById("toggleValue").value = "false";
-      document.getElementById("expense").style.display = "block";
-      document.getElementById("income").style.display = "none";
-      
-    } else {
-      
-      document.getElementById("toggleValue").value = "true";
+    if (document.getElementById("checkBoxSlider").checked) {
       document.getElementById("expense").style.display = "none";
       document.getElementById("income").style.display = "block";
-
+      document.getElementById("toggleValue").value = "true";
+      console.log(document.getElementById("toggleValue").value);
+      toggle = true;
     }
-    console.log(tempIncomeValue);
-    console.log(toggle);
+    else{
+      document.getElementById("expense").style.display = "block";
+      document.getElementById("income").style.display = "none";
+      document.getElementById("toggleValue").value = "false";
+      console.log(document.getElementById("toggleValue").value);
+      toggle = false;
+    }
 
+    function sliderToggle() {
+      toggle = !toggle;
+    
+        if (!toggle) {
+          document.getElementById("toggleValue").value = "false";
+          document.getElementById("expense").style.display = "block";
+          document.getElementById("income").style.display = "none";
+          
+        } else {
+          
+          document.getElementById("toggleValue").value = "true";
+          document.getElementById("expense").style.display = "none";
+          document.getElementById("income").style.display = "block";
+
+        }
+        console.log(document.getElementById("toggleValue").value);
 } 
   </script>
 
