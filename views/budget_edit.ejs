@@ -24,7 +24,7 @@
       <input type="text" id="toggleValue" name="income" value="false" style="display: none;">
       <div class="categoriesCheckbox">
           <label for="categoriesCheckbox">Category</label>
-          <input class="basicInput" type="text" name="category" id="category" value="<%= budget.category %>" required>
+          <input maxlength="20" class="basicInput" type="text" name="category" id="category" value="<%= budget.category %>" required>
       </div>
       <%# Expected %>
       <div class="expectedInput">
