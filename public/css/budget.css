@@ -26,9 +26,17 @@ h1 {
 
 /* position the button */
 .addBudget {
-  display: block;
-  margin-left: 10%;
-  width: 20%;
+  display: inline-block;
+  width: 40%;
+  margin-left: 54.5%;
+}
+
+.selectAndButton{
+    display: grid;
+    width: 90%;
+    margin-left: 10%;
+    grid-template-columns: 50% 50%;
+    align-items: center;
 }
 
 /* design the add budget button */
@@ -39,11 +47,10 @@ h1 {
   background-color: transparent;
   border: solid 1px;
   border-color: green;
-  padding: 1.25%;
   cursor: pointer;
   transition: 250ms;
   width: 100%;
-  padding: 5% 5% 5% 5%;
+  padding: 6%;
 }
 .addBudgetBut:active {
     background-color: rgb(240, 240, 240);
@@ -53,6 +60,21 @@ h1 {
 .addBudgetBut:hover {
     background-color: green;
     color: white; 
+}
+
+.budgetPage .chooseCategory {
+    margin-top: 0%;
+    font-size: 1.3vw;
+    display: inline-block;
+    margin-bottom: 0%;
+    width: 20%;
+  }
+
+.budgetPage .chooseCategory select {
+    width: 100%;
+    padding: 3%;
+    font-size: 1.2vw;
+    margin-top: 1%;
 }
 
 /* position total spent and remaining */
@@ -114,7 +136,7 @@ h1 {
     font-size: 1.5vw;
 }
 .categoryTable {
-    margin-top: -10%;
+    margin-top: 1%;
 }
 /* setting the distance between small headers */
 .category {
@@ -138,20 +160,8 @@ h1 {
     margin-left: 16.5%;
     
 }
-.budgetPage .chooseCategory {
-    margin-top: 32.5%;
-    margin-left: 10%;
-    font-size: 1.3vw;
-    display: block;
-    margin-bottom: 0%;
-  }
 
-.budgetPage .chooseCategory select {
-    width: 100%;
-    padding: 3%;
-    font-size: 1.2vw;
-    margin-top: 1%;
-}
+
   
 /* making the table */
 .budgetTable {

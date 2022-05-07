@@ -3,14 +3,8 @@
   <body>
     <%- include ("partials/sidebar.ejs") %>
 
-      <div class="budgetPage">
+    <div class="budgetPage">
         <h1>Budget</h1>
-
-        <!-- add budget -->
-
-        <div class="addBudget">
-          <a href="/budget/add"><button class="addBudgetBut">Add Budget/Create Category</button></a>
-        </div>
 
         <div class="topOfPage">
           <div class="buttonAndTotalTable">
@@ -145,12 +139,8 @@
           </div>
         </div>
 
-
-
-        <!-- Showing the labels -->
-        <div class="categoryTable">
-
-          <%# Dropdown for choosing category%>
+        <div class="selectAndButton">
+            <%# Dropdown for choosing category%>
             <div class="chooseCategory">
               <%# the variable "choices" comes is a variable rendered with the transactions view (transactions.js)%>
                 <label for="choices">Category Type</label>
@@ -169,7 +159,14 @@
                   </select>
                 </form>
             </div>
+            <!-- add budget -->
 
+            <div class="addBudget">
+              <a href="/budget/add"><button class="addBudgetBut">Add Budget/Create Category</button></a>
+            </div>
+          </div>
+        <!-- Showing the labels -->
+        <div class="categoryTable">
             <div class="budgetLabels">
               <p class="category">Category</p>
               <p class="expected">Expected</p>
@@ -179,7 +176,7 @@
         </div>
 
             <!-- Showing the budget in the table -->
-
+        
             <% for (let i of budgetData){ %>
                 <div class="budgetTable">
                   <div class="budgetInsideTable">
@@ -219,7 +216,6 @@
                   </div>
                 </div>
               <% } %>
-
       </div>
 
   </body>
