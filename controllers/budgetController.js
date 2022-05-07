@@ -1,5 +1,6 @@
 let Transaction = require('../schemas/transactionSchema');
 let Budget = require('../schemas/budgetSchema');
+let Savings = require('../schemas/savingsSchema');
 let async = require('async');
 const { FunctionNodeDependencies } = require('mathjs');
 
@@ -19,6 +20,12 @@ exports.budgetOverview_get = function (req, res, next) {
         // storing the results from database
         let trans = results.transactions;
         let budget = results.budget;
+
+
+        //All these prefrixed categories should be created when initially. By wrapping all of the below 
+        //in an if statement check if there are no categories in the database.
+        //If there are no categories in the database, create the categories.
+        if (budget.length === 0) {
 
         //add the category "income" if it does not exist in the database
         if (budget.filter(e => e.category.toLowerCase() == "su").length == 0) {
@@ -100,6 +107,7 @@ exports.budgetOverview_get = function (req, res, next) {
             }).catch((err) => {
                 res.status(400).send("Something went wrong while saving to the database." + err);
             });
+        }
         }
 
         // for the dropdown 
@@ -287,7 +295,7 @@ exports.budgetOverview_get = function (req, res, next) {
                         recAmount.push({ spent: insurance, pro: 0 });
                     }
                     break;
-                case 'tv license':
+                case 'tv-license':
                     if (expenseSpent_tv != 0) {
                         expenseProcentage_tv = Math.round(-1 * (expenseSpent_tv - tv) / ((expenseSpent_tv + tv) / 2) * 100);
                         recAmount.push({ spent: tv, pro: expenseProcentage_tv });
@@ -720,10 +728,12 @@ exports.edit_budget_get = function (req, res, next) {
 exports.edit_budget_post = function (req, res, next) {
     let body = req.body;
     body.category = body.category.split(' ').join('-').toLowerCase(); // Replace space + lowercase see also async function
+    console.log("updated in database:" + body)
 
     async.parallel({
         budget_find_and_update: function (callback) { Budget.findByIdAndUpdate(req.params.id, body).exec(callback); },
         transaction_find_and_update: function (callback) { Transaction.updateMany({ mainCategory: req.body.old }, { mainCategory: req.body.category }).exec(callback); },
+        saving_find_and_update: function (callback) { Savings.findOneAndUpdate({ name: req.body.old }, {name: body.category, epm: body.expected}).exec(callback); },
     }, function (err, results) {
         if (err) { return next(console.log('SOMETHING WENT WITH POST EDIT')); }
 
@@ -742,7 +752,7 @@ exports.edit_budget_post = function (req, res, next) {
                 }
             }).exec(function (err, result) {
                 if (err) {
-                    res.send(console.log('SOMETHING WENT WITH UPDATE IN EDIT POST'));
+                    res.send(console.log('SOMETHING WENT WRONG WITH UPDATE IN EDIT POST'));
                 }
                 else {
                     console.log(result);
@@ -757,6 +767,8 @@ exports.delete_budget_post = function (req, res, next) {
 
     async.parallel({
         budget_find_id: function(callback) { Budget.findByIdAndRemove(req.params.id).exec(callback); },
+        transaction_find_many: function(callback) { Transaction.deleteMany({mainCategory: req.body.category}).exec(callback); },
+        savings_find: function(callback) { Savings.findOneAndDelete({name: req.body.category}).exec(callback); },
     }, function (err, results) {
         if (err) { return next(console.log('SOMETHING WENT WRONG IN BUDGET DELETE')); }
 
