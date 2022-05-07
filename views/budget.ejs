@@ -212,6 +212,7 @@
                     <div class="editBudgetBox">
                       <a href="/budget/<%= i._id %>/edit"><button class="editBudget">Edit</button></a>
                       <form method="POST" action="/budget/<%= i._id %>/delete">
+                        <input type="text" name="category" value="<%= i.category %>" style="display: none;">
                         <button type="submit" class="deleteBudget">Delete</button>
                       </form>
                     </div>
