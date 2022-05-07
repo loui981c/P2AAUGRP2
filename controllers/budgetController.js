@@ -55,8 +55,8 @@ exports.budgetOverview_get = function (req, res, next) {
             });
         }
         // DR licence prefixed category
-        if (budget.filter(e => e.category.toLowerCase() == "tv license").length == 0) {
-            let DRBudget = new Budget({ income: false, category: "tv license", expected: 100, spent: 0, remaining: 0, colourInput: "#AC50E1" });
+        if (budget.filter(e => e.category.toLowerCase() == "tv-license").length == 0) {
+            let DRBudget = new Budget({ income: false, category: "tv-license", expected: 100, spent: 0, remaining: 0, colourInput: "#AC50E1" });
             DRBudget.save().then(item => {
                 console.log("Saved to database: DR BUDGET");
             }).catch((err) => {
@@ -171,7 +171,7 @@ exports.budgetOverview_get = function (req, res, next) {
                     case 'insurance':
                         expenseSpent_insurance += spent;
                         break;
-                    case 'tv license':
+                    case 'tv-license':
                         expenseSpent_tv += spent;
                         break;
                     case 'books':
@@ -223,7 +223,7 @@ exports.budgetOverview_get = function (req, res, next) {
 
         yourBudgetForRecommendSpent.push({ category: 'rent', spent: expenseSpent_rent });
         yourBudgetForRecommendSpent.push({ category: 'insurance', spent: expenseSpent_insurance });
-        yourBudgetForRecommendSpent.push({ category: 'tv license', spent: expenseSpent_tv });
+        yourBudgetForRecommendSpent.push({ category: 'tv-license', spent: expenseSpent_tv });
         yourBudgetForRecommendSpent.push({ category: 'books', spent: expenseSpent_book });
         yourBudgetForRecommendSpent.push({ category: 'phone', spent: expenseSpent_phone });
         yourBudgetForRecommendSpent.push({ category: 'food', spent: expenseSpent_food });
@@ -414,7 +414,7 @@ exports.budgetOverview_post = function (req, res, next) {
                     case 'insurance':
                         expenseSpent_insurance += spent;
                         break;
-                    case 'tv license':
+                    case 'tv-license':
                         expenseSpent_tv += spent;
                         break;
                     case 'books':
@@ -504,7 +504,7 @@ exports.budgetOverview_post = function (req, res, next) {
 
         yourBudgetForRecommendSpent.push({ category: 'rent', spent: expenseSpent_rent });
         yourBudgetForRecommendSpent.push({ category: 'insurance', spent: expenseSpent_insurance });
-        yourBudgetForRecommendSpent.push({ category: 'tv license', spent: expenseSpent_tv });
+        yourBudgetForRecommendSpent.push({ category: 'tv-license', spent: expenseSpent_tv });
         yourBudgetForRecommendSpent.push({ category: 'books', spent: expenseSpent_book });
         yourBudgetForRecommendSpent.push({ category: 'phone', spent: expenseSpent_phone });
         yourBudgetForRecommendSpent.push({ category: 'food', spent: expenseSpent_food });
@@ -576,7 +576,7 @@ exports.budgetOverview_post = function (req, res, next) {
                         recAmount.push({ category: yourBudgetForRecommendSpent[i].category, spent: insurance, pro: 0 });
                     }
                     break;
-                case 'tv license':
+                case 'tv-license':
                     if (expenseSpent_tv != 0) {
                         expenseProcentage_tv = Math.round(-1 * (expenseSpent_tv - tv) / ((expenseSpent_tv + tv) / 2) * 100);
                         recAmount.push({ category: yourBudgetForRecommendSpent[i].category, spent: tv, pro: expenseProcentage_tv });
