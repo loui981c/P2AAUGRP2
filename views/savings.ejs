@@ -52,6 +52,7 @@
                     <a href="/savings/<%= s._id %>/edit"><button class="edit">Edit</button></a>
                     <form method="POST" action="/savings/<%= s._id %>/delete">
                         <input type="text" value="<%= s.name %>" style="display: none;" name="name">
+                        <input type="number" value="<%= s.progress %>" style="display: none;" name="returned">
                         <button class="delete">Delete</button>
                     </form>
                 </div>

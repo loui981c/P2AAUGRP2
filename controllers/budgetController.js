@@ -108,6 +108,15 @@ exports.budgetOverview_get = function (req, res, next) {
                 res.status(400).send("Something went wrong while saving to the database." + err);
             });
         }
+        // return (deleted savings)
+        if (budget.filter(e => e.category.toLowerCase() == "return").length == 0) {
+            let returnBudget = new Budget({ income: true, category: "return", expected: 0, spent: 0, remaining: 0, colourInput: "#88fc03" });
+            returnBudget.save().then(item => {
+                console.log("Saved to database: return");
+            }).catch((err) => {
+                res.status(400).send("Something went wrong while saving to the database." + err);
+            });
+        }
         }
 
         // for the dropdown 

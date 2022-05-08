@@ -66,12 +66,22 @@ router.post("/:id/edit", (req, res) => {
     router.post("/:id/delete", (req, res) => {
         console.log(req.params.id)
         console.log(req.body)
+
+        let returnTrans = new Transaction({
+            mainCategory: "return",
+            subCategory: "deleted " + req.body.name,
+            price: req.body.returned,
+            date: new Date(),
+
+        })
+
         //delete from saving db, from budget db, and all transactions with the same name from db
         const savingPromise = Savings.findByIdAndDelete(req.params.id)
         const budgetPromise = Budget.deleteOne({category: req.body.name})
         const transactionPromise = Transaction.deleteMany({mainCategory: req.body.name})
+        const returnPromiseTrans = returnTrans.save()
 
-        Promise.all([savingPromise, budgetPromise, transactionPromise]).then(([s, b, t]) => {
+        Promise.all([savingPromise, budgetPromise, transactionPromise, returnPromiseTrans]).then(([s, b, t, rt]) => {
             console.log("savings successfully deleted!")
             res.redirect("/savings");
        }).catch(err => {

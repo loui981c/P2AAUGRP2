@@ -170,7 +170,7 @@
             <div class="budgetLabels">
               <p class="category">Category</p>
               <p class="expected">Expected</p>
-              <p class="spent">Spent</p>
+              <p class="spent">Spent/Received</p>
               <p class="remaining">Remaining</p>
             </div>
         </div>
@@ -187,7 +187,11 @@
                       <p class="Kr">Kr.</p>
                     </div>
                     <div class="KrInline">
+                      <% if (i.income){ %> 
+                        <p class="budgetRemaining" id="spentTableGreen"> +<%= i.spent %></p>
+                      <% }else{ %> 
                       <p class="budgetRemaining" id="spentTableRed"> -<%= i.spent %></p>
+                      <% } %> 
                       <p class="Kr">Kr.</p>
                     </div>
                     <div class="KrInline">
@@ -207,11 +211,13 @@
 
                   <div class="editBudgetBoxParent">
                     <div class="editBudgetBox">
+                      <% if (i.category != "return"){ %> 
                       <a href="/budget/<%= i._id %>/edit"><button class="editBudget">Edit</button></a>
                       <form method="POST" action="/budget/<%= i._id %>/delete">
                         <input type="text" name="category" value="<%= i.category %>" style="display: none;">
                         <button type="submit" class="deleteBudget">Delete</button>
                       </form>
+                      <% } %>
                     </div>
                   </div>
                 </div>
