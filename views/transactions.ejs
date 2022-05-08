@@ -55,9 +55,12 @@
                             <%# All transactions is stated in transactionController.js route %>
                                 <% if (allTransactions.length> 0){ %>
                                     <div class="tileLabels">
-                                        <p class="type">Type</p>
-                                        <p class="tprice">Amount</p>
-                                        <p class="editDelete">Edit/delete</p>
+                                        <div class="tooltip" id="type">Type
+                                            <span class="tooltiptext">type of transaction</span>
+                                        </div> 
+                                        <div class="tooltip" id="tprice">Amount
+                                            <span class="tooltiptext">amount spent/gained from transaction</span> 
+                                        </div>
                                     </div>
 
                                     <% for (let j=0; j < allTransactions.length; j++){ %>

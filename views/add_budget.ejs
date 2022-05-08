@@ -6,8 +6,16 @@
 
     <%# Form to add/create budget %>
     <form action="/budget/add" method="POST">
-      <h2 class="headers" id="expense">Expense Category</h2>
-      <h2 class="headers" id="income">Income Category</h2>
+      <h2 class="headers" id="expense">
+        <div class="tooltip" id="expected">Expense Category
+          <span class="tooltiptext">make the category to an expense</span>
+        </div>
+      </h2>
+      <h2 class="headers" id="income">
+        <div class="tooltip" id="expected">Income Category
+          <span class="tooltiptext">make the category to an income</span>
+        </div>
+      </h2>
       <%# Toggle switch %> 
       <div class="switchBox">
         <label class="switch">
@@ -17,17 +25,29 @@
       </div>
       <%# Categories %>
       <div class="categoriesCheckbox">
-          <label for="categoriesCheckbox">Category</label>
+          <label for="categoriesCheckbox">
+            <div class="tooltip" id="expected">Category
+              <span class="tooltiptext">name of the new category</span>
+            </div>
+          </label>
           <input class="basicInput" type="text" name="category" id="category" maxlength="20" required>
       </div>
       <%# Expected %>
       <div class="expectedInput">
-          <label for="expectedInput">Expected</label>
+          <label for="expectedInput">
+            <div class="tooltip" id="expected">Expected
+              <span class="tooltiptext">amount of the expected spentage</span>
+            </div>
+          </label>
           <input class="basicInput" type="number" name="expected" id="expected" required>
       </div>
       <%# Colour %>
       <div>
-        <label for="colourInput">Colour</label>
+        <label for="colourInput">
+          <div class="tooltip" id="expected">Colour
+            <span class="tooltiptext">select the colour of the new category</span>
+          </div>
+        </label>
         <input class="colourInput" type="color" name="colourInput" id="colourInput" required>
       </div>
       <input type="text" id="toggleValue" name="toggleValue" value="false" style="display: none;">

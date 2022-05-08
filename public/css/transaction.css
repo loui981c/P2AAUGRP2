@@ -189,20 +189,16 @@ h1 {
   margin-left: 20%;
 }
 
-.type {
-  text-align: end;
-  margin-left: 2%;
+.tileLabels #type {
+  margin-left: 5%;
+  margin-top: 2.5%;
+  margin-bottom: 1%;
   display: inline-block;
 }
 
-.tprice {
+.tileLabels #tprice {
   text-align: end;
-  margin-left: 35%;
-  display: inline-block;
-}
-.editDelete {
-  text-align: end;
-  margin-left: 36%;
+  margin-left: 31%;
   display: inline-block;
 }
 
@@ -465,12 +461,19 @@ label {
   text-align: start;
 }
 
-.TUpdateCatLabel{
+.TUpdateCatLabel {
   width: 90%;
   font-size: 1vw;
   text-align: start;
-  overflow: scroll;
+  overflow-x: scroll;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
+.TUpdateCatLabel::-webkit-scrollbar {
+  display: none;
+}
+
 .transactionPageUpdate h5{
   font-family: bebas;
   margin-top: 4%;
@@ -506,23 +509,23 @@ label {
   text-align: start;
 }
 
-.TAddExpenseCatLabel{
+.TAddExpenseCatLabel {
   width: 90%;
   font-size: 1vw;
   text-align: start;
-  overflow: scroll;
+  overflow-x: scroll;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.TAddExpenseCatLabel::-webkit-scrollbar {
+  display: none;
 }
 .transactionPageAdd .radioLabelExpense{
   font-family: bebas;
   margin-top: 4%;
   margin-bottom: 2%;
   font-size: 1.1vw;
-}
-.TAddExpenseCatLabel{
-  width: 90%;
-  font-size: 1vw;
-  text-align: start;
-  overflow: scroll;
 }
 
 
@@ -565,13 +568,11 @@ label {
   width: 90%;
   font-size: 1vw;
   text-align: start;
-  overflow: scroll;
+  overflow-x: scroll;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
-
-.TAddIncomeCatLabel{
-  width: 90%;
-  font-size: 1vw;
-  text-align: start;
-  overflow: scroll;
+.TAddIncomeCatLabel::-webkit-scrollbar {
+  display: none;
 }
-

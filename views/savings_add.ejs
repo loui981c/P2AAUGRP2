@@ -8,14 +8,22 @@
     <form action="/savings/add" method="POST">
       <%# name %>
       <div class="categoriesCheckbox">
-          <label for="categoriesCheckbox">Name</label>
+          <label for="categoriesCheckbox">
+            <div class="tooltip">Name
+              <span class="tooltiptext">name of updated goal</span>
+            </div>
+          </label>
           <input class="basicInput" maxlength="20" type="text" name="name" id="name" required>
         </div>
     
     <%# Categories %>
 
 
-      <label for="img">Choose type</label>
+      <label for="img">
+        <div class="tooltip">Choose type
+          <span class="tooltiptext">picture for type of savings</span>
+        </div>
+      </label>
         <div class="catCheckBoxOuter">
             <% for (e of emojis){ %> 
             <div class="catCheckbox">
@@ -28,15 +36,27 @@
       <%# Expected %>
 
       <div class="expectedInput">
-          <label for="expectedInput">Amount</label>
+          <label for="expectedInput">
+            <div class="tooltip">Amount
+              <span class="tooltiptext">total amount for reaching savings goal</span>
+            </div>
+          </label>
           <input class="basicInput" type="number" name="amount" id="amount" required>
       </div>
       <div class="expectedInput">
-          <label for="epm">Expected transfer per month</label>
+          <label for="epm">
+            <div class="tooltip">Expected transfer per month
+              <span class="tooltiptext">amount to save up each month</span>
+            </div>
+          </label>
           <input class="basicInput" type="number" name="epm" id="epm" required>
       </div>
       <div>
-        <label for="colourInput">Colour</label>
+        <label for="colourInput">
+          <div class="tooltip">Colour
+            <span class="tooltiptext">colour of the savings goal</span>
+          </div>
+        </label>
         <input class="colourInput" type="color" name="colourInput" id="colourInput" required>
       </div>
 

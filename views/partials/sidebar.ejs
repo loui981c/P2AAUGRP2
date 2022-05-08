@@ -31,5 +31,8 @@
         if (document.URL.includes("http://localhost:3000/transactions/edit") || document.URL.includes("http://localhost:3000/transactions/add")) {
             current = 3;
         }
+        if (document.URL.includes("http://localhost:3000/savings/add")) {
+            current = 4;
+        }
         document.links[current].className = 'current';
     </script>

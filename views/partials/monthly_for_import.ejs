@@ -31,6 +31,13 @@
                     <p>
                         <%= mspent %> Kr.
                     </p>
+
+                </div>
+                <div class="labelInsidePieChartIncome" id="labelInsidePieChartIncome" style="display: none;">
+                    <p>Total Income:</p>
+                    <p>
+                        <%= incomeSpent %> Kr.
+                    </p>
                 </div>
         </div>
 
@@ -38,8 +45,8 @@
             <%# Dropdown for choosing graph type%>
                 <label for="graphs">Choose Graph</label>
                 <select name="graphs" id="graphs" onchange="changeChart(this)">
-                    <option value="doughnut">Expense Pie Chart</option>
-                    <option value="bar">Income Bar Chart</option>
+                    <option value="expense">Expense Pie Chart</option>
+                    <option value="income">Income Pie Chart</option>
                 </select>
         </div>
         <script>
@@ -98,18 +105,15 @@
             const data1 = {
                 labels: catIncomeLabels,
                 datasets: [{
-                    label: 'INCOME',
-                    backgroundColor: catIncomeColors,
                     data: catIncomePrices,
-                    maxBarThickness: 100,
-                    minBarLength: 25,
+                    backgroundColor: catIncomeColors,
                 }]
             };
 
             // config for dougnut chart
             const config = {
                 type: 'doughnut',
-                data,
+                data: data,
                 options: {
                     title: {
                         display: true,
@@ -120,26 +124,12 @@
 
             //config for bar chart
             const config1 = {
-                type: 'bar',
+                type: 'doughnut',
                 data: data1,
                 options: {
                     title: {
                         display: true,
                         text: 'INCOME'
-                    },
-                    scales: {
-                        yAxes: [{
-                            beginAtZero: true,
-                            display: true,
-                            scaleLabel: {
-                                display: true,
-                                labelString: 'AMOUNT KR.'
-                            },
-                            ticks: {
-                                min: 0,
-                                stepSize: 250
-                            }
-                        }]
                     }
                 }
             }
@@ -153,9 +143,11 @@
             function changeChart(chartType) {
                 myChart.destroy();
 
-                if (chartType.value === 'doughnut') {
-                    document.getElementById("chart_edit").style.marginBottom = "11.1%";
+                document.getElementById("chart_edit").style.marginBottom = "11.1%";
+
+                if (chartType.value === 'expense') {
                     document.getElementById("labelInsidePieChart").style.display = "block";
+                    document.getElementById("labelInsidePieChartIncome").style.display = "none";
                     myChart = new Chart(
                         document.getElementById('myChart'),
                         config
@@ -163,9 +155,9 @@
                     //add margin to the chart
                 }
 
-                if (chartType.value === 'bar') {
-                    document.getElementById("chart_edit").style.marginBottom = "0%";
+                if (chartType.value === 'income') {
                     document.getElementById("labelInsidePieChart").style.display = "none";
+                    document.getElementById("labelInsidePieChartIncome").style.display = "block";
                     myChart = new Chart(
                         document.getElementById('myChart'),
                         config1

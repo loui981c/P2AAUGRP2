@@ -71,7 +71,7 @@ h1 {
   }
 
 .budgetPage .chooseCategory select {
-    width: 100%;
+    width: 88%;
     padding: 3%;
     font-size: 1.2vw;
     margin-top: 1%;
@@ -128,37 +128,38 @@ h1 {
 #remainingGreen {
     color: green;
 }
-.categoryTable {
-    margin-top: 30%;
-}
+
 /* the design of the small headers */
 .budgetLabels {
     font-size: 1.5vw;
 }
 .categoryTable {
-    margin-top: 1%;
+    margin-top: 2.5%;
 }
 /* setting the distance between small headers */
-.category {
+.budgetLabels #category {
     text-align: end;
     display: inline-block;
     margin-left: 15.25%;
+    font-family: bebas;
 }    
-.expected {
+.budgetLabels #expected {
     text-align: end;
     display: inline-block;
     margin-left: 16%;
+    font-family: bebas;
 }  
-.spent {
+.budgetLabels #spent {
     text-align: end;
     display: inline-block;
     margin-left: 15.25%;
+    font-family: bebas;
 }
-.remaining {
+.budgetLabels #remaining {
     text-align: end;
     display: inline-block;
     margin-left: 11%;
-    
+    font-family: bebas;
 }
 
   
@@ -472,11 +473,11 @@ h1, label {
   .neg{
       color: red;
   }
-.recommendedBudgetBox h2{
+.recommendedBudgetBox #recAmountTotal{
     font-size: 1.5vw;
     font-family: bebas;
     padding-top: 1%;
-    text-align: center;
+    margin-left: 22.5%;
     padding-top: 2.5%;
 }
 
@@ -563,7 +564,7 @@ input:checked + .slider:before {
     background-color: grey;
     color: #fff;
     text-align: center;
-    padding: 5px 0;
+    padding: 2.5% 5% 2.5% 5%;
     border-radius: 6px;
     width: 120px;
     bottom: 100%;

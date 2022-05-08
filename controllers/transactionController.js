@@ -139,15 +139,18 @@ exports.transactionOverview_get = function (req, res, next) {
     console.log(incomeColors);
 
     mtotalSpent = 0;
+    incomeSpent = 0;
     for (c of categoriesWithPricesAndColours) {
       if (c.income !== true) {
         mtotalSpent += c.amount;
+      } else {
+        incomeSpent += c.amount;
       }
     };
     //monthly
 
     res.render("transactions", {
-      incomeCategories: incomeCategories, incomePrices: incomePrices, incomeColors: incomeColors,
+      incomeCategories: incomeCategories, incomePrices: incomePrices, incomeColors: incomeColors, incomeSpent: incomeSpent,
       mspent: mtotalSpent, mcategories: mcategories, mprices: mprices, mcolours: mcolours, firstDay: firstOutputDate, lastDay: lastOutPutDate,
       categories: categoriesFromBudget, allTransactions: transactionsWithCorrectDates, currentCategory: "AllCategories", incomeOrExpense: incomeOrExpense
     });
@@ -271,15 +274,18 @@ exports.transactionOverview_post = function (req, res, next) {
       console.log(incomeColors);
 
       mtotalSpent = 0;
+      incomeSpent = 0;
       for (c of categoriesWithPricesAndColours) {
         if (c.income !== true) {
           mtotalSpent += c.amount;
+        } else {
+          incomeSpent += c.amount;
         }
       };
       //monthly
 
       res.render("transactions", {
-        incomeCategories: incomeCategories, incomePrices: incomePrices, incomeColors: incomeColors,
+        incomeCategories: incomeCategories, incomePrices: incomePrices, incomeColors: incomeColors, incomeSpent: incomeSpent,
         mspent: mtotalSpent, mcategories: mcategories, mprices: mprices, mcolours: mcolours, firstDay: req.body.dateFrom, lastDay: req.body.dateTo,
         categories: categories, allTransactions: transactionsWithCorrectDates, currentCategory: req.body.categories, incomeOrExpense: incomeOrExpense
       })
@@ -396,15 +402,18 @@ exports.transactionOverview_post = function (req, res, next) {
       console.log(incomeColors);
 
       mtotalSpent = 0;
+      incomeSpent = 0;
       for (c of categoriesWithPricesAndColours) {
         if (c.income !== true) {
           mtotalSpent += c.amount;
+        } else {
+          incomeSpent += c.amount;
         }
       };
       //monthly
 
       res.render("transactions", {
-        incomeCategories: incomeCategories, incomePrices: incomePrices, incomeColors: incomeColors,
+        incomeCategories: incomeCategories, incomePrices: incomePrices, incomeColors: incomeColors, incomeSpent: incomeSpent,
         mspent: mtotalSpent, mcategories: mcategories, mprices: mprices, mcolours: mcolours, firstDay: req.body.dateFrom, lastDay: req.body.dateTo,
         categories: categories, allTransactions: transactionsWithCorrectDates, currentCategory: req.body.categories, incomeOrExpense: incomeOrExpense
       })

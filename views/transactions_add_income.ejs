@@ -44,16 +44,28 @@
         </div>
         <%# sub category%>
         <div class="subCatForm">
-            <label class="labelBig" for="subCategory">Sub category</label>
+            <label class="labelBig" for="subCategory">
+                <div class="tooltip">subCategory
+                    <span class="tooltiptext">more specific tag for transaction</span> 
+                </div>
+            </label>
             <input maxlength="20" type="text" name="subCategory" id="subCategory">
         </div>
         <%# price%>
         <div class="priceForm">
-            <label class="labelBig" for="price">Amount</label>
+            <label class="labelBig" for="price">
+                <div class="tooltip">Amount
+                    <span class="tooltiptext">amount of transaction</span> 
+                </div>
+            </label>
             <input type="number" name="price" id="price" required>
         </div>
         <div class="dateForm">
-            <label class="labelBig" for="date">Date</label>
+            <label class="labelBig" for="date">
+                <div class="tooltip">Date
+                    <span class="tooltiptext">date of when the transaction was made</span> 
+                </div>
+            </label>
             <input type="date" name="date" id="date" required>
         </div>
         

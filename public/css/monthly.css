@@ -55,10 +55,22 @@ h1, select {
     font-family: bebas;
     text-align: center;
     z-index: 1;
-    margin-top: -20.5%;
+    margin-top: -21%;
 }
 
 .labelInsidePieChart p {
+    margin-top: -2.5%;
+}
+
+.labelInsidePieChartIncome {
+    font-size: 1.2vw;
+    font-family: bebas;
+    text-align: center;
+    z-index: 1;
+    margin-top: -21%;
+}
+
+.labelInsidePieChartIncome p {
     margin-top: -2.5%;
 }
 
@@ -74,5 +86,18 @@ h1, select {
         margin-top: -15.5%;
         font-size: 0.9vw;
     }
-};
+}
+@media screen and (max-width: 1100px) {
+    .labelInsidePieChartIncome {
+        margin-top: -17.5%;
+        font-size: 1vw;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .labelInsidePieChartIncome {
+        margin-top: -15.5%;
+        font-size: 0.9vw;
+    }
+}
     

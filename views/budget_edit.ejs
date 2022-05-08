@@ -8,8 +8,16 @@
     <%# Form to add/create budget %>
     <form action="/budget/<%= budget._id %>/edit" method="POST">
       <%# Categories %>
-      <h2 class="headers" id="income">income Category</h2>
-      <h2 class="headers" id="expense">Expense Category</h2>
+      <h2 class="headers" id="income">
+        <div class="tooltip" id="expected">Income Category
+          <span class="tooltiptext">make the category to an income</span>
+        </div>
+      </h2>
+      <h2 class="headers" id="expense">
+        <div class="tooltip" id="expected">Expense Category
+          <span class="tooltiptext">make the category to an expense</span>
+        </div>
+      </h2>
       <%# Toggle switch %> 
       <div class="switchBox">
         <label class="switch">
@@ -23,17 +31,29 @@
       </div>
       <input type="text" id="toggleValue" name="income" value="false" style="display: none;">
       <div class="categoriesCheckbox">
-          <label for="categoriesCheckbox">Category</label>
+          <label for="categoriesCheckbox">
+            <div class="tooltip" id="expected">Category
+              <span class="tooltiptext">name of the new category</span>
+            </div>
+          </label>
           <input maxlength="20" class="basicInput" type="text" name="category" id="category" value="<%= budget.category %>" required>
       </div>
       <%# Expected %>
       <div class="expectedInput">
-          <label for="expectedInput">Expected</label>
+          <label for="expectedInput">
+            <div class="tooltip" id="expected">Expected
+              <span class="tooltiptext">amount of the expected spentage</span>
+            </div>
+          </label>
           <input class="basicInput" type="number" name="expected" id="expected" value="<%= budget.expected %>" required>
       </div>
       <%# Colour %>
       <div>
-        <label for="colourInput">Colour</label>
+        <label for="colourInput">
+          <div class="tooltip" id="expected">Colour
+            <span class="tooltiptext">select the colour of the new category</span>
+          </div>
+        </label>
         <input class="colourInput" type="color" name="colourInput" id="colourInput" value="<%= budget.colourInput %>" required>
       </div>
 
