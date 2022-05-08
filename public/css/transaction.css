@@ -282,7 +282,7 @@ h1 {
   color: white;
 }
 
-.transactionPageAdd form label {
+.transactionPageAdd form .labelBig {
   font-size: 1.5vw;
 }
 
@@ -327,7 +327,7 @@ label {
 .transactionPageAdd form {
   text-align: center;
 }
-.transactionPageAdd label {
+.transactionPageAdd .labelBig {
   margin-left: 26.5%;
 }
 
@@ -477,3 +477,101 @@ label {
   margin-bottom: 2%;
   font-size: 1.1vw;
 }
+
+/* for trans add (expense) page */
+
+.TAddExpenseCatGrid{
+  margin: 0% auto;
+  margin-left: 26.2%;
+  width: 49%;
+  display: grid;
+  gap: 2%;
+  grid-template-columns: 49% 49%;
+  margin-bottom: 2%;
+  
+}
+
+.TAddExpenseCheckBoxParent{
+  border: 1px solid;
+  border-bottom: 0px;
+}
+
+.TAddExpenseCheckBox{
+  padding-left: 5%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  border-bottom : 1px solid;
+  width: 95.2%;
+  display: inline-flex;
+  text-align: start;
+}
+
+.TAddExpenseCatLabel{
+  width: 90%;
+  font-size: 1vw;
+  text-align: start;
+  overflow: scroll;
+}
+.transactionPageAdd .radioLabelExpense{
+  font-family: bebas;
+  margin-top: 4%;
+  margin-bottom: 2%;
+  font-size: 1.1vw;
+}
+.TAddExpenseCatLabel{
+  width: 90%;
+  font-size: 1vw;
+  text-align: start;
+  overflow: scroll;
+}
+
+
+/* for trans add (income) page */
+
+
+.TAddIncomeCatGrid{
+  margin: 0% auto;
+  margin-left: 26.2%;
+  width: 49%;
+  display: grid;
+  gap: 2%;
+  grid-template-columns: 49% 49%;
+  margin-bottom: 2%;
+  
+}
+.transactionPageAdd .radioLabelIncome{
+  font-family: bebas;
+  margin-bottom: .5%;
+  font-size: 1.1vw;
+  margin-top: 1%;
+}
+
+.TAddIncomeCheckBoxParent{
+  border: 1px solid;
+  border-bottom: 0px;
+}
+
+.TAddIncomeCheckBox{
+  padding-left: 5%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  border-bottom : 1px solid;
+  width: 95.2%;
+  display: inline-flex;
+  text-align: start;
+}
+
+.TAddIncomeCatLabel{
+  width: 90%;
+  font-size: 1vw;
+  text-align: start;
+  overflow: scroll;
+}
+
+.TAddIncomeCatLabel{
+  width: 90%;
+  font-size: 1vw;
+  text-align: start;
+  overflow: scroll;
+}
+
