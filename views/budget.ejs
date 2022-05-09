@@ -164,11 +164,13 @@
                     <% for (let i=0; i<choices.length; i++) { %>
                       <% if (currentChoice==choices[i]){ %>
                         <option selected value=<%=choices[i] %>>
-                          <%= choices[i].charAt(0).toUpperCase() %><%= choices[i].slice(1) %>
+                          <%= choices[i].charAt(0).toUpperCase() %>
+                            <%= choices[i].slice(1) %>
                         </option>
                         <% } else {%>
                           <option value=<%=choices[i] %>>
-                            <%= choices[i].charAt(0).toUpperCase() %><%= choices[i].slice(1) %>
+                            <%= choices[i].charAt(0).toUpperCase() %>
+                              <%= choices[i].slice(1) %>
                           </option>
                           <% } %>
                             <% } %>
@@ -181,29 +183,29 @@
               <a href="/budget/add"><button class="addBudgetBut">Add Budget/Create Category</button></a>
             </div>
         </div>
-        <!-- Showing the labels -->
-        <div class="categoryTable">
-          <div class="budgetLabels">
-            <div class="tooltip" id="category">Category
-              <span class="tooltiptext">name of category</span>
-            </div>
-            <div class="tooltip" id="expected">Expected
-              <span class="tooltiptext">amount expected in the category</span>
-            </div>
-            <div class="tooltip" id="spent">Spent/Received
-              <span class="tooltiptext">the amount spent if category is expense or received if category is
-                income/savings</span>
-            </div>
-            <div class="tooltip" id="remaining">Remaining
-              <span class="tooltiptext">amount remaining compared to spent</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Showing the budget in the table -->
         <% if (budgetData.length==0) { %>
           <p class="noBudget">No Budgets/categories yet</p>
+
+          <!-- Showing the budget in the table -->
           <% } else { %>
+            <!-- Showing the labels -->
+            <div class="categoryTable">
+              <div class="budgetLabels">
+                <div class="tooltip" id="category">Category
+                  <span class="tooltiptext">name of category</span>
+                </div>
+                <div class="tooltip" id="expected">Expected
+                  <span class="tooltiptext">amount expected in the category</span>
+                </div>
+                <div class="tooltip" id="spent">Spent/Received
+                  <span class="tooltiptext">the amount spent if category is expense or received if category is
+                    income/savings</span>
+                </div>
+                <div class="tooltip" id="remaining">Remaining
+                  <span class="tooltiptext">amount remaining compared to spent</span>
+                </div>
+              </div>
+            </div>
             <% for (let i of budgetData){ %>
               <div class="budgetTable">
                 <div class="budgetInsideTable">
@@ -253,8 +255,8 @@
                   </div>
                 </div>
               </div>
-            <% } %>
-          <% } %>
+              <% } %>
+                <% } %>
       </div>
 
   </body>
