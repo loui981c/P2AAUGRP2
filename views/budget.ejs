@@ -164,13 +164,11 @@
                     <% for (let i=0; i<choices.length; i++) { %>
                       <% if (currentChoice==choices[i]){ %>
                         <option selected value=<%=choices[i] %>>
-                          <%= choices[i].charAt(0).toUpperCase() %>
-                            <%= choices[i].slice(1) %>
+                          <%= choices[i].charAt(0).toUpperCase() %><%= choices[i].slice(1) %>
                         </option>
                         <% } else {%>
                           <option value=<%=choices[i] %>>
-                            <%= choices[i].charAt(0).toUpperCase() %>
-                              <%= choices[i].slice(1) %>
+                            <%= choices[i].charAt(0).toUpperCase() %><%= choices[i].slice(1) %>
                           </option>
                           <% } %>
                             <% } %>
