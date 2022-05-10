@@ -210,12 +210,22 @@
                   <p class="budgetCategory">
                     <%= i.category %>
                   </p>
+                <% if (i.category != "return"){ %> 
                   <div class="KrInline">
                     <p class="budgetExpected">
                       <%= i.expected %>
                     </p>
                     <p class="Kr">Kr.</p>
                   </div>
+                  <% } else{%>
+                    <div class="KrInline">
+                      <p class="budgetExpected">
+                        --
+                      </p>
+                      <p class="Kr">--</p>
+                    </div>
+                    <% } %>
+
                   <div class="KrInline">
                     <% if (i.income){ %>
                       <p class="budgetRemaining" id="spentTableGreen"> +<%= i.spent %>
@@ -227,17 +237,25 @@
                           <p class="Kr">Kr.</p>
                   </div>
                   <div class="KrInline">
-                    <% if(i.remaining < 0){ %>
-                      <p class="budgetRemaining" id="remainingTableRed">
-                        <%= i.remaining %>
-                      </p>
-                      <p class="Kr">Kr.</p>
-                      <% } else{ %>
-                        <p class="budgetRemaining" id="remainingTableGreen">
+                    <% if (i.category != "return"){ %>
+                      <% if(i.remaining < 0){ %>
+                        <p class="budgetRemaining" id="remainingTableRed">
                           <%= i.remaining %>
                         </p>
                         <p class="Kr">Kr.</p>
-                        <% } %>
+                        <% } else{ %>
+                          <p class="budgetRemaining" id="remainingTableGreen">
+                            <%= i.remaining %>
+                          </p>
+                          <p class="Kr">Kr.</p>
+                          <% } %>
+                    <% } else {%>
+                      <p class="budgetRemaining" id="remainingTableGreen">
+                        --
+                      </p>
+                      <p class="Kr">--</p>
+                      <% } %>
+                        
                   </div>
                 </div>
 
