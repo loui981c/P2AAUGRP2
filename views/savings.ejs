@@ -76,11 +76,43 @@
                             <form method="POST" action="/savings/<%= s._id %>/delete">
                                 <input type="text" value="<%= s.name %>" style="display: none;" name="name">
                                 <input type="number" value="<%= s.progress %>" style="display: none;" name="returned">
-                                <button class="delete">Delete</button>
+                                
+                                <button id="deleteButton" class="delete">Delete</button>
                             </form>
                         </div>
                     </div>
                     <br>
                     <% } %>
             </div>
+
+            <div class="returnPopUp">
+                <div>
+                <p class="returnPopUpText">The amount transfered to your deleted savings goal has been returned</p>
+                <ol class="returnLocationList">
+                    <li class="returnPopUpSubText">It can be found at the Income category "return" on the budget page</li>
+                    <li class="returnPopUpSubText">Or as a transaction on the transaction page under the category "return"</li>
+                </ol>
+                </div>
+                <Button class="dismiss">Dismiss</Button>
+                
+          
+            </div>
+            <p id="recentlyDeletedBool" style="display: block"><%= recentlyDeleted %></p>
+            <script>
+                // document.querySelector('.returnPopUp').style.display = "none";
+                var recentlyDeleted = document.getElementById('recentlyDeletedBool').innerHTML;
+                console.log(recentlyDeleted);
+                if (recentlyDeleted == "true") {
+                    document.querySelector('.returnPopUp').style.display = "block";
+                }
+                else{
+                    document.querySelector('.returnPopUp').style.display = "none";
+                }
+
+                //on click dismiss button hide the popup
+                document.querySelector('.dismiss').addEventListener('click', function(){
+                    document.querySelector('.returnPopUp').style.display = "none";
+                }
+                );
+            </script>
     </body>
