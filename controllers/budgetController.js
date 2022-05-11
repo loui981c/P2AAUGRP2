@@ -174,28 +174,28 @@ exports.budgetOverview_get = function (req, res, next) {
 
                 switch (budget[i].category) {
                     case 'rent':
-                        expenseSpent_rent += spent;
+                        expenseSpent_rent += budget[i].expected;
                         break;
                     case 'insurance':
-                        expenseSpent_insurance += spent;
+                        expenseSpent_insurance += budget[i].expected;
                         break;
                     case 'tv-license':
-                        expenseSpent_tv += spent;
+                        expenseSpent_tv += budget[i].expected;
                         break;
                     case 'books':
-                        expenseSpent_book += spent;
+                        expenseSpent_book += budget[i].expected;
                         break;
                     case 'phone':
-                        expenseSpent_phone += spent;
+                        expenseSpent_phone += budget[i].expected;
                         break;
                     case 'food':
-                        expenseSpent_food += spent;
+                        expenseSpent_food += budget[i].expected;
                         break;
                     case 'transport':
-                        expenseSpent_transport += spent;
+                        expenseSpent_transport += budget[i].expected;
                         break;
                     default:
-                        expenseSpent_other += spent;
+                        expenseSpent_other += budget[i].expected;
                         break;
                 }
             }

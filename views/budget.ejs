@@ -101,10 +101,19 @@
                 <tr>
                   <th></th>
                   <% for( let i=0; i < yourBudgetForRecommendSpent.length; i++ ) { %>
-                    <th>
-                      <%= yourBudgetForRecommendSpent[i].category %>
-                    </th>
-                    <% } %>
+                    <% if (yourBudgetForRecommendSpent[i].category=='other' ) { %>
+                      <th>
+                        <div class="tooltip">
+                          <%= yourBudgetForRecommendSpent[i].category %>
+                            <span class="tooltiptext">other includes savings</span>
+                        </div>
+                      </th>
+                      <% } else{ %>
+                        <th>
+                          <%= yourBudgetForRecommendSpent[i].category %>
+                        </th>
+                        <% } %>
+                        <% } %>
                 </tr>
                 <tr>
                   <th class="headersLeft">
@@ -164,11 +173,13 @@
                     <% for (let i=0; i<choices.length; i++) { %>
                       <% if (currentChoice==choices[i]){ %>
                         <option selected value=<%=choices[i] %>>
-                          <%= choices[i].charAt(0).toUpperCase() %><%= choices[i].slice(1) %>
+                          <%= choices[i].charAt(0).toUpperCase() %>
+                            <%= choices[i].slice(1) %>
                         </option>
                         <% } else {%>
                           <option value=<%=choices[i] %>>
-                            <%= choices[i].charAt(0).toUpperCase() %><%= choices[i].slice(1) %>
+                            <%= choices[i].charAt(0).toUpperCase() %>
+                              <%= choices[i].slice(1) %>
                           </option>
                           <% } %>
                             <% } %>
@@ -210,53 +221,53 @@
                   <p class="budgetCategory">
                     <%= i.category %>
                   </p>
-                <% if (i.category != "return"){ %> 
-                  <div class="KrInline">
-                    <p class="budgetExpected">
-                      <%= i.expected %>
-                    </p>
-                    <p class="Kr">Kr.</p>
-                  </div>
-                  <% } else{%>
+                  <% if (i.category !="return" ){ %>
                     <div class="KrInline">
                       <p class="budgetExpected">
-                        --
+                        <%= i.expected %>
                       </p>
-                      <p class="Kr">--</p>
+                      <p class="Kr">Kr.</p>
                     </div>
-                    <% } %>
-
-                  <div class="KrInline">
-                    <% if (i.income){ %>
-                      <p class="budgetRemaining" id="spentTableGreen"> +<%= i.spent %>
-                      </p>
-                      <% }else{ %>
-                        <p class="budgetRemaining" id="spentTableRed"> -<%= i.spent %>
+                    <% } else{%>
+                      <div class="KrInline">
+                        <p class="budgetExpected">
+                          --
                         </p>
-                        <% } %>
-                          <p class="Kr">Kr.</p>
-                  </div>
-                  <div class="KrInline">
-                    <% if (i.category != "return"){ %>
-                      <% if(i.remaining < 0){ %>
-                        <p class="budgetRemaining" id="remainingTableRed">
-                          <%= i.remaining %>
-                        </p>
-                        <p class="Kr">Kr.</p>
-                        <% } else{ %>
-                          <p class="budgetRemaining" id="remainingTableGreen">
-                            <%= i.remaining %>
-                          </p>
-                          <p class="Kr">Kr.</p>
-                          <% } %>
-                    <% } else {%>
-                      <p class="budgetRemaining" id="remainingTableGreen">
-                        --
-                      </p>
-                      <p class="Kr">--</p>
+                        <p class="Kr">--</p>
+                      </div>
                       <% } %>
-                        
-                  </div>
+
+                        <div class="KrInline">
+                          <% if (i.income){ %>
+                            <p class="budgetRemaining" id="spentTableGreen"> +<%= i.spent %>
+                            </p>
+                            <% }else{ %>
+                              <p class="budgetRemaining" id="spentTableRed"> -<%= i.spent %>
+                              </p>
+                              <% } %>
+                                <p class="Kr">Kr.</p>
+                        </div>
+                        <div class="KrInline">
+                          <% if (i.category !="return" ){ %>
+                            <% if(i.remaining < 0){ %>
+                              <p class="budgetRemaining" id="remainingTableRed">
+                                <%= i.remaining %>
+                              </p>
+                              <p class="Kr">Kr.</p>
+                              <% } else{ %>
+                                <p class="budgetRemaining" id="remainingTableGreen">
+                                  <%= i.remaining %>
+                                </p>
+                                <p class="Kr">Kr.</p>
+                                <% } %>
+                                  <% } else {%>
+                                    <p class="budgetRemaining" id="remainingTableGreen">
+                                      --
+                                    </p>
+                                    <p class="Kr">--</p>
+                                    <% } %>
+
+                        </div>
                 </div>
 
                 <div class="editBudgetBoxParent">
