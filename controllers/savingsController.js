@@ -46,17 +46,6 @@ exports.savingsOverview_get = function(req, res, next) {
     }).catch(err => {
         console.log(err);
 })
-
-    //add spent from budget
-
-    // Savings.find().then(savings => {
-    //     res.render('savings', {sg: savings});
-    // }).catch(err => {
-    //     console.log(err);
-    // })
-
-    
-
 }
 
 exports.savingsAdd_get = function(req, res, next) {
@@ -119,9 +108,6 @@ exports.savingsDelete_post = function(req, res, next) {
 
     Promise.all([savingPromise, budgetPromise, transactionPromise, returnPromiseTrans]).then(([s, b, t, rt]) => {
         console.log("savings successfully deleted!")
-        //redirect to /savigns with context informing that saving has been deleted
-
-        //send statuscode
 
         deleted = true;
 
@@ -129,4 +115,43 @@ exports.savingsDelete_post = function(req, res, next) {
    }).catch(err => {
        console.log(err);
    })
+}
+
+exports.edit_get = function(req, res, next) {
+      //fetch saving from db by id
+      Savings.findById(req.params.id).then(saving => {
+        
+        let sugar = {
+            name: saving.name.split("(")[0],
+            img: saving.img,
+            amount: saving.amount,
+            epm: saving.epm,
+            progress: saving.progress,
+            colourInput: saving.colourInput,
+            oldname: saving.name,
+            _id: saving._id,
+        }
+        console.log(sugar)
+        const emojis = ["📱", "🕶", "🌴", "🎄", "🚙", "🖥️", ]
+        
+    res.render("savings_edit", {sg: sugar, emojis: emojis})})
+    
+}
+exports.edit_post = function(req, res, next) {
+    req.body.name = req.body.name.split(' ').join('-').toLowerCase() + "-(Savings)" // Replace space + lowercase
+    //find budget and saving by id and update both with new values
+
+    const savingPromise = Savings.findByIdAndUpdate(req.params.id, req.body)
+    const transactionPromise = Transaction.updateMany({mainCategory: req.body.oldname}, {mainCategory: req.body.name})
+    const budgetPromise = Budget.updateOne({category: req.body.oldname}, {$set: {
+        category: req.body.name,
+        expected: req.body.epm,
+    }})
+  
+    Promise.all([savingPromise, budgetPromise, transactionPromise]).then(([s, b, t]) => {
+         res.redirect("/savings");
+    }).catch(err => {
+        console.log(err);
+    })
+
 }
