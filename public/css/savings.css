@@ -2,42 +2,47 @@
     margin-left: 20%;
     margin-right: 14%;
 }
-a{
+
+a {
     text-decoration: none;
 }
-.outerSG{
+
+.outerSG {
     border: 1px solid;
     width: 100%;
     display: grid;
     grid-template-columns: 12% 88%;
-    
+
 }
-.SGImg{
+
+.SGImg {
     border-right: 1px solid;
     justify-content: center;
     display: flex;
     align-items: center;
 }
-.SGImg .emoji{
+
+.SGImg .emoji {
     font-size: 5vw;
     margin: 0px;
 
-    
+
 }
-.SGButGrid{
+
+.SGButGrid {
     display: grid;
     width: 90%;
     gap: 1%;
     grid-template-columns: 94% 5%;
-  
-}
-
-.SGDataOuter{
-  width: 100%;
 
 }
 
-.SGText{
+.SGDataOuter {
+    width: 100%;
+
+}
+
+.SGText {
     font-size: 1.6vw;
     font-family: bebas;
     padding-right: 1%;
@@ -49,10 +54,10 @@ a{
     grid-template-columns: 25% 19% 19% 19% 19%;
     text-align: start;
 
-    
+
 }
 
-progress{
+progress {
     position: relative;
     width: 100%;
     height: 5vw;
@@ -61,44 +66,62 @@ progress{
     margin-bottom: -0.2%;
     z-index: -5;
 }
+
 progress::-webkit-progress-bar {
     background-color: transparent;
-  }
-  progress::-webkit-progress-value {
+}
+
+progress::-webkit-progress-value {
     background-color: rgb(0, 132, 255);
-  }
+}
 
-  .SGLabels{
+.SGLabels {
+    width: 70%;
+    margin-left: 13.5%;
+}
+
+.SGLabels #satext{
+    margin-left: -125%;
+}
+
+.SGLabels #sa {
+    margin-left: 10%;
+    font-family: bebas;
+    width: 10%;
+    font-size: 1.2vw;
+}
+
+.SGLabels #sb {
+    margin-left: 9.5%;
+    font-family: bebas;
+    width: 10%;
+    font-size: 1.2vw;
+}
+
+.SGLabels #sc {
+    margin-left: 7.5%;
+    font-family: bebas;
+    width: 10%;
+    font-size: 1.2vw;
+}
+
+.SGLabels #sd {
+    margin-left: 9%;
+    font-family: bebas;
+    width: 10%;
+    font-size: 1.2vw;
+}
+
+.SGLabels #se {
+    margin-left: 8.5%;
+    font-family: bebas;
+    width: 6%;
+    font-size: 1.2vw;
+}
 
 
-      width: 70%;
-      margin-left: 17.5%;
-    
-  }
-  .SGLabels p {
-      font-family: bebas;
-      width: 10%;
-      font-size: 1.2vw;
-      display: inline-block;
-  }
-  .sb{
-      margin-left: 10%;
-  }
-  
-  .sc{
-      margin-left: 10%;
-  }
-  
-  .sd{
-      margin-left: 10%;
-  }
-  .se{
-      margin-left: 10%;
-  }
-  
 
-
-  .addSavingsBut {
+.addSavingsBut {
     font-size: 1.2vw;
     font-family: bebas;
     color: rgb(0, 132, 255);
@@ -109,36 +132,41 @@ progress::-webkit-progress-bar {
     cursor: pointer;
     transition: 250ms;
     width: 28%;
-  }
-  .addSavingsBut:active {
-      background-color: rgb(240, 240, 240);
-      border: solid 1px rgb(0, 132, 255);
-      color: rgb(0, 132, 255);
-  }
-  .addSavingsBut:hover {
-      background-color: rgb(0, 132, 255);
-      color: white; 
-  }
+}
 
- 
+.addSavingsBut:active {
+    background-color: rgb(240, 240, 240);
+    border: solid 1px rgb(0, 132, 255);
+    color: rgb(0, 132, 255);
+}
+
+.addSavingsBut:hover {
+    background-color: rgb(0, 132, 255);
+    color: white;
+}
+
+
 /* add savings */
 
-.addSavingsPage{
+.addSavingsPage {
     width: 65%;
     margin-left: 20%;
 }
 
 /* the font for the page */
 .addSavingsPage p,
-h1, label {
-  font-family: bebas;
+h1,
+label {
+    font-family: bebas;
 }
+
 .addSavingsPage label {
-  font-size: 1.8vw;
+    font-size: 1.8vw;
 }
+
 .addSavingsPage h1 {
-  font-size: 3vw;
-  margin-left: 26%;
+    font-size: 3vw;
+    margin-left: 26%;
 }
 
 /* design of input */
@@ -157,12 +185,15 @@ h1, label {
 .addSavingsPage form {
     text-align: center;
 }
+
 .addSavingsPage label {
     margin-left: 26.5%;
 }
+
 .addSavingsPage form input {
     margin-bottom: 2%;
 }
+
 .addSavingsPage h1 {
     margin-bottom: 7.5%;
 }
@@ -180,10 +211,12 @@ h1, label {
     transition: 200ms;
     cursor: pointer;
 }
+
 .addSavingsPage .submitButton:hover {
     background-color: rgb(0, 132, 255);
     color: white;
 }
+
 .addSavingsPage .submitButton:active {
     background-color: rgb(0, 114, 221);
     color: white;
@@ -197,4 +230,112 @@ h1, label {
     width: 48.2%;
 }
 
+.catCheckBoxGrid {
+    display: grid;
+    gap: 8.5%;
+    grid-template-columns: 43.5% 43.5%;
+    width: 47.5%;
+    margin: 0px auto;
+    padding-top: 0%;
+    margin-bottom: 1.5%;
 
+}
+
+.catCheckBoxOuterExpense {
+    border: 1px solid;
+    width: 100%;
+    text-align: start;
+    padding: 5%;
+}
+
+.catCheckBoxOuter label {
+    margin-left: -15%;
+}
+
+.catLabel {
+    font-size: 1vw;
+    font-family: bebas;
+    margin: 0px;
+}
+
+.catTitle {
+    font-size: 1.3vw;
+    font-family: bebas;
+    margin: 0px;
+    margin-bottom: 1%;
+}
+
+/* pop up */
+
+.returnPopUp{
+    grid-template-columns: 80% 20%;
+    position: absolute;
+    left: 20.3%;
+    top: 0%;
+    background-color: rgb(38, 135, 164);
+    padding: 1%;
+    min-width: 54.1%;
+    animation: slideUp 1s;
+
+    
+
+}
+@keyframes slideUp {
+    0% {
+        transform: translateY(-100%);
+    }
+}
+
+.returnPopUpText{
+    letter-spacing: .09vw;
+    font-size: 1.3vw;
+    font-family: bebas;
+    text-align: start;
+    margin: 0px;
+    color: white;
+    text-align: center;
+}
+.returnLocationList{
+    margin: 0px auto;
+    margin-left: 10%;
+}
+.returnPopUpSubText{
+    letter-spacing: .09vw;
+    font-size: 1.2vw;
+    font-family: bebas;
+    text-align: start;
+    margin: 0px;
+    margin-left: 5%;
+    margin-top: 1%;
+    color: rgb(255, 255, 255);
+}
+.dismiss{
+    position: absolute;
+    left: 90%;
+    top: 45%;
+    font-size: 1.2vw;
+    font-family: bebas;
+    color: white;
+    background-color: transparent;
+    border: solid 1px;
+    border-color: white;
+    padding: 1.25%;
+    transition: 200ms;
+    cursor: pointer;
+}
+.dismiss:hover{
+    background-color: rgba(0, 0, 0, 0.094);
+
+}
+.dismiss:active{
+    display: inline-block;
+    font-size: 1.2vw;
+    font-family: bebas;
+    color: rgb(0, 0, 0);
+    background-color: transparent;
+    border: solid 1px;
+    border-color: rgb(0, 0, 0);
+    padding: 1.25%;
+    transition: 200ms;
+    cursor: pointer;
+}

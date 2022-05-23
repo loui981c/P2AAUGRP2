@@ -2,32 +2,70 @@
 <body>
     <%- include ("partials/sidebar.ejs") %> 
     <div class="transactionPageAdd">
-    <h1>Add a new income</h1>
+    <h1>Add a new income transaction</h1>
 
     
     <%# Showing all categories provided in transactions.ejs %>
     <form action="/transactions/add" method="post">
-        <label for="mainCategory">Choose Category</label>
-        <div class="catCheckBoxOuter">
-            <% for (let i = 0; i<categories.length; i++){ %> 
-            <div class="catCheckbox">
-                <label for="category>"><%= categories[i]%></label>
-                <input type="radio" name="mainCategory" id="mainCategory>" value="<%= categories[i]%>" required>
-            </div>
-            <% } %> 
+        <label class="labelBig" for="mainCategory">Choose Category</label>
+        <h5 class="radioLabelIncome">Income</h5>
+        <div class="TAddIncomeCatGrid">
+            <!-- Income -->
+            <div class="TAddIncome">
+                        <% let firstHalf = (categories.length/2).toFixed() %> 
+                        <!-- first half -->
+                        <div class="TAddIncomeCheckBoxParent">
+                            <% for (let i = 0; i<firstHalf; i++){ %> 
+                                
+
+                                <div class="TAddIncomeCheckBox">
+                                    <label class="TAddIncomeCatLabel" for="category>"><%= categories[i] %></label>
+
+                                        <input type="radio" name="mainCategory" id="mainCategory>" value="<%= categories[i] %>" required>
+                                </div>
+                            <% } %> 
+                        </div>
+                </div>
+            <!-- Income -->
+            <div class="TAddIncome">
+                        <!-- first half -->
+                        <div class="TAddIncomeCheckBoxParent">
+                            <% for (let i = firstHalf; i<categories.length; i++){ %> 
+                                
+
+                                <div class="TAddIncomeCheckBox">
+                                    <label class="TAddIncomeCatLabel" for="category>"><%= categories[i] %></label>
+
+                                        <input type="radio" name="mainCategory" id="mainCategory>" value="<%= categories[i] %>" required>
+                                </div>
+                            <% } %> 
+                        </div>
+                </div>
         </div>
         <%# sub category%>
         <div class="subCatForm">
-            <label for="subCategory">Sub category</label>
-            <input type="text" name="subCategory" id="subCategory">
+            <label class="labelBig" for="subCategory">
+                <div class="tooltip">subCategory
+                    <span class="tooltiptext">more specific tag for transaction</span> 
+                </div>
+            </label>
+            <input maxlength="20" type="text" name="subCategory" id="subCategory">
         </div>
         <%# price%>
         <div class="priceForm">
-            <label for="price">Amount</label>
+            <label class="labelBig" for="price">
+                <div class="tooltip">Amount
+                    <span class="tooltiptext">amount of transaction</span> 
+                </div>
+            </label>
             <input type="number" name="price" id="price" required>
         </div>
         <div class="dateForm">
-            <label for="date">Date</label>
+            <label class="labelBig" for="date">
+                <div class="tooltip">Date
+                    <span class="tooltiptext">date of when the transaction was made</span> 
+                </div>
+            </label>
             <input type="date" name="date" id="date" required>
         </div>
         

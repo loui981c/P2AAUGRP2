@@ -14,6 +14,10 @@
     margin-bottom: 0%;
     margin-top: 2%;
 }
+.noBudget {
+    margin-left: 41%;
+    font-size: 2vw;
+}
 /* the font for the page */
 .budgetPage p,
 h1 {
@@ -26,9 +30,17 @@ h1 {
 
 /* position the button */
 .addBudget {
-  display: block;
-  margin-left: 10%;
-  width: 20%;
+  display: inline-block;
+  width: 40%;
+  margin-left: 54.5%;
+}
+
+.selectAndButton{
+    display: grid;
+    width: 90%;
+    margin-left: 10%;
+    grid-template-columns: 50% 50%;
+    align-items: center;
 }
 
 /* design the add budget button */
@@ -39,11 +51,10 @@ h1 {
   background-color: transparent;
   border: solid 1px;
   border-color: green;
-  padding: 1.25%;
   cursor: pointer;
   transition: 250ms;
   width: 100%;
-  padding: 5% 5% 5% 5%;
+  padding: 6%;
 }
 .addBudgetBut:active {
     background-color: rgb(240, 240, 240);
@@ -53,6 +64,21 @@ h1 {
 .addBudgetBut:hover {
     background-color: green;
     color: white; 
+}
+
+.budgetPage .chooseCategory {
+    margin-top: 0%;
+    font-size: 1.3vw;
+    display: inline-block;
+    margin-bottom: 0%;
+    width: 20%;
+  }
+
+.budgetPage .chooseCategory select {
+    width: 88%;
+    padding: 3%;
+    font-size: 1.2vw;
+    margin-top: 1%;
 }
 
 /* position total spent and remaining */
@@ -106,48 +132,40 @@ h1 {
 #remainingGreen {
     color: green;
 }
-.categoryTable {
-    margin-top: 30%;
-}
+
 /* the design of the small headers */
 .budgetLabels {
     font-size: 1.5vw;
 }
 .categoryTable {
-    margin-top: -10%;
+    margin-top: 2.5%;
 }
 /* setting the distance between small headers */
-.category {
+.budgetLabels #category {
     text-align: end;
     display: inline-block;
     margin-left: 15.25%;
+    font-family: bebas;
 }    
-.expected {
+.budgetLabels #expected {
     text-align: end;
     display: inline-block;
     margin-left: 16%;
+    font-family: bebas;
 }  
-.spent {
+.budgetLabels #spent {
     text-align: end;
     display: inline-block;
     margin-left: 15.25%;
+    font-family: bebas;
 }
-.remaining {
+.budgetLabels #remaining {
     text-align: end;
     display: inline-block;
-    margin-left: 16.5%;
-    
+    margin-left: 11%;
+    font-family: bebas;
 }
-.budgetPage .chooseCategory {
-    font-size: 1.5vw;
-    display: inline-block;
-    margin-left: 86.75%;
-    margin-bottom: 2.5%;
-  }
 
-.budgetPage .chooseCategory select {
-    width: 100%;
-}
   
 /* making the table */
 .budgetTable {
@@ -459,11 +477,11 @@ h1, label {
   .neg{
       color: red;
   }
-.recommendedBudgetBox h2{
+.recommendedBudgetBox #recAmountTotal{
     font-size: 1.5vw;
     font-family: bebas;
     padding-top: 1%;
-    text-align: center;
+    margin-left: 22.5%;
     padding-top: 2.5%;
 }
 
@@ -550,7 +568,7 @@ input:checked + .slider:before {
     background-color: grey;
     color: #fff;
     text-align: center;
-    padding: 5px 0;
+    padding: 2.5% 5% 2.5% 5%;
     border-radius: 6px;
     width: 120px;
     bottom: 100%;

@@ -5,6 +5,9 @@ let Savings = require('../schemas/savingsSchema');
 let Budget = require('../schemas/budgetSchema');
 let Transaction = require('../schemas/transactionSchema');
 
+
+router.post("/:id/delete", savingsController.savingsDelete_post)
+
 router.get('/', savingsController.savingsOverview_get);
 
 router.get('/add', savingsController.savingsAdd_get);
@@ -41,8 +44,7 @@ router.post("/:id/edit", (req, res) => {
     //     progress: req.body.progress,
     //     colourInput: req.body.colourInput,
     // })
-
-    req.body.name = req.body.name + "(Savings)"
+    req.body.name = req.body.name.split(' ').join('-').toLowerCase() + "-(Savings)" // Replace space + lowercase
     // Savings.findByIdAndUpdate(req.params.id, req.body).then(() => {
     //     res.redirect("/savings")})
 
@@ -63,8 +65,6 @@ router.post("/:id/edit", (req, res) => {
 
 
 })
-
-
 
 module.exports = router;
 

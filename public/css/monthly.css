@@ -51,34 +51,53 @@ h1, select {
 
 /* position the label inside piechart */
 .labelInsidePieChart {
-    font-size: 1.3vw;
+    font-size: 1.2vw;
     font-family: bebas;
     text-align: center;
     z-index: 1;
-    margin-top: -27%;
+    margin-top: -21%;
 }
 
 .labelInsidePieChart p {
     margin-top: -2.5%;
 }
 
-@media screen and (max-width: 900px) {
+.labelInsidePieChartIncome {
+    font-size: 1.2vw;
+    font-family: bebas;
+    text-align: center;
+    z-index: 1;
+    margin-top: -21%;
+}
+
+.labelInsidePieChartIncome p {
+    margin-top: -2.5%;
+}
+
+@media screen and (max-width: 1100px) {
     .labelInsidePieChart {
-        margin-top: -26.5%;
+        margin-top: -17.5%;
+        font-size: 1vw;
     }
 }
 
-@media screen and (max-width: 671px) {
+@media screen and (max-width: 900px) {
     .labelInsidePieChart {
-        margin-top: -20%;
-        font-size: 1.2vw;
+        margin-top: -15.5%;
+        font-size: 0.9vw;
     }
-};
-
-@media screen and (max-width: 575px) {
-    .labelInsidePieChart {
-        margin-top: -5%;
+}
+@media screen and (max-width: 1100px) {
+    .labelInsidePieChartIncome {
+        margin-top: -17.5%;
         font-size: 1vw;
     }
-};
+}
+
+@media screen and (max-width: 900px) {
+    .labelInsidePieChartIncome {
+        margin-top: -15.5%;
+        font-size: 0.9vw;
+    }
+}
     

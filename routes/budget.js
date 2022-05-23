@@ -19,7 +19,6 @@ router.get("/:id/edit", budget_controller.edit_budget_get);
 
 router.post("/:id/edit", budget_controller.edit_budget_post);
 
-//for deleting 
 router.post("/:id/delete", budget_controller.delete_budget_post);
 
 module.exports = router;

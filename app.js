@@ -37,6 +37,9 @@ app.use(cookieParser());
 //for public files like css and scripts
 app.use(express.static(path.join(__dirname, 'public')));
 
+//for detecting recent changes
+app.locals.recentlyDeleted = "false";
+
 // using routers
 app.use('/', indexRouter);
 app.use('/monthly', monthlyRouter);

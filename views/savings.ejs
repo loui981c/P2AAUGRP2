@@ -1,61 +1,118 @@
 <%- include ("partials/header.ejs") %>
+
     <body>
         <%- include ("partials/sidebar.ejs") %>
-        <div class="savingsPage">
-            <h1>Savings Goals</h1>
-            
-
-            <!-- Add savings goal button -->
-            <a href="/savings/add"><button class="addSavingsBut">Add Savings Goal</button></a>
-
-            <br>
-            <br>
+            <div class="savingsPage">
+                <h1>Savings Goals</h1>
 
 
-            <!-- Savings goals labels -->
-            <div class="SGLabels">
-                <p class="sa">Name</p>
-                <p class="sb">Amount</p>
-                <p class="sc">Expected per month</p>
-                <p class="sd">Estimated Time</p>
-                <p class="se">Progress percentage</p>
-            </div>
+                <!-- Add savings goal button -->
+                <a href="/savings/add"><button class="addSavingsBut">Add Savings Goal</button></a>
 
-            <!-- Savings goals list -->
-            <% for (s of sg){ %> 
-            <div class="SGButGrid">
-                <div class="outerSG">
+                <br>
+                <br>
 
-                    <!-- Calculate progress percentage -->
-                    <% var progressPercentage = (s.progress / s.amount) * 100 %>
 
-                    <!-- Calculate estimated time from monthly and amonut -->
-                    <% var estimatedTime = s.amount / s.epm %>
-
-                    <div class="SGImg">
-                        <h2 class="emoji" ><%= s.img %></h2>
+                <!-- Savings goals labels -->
+                <div class="SGLabels">
+                    <div class="tooltip" id="sa">Name
+                        <span class="tooltiptext" id="satext">name of savings/goal</span>
                     </div>
-                    <div class="SGDataOuter">
-                        <div class="SGText">
-                            <p><%= s.name %> </p>
-                            <p><%= s.amount %> kr</p>
-                            <p><%= s.epm %> kr</p>
-                            <p><%= estimatedTime.toFixed(1) %> m</p>
-                            <p><%= progressPercentage.toFixed(1) %> %</p>
+                    <div class="tooltip" id="sb">Amount
+                        <span class="tooltiptext">total amount of the savings/goal</span>
+                    </div>
+                    <div class="tooltip" id="sc">Expected per month
+                        <span class="tooltiptext">expected amount to save up each month</span>
+                    </div>
+                    <div class="tooltip" id="sd">Estimated Time
+                        <span class="tooltiptext">time until saved up for the goal</span>
+                    </div>
+                    <div class="tooltip" id="se">Progress percentage
+                        <span class="tooltiptext">percentage of the progress of saving up</span>
+                    </div>
+                </div>
+
+                <!-- Savings goals list -->
+                <% for (s of sg){ %>
+                    <div class="SGButGrid">
+                        <div class="outerSG">
+
+                            <!-- Calculate progress percentage -->
+                            <% var progressPercentage=(s.progress / s.amount) * 100 %>
+
+                                <!-- Calculate estimated time from monthly and amonut -->
+                                <% var estimatedTime=(s.amount - s.progress) / s.epm %>
+
+                                    <div class="SGImg">
+                                        <h2 class="emoji">
+                                            <%= s.img %>
+                                        </h2>
+                                    </div>
+                                    <div class="SGDataOuter">
+                                        <div class="SGText">
+                                            <p>
+                                                <%= s.name %>
+                                            </p>
+                                            <p>
+                                                <%= s.amount %> kr
+                                            </p>
+                                            <p>
+                                                <%= s.epm %> kr
+                                            </p>
+                                            <p>
+                                                <%= estimatedTime.toFixed(1) %> m
+                                            </p>
+                                            <p>
+                                                <%= progressPercentage.toFixed(1) %> %
+                                            </p>
+                                        </div>
+                                        <!-- set the colour of the progress bar to s.colourInput -->
+                                        <progress value="<%= s.progress %>" max="<%= s.amount %>"></progress>
+                                    </div>
                         </div>
-                        <!-- set the colour of the progress bar to s.colourInput -->
-                        <progress value="<%= s.progress %>" max="<%= s.amount %>"></progress>
-                    </div> 
-                </div>
-                <div class="tileButtons">
-                    <span></span>
-                    <a href="/savings/<%= s._id %>/edit"><button class="edit">Edit</button></a>
-                    <form method="POST" action="/savings/<%= s._id %>/delete">
-                        <button class="delete">Delete</button>
-                    </form>
-                </div>
+                        <div class="tileButtons">
+                            <span></span>
+                            <a href="/savings/<%= s._id %>/edit"><button class="edit">Edit</button></a>
+                            <form method="POST" action="/savings/<%= s._id %>/delete">
+                                <input type="text" value="<%= s.name %>" style="display: none;" name="name">
+                                <input type="number" value="<%= s.progress %>" style="display: none;" name="returned">
+                                
+                                <button id="deleteButton" class="delete">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                    <br>
+                    <% } %>
             </div>
-            <br>
-            <% } %>
-        </div>  
+
+            <div class="returnPopUp">
+                <div>
+                <p class="returnPopUpText">The amount transfered to your deleted savings goal has been returned</p>
+                <ol class="returnLocationList">
+                    <li class="returnPopUpSubText">It can be found at the Income category "return" on the budget page</li>
+                    <li class="returnPopUpSubText">Or as a transaction on the transaction page under the category "return"</li>
+                </ol>
+                </div>
+                <Button class="dismiss">Dismiss</Button>
+                
+          
+            </div>
+            <p id="recentlyDeletedBool" style="display: none"><%= recentlyDeleted %></p>
+            <script>
+                // document.querySelector('.returnPopUp').style.display = "none";
+                var recentlyDeleted = document.getElementById('recentlyDeletedBool').innerHTML;
+                console.log(recentlyDeleted);
+                if (recentlyDeleted == "true") {
+                    document.querySelector('.returnPopUp').style.display = "block";
+                }
+                else{
+                    document.querySelector('.returnPopUp').style.display = "none";
+                }
+
+                //on click dismiss button hide the popup
+                document.querySelector('.dismiss').addEventListener('click', function(){
+                    document.querySelector('.returnPopUp').style.display = "none";
+                }
+                );
+            </script>
     </body>

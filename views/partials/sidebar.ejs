@@ -10,7 +10,6 @@
             <a href="/budget">Budget</a>
             <a class="subSidebarTitle" href="/budget/add">Add Budget / Create Category</a>
             <a href="/transactions">Transactions</a>
-            <a class="subSidebarTitle" href="/transactions/add">Add Transaction</a>
             <a  href="/savings">Savings</a>
         </div>
     </div>
@@ -24,7 +23,16 @@
             }
         }
         if (document.URL == "http://localhost:3000/transactions/categories"){
-                current = 4;
+                current = 3;
             }
+        if (document.URL == "http://localhost:3000/budget/choices") {
+            current = 1;
+        }
+        if (document.URL.includes("http://localhost:3000/transactions/edit") || document.URL.includes("http://localhost:3000/transactions/add")) {
+            current = 3;
+        }
+        if (document.URL.includes("http://localhost:3000/savings/add")) {
+            current = 4;
+        }
         document.links[current].className = 'current';
     </script>

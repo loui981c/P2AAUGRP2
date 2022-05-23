@@ -6,12 +6,6 @@
       <div class="budgetPage">
         <h1>Budget</h1>
 
-        <!-- add budget -->
-
-        <div class="addBudget">
-          <a href="/budget/add"><button class="addBudgetBut">Add Budget/Create Category</button></a>
-        </div>
-
         <div class="topOfPage">
           <div class="buttonAndTotalTable">
 
@@ -20,12 +14,12 @@
             <table class="totalTable">
 
               <tr>
-                  <th>
-                    <div class="tooltip">Total Expected Of expenses:
-                      <span class="tooltiptext">red if expected is lower than income</span>
-                    </div>
-                  </th>
-                <% if(totalExpected > totalIncome){ %>
+                <th>
+                  <div class="tooltip">Total Expected Of expenses:
+                    <span class="tooltiptext">red if expected is lower than income</span>
+                  </div>
+                </th>
+                <% if(totalExpected> totalIncome){ %>
                   <td class="neg">
                     <%= totalExpected %>
                   </td>
@@ -100,18 +94,33 @@
             </table>
 
             <div class="recommendedBudgetBox">
-              <h2>Recommended amount: <%= recommendedAmount %> kr.</h2>
+              <div class="tooltip" id="recAmountTotal">Recommended amount: <%= recommendedAmount %> kr.
+                  <span class="tooltiptext">recommended amount for students budget</span>
+              </div>
               <table class="recommendedBudgetTable">
                 <tr>
                   <th></th>
                   <% for( let i=0; i < yourBudgetForRecommendSpent.length; i++ ) { %>
-                    <th>
-                      <%= yourBudgetForRecommendSpent[i].category %>
-                    </th>
-                    <% } %>
+                    <% if (yourBudgetForRecommendSpent[i].category=='other' ) { %>
+                      <th>
+                        <div class="tooltip">
+                          <%= yourBudgetForRecommendSpent[i].category %>
+                            <span class="tooltiptext">other includes savings</span>
+                        </div>
+                      </th>
+                      <% } else{ %>
+                        <th>
+                          <%= yourBudgetForRecommendSpent[i].category %>
+                        </th>
+                        <% } %>
+                        <% } %>
                 </tr>
                 <tr>
-                  <th class="headersLeft">Rec. Amount</th>
+                  <th class="headersLeft">
+                    <div class="tooltip">Rec. Amount
+                      <span class="tooltiptext">Recommended amount for each category</span>
+                    </div>
+                  </th>
                   <% for( let i=0; i < recAmount.length; i++ ) { %>
                     <td>
                       <%= recAmount[i].spent %> kr.
@@ -119,7 +128,11 @@
                     <% } %>
                 </tr>
                 <tr>
-                  <th class="headersLeft">Your Amount</th>
+                  <th class="headersLeft">
+                    <div class="tooltip">Your Amount
+                      <span class="tooltiptext">your amount for each category</span>
+                    </div>
+                  </th>
                   <% for( let i=0; i < yourBudgetForRecommendSpent.length; i++ ) { %>
                     <td>
                       <%= yourBudgetForRecommendSpent[i].spent %> kr.
@@ -127,7 +140,11 @@
                     <% } %>
                 </tr>
                 <tr>
-                  <th class="headersLeft">Deviation</th>
+                  <th class="headersLeft">
+                    <div class="tooltip">Deviation
+                      <span class="tooltiptext">deviation between rec. and your amonut for each category</span>
+                    </div>
+                  </th>
                   <% for( let i=0; i < recAmount.length; i++ ) { %>
                     <% if(recAmount[i].pro < 0){ %>
                       <td class="neg">
@@ -145,82 +162,126 @@
           </div>
         </div>
 
-
-
-        <!-- Showing the labels -->
-        <div class="categoryTable">
-
+        <div class="selectAndButton">
           <%# Dropdown for choosing category%>
             <div class="chooseCategory">
               <%# the variable "choices" comes is a variable rendered with the transactions view (transactions.js)%>
-                <label for="choices">Choose category</label>
+                <label for="choices">Category Type</label>
                 <form action="/budget/choices" name="choices" method="post">
                   <select name="choices" id="choices" onchange="this.form.submit()">
-                    <option value="expenses">Expenses</option>
+                    <option value="expenses">EXPENSES</option>
                     <% for (let i=0; i<choices.length; i++) { %>
                       <% if (currentChoice==choices[i]){ %>
-                          <option selected value=<%=choices[i] %>><%= choices[i] %>
+                        <option selected value=<%=choices[i] %>>
+                          <%= choices[i].toUpperCase() %>
+                        </option>
+                        <% } else {%>
+                          <option value=<%=choices[i] %>>
+                            <%= choices[i].toUpperCase() %>
                           </option>
-                          <% } else {%>
-                              <option value=<%=choices[i] %>><%= choices[i] %>
-                              </option>
-                              <% } %>
-                                  <% } %>
+                          <% } %>
+                            <% } %>
                   </select>
+                </form>
             </div>
+            <!-- add budget -->
 
-            <div class="budgetLabels">
-              <p class="category">Category</p>
-              <p class="expected">Expected</p>
-              <p class="spent">Spent</p>
-              <p class="remaining">Remaining</p>
+            <div class="addBudget">
+              <a href="/budget/add"><button class="addBudgetBut">Add Budget/Create Category</button></a>
             </div>
+        </div>
+        <% if (budgetData.length==0) { %>
+          <p class="noBudget">No Budgets/categories yet</p>
 
-            <!-- Showing the budget in the table -->
-
-            <% for (let i=0; i < budgetData.length; i++){ %>
+          <!-- Showing the budget in the table -->
+          <% } else { %>
+            <!-- Showing the labels -->
+            <div class="categoryTable">
+              <div class="budgetLabels">
+                <div class="tooltip" id="category">Category
+                  <span class="tooltiptext">name of category</span>
+                </div>
+                <div class="tooltip" id="expected">Expected
+                  <span class="tooltiptext">amount expected in the category</span>
+                </div>
+                <div class="tooltip" id="spent">Spent/Received
+                  <span class="tooltiptext">the amount spent if category is expense or received if category is
+                    income/savings</span>
+                </div>
+                <div class="tooltip" id="remaining">Remaining
+                  <span class="tooltiptext">amount remaining compared to spent</span>
+                </div>
+              </div>
+            </div>
+            <% for (let i of budgetData){ %>
               <div class="budgetTable">
                 <div class="budgetInsideTable">
                   <p class="budgetCategory">
-                    <%= budgetData[i].category %>
+                    <%= i.category %>
                   </p>
-                  <div class="KrInline">
-                    <p class="budgetExpected">
-                      <%= budgetData[i].expected %>
-                    </p>
-                    <p class="Kr">Kr.</p>
-                  </div>
-                  <div class="KrInline">
-                    <p class="budgetRemaining" id="spentTableRed"> -<%= budgetData[i].spent %>
-                    </p>
-                    <p class="Kr">Kr.</p>
-                  </div>
-                  <div class="KrInline">
-                    <% if(budgetData[i].remaining < 0){ %>
-                      <p class="budgetRemaining" id="remainingTableRed">
-                        <%= budgetData[i].remaining %>
+                  <% if (i.category !="return" ){ %>
+                    <div class="KrInline">
+                      <p class="budgetExpected">
+                        <%= i.expected %>
                       </p>
                       <p class="Kr">Kr.</p>
-                      <% } else{ %>
-                        <p class="budgetRemaining" id="remainingTableGreen">
-                          <%= budgetData[i].remaining %>
+                    </div>
+                    <% } else{%>
+                      <div class="KrInline">
+                        <p class="budgetExpected">
+                          --
                         </p>
-                        <p class="Kr">Kr.</p>
-                        <% } %>
-                  </div>
+                        <p class="Kr">--</p>
+                      </div>
+                      <% } %>
+
+                        <div class="KrInline">
+                          <% if (i.income){ %>
+                            <p class="budgetRemaining" id="spentTableGreen"> +<%= i.spent %>
+                            </p>
+                            <% }else{ %>
+                              <p class="budgetRemaining" id="spentTableRed"> -<%= i.spent %>
+                              </p>
+                              <% } %>
+                                <p class="Kr">Kr.</p>
+                        </div>
+                        <div class="KrInline">
+                          <% if (i.category !="return" ){ %>
+                            <% if(i.remaining < 0){ %>
+                              <p class="budgetRemaining" id="remainingTableRed">
+                                <%= i.remaining %>
+                              </p>
+                              <p class="Kr">Kr.</p>
+                              <% } else{ %>
+                                <p class="budgetRemaining" id="remainingTableGreen">
+                                  <%= i.remaining %>
+                                </p>
+                                <p class="Kr">Kr.</p>
+                                <% } %>
+                                  <% } else {%>
+                                    <p class="budgetRemaining" id="remainingTableGreen">
+                                      --
+                                    </p>
+                                    <p class="Kr">--</p>
+                                    <% } %>
+
+                        </div>
                 </div>
 
                 <div class="editBudgetBoxParent">
                   <div class="editBudgetBox">
-                    <a href="/budget/<%= budgetData[i]._id %>/edit"><button class="editBudget">Edit</button></a>
-                    <form method="POST" action="/budget/<%= budgetData[i]._id %>/delete">
-                      <button class="deleteBudget">Delete</button>
-                    </form>
+                    <% if (i.category !="return" ){ %>
+                      <a href="/budget/<%= i._id %>/edit"><button class="editBudget">Edit</button></a>
+                      <form method="POST" action="/budget/<%= i._id %>/delete">
+                        <input type="text" name="category" value="<%= i.category %>" style="display: none;">
+                        <button type="submit" class="deleteBudget">Delete</button>
+                      </form>
+                      <% } %>
                   </div>
                 </div>
               </div>
               <% } %>
-        </div>
+                <% } %>
       </div>
 
   </body>
