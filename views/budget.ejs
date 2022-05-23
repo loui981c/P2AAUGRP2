@@ -169,17 +169,15 @@
                 <label for="choices">Category Type</label>
                 <form action="/budget/choices" name="choices" method="post">
                   <select name="choices" id="choices" onchange="this.form.submit()">
-                    <option value="expenses">Expenses</option>
+                    <option value="expenses">EXPENSES</option>
                     <% for (let i=0; i<choices.length; i++) { %>
                       <% if (currentChoice==choices[i]){ %>
                         <option selected value=<%=choices[i] %>>
-                          <%= choices[i].charAt(0).toUpperCase() %>
-                            <%= choices[i].slice(1) %>
+                          <%= choices[i].toUpperCase() %>
                         </option>
                         <% } else {%>
                           <option value=<%=choices[i] %>>
-                            <%= choices[i].charAt(0).toUpperCase() %>
-                              <%= choices[i].slice(1) %>
+                            <%= choices[i].toUpperCase() %>
                           </option>
                           <% } %>
                             <% } %>
