@@ -13,8 +13,6 @@ router.get("/categories", (req, res) => {
 
 router.post("/categories", transaction_controller.categories_post)
 
-//CRUD from this point on
-
 router.get("/add", transaction_controller.addTransactions_get);
 
 router.post("/add", transaction_controller.addTransactions_post);
