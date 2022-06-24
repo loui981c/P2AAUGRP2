@@ -43,7 +43,7 @@ exports.transactionOverview_get = function (req, res, next) {
     lastOutPutDate = todayYear + "-" + todayMonth + "-" + lastDay;
 
     transactionsWithCorrectDates = [];
-    incomeOrExpense = [];
+    // incomeOrExpense = [];
     for (t of trans) {
       //convert format of transaction date to one that matches output dates
       tempDate = t.date
@@ -62,17 +62,30 @@ exports.transactionOverview_get = function (req, res, next) {
       //add t to transactionsWithCorrectDates if it matches the first or last date of the current month
       if (correctDate.replaceAll("-", "") >= firstOutputDate.replaceAll("-", "") && correctDate.replaceAll("-", "") <= lastOutPutDate.replaceAll("-", "")) {
         transactionsWithCorrectDates.push(t);
-        for (b of budget) {
-          if (b.category == t.mainCategory) {
-            incomeOrExpense.push({ income: b.income });
-          }
-        }
+        // for (b of budget) {
+        //   if (b.category == t.mainCategory) {
+        //     incomeOrExpense.push({ income: b.income });
+        //   }
+        // }
       }
     }
 
     // sorts the dates
     transactionsWithCorrectDates.sort((a, b) => b.date - a.date)
     console.log(transactionsWithCorrectDates);
+
+    //add incomeOrExpense bool for each transaction after sorted
+    let incomeOrExpense = [];
+    for (t of transactionsWithCorrectDates)
+    {
+       for (b of budget) {
+          if (b.category == t.mainCategory) {
+            incomeOrExpense.push({ income: b.income });
+          }
+        }
+
+    }
+  
 
     //monthly
     let categoriesWithPricesAndColours = [];
@@ -173,7 +186,7 @@ exports.transactionOverview_post = function (req, res, next) {
     //if category is AllCategories, then show all categories
     if (req.body.categories == "AllCategories") {
       transactionsWithCorrectDates = [];
-      incomeOrExpense = [];
+      // incomeOrExpense = [];
       //iterate through all transactions convert date and them expamine date according to dateFrom and DateTo
       for (t of trans) {
         //convert format of transaction date to one that matches output dates
@@ -193,19 +206,31 @@ exports.transactionOverview_post = function (req, res, next) {
         //add t to transactionsWithCorrectDates if it matches the first or last date of the current month
         if (correctDate.replaceAll("-", "") >= req.body.dateFrom.replaceAll("-", "") && correctDate.replaceAll("-", "") <= req.body.dateTo.replaceAll("-", "")) {
           transactionsWithCorrectDates.push(t);
-          for (b of budget) {
-            if (b.category == t.mainCategory) {
-              incomeOrExpense.push({ income: b.income });
-            }
-          }
+          // for (b of budget) {
+          //   if (b.category == t.mainCategory) {
+          //     incomeOrExpense.push({ income: b.income });
+          //   }
+          // }
         }
       }
-      console.log('---------------------', transactionsWithCorrectDates);
-      console.log('------------------------', incomeOrExpense)
+
       //sort these transacions by date
       transactionsWithCorrectDates.sort((a, b) => b.date - a.date)
 
       console.log("all transactions with good dates: " + transactionsWithCorrectDates)
+
+      //add incomeOrExpense bool for each transaction after sorted
+      let incomeOrExpense = [];
+      for (tr of transactionsWithCorrectDates)
+      {
+          for (bu of budget) {
+            if (bu.category == tr.mainCategory) {
+              incomeOrExpense.push({ income: bu.income });
+            }
+          }
+      }
+      console.log('------------------------', incomeOrExpense);
+      console.log("ASKDJASDKHLASDJHALKDJ")
 
       //monthly
       let categoriesWithPricesAndColours = [];
@@ -321,19 +346,24 @@ exports.transactionOverview_post = function (req, res, next) {
         //add t to transactionsWithCorrectDates if it matches the first or last date of the current month
         if (correctDate.replaceAll("-", "") >= req.body.dateFrom.replaceAll("-", "") && correctDate.replaceAll("-", "") <= req.body.dateTo.replaceAll("-", "")) {
           transactionsWithCorrectDates.push(t);
-          for (b of budget) {
-            if (b.category == t.mainCategory) {
-              incomeOrExpense.push({ income: b.income });
-            }
-          }
+         
         }
       }
       console.log('---------------------', transactionsWithCorrectDates);
-      console.log('------------------------', incomeOrExpense);
+      
 
       //sort these transacions by date
       transactionsWithCorrectDates.sort((a, b) => b.date - a.date);
       console.log("all transactions with good dates: " + transactionsWithCorrectDates);
+
+      for (t of transactionsWithCorrectDates){
+        for (b of budget) {
+          if (b.category == t.mainCategory) {
+            incomeOrExpense.push({ income: b.income });
+          }
+        }
+      }
+      console.log('------------------------', incomeOrExpense);
 
       //monthly
       let categoriesWithPricesAndColours = [];
@@ -647,7 +677,7 @@ exports.categories_post = function(req,res,next){
     //if category is AllCategories, then show all categories
     if (req.body.categories == "AllCategories") {
       transactionsWithCorrectDates = [];
-      incomeOrExpense = [];
+      
       //iterate through all transactions convert date and them expamine date according to dateFrom and DateTo
       for (t of trans) {
         //convert format of transaction date to one that matches output dates
@@ -667,11 +697,7 @@ exports.categories_post = function(req,res,next){
         //add t to transactionsWithCorrectDates if it matches the first or last date of the current month
         if (correctDate.replaceAll("-", "") >= req.body.dateFrom.replaceAll("-", "") && correctDate.replaceAll("-", "") <= req.body.dateTo.replaceAll("-", "")) {
           transactionsWithCorrectDates.push(t);
-          for (b of budget) {
-            if (b.category == t.mainCategory) {
-              incomeOrExpense.push({ income: b.income });
-            }
-          }
+         
         }
       }
       console.log(transactionsWithCorrectDates);
@@ -679,6 +705,18 @@ exports.categories_post = function(req,res,next){
       transactionsWithCorrectDates.sort((a, b) => b.date - a.date)
 
       console.log("all transactions with good dates: " + transactionsWithCorrectDates)
+
+      incomeOrExpense = [];
+
+      //add income bool for each trans after sorting the array
+      for (t of transactionsWithCorrectDates)
+      {
+        for (b of budget) {
+          if (b.category == t.mainCategory) {
+            incomeOrExpense.push({ income: b.income });
+          }
+        }
+      }
 
       //monthly stuff
       //monthly
